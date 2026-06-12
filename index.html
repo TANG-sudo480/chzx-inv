@@ -337,7 +337,12 @@ body{font-family:"PingFang SC","Microsoft YaHei",sans-serif;background:#0d1117;c
 <!-- 智能筛选 -->
 <div id="tab-filter" class="tab-content">
   <div class="filter-bar" style="max-width:900px">
-    <h3>智能筛选条件 <span style="font-size:11px;color:#8b949e">基于企业融资、扩产动态、技术趋势智能匹配</span></h3>
+    <h3>精准招商推荐 <span style="font-size:11px;color:#8b949e">基于园区产业链分析智能推荐</span></h3>
+    <div id="chainAnalysis" style="margin-bottom:16px"></div>
+    <div style="margin-bottom:12px">
+      <div style="font-size:12px;color:#8b949e;margin-bottom:8px">招引优先级 <span style="font-size:10px;color:#f0883e">（核心缺口/重要补链/完善链）</span></div>
+      <div class="filter-row" id="filterPriority"></div>
+    </div>
     <div style="margin-bottom:12px">
       <div style="font-size:12px;color:#8b949e;margin-bottom:8px">业态类型 <span style="font-size:10px;color:#f0883e">（可多选）</span></div>
       <div class="filter-row" id="filterType"></div>
@@ -957,14 +962,79 @@ var factoryData=[
   {name:"西湖科创园",area:"单体2000-6000㎡",height:"层高5m",power:"630KVA/栋",rent:"10元/㎡/月",note:"研发办公一体，适合科技型小微项目",tags:[{t:"研发",c:"#8b949e"},{t:"现房",c:"#238636"}]},
 ];
 
-var filterOptions={
-  type:["电池系统","正极材料","负极材料","电解液","隔膜","电驱电机","电机控制器","SiC/功率半导体","智能驾驶","智能座舱","热管理","底盘传动","连接器/线束","车载传感器","汽车芯片","汽车电子","精密制造","伺服系统","精密减速器","工业机器人","数控系统","轻量化材料","整车","充换电设施","电池回收","eVTOL"],
-  finance:["IPO冲刺","战略融资","B轮以上","C轮巨额","扩产定增","IPO上市"],
-  expand:["大规模扩产","中等扩产","小规模扩产","暂无扩产"],
-  trend:["固态电池","800V高压","碳化硅SiC","大圆柱电池","智驾域控","线控底盘","空气悬架","动力电池回收","一体化压铸","智能制造"],
-  tech:["低壁垒(配套加工)","中壁垒(总成件)","高壁垒(核心部件)","极高壁垒(芯片/算法)"],
-  match:["5km内","20km内","50km内","100km内","200km内","全国"],
-};
+// 园区产业链现状分析
+	var localChainAnalysis = {
+	  "电池系统":{hasLocal:false,priority:"高",desc:"动力电池是核心，需重点布局"},
+	  "正极材料":{hasLocal:false,priority:"高",desc:"上游关键材料，建议引进"},
+	  "负极材料":{hasLocal:false,priority:"中",desc:"部分配套，需提升"},
+	  "电解液":{hasLocal:false,priority:"中",desc:"已有基础材料企业"},
+	  "隔膜":{hasLocal:false,priority:"高",desc:"高壁垒环节，建议重点引进"},
+	  "电驱电机":{hasLocal:true,priority:"高",desc:"已有利羿精密等企业，需扩链"},
+	  "电机控制器":{hasLocal:false,priority:"高",desc:"关键环节，建议引进"},
+	  "SiC/功率半导体":{hasLocal:false,priority:"高",desc:"卡脖子环节，需重点突破"},
+	  "智能驾驶":{hasLocal:false,priority:"高",desc:"未来制高点，建议引进头部"},
+	  "智能座舱":{hasLocal:false,priority:"中",desc:"有一定配套基础"},
+	  "热管理系统":{hasLocal:false,priority:"中",desc:"现有冷却系统企业"},
+	  "底盘传动":{hasLocal:true,priority:"中",desc:"已有精密制造企业"},
+	  "连接器/线束":{hasLocal:false,priority:"高",desc:"建议引进头部企业"},
+	  "车载传感器":{hasLocal:false,priority:"高",desc:"智能网联关键，建议引进"},
+	  "汽车芯片":{hasLocal:false,priority:"极高",desc:"核心卡脖子，需重点突破"},
+	  "精密制造":{hasLocal:true,priority:"中",desc:"基础较强，利羿精密等"},
+	  "伺服系统":{hasLocal:false,priority:"中",desc:"自动化设备核心"},
+	  "精密减速器":{hasLocal:false,priority:"高",desc:"机器人核心，建议引进"},
+	  "工业机器人":{hasLocal:true,priority:"中",desc:"已有创泽智能、淳迪自动化"},
+	  "整车":{hasLocal:false,priority:"高",desc:"整车落地可带动全产业链"}
+	};
+
+	// 精准招商推荐
+	var precisionRecruit = [
+	  {name:"宁德时代",priority:"极高",category:"电池系统",distance:"200km",score:100,reason:"全球第一动力电池企业，可带动产业集聚"},
+	  {name:"比亚迪半导体",priority:"极高",category:"汽车芯片",distance:"200km",score:99,reason:"国产汽车芯片龙头，IGBT/SiC技术领先"},
+	  {name:"地平线",priority:"极高",category:"智能驾驶",distance:"全国",score:98,reason:"国产智驾芯片第一，港股IPO冲刺中"},
+	  {name:"华为引望",priority:"极高",category:"智能驾驶",distance:"全国",score:97,reason:"获230亿战略投资，智驾技术最强"},
+	  {name:"恩捷股份",priority:"极高",category:"隔膜",distance:"200km",score:96,reason:"全球隔膜龙头，市占率40%+"},
+	  {name:"天赐材料",priority:"极高",category:"电解液",distance:"200km",score:95,reason:"全球电解液龙头，配套宁德时代"},
+	  {name:"汇川技术",priority:"高",category:"电驱电机",distance:"200km",score:93,reason:"电机控制器国内第一，苏州80km"},
+	  {name:"三花智控",priority:"高",category:"热管理",distance:"200km",score:92,reason:"热管理系统全球龙头，绍兴80km"},
+	  {name:"伯特利",priority:"高",category:"底盘传动",distance:"全国",score:90,reason:"线控制动龙头，科创板上市"},
+	  {name:"立讯精密",priority:"高",category:"连接器/线束",distance:"200km",score:89,reason:"汽车连接器+线束龙头"},
+	  {name:"中创新航",priority:"高",category:"电池系统",distance:"200km",score:88,reason:"全球第三大动力电池，常州150km"},
+	  {name:"蜂巢能源",priority:"高",category:"电池系统",distance:"200km",score:87,reason:"短刀片电池领先，IPO冲刺中"},
+	  {name:"速腾聚创",priority:"高",category:"车载传感器",distance:"200km",score:86,reason:"激光雷达国内第一，港股上市"},
+	  {name:"亿纬锂能",priority:"高",category:"电池系统",distance:"全国",score:85,reason:"大圆柱电池战略，港股IPO中"},
+	  {name:"绿的谐波",priority:"高",category:"精密减速器",distance:"200km",score:84,reason:"谐波减速器国产替代第一"},
+	  {name:"斯达半导",priority:"中",category:"SiC/功率半导体",distance:"全国",score:80,reason:"IGBT/SiC模块国内领先"},
+	  {name:"拓普集团",priority:"中",category:"底盘传动",distance:"全国",score:76,reason:"底盘域龙头，Tesla核心供应商"},
+	  {name:"德赛西威",priority:"中",category:"智能座舱",distance:"全国",score:75,reason:"座舱+智驾域控龙头"},
+	  {name:"欣旺达",priority:"中",category:"电池系统",distance:"全国",score:74,reason:"动力电池二线龙头"},
+	  {name:"孚能科技",priority:"中",category:"电池系统",distance:"全国",score:72,reason:"软包电池龙头，配套奔驰"},
+	  {name:"利羿精密",priority:"已有",category:"精密制造",distance:"local",score:100,reason:"规上企业，精密制造基础"},
+	  {name:"淳迪自动化",priority:"已有",category:"工业机器人",distance:"local",score:95,reason:"规上企业，工业机器人"},
+	  {name:"创泽智能",priority:"已有",category:"工业机器人",distance:"local",score:92,reason:"规上企业，智能机器人"},
+	  {name:"正轩精密",priority:"已有",category:"精密制造",distance:"local",score:88,reason:"规上企业，精密零部件"},
+	  {name:"精轩精密",priority:"已有",category:"精密制造",distance:"local",score:85,reason:"规上企业，精密机械加工"}
+	];
+
+	// 园区企业关键词库
+	var localKeywords = {
+	  "精密制造":["精密","精工","精密机械","精密零部件","精铸","锻造"],
+	  "自动化":["自动化","智能装备","机器人","工业自动化","智能制造"],
+	  "电池系统":["电池","新能源电池","储能","动力电池","锂电"],
+	  "电机电控":["电机","电控","驱动","伺服","变频"],
+	  "汽车零部件":["汽车","车用","车载"],
+	  "材料":["材料","新材料","纳米","粉体","复合","合金"],
+	  "电子":["电子","半导体","芯片","电路"]
+	};
+
+	var filterOptions={
+	  type:["电池系统","正极材料","负极材料","电解液","隔膜","电驱电机","电机控制器","SiC/功率半导体","智能驾驶","智能座舱","热管理","底盘传动","连接器/线束","车载传感器","汽车芯片","汽车电子","精密制造","伺服系统","精密减速器","工业机器人","数控系统","轻量化材料","整车","充换电设施","电池回收","eVTOL"],
+	  finance:["IPO冲刺","战略融资","B轮以上","C轮巨额","扩产定增","IPO上市"],
+	  expand:["大规模扩产","中等扩产","小规模扩产","暂无扩产"],
+	  trend:["固态电池","800V高压","碳化硅SiC","大圆柱电池","智驾域控","线控底盘","空气悬架","动力电池回收","一体化压铸","智能制造"],
+	  tech:["低壁垒(配套加工)","中壁垒(总成件)","高壁垒(核心部件)","极高壁垒(芯片/算法)"],
+	  match:["5km内","20km内","50km内","100km内","200km内","全国"],
+	  priority:["极高优先级","高优先级","中优先级","园区已有"]
+	};
 
 // 智能筛选数据 - 基于2024-2025真实融资扩产动态
 var smartFilterData = {
