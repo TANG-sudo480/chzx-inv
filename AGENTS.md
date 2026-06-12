@@ -50,22 +50,40 @@
 
 ## 产业数据分类
 
-### 零部件拆解 tab 分类
-- **电池材料**: battery, cathode, anode, electrolyte, separator
-- **电驱系统**: motor, inverter
-- **底盘热管理**: thermal, chassis, connector
-- **智能科技**: smartdrive, smartcabin
-- **精密传动**: reducer, servo, cnc
-- **制造装备**: casting, tooling, equipment
-- **整车企业**: ev
-- **机器人/eVTOL**: robot, evtol
-- **核心材料**: cathode, anode, electrolyte, separator
+### 零部件拆解 tab 分类（28个产业分类）
+- **电池系统**: battery（15家企业）
+- **正极材料**: cathode（15家企业）
+- **负极材料**: anode（15家企业）
+- **电解液**: electrolyte（15家企业）
+- **隔膜**: separator（15家企业）
+- **驱动电机**: motor（15家企业）
+- **电机控制器**: inverter（15家企业）
+- **SiC/功率半导体**: sic（15家企业）
+- **智能驾驶**: smartdrive（15家企业）
+- **智能座舱**: smartcabin（15家企业）
+- **热管理系统**: thermal（15家企业）
+- **底盘/传动**: chassis（15家企业）
+- **连接器/线束**: connector（15家企业）
+- **车载传感器**: sensor（15家企业）
+- **汽车芯片**: chip（15家企业）
+- **汽车电子**: electronics（15家企业）
+- **伺服系统**: servo（15家企业）
+- **精密减速器**: reducer（15家企业）
+- **工业机器人**: robot（15家企业）
+- **数控系统**: cnc（15家企业）
+- **轻量化材料**: lightweight（15家企业）
+- **整车企业**: ev（20家企业）
+- **精密铸造**: casting（15家企业）
+- **精密模具**: tooling（15家企业）
+- **智能装备**: equipment（15家企业）
+- **充换电设施**: charging（15家企业）
+- **电池回收**: recycle（15家企业）
+- **eVTOL/低空**: evtol（15家企业）
 
-### 新增产业
-- **casting**: 精密铸造/压铸（振兴铸造、广义铸造等本地企业 + 广东鸿图、文灿股份等全国头部）
-- **tooling**: 精密模具/工装（利羿精密、正轩精密等本地企业）
-- **equipment**: 智能装备/产线（淳迪自动化、铭迪智能等本地企业 + 先导智能等全国龙头）
-- **evtol**: eVTOL/低空经济（云途飞行器本地企业 + 亿航智能、峰飞航空等全国企业）
+### 总计
+- 28个产业分类
+- 420+ 家企业数据
+- 涵盖电池、电机、电控、智能驾驶、充换电、回收全产业链
 
 ## 产业数据规范化要求
 
