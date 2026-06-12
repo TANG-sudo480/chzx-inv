@@ -1545,32 +1545,23 @@ window.onload=function(){
 };
 
 // ====== Tab切换 ======
-// 调试: 确保 DOM 加载完成
-document.addEventListener('DOMContentLoaded', function(){
-  console.log('DOM loaded');
-});
-
-// 全局错误处理
-window.onerror = function(msg, url, line, col, error) {
-  console.error('JS Error:', msg, 'at line', line);
-  return true;
-};
-
-function showTab(id, btn){
+function showTab(id){
   // 移除所有active状态
   var btns = document.querySelectorAll(".tab-btn");
   for(var i=0;i<btns.length;i++){btns[i].classList.remove("active");}
   var contents = document.querySelectorAll(".tab-content");
   for(var i=0;i<contents.length;i++){contents[i].classList.remove("active");}
-  // 添加active到当前按钮和内容
-  if(btn){btn.classList.add("active");} else {
-    var allBtns = document.querySelectorAll(".tab-btn");
-    for(var i=0;i<allBtns.length;i++){
-      if(allBtns[i].getAttribute("onclick") && allBtns[i].getAttribute("onclick").indexOf(id)!=-1){
-        allBtns[i].classList.add("active");break;
-      }
+  // 添加active到当前按钮
+  var targetBtn = null;
+  var allBtns = document.querySelectorAll(".tab-btn");
+  for(var i=0;i<allBtns.length;i++){
+    if(allBtns[i].getAttribute("onclick").indexOf(id)!=-1){
+      targetBtn = allBtns[i];
+      break;
     }
   }
+  if(targetBtn){targetBtn.classList.add("active");}
+  // 显示对应内容
   var target = document.getElementById("tab-"+id);
   if(target){target.classList.add("active");}
   // 地图自适应
