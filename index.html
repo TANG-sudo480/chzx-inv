@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>新能源汽车产业链按图索骥 | 某某区</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:"PingFang SC","Microsoft YaHei",sans-serif;background:#0d1117;color:#e6edf3;min-height:100vh}
+.banner{background:linear-gradient(135deg,#1a3a5c 0%,#0a1628 100%);padding:40px 20px 30px;text-align:center;border-bottom:2px solid #1f6feb}
+.banner h1{font-size:28px;font-weight:700;color:#58a6ff;margin-bottom:8px}
+.banner .subtitle{color:#8b949e;font-size:14px;margin-bottom:4px}
+.banner .meta{color:#6e7681;font-size:12px;margin-top:8px}
+.banner .meta span{margin:0 10px}
+.tab-bar{display:flex;flex-wrap:wrap;background:#161b22;border-bottom:1px solid #30363d;padding:0 20px;position:sticky;top:0;z-index:1000}
+.tab-btn{padding:14px 18px;background:none;border:none;color:#8b949e;font-size:13px;cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;font-family:inherit;white-space:nowrap}
+.tab-btn:hover{color:#58a6ff}
+.tab-btn.active{color:#58a6ff;border-bottom-color:#1f6feb;background:#1a2332}
+.tab-content{display:none;padding:20px}
+.tab-content.active{display:block}
+.filter-bar{background:#161b22;border-radius:8px;padding:16px 20px;margin-bottom:20px;border:1px solid #30363d}
+.filter-bar h3{font-size:13px;color:#8b949e;margin-bottom:10px}
+.filter-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px}
+.filter-row:last-child{margin-bottom:0}
+.filter-tag{padding:5px 14px;background:#21262d;border:1px solid #30363d;border-radius:20px;color:#c9d1d9;font-size:12px;cursor:pointer;transition:all .2s}
+.filter-tag:hover{border-color:#58a6ff;color:#58a6ff}
+.filter-tag.selected{background:#1f6feb;border-color:#1f6feb;color:#fff}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+.chain-card{background:#161b22;border:1px solid #30363d;border-radius:10px;padding:18px;cursor:pointer;transition:all .25s;position:relative;overflow:hidden}
+.chain-card:hover{border-color:#58a6ff;transform:translateY(-2px);box-shadow:0 8px 30px rgba(31,111,235,.15)}
+.chain-card .card-icon{font-size:30px;margin-bottom:8px}
+.chain-card h3{font-size:15px;color:#e6edf3;margin-bottom:4px}
+.chain-card .desc{font-size:12px;color:#8b949e;margin-bottom:8px;line-height:1.5}
+.chain-card .stats{display:flex;gap:12px;font-size:11px;color:#6e7681}
+.chain-card .stats strong{color:#58a6ff}
+.badge{position:absolute;top:10px;right:10px;padding:2px 8px;border-radius:10px;font-size:10px}
+.badge-local{background:#238636;color:#fff}
+.badge-200km{background:#1f6feb;color:#fff}
+.badge-nation{background:#484f58;color:#fff}
+.modal{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.8);z-index:9999;padding:20px}
+.modal.show{display:flex;align-items:flex-start;justify-content:center;padding-top:30px;padding-bottom:30px}
+.modal-box{background:#161b22;border:1px solid #30363d;border-radius:12px;max-width:1200px;width:100%;max-height:90vh;overflow-y:auto}
+.modal-header{padding:20px 24px 14px;border-bottom:1px solid #30363d;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;background:#161b22;z-index:10}
+.modal-header h2{font-size:18px;color:#58a6ff}
+.modal-close{background:#30363d;border:none;color:#c9d1d9;width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:16px;line-height:30px;text-align:center}
+.modal-close:hover{background:#484f58}
+.modal-body{padding:18px 24px 28px}
+.supply-table{width:100%;border-collapse:collapse;margin-bottom:20px}
+.supply-table th{background:#21262d;color:#8b949e;font-size:12px;text-align:left;padding:10px 12px;border-bottom:1px solid #30363d;font-weight:500}
+.supply-table td{padding:10px 12px;border-bottom:1px solid #21262d;font-size:13px;color:#c9d1d9;vertical-align:top}
+.supply-table tr:hover td{background:#1a2332}
+.supply-table .loc{color:#6e7681;font-size:11px}
+.supply-table .price{color:#3fb950;font-size:12px}
+.marker{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px}
+.marker-local{background:#238636}
+.marker-200km{background:#1f6feb}
+.marker-nation{background:#484f58}
+.legend{display:flex;gap:20px;font-size:12px;color:#8b949e;margin-bottom:16px;flex-wrap:wrap}
+.legend span{display:flex;align-items:center;gap:6px}
+#detailMap{height:380px;border-radius:8px;border:1px solid #30363d;margin-top:16px}
+.intro-section{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px}
+.info-card{background:#161b22;border:1px solid #30363d;border-radius:10px;padding:22px}
+.info-card h3{color:#58a6ff;font-size:14px;margin-bottom:10px;border-left:3px solid #1f6feb;padding-left:10px}
+.info-card p{font-size:13px;color:#c9d1d9;line-height:1.8}
+.stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
+.stat-box{background:#21262d;border-radius:8px;padding:14px;text-align:center}
+.stat-box .num{font-size:22px;font-weight:700;color:#58a6ff}
+.stat-box .label{font-size:11px;color:#8b949e;margin-top:3px}
+.factory-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.factory-card{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:14px}
+.factory-card h4{font-size:13px;color:#58a6ff;margin-bottom:4px}
+.factory-card .f-detail{font-size:12px;color:#8b949e;line-height:1.6}
+.factory-card .f-tags{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
+.factory-card .f-tag{padding:2px 10px;border-radius:10px;font-size:11px;color:#fff}
+.result-count{color:#8b949e;font-size:13px;margin-bottom:14px}
+.result-count strong{color:#58a6ff}
+.result-list{display:flex;flex-direction:column;gap:10px}
+.result-item{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:14px 16px;display:flex;gap:14px;align-items:flex-start}
+.result-item .ri-icon{font-size:24px;flex-shrink:0}
+.result-item .ri-info h4{font-size:14px;color:#e6edf3;margin-bottom:4px}
+.result-item .ri-info p{font-size:12px;color:#8b949e;line-height:1.5}
+.result-item .ri-tags{display:flex;gap:6px;margin-top:6px;flex-wrap:wrap}
+.fishbone{padding:20px;background:#161b22;border-radius:10px}
+.bone-row{display:flex;justify-content:space-around;margin:8px 0;flex-wrap:wrap;gap:8px}
+.bone-item{background:#21262d;border:1px solid #30363d;border-radius:6px;padding:10px 12px;font-size:12px;color:#c9d1d9;text-align:center;min-width:120px;max-width:150px}
+.bone-item .bi-icon{font-size:18px;margin-bottom:4px}
+.bone-item .bi-sub{color:#6e7681;font-size:10px;margin-top:3px}
+.matrix-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin-top:16px}
+.matrix-item{background:#161b22;padding:12px;border-radius:6px;border:1px solid #30363d}
+.matrix-item .mi-title{font-size:12px;font-weight:600;margin-bottom:4px}
+.footer{text-align:center;padding:28px;color:#484f58;font-size:12px;border-top:1px solid #21262d;margin-top:30px}
+.footer strong{color:#6e7681}
+@media(max-width:768px){
+  .intro-section{grid-template-columns:1fr}
+  .stat-grid{grid-template-columns:repeat(2,1fr)}
+  .modal-body{padding:14px}
+  .tab-btn{padding:12px 10px;font-size:12px}
+}
+</style>
+</head>
+<body>
+
+<div class="banner">
+  <h1>新能源汽车产业链按图索骥</h1>
+  <div class="subtitle">某某区新能源汽车及关键零部件产业链全景图谱</div>
+  <div class="subtitle">某某区位于湖州长兴，杭湖1小时通勤 · 上海1.5小时 · G50/S12高速 · 75万㎡标准厂房</div>
+  <div class="meta">
+    <span>发起人：潘汉章</span>
+    <span>技术指导：赵余强</span>
+    <span>收集制作：汤正杰</span>
+  </div>
+</div>
+
+<div class="tab-bar">
+  <button class="tab-btn active" onclick="showTab('location')">区位优势</button>
+  <button class="tab-btn" onclick="showTab('chain')">产业链全景</button>
+  <button class="tab-btn" onclick="showTab('detail')">零部件拆解</button>
+  <button class="tab-btn" onclick="showTab('local')">本地资源</button>
+  <button class="tab-btn" onclick="showTab('factory')">空余厂房</button>
+  <button class="tab-btn" onclick="showTab('filter')">智能筛选</button>
+  <button class="tab-btn" onclick="showTab('fishbone')">鱼骨图分析</button>
+</div>
+
+<!-- 区位优势 -->
+<div id="tab-location" class="tab-content active">
+  <div class="intro-section">
+    <div class="info-card">
+      <h3>某某区概况</h3>
+      <p>某某区地处湖州长兴，长三角中心腹地，享有"铁公水"多式联运独特优势。G50沪渝高速、S12申嘉湖高速在此交汇，是浙北重要交通枢纽。区内产业基础雄厚，已形成以新能源汽车关键零部件为引领的高端装备制造集群。</p>
+      <div style="margin-top:12px;font-size:12px;color:#8b949e;line-height:1.8">
+        <p><strong style="color:#58a6ff">交通：</strong>G50高速/S12高速/长兴南互通，杭宁高铁长兴站</p>
+        <p><strong style="color:#58a6ff">物流：</strong>长兴南铁路货场/铁公水联运码头，通达沪苏浙皖</p>
+        <p><strong style="color:#58a6ff">配套：</strong>天子湖4大片区+4大小微园，75万㎡标准厂房</p>
+        <p><strong style="color:#58a6ff">政策：</strong>前2年厂房免租，固投补贴，重点项目一事一议</p>
+      </div>
+      <div class="stat-grid">
+        <div class="stat-box"><div class="num">80km</div><div class="label">至杭州</div></div>
+        <div class="stat-box"><div class="num">150km</div><div class="label">至上海</div></div>
+        <div class="stat-box"><div class="num">100km</div><div class="label">至苏州</div></div>
+        <div class="stat-box"><div class="num">180km</div><div class="label">至宁波</div></div>
+        <div class="stat-box"><div class="num">75万㎡</div><div class="label">厂房面积</div></div>
+        <div class="stat-box"><div class="num">50万㎡</div><div class="label">免租2年</div></div>
+      </div>
+    </div>
+    <div class="info-card">
+      <h3>200km新能源汽车产业热力图</h3>
+      <p style="font-size:12px;color:#8b949e;margin-bottom:10px">以某某区为圆心，200km范围覆盖长三角新能源汽车核心集群，点击地图查看企业位置分布</p>
+      <div id="mainMap" style="height:300px;border-radius:8px;border:1px solid #30363d;margin-bottom:10px"></div>
+      <div style="font-size:11px;color:#6e7681;line-height:1.8">
+        <p><span style="color:#58a6ff">杭州80km</span> · 零跑/吉利总部 · 驱动电机/电控/智能驾驶</p>
+        <p><span style="color:#58a6ff">苏州80km</span> · 绿的谐波/汇川技术/新代科技 · 减速器/伺服/数控系统</p>
+        <p><span style="color:#58a6ff">上海150km</span> · 特斯拉/大众安徽 · 整车/智能驾驶/芯片设计</p>
+        <p><span style="color:#58a6ff">宁波150km</span> · 极氪/拓普集团 · 整车/底盘/热管理阀</p>
+        <p><span style="color:#58a6ff">常州150km</span> · 蜂巢能源/理想汽车 · 电池Pack/整车</p>
+        <p><span style="color:#58a6ff">无锡180km</span> · 先导智能/航发控制 · 锂电设备/精密制造</p>
+        <p><span style="color:#58a6ff">合肥200km</span> · 蔚来/比亚迪合肥 · 整车/电池</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 产业链全景 -->
+<div id="tab-chain" class="tab-content">
+  <div class="filter-bar">
+    <h3>快速定位产业链环节</h3>
+    <div class="filter-row">
+      <span class="filter-tag selected" onclick="filterChain(this,'all')">全部</span>
+      <span class="filter-tag" onclick="filterChain(this,'battery')">电池系统</span>
+      <span class="filter-tag" onclick="filterChain(this,'motor')">电驱/电机</span>
+      <span class="filter-tag" onclick="filterChain(this,'smart')">智能驾驶</span>
+      <span class="filter-tag" onclick="filterChain(this,'chassis')">底盘/车身</span>
+      <span class="filter-tag" onclick="filterChain(this,'cabin')">智能座舱</span>
+      <span class="filter-tag" onclick="filterChain(this,'material')">核心材料</span>
+      <span class="filter-tag" onclick="filterChain(this,'tooling')">精密制造</span>
+    </div>
+  </div>
+  <div class="grid" id="chainGrid"></div>
+</div>
+
+<!-- 零部件拆解 -->
+<div id="tab-detail" class="tab-content">
+  <div class="filter-bar">
+    <h3>选择要拆解的零部件环节</h3>
+    <div class="filter-row" id="detailFilter"></div>
+  </div>
+  <div class="legend">
+    <span><span class="marker marker-local"></span>某某区本地企业</span>
+    <span><span class="marker marker-200km"></span>200km内配套</span>
+    <span><span class="marker marker-nation"></span>全国头部企业</span>
+  </div>
+  <div id="detailContent">
+    <div style="text-align:center;padding:60px 20px;color:#484f58;font-size:14px">请点击上方零部件类别，查看详细供应商列表及地图标注</div>
+  </div>
+</div>
+
+<!-- 本地资源 -->
+<div id="tab-local" class="tab-content">
+  <div class="intro-section" style="grid-template-columns:1fr 1fr 1fr">
+    <div class="info-card">
+      <h3>本地关键企业</h3>
+      <p style="font-size:12px;line-height:1.8">
+        <strong style="color:#3fb950">精密制造：</strong>利羿/正轩/精轩/博通<br>
+        <strong style="color:#3fb950">智能装备：</strong>淳迪/铭迪/创泽(三旭)<br>
+        <strong style="color:#3fb950">整车配套：</strong>豪斯特/奇碟/元睿<br>
+        <strong style="color:#3fb950">热管理系统：</strong>周一空调/雪鹰制冷<br>
+        <strong style="color:#3fb950">伺服电机：</strong>桢正运动控制(本地)<br>
+        <strong style="color:#3fb950">eVTOL：</strong>云途飞行器<br>
+        <strong style="color:#3fb950">铸造集群：</strong>振兴/广义/永诚/德康/柏冠<br>
+        <strong style="color:#3fb950">机器人视觉：</strong>云动机器人/迅驰视觉
+      </p>
+    </div>
+    <div class="info-card">
+      <h3>园区平台</h3>
+      <p style="font-size:12px;line-height:1.8">
+        <strong style="color:#58a6ff">4大产业片区：</strong><br>天子湖第一/第二/第三/第四片区<br><br>
+        <strong style="color:#58a6ff">4大小微园：</strong><br>天衡小微园/网驿智慧园/<br>西湖科创园/共创园<br><br>
+        <strong style="color:#58a6ff">交通配套：</strong><br>G50高速/S12高速/长兴南互通<br><br>
+        <strong style="color:#58a6ff">物流支撑：</strong><br>长兴南铁路货场/铁公水码头
+      </p>
+    </div>
+    <div class="info-card">
+      <h3>招商政策</h3>
+      <p style="font-size:12px;line-height:1.8">
+        <strong style="color:#3fb950">厂房租金：</strong>11-16元/㎡/月<br><br>
+        <strong style="color:#3fb950">免租优惠：</strong>50万㎡标准厂房前2年免租<br><br>
+        <strong style="color:#3fb950">固投补贴：</strong>按固投金额给予补贴<br><br>
+        <strong style="color:#3fb950">一事一议：</strong>重大项目/链主企业专项支持<br><br>
+        <strong style="color:#3fb950">服务保障：</strong>全程代办/专班服务/拎包入住
+      </p>
+    </div>
+  </div>
+  <h3 style="color:#58a6ff;margin-bottom:14px;font-size:14px">某某区周边200km新能源汽车配套热力</h3>
+  <div id="localMap" style="height:400px;border-radius:8px;border:1px solid #30363d;margin-bottom:16px"></div>
+</div>
+
+<!-- 空余厂房 -->
+<div id="tab-factory" class="tab-content">
+  <h3 style="color:#58a6ff;margin-bottom:14px;font-size:14px">空余厂房详情</h3>
+  <div class="factory-grid" id="factoryGrid"></div>
+</div>
+
+<!-- 智能筛选 -->
+<div id="tab-filter" class="tab-content">
+  <div class="filter-bar">
+    <h3>智能筛选条件</h3>
+    <div style="margin-bottom:12px">
+      <div style="font-size:12px;color:#8b949e;margin-bottom:8px">业态类型</div>
+      <div class="filter-row" id="filterType"></div>
+    </div>
+    <div style="margin-bottom:12px">
+      <div style="font-size:12px;color:#8b949e;margin-bottom:8px">投资规模</div>
+      <div class="filter-row" id="filterScale"></div>
+    </div>
+    <div style="margin-bottom:12px">
+      <div style="font-size:12px;color:#8b949e;margin-bottom:8px">厂房需求</div>
+      <div class="filter-row" id="filterFactory"></div>
+    </div>
+    <div style="margin-bottom:12px">
+      <div style="font-size:12px;color:#8b949e;margin-bottom:8px">技术壁垒</div>
+      <div class="filter-row" id="filterTech"></div>
+    </div>
+    <div style="margin-bottom:4px">
+      <div style="font-size:12px;color:#8b949e;margin-bottom:8px">200km配套完整性</div>
+      <div class="filter-row" id="filterMatch"></div>
+    </div>
+    <div style="margin-top:10px">
+      <button onclick="runFilter()" style="background:#1f6feb;color:#fff;border:none;padding:9px 22px;border-radius:6px;cursor:pointer;font-size:13px">开始筛选</button>
+      <button onclick="clearFilter()" style="background:#30363d;color:#c9d1d9;border:1px solid #484f58;padding:9px 22px;border-radius:6px;cursor:pointer;font-size:13px;margin-left:8px">重置</button>
+    </div>
+  </div>
+  <div class="result-count" id="resultCount"></div>
+  <div class="result-list" id="resultList"></div>
+</div>
+
+<!-- 鱼骨图 -->
+<div id="tab-fishbone" class="tab-content">
+  <div class="fishbone">
+    <h3 style="color:#58a6ff;text-align:center;margin-bottom:16px;font-size:15px">新能源汽车产业链鱼骨图</h3>
+    <div class="bone-row" style="justify-content:center;margin-bottom:8px">
+      <div class="bone-item" style="max-width:200px;min-width:160px;background:#1f3a5c;border-color:#1f6feb">
+        <div class="bi-icon">&#128663;</div>
+        <div style="font-size:14px;font-weight:600;color:#58a6ff">新能源汽车整车</div>
+        <div class="bi-sub">特斯拉/比亚迪/蔚来/零跑/极氪</div>
+      </div>
+    </div>
+    <div class="bone-row">
+      <div class="bone-item"><div class="bi-icon">&#128267;</div><div>电池系统</div><div class="bi-sub">宁德时代/弗迪/中创新航</div></div>
+      <div class="bone-item"><div class="bi-icon">&#9889;</div><div>驱动电机</div><div class="bi-sub">汇川/弗迪动力/卧龙</div></div>
+      <div class="bone-item"><div class="bi-icon">&#128295;</div><div>电控/BMS</div><div class="bi-sub">英飞凌/斯达/中车</div></div>
+      <div class="bone-item"><div class="bi-icon">&#127777;</div><div>热管理系统</div><div class="bi-sub">三花/银轮/盾安</div></div>
+      <div class="bone-item"><div class="bi-icon">&#128736;</div><div>底盘传动</div><div class="bi-sub">拓普/伯特利/万里扬</div></div>
+    </div>
+    <div class="bone-row">
+      <div class="bone-item"><div class="bi-icon">&#129504;</div><div>智能驾驶</div><div class="bi-sub">华为/地平线/禾赛</div></div>
+      <div class="bone-item"><div class="bi-icon">&#128722;</div><div>智能座舱</div><div class="bi-sub">德赛西威/华阳/亿咖通</div></div>
+      <div class="bone-item"><div class="bi-icon">&#128268;</div><div>连接器/线束</div><div class="bi-sub">中航光电/立讯/瑞可达</div></div>
+      <div class="bone-item"><div class="bi-icon">&#9881;</div><div>精密减速</div><div class="bi-sub">绿的谐波/双环传动</div></div>
+      <div class="bone-item"><div class="bi-icon">&#129302;</div><div>工业机器人</div><div class="bi-sub">ABB/埃斯顿/节卡</div></div>
+    </div>
+    <div class="matrix-grid">
+      <div class="matrix-item">
+        <div class="mi-title" style="color:#f85149">高价值强引入</div>
+        <div style="font-size:11px;color:#8b949e;line-height:1.6">电池Pack/电芯 · 智驾域控 · 碳化硅功率器件 · 空气悬架</div>
+      </div>
+      <div class="matrix-item">
+        <div class="mi-title" style="color:#f0883e">高价值可培育</div>
+        <div style="font-size:11px;color:#8b949e;line-height:1.6">减速器/精密轴承 · 协作机器人 · HUD系统 · 线控底盘</div>
+      </div>
+      <div class="matrix-item">
+        <div class="mi-title" style="color:#58a6ff">补链固链</div>
+        <div style="font-size:11px;color:#8b949e;line-height:1.6">正极前驱体 · 精密模具 · 高压线束 · 车载连接器</div>
+      </div>
+      <div class="matrix-item">
+        <div class="mi-title" style="color:#8b949e">现有待升级</div>
+        <div style="font-size:11px;color:#8b949e;line-height:1.6">铝合金铸造件 · 冲压焊接件 · 空调系统 · 传统内饰</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <p><strong>发起人：潘汉章</strong>　｜　<strong>技术指导：赵余强</strong>　｜　<strong>收集制作：汤正杰</strong></p>
+  <p style="margin-top:6px">某某区新能源汽车产业链按图索骥 · 某某区位于湖州长兴 · 数据基于公开信息整理，仅供参考</p>
+</div>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+// ====== 产业链数据 ======
+var chainData=[
+  {id:"battery",icon:"&#128267;",name:"电池系统",desc:"电芯/BMS/Pack/热管理",cat:"battery",count:15,local:2,total:"15+"},
+  {id:"cathode",icon:"&#129514;",name:"正极材料",desc:"三元/磷酸铁锂/前驱体",cat:"material",count:10,local:0,total:"10+"},
+  {id:"anode",icon:"&#9898;",name:"负极材料",desc:"石墨/硅碳/钠离子",cat:"material",count:8,local:0,total:"8+"},
+  {id:"electrolyte",icon:"&#128167;",name:"电解液",desc:"锂盐/溶剂/添加剂",cat:"material",count:10,local:0,total:"10+"},
+  {id:"separator",icon:"&#128203;",name:"隔膜",desc:"湿法/干法/涂覆隔膜",cat:"material",count:10,local:0,total:"10+"},
+  {id:"motor",icon:"&#9889;",name:"驱动电机",desc:"永磁同步/异步电机",cat:"motor",count:15,local:1,total:"15+"},
+  {id:"inverter",icon:"&#128295;",name:"电机控制器",desc:"IGBT/SiC功率器件",cat:"motor",count:12,local:0,total:"12+"},
+  {id:"reducer",icon:"&#9881;",name:"精密减速器",desc:"行星/谐波减速器",cat:"tooling",count:8,local:1,total:"8+"},
+  {id:"thermal",icon:"&#127777;",name:"热管理系统",desc:"液冷/热泵/电子膨胀阀",cat:"chassis",count:10,local:2,total:"10+"},
+  {id:"smartdrive",icon:"&#129504;",name:"智能驾驶",desc:"感知/决策/执行",cat:"smart",count:40,local:0,total:"40+"},
+  {id:"smartcabin",icon:"&#128722;",name:"智能座舱",desc:"域控/HUD/仪表/声学",cat:"cabin",count:20,local:0,total:"20+"},
+  {id:"chassis",icon:"&#128736;",name:"底盘/传动",desc:"制动/转向/悬架",cat:"chassis",count:20,local:2,total:"20+"},
+  {id:"connector",icon:"&#128268;",name:"连接器/线束",desc:"高压/高速/板端连接",cat:"chassis",count:10,local:0,total:"10+"},
+  {id:"servo",icon:"&#127919;",name:"伺服系统",desc:"伺服电机/驱动器",cat:"tooling",count:8,local:1,total:"8+"},
+  {id:"robot",icon:"&#129302;",name:"工业机器人",desc:"焊接/装配/喷涂机器人",cat:"tooling",count:10,local:2,total:"10+"},
+  {id:"cnc",icon:"&#128260;",name:"数控系统",desc:"CNC/丝杠/轴承",cat:"tooling",count:8,local:0,total:"8+"},
+  {id:"ev",icon:"&#128663;",name:"整车企业",desc:"乘用车/商用车主机厂",cat:"battery",count:10,local:0,total:"10+"},
+];
+
+// ====== 供应商详细数据 ======
+var supplyData={
+  battery:{name:"电池系统",icon:"&#128267;",intro:"新能源汽车核心能量单元，由电芯、模组、电池包及BMS电池管理系统组成。2024年中国动力电池装车量超400GWh，宁德时代市占率约45%，弗迪电池（比亚迪）约25%。",suppliers:[
+    {name:"宁德时代",loc:"福建宁德",lat:26.65,lng:119.55,type:"nation",note:"全球第一，市占率45%，能量密度255Wh/kg，LFP+三元双线",price:"0.8-1.2元/Wh"},
+    {name:"弗迪电池",loc:"广东深圳/重庆",lat:22.54,lng:114.06,type:"nation",note:"比亚迪旗下，刀片电池，LFP路线，全球第二",price:"0.6-0.9元/Wh"},
+    {name:"中创新航",loc:"江苏常州",lat:31.81,lng:119.97,type:"nation",note:"全球第三，CISNI闪充电池，2024年上市",price:"0.7-1.0元/Wh"},
+    {name:"亿纬锂能",loc:"广东惠州",lat:23.09,lng:114.41,type:"nation",note:"大圆柱电池战略，荆门/惠州双基地",price:"0.7-1.1元/Wh"},
+    {name:"蜂巢能源",loc:"江苏常州/四川遂宁",lat:31.81,lng:119.97,type:"nation",note:"长城旗下，短刀片电池全球领先",price:"0.65-0.95元/Wh"},
+    {name:"欣旺达",loc:"广东深圳",lat:22.54,lng:114.06,type:"nation",note:"HEV混动电池龙头，消费电子切入动力",price:"0.7-1.0元/Wh"},
+    {name:"国轩高科",loc:"安徽合肥",lat:31.85,lng:117.28,type:"nation",note:"大众控股，LFP主力，大众/塔塔配套",price:"0.55-0.85元/Wh"},
+    {name:"孚能科技",loc:"江西赣州/江苏镇江",lat:25.85,lng:114.93,type:"nation",note:"软包电池龙头，奔驰/Zeekr战略供应商",price:"0.8-1.2元/Wh"},
+    {name:"瑞浦兰钧",loc:"浙江温州/广西柳州",lat:27.99,lng:120.67,type:"nation",note:"青山集团旗下，问顶电池技术",price:"0.5-0.8元/Wh"},
+    {name:"远景动力",loc:"江苏无锡/湖北十堰",lat:31.49,lng:120.29,type:"nation",note:"远景集团旗下，Envision AESC全球布局",price:"0.7-1.1元/Wh"},
+    {name:"多氟多",loc:"河南焦作",lat:35.22,lng:113.24,type:"nation",note:"六氟磷酸锂全球龙头，向上游延伸",price:"0.6-0.9元/Wh"},
+    {name:"赣锋锂业",loc:"江西新余",lat:27.82,lng:114.92,type:"nation",note:"锂资源全产业链，固态电池领先",price:"0.8-1.2元/Wh"},
+    {name:"LG新能源",loc:"南京/无锡",lat:32.06,lng:118.79,type:"nation",note:"韩资，全球圆柱电池第一，配套特斯拉",price:"0.9-1.3元/Wh"},
+    {name:"松下电池",loc:"苏州/大连",lat:31.30,lng:120.62,type:"nation",note:"特斯拉北美主供，4680大圆柱",price:"1.0-1.5元/Wh"},
+    {name:"星恒电源",loc:"江苏苏州",lat:31.30,lng:120.62,type:"nation",note:"轻型电动车锂电龙头，LFP技术",price:"0.5-0.7元/Wh"},
+  ]},
+  motor:{name:"驱动电机",icon:"&#9889;",intro:"新能源汽车动力核心，将电能转化为机械能。2024年国内驱动电机装机量超1200万台，第三方供应商汇川技术市占率约19.7%居首。",suppliers:[
+    {name:"汇川技术",loc:"江苏苏州",lat:31.30,lng:120.62,type:"200km",note:"第三方电机控制器第一19.7%，华为系出身，某某区周边80km",price:"3000-6000元/台"},
+    {name:"弗迪动力",loc:"广东深圳",lat:22.54,lng:114.06,type:"nation",note:"比亚迪旗下，自供为主，2024外供加速",price:"2500-5000元/台"},
+    {name:"方正电机",loc:"浙江丽水",lat:28.46,lng:119.92,type:"nation",note:"小鹏/理想主供，圆线电机领先",price:"2800-5000元/台"},
+    {name:"卧龙电驱",loc:"浙江绍兴",lat:30.00,lng:120.58,type:"nation",note:"采埃孚合资，奔驰/BMW/捷豹路虎配套",price:"4000-8000元/台"},
+    {name:"精进电动",loc:"北京",lat:39.91,lng:116.39,type:"nation",note:"出口型龙头，GM/Stellantis主供",price:"3500-7000元/台"},
+    {name:"英搏尔",loc:"广东珠海",lat:22.27,lng:113.57,type:"nation",note:"MCU驱动芯片自研，A00级市场强",price:"2000-4000元/台"},
+    {name:"巨一动力",loc:"安徽合肥",lat:31.85,lng:117.28,type:"nation",note:"蔚来/大众安徽主供，电驱集成化",price:"3500-6500元/台"},
+    {name:"阳光电动力",loc:"安徽合肥",lat:31.85,lng:117.28,type:"nation",note:"阳光电源旗下，商用车主供",price:"3000-5500元/台"},
+    {name:"中车时代电气",loc:"湖南株洲",lat:27.83,lng:113.13,type:"nation",note:"轨道交通背景，乘用车电驱快速上量",price:"3500-6000元/台"},
+    {name:"信质集团",loc:"浙江台州",lat:28.66,lng:121.36,type:"nation",note:"电机铁芯龙头，转子/定子专业配套",price:"800-1500元/台"},
+    {name:"威迈斯",loc:"深圳",lat:22.54,lng:114.06,type:"nation",note:"车载电源龙头，OBC/DC-DC集成",price:"1500-3000元/台"},
+    {name:"蓝海华腾",loc:"深圳",lat:22.54,lng:114.06,type:"nation",note:"电机控制器+驱动集成",price:"2500-4500元/台"},
+    {name:"舜驱动力",loc:"上海",lat:31.23,lng:121.47,type:"nation",note:"800V SiC电机控制器",price:"4000-7000元/台"},
+    {name:"上海电驱动",loc:"上海",lat:31.23,lng:121.47,type:"nation",note:"上海电科所旗下，宇通/申龙配套",price:"3000-5500元/台"},
+    {name:"格雷博",loc:"上海",lat:31.23,lng:121.47,type:"nation",note:"新能源商用车驱动领先",price:"5000-10000元/台"},
+  ]},
+  thermal:{name:"热管理系统",icon:"&#127777;",intro:"新能源汽车热管理系统价值量约3000-6000元/车，包括电池热管理（液冷/直冷）、电机热管理、座舱热管理（热泵空调）三大模块。",suppliers:[
+    {name:"三花智控",loc:"浙江绍兴",lat:30.00,lng:120.58,type:"200km",note:"电子膨胀阀全球52.6%，热泵系统领先，某某区周边",price:"800-2000元/套阀"},
+    {name:"银轮股份",loc:"浙江天台",lat:29.15,lng:120.98,type:"200km",note:"电池液冷板国内领先，新能源收入超60%，某某区周边",price:"600-1500元/套"},
+    {name:"盾安环境",loc:"浙江绍兴",lat:30.00,lng:120.58,type:"200km",note:"热泵核心阀件，大客户比亚迪/理想，某某区周边",price:"500-1200元/套"},
+    {name:"松芝股份",loc:"上海",lat:31.23,lng:121.47,type:"nation",note:"客车空调龙头，乘用车热管理上量",price:"2000-4000元/套"},
+    {name:"腾龙股份",loc:"江苏常州",lat:31.81,lng:119.97,type:"nation",note:"汽车空调管路，小鹏/理想/极氪配套",price:"300-800元/套"},
+    {name:"华域三电",loc:"上海",lat:31.23,lng:121.47,type:"nation",note:"华域汽车旗下，电动压缩机",price:"1500-3000元/套"},
+    {name:"奥特佳",loc:"江苏南京",lat:32.06,lng:118.79,type:"nation",note:"汽车空调压缩机，比亚迪/蔚来配套",price:"1200-2500元/套"},
+    {name:"纳瓦电子",loc:"上海",lat:31.23,lng:121.47,type:"nation",note:"热泵系统，PTC加热器",price:"400-1000元/套"},
+    {name:"周一空调",loc:"某某区本地",lat:31.08,lng:119.91,type:"local",note:"某某区本地热管理企业，冷凝器/蒸发器",price:"面议"},
+    {name:"雪鹰制冷",loc:"某某区本地",lat:31.08,lng:119.91,type:"local",note:"某某区本地，热泵空调配件",price:"面议"},
+  ]},
+  smartdrive:{name:"智能驾驶",icon:"&#129504;",intro:"智能驾驶分为感知层（摄像头/激光雷达/毫米波雷达）、决策层（芯片/域控）、执行层（线控底盘）。2024年L2+渗透率超50%，城市NOA加速落地。",suppliers:[
+    {name:"华为车BU",loc:"深圳/上海",lat:22.54,lng:114.06,type:"nation",note:"MDC810域控，激光雷达，鸿蒙智行全系",price:"全套含激光雷达2-6万"},
+    {name:"地平线",loc:"北京",lat:39.91,lng:116.39,type:"nation",note:"Journey系列芯片，征程5/6，本土L2+首选",price:"3000-8000元/套"},
+    {name:"黑芝麻智能",loc:"上海",lat:31.23,lng:121.47,type:"nation",note:"华山A1000芯片，2024上市，智驾芯片新锐",price:"2000-5000元/套"},
+    {name:"德赛西威",loc:"广东惠州",lat:23.09,lng:114.41,type:"nation",note:"IPU01-04域控，小鹏/理想/吉利主供",price:"5000-15000元/套"},
+    {name:"英伟达",loc:"美国/中国",lat:37.09,lng:-121.89,type:"nation",note:"Orin-X/Thor芯片，蔚来/小米/比亚迪高阶",price:"5000-20000元/芯片"},
+    {name:"高通",loc:"美国/中国",lat:37.39,lng:-122.08,type:"nation",note:"Snapdragon Ride，骁龙座舱+智驾融合",price:"4000-15000元/套"},
+    {name:"禾赛科技",loc:"上海",lat:31.23,lng:121.47,type:"nation",note:"激光雷达全球第一，AT128/ET25，市占率37%",price:"2000-5000元/台"},
+    {name:"速腾聚创",loc:"深圳",lat:22.54,lng:114.06,type:"nation",note:"M系列激光雷达，比亚迪/赛力斯主供",price:"2000-4500元/台"},
+    {name:"图达通",loc:"苏州",lat:31.30,lng:120.62,type:"nation",note:"Innovusion，蔚来ET7/ES8标配，1550nm",price:"4000-8000元/台"},
+    {name:"大疆览沃",loc:"深圳",lat:22.54,lng:114.06,type:"nation",note:"低成本L2，8MP摄像头，标配宝骏/五菱",price:"1000-3000元/套"},
+    {name:"舜宇光学",loc:"浙江余姚",lat:29.99,lng:121.15,type:"nation",note:"车载镜头全球38%，8MP ADAS镜头",price:"80-300元/颗"},
+    {name:"韦尔股份",loc:"上海",lat:31.23,lng:121.47,type:"nation",note:"CIS图像传感器全球43%，车载份额全球第二",price:"50-200元/颗"},
+    {name:"博世",loc:"苏州/无锡",lat:31.30,lng:120.62,type:"nation",note:"第五代毫米波雷达，传感器全套",price:"500-2000元/台"},
+    {name:"大陆集团",loc:"上海",lat:31.23,lng:121.47,type:"nation",note:"制动/传感器/域控全套Tier1",price:"3000-10000元/套"},
+    {name:"安波福",loc:"上海",lat:31.23,lng:121.47,type:"nation",note:"主动安全/ADAS域控，GM/Ford主供",price:"4000-12000元/套"},
+    {name:"楚航科技",loc:"上海",lat:31.23,lng:121.47,type:"nation",note:"77GHz毫米波雷达，江铃/Waymo配套",price:"300-800元/台"},
+    {name:"森思泰克",loc:"北京",lat:39.91,lng:116.39,type:"nation",note:"4D成像雷达，角雷达/前向雷达",price:"400-1000元/台"},
+    {name:"北醒光子",loc:"北京",lat:39.91,lng:116.39,type:"nation",note:"激光雷达，滴滴自动驾驶合作",price:"2000-4000元/台"},
+  ]},
+  smartcabin:{name:"智能座舱",icon:"&#128722;",intro:"智能座舱包括座舱域控、HUD抬头显示、数字仪表、音响系统、车载信息娱乐等。2024年座舱域控渗透率约25%，HUD进入放量期。",suppliers:[
+    {name:"德赛西威",loc:"广东惠州",lat:23.09,lng:114.41,type:"nation",note:"座舱域控15.3%份额，理想/小鹏/比亚迪",price:"3000-8000元/套"},
+    {name:"华阳集团",loc:"广东惠州",lat:23.09,lng:114.41,type:"nation",note:"HUD国内龙头，W-HUD/AR-HUD",price:"800-3000元/台"},
+    {name:"华为鸿蒙座舱",loc:"深圳",lat:22.54,lng:114.06,type:"nation",note:"麒麟芯片+鸿蒙OS，问界全系",price:"含车机1-3万"},
+    {name:"中科创达",loc:"北京",lat:39.91,lng:116.39,type:"nation",note:"操作系统OS+中间件，高通/华为深度合作",price:"500-2000元/套"},
+    {name:"亿咖通",loc:"浙江杭州",lat:30.27,lng:120.15,type:"nation",note:"星纪魅族OS，吉利全系配套",price:"1000-3000元/套"},
+    {name:"航盛电子",loc:"广东深圳",lat:22.54,lng:114.06,type:"nation",note:"车载电子老牌，一汽/东风/广汽配套",price:"500-2000元/套"},
+    {name:"均胜电子",loc:"宁波",lat:29.87,lng:121.55,type:"nation",note:"HMI/方向盘开关，宝马/奔驰/大众配套",price:"800-2500元/套"},
+    {name:"京东方",loc:"北京",lat:39.91,lng:116.39,type:"nation",note:"车载显示全球第三，BOE at AFEELIA",price:"500-2000元/块"},
+    {name:"深天马",loc:"深圳",lat:22.54,lng:114.06,type:"nation",note:"车载显示屏，比亚迪/理想/Tesla中控",price:"400-1500元/块"},
+    {name:"华为音响",loc:"深圳",lat:22.54,lng:114.06,type:"nation",note:"HUAWEI SOUND，问界/智界",price:"2000-5000元/套"},
+    {name:"上声电子",loc:"苏州",lat:31.30,lng:120.62,type:"nation",note:"车载扬声器，蔚来/小鹏/特斯拉配套",price:"300-1500元/套"},
+    {name:"水晶光电",loc:"浙江台州",lat:28.66,lng:121.36,type:"nation",note:"HUD光机/wear AR，PMA晶圆ALD",price:"500-2000元/台"},
+  ]},
+  chassis:{name:"底盘/传动",icon:"&#128736;",intro:"底盘系统包括制动系统（ESC/IPB）、转向系统（EPS）、悬架系统（CDC/空气悬架）及传动系统。2024年空悬渗透率约15%，线控底盘加速。",suppliers:[
+    {name:"拓普集团",loc:"浙江宁波",lat:29.87,lng:121.55,type:"nation",note:"特斯拉全球供货，空气悬架+转向节+轻量化",price:"2000-8000元/套"},
+    {name:"伯特利",loc:"安徽芜湖",lat:31.33,lng:118.37,type:"nation",note:"ESC/EPB龙头，线控制动WCBS领先",price:"1500-4000元/套"},
+    {name:"万安科技",loc:"浙江诸暨",lat:29.71,lng:120.24,type:"nation",note:"制动/悬架，比亚迪/吉利/红旗配套",price:"800-2000元/套"},
+    {name:"亚太股份",loc:"浙江杭州",lat:30.27,lng:120.15,type:"nation",note:"ESC/EBS/ABS，国内制动龙头",price:"1000-3000元/套"},
+    {name:"万里扬",loc:"浙江金华",lat:29.10,lng:119.65,type:"nation",note:"CVT变速器，新能源减速器",price:"3000-6000元/台"},
+    {name:"耐世特",loc:"苏州",lat:31.30,lng:120.62,type:"nation",note:"EPS转向系统，GM/Ford/Stellantis配套",price:"800-2000元/套"},
+    {name:"泉峰汽车",loc:"南京",lat:32.06,lng:118.79,type:"nation",note:"电机壳体/变速箱壳体，比亚迪主供",price:"300-1000元/件"},
+    {name:"伯特利WCBS",loc:"安徽芜湖",lat:31.33,lng:118.37,type:"nation",note:"线控制动One-Box，2025年量价齐升",price:"2000-4000元/套"},
+    {name:"豪斯特",loc:"某某区本地",lat:31.08,lng:119.91,type:"local",note:"某某区本地，冲压/焊接件，整车配套",price:"面议"},
+    {name:"振兴铸造",loc:"某某区本地",lat:31.08,lng:119.91,type:"local",note:"某某区铸造集群，铝合金铸件",price:"面议"},
+    {name:"德康畜牧装备",loc:"某某区本地",lat:31.08,lng:119.91,type:"local",note:"某某区，精密铸造/畜牧机械配件",price:"面议"},
+  ]},
+  connector:{name:"连接器/线束",icon:"&#128268;",intro:"新能源汽车高压连接器价值量约2000-5000元/车，主要用于电池Pack、电机、DC-DC、OBC等高压模块。",suppliers:[
+    {name:"中航光电",loc:"河南洛阳",lat:34.62,lng:112.45,type:"nation",note:"高压连接器约18%份额，电池/电机主供",price:"200-800元/对"},
+    {name:"立讯精密",loc:"广东东莞",lat:23.04,lng:113.75,type:"nation",note:"约16%份额，苹果+汽车双驱动，收购莱尼",price:"150-600元/对"},
+    {name:"瑞可达",loc:"江苏苏州",lat:31.30,lng:120.62,type:"nation",note:"高压连接器新锐，蔚来/宁德时代主供",price:"150-500元/对"},
+    {name:"得润电子",loc:"广东深圳",lat:22.54,lng:114.06,type:"nation",note:"汽车线束+连接器，宝马/大众配套",price:"100-400元/对"},
+    {name:"徕木股份",loc:"上海",lat:31.23,lng:121.47,type:"nation",note:"精密连接器，比亚迪/吉利配套",price:"100-350元/对"},
+    {name:"永贵电器",loc:"浙江杭州",lat:30.27,lng:120.15,type:"nation",note:"轨道交通连接器切入，新能源汽车上量",price:"100-400元/对"},
+    {name:"航天电器",loc:"贵州贵阳",lat:26.65,lng:106.71,type:"nation",note:"军工背景，高端连接器",price:"200-600元/对"},
+    {name:"意华股份",loc:"浙江温州",lat:27.99,lng:120.67,type:"nation",note:"连接器+太阳能支架，华为连接器供应商",price:"80-300元/对"},
+    {name:"电连技术",loc:"深圳",lat:22.54,lng:114.06,type:"nation",note:"汽车Fakra连接器，摄像头高速连接",price:"50-200元/个"},
+    {name:"兴瑞科技",loc:"浙江宁波",lat:29.87,lng:121.55,type:"nation",note:"精密镶嵌件/连接器，松下/索尼汽车",price:"50-200元/个"},
+  ]},
+  reducer:{name:"精密减速器",icon:"&#9881;",intro:"机器人关节减速器分为RV减速器（负载大）和谐波减速器（轻量精密）。某某区周边80km的绿的谐波在国内谐波减速器市场份额约30%。",suppliers:[
+    {name:"绿的谐波",loc:"江苏苏州",lat:31.30,lng:120.62,type:"200km",note:"谐波减速器国产第一，市占率30%，某某区周边80km",price:"2000-8000元/台"},
+    {name:"双环传动",loc:"浙江嘉兴",lat:30.75,lng:120.75,type:"nation",note:"RV减速器国产化，比亚迪/广汽配套",price:"3000-12000元/台"},
+    {name:"中大力德",loc:"浙江宁波",lat:29.87,lng:121.55,type:"nation",note:"减速电机/减速器，机器人+自动化",price:"1000-5000元/台"},
+    {name:"来福谐波",loc:"江苏苏州",lat:31.30,lng:120.62,type:"nation",note:"谐波减速器，与绿的谐波并列双雄",price:"2000-8000元/台"},
+    {name:"科达制造",loc:"广东佛山",lat:23.02,lng:113.12,type:"nation",note:"减速器+锂电设备双主业",price:"3000-10000元/台"},
+    {name:"丰立智能",loc:"浙江台州",lat:28.66,lng:121.36,type:"nation",note:"精密减速器，机器人关节配套",price:"2000-6000元/台"},
+    {name:"秦川机床",loc:"陕西宝鸡",lat:34.37,lng:107.24,type:"nation",note:"RV减速器五轴联动，数控机床",price:"5000-15000元/台"},
+    {name:"国茂股份",loc:"江苏常州",lat:31.81,lng:119.97,type:"nation",note:"通用减速机，切入机器人关节",price:"2000-7000元/台"},
+  ]},
+  servo:{name:"伺服系统",icon:"&#127919;",intro:"伺服系统包括伺服电机、伺服驱动器、编码器，是工业自动化和机器人核心部件。某某区本地有桢正运动控制等伺服电机企业。",suppliers:[
+    {name:"汇川技术",loc:"江苏苏州",lat:31.30,lng:120.62,type:"200km",note:"伺服系统国内第一，40%市场份额，某某区周边80km",price:"1000-4000元/套"},
+    {name:"雷赛智能",loc:"深圳",lat:22.54,lng:114.06,type:"nation",note:"步进+伺服，自动化设备配套",price:"500-2000元/套"},
+    {name:"台达电子",loc:"江苏吴江",lat:31.16,lng:120.65,type:"200km",note:"台达伺服，吴江100km，某某区周边",price:"800-3000元/套"},
+    {name:"埃斯顿",loc:"南京",lat:32.06,lng:118.79,type:"nation",note:"国产机器人龙头，伺服自研",price:"1500-5000元/套"},
+    {name:"步科",loc:"上海",lat:31.23,lng:121.47,type:"nation",note:"低压伺服/一体式伺服，医疗/自动化",price:"600-2500元/套"},
+    {name:"鸣志电器",loc:"上海",lat:31.23,lng:121.47,type:"nation",note:"步进电机+伺服，ABB/华为供应商",price:"300-1500元/套"},
+    {name:"桢正运动控制",loc:"某某区本地",lat:31.08,lng:119.91,type:"local",note:"某某区本地伺服电机，专注机器人关节",price:"面议"},
+  ]},
+  robot:{name:"工业机器人",icon:"&#129302;",intro:"工业机器人是智能制造核心设备，国产替代加速。某某区本地有云动机器人等本体企业，200km内有节卡、遨博等协作机器人企业。",suppliers:[
+    {name:"ABB",loc:"上海",lat:31.23,lng:121.47,type:"nation",note:"全球工业机器人龙头，汽车焊装线",price:"10-30万元/台"},
+    {name:"库卡",loc:"上海",lat:31.23,lng:121.47,type:"nation",note:"美的旗下，汽车行业强，大众/BMW主供",price:"12-35万元/台"},
+    {name:"发那科",loc:"上海",lat:31.23,lng:121.47,type:"nation",note:"全球最大机器人，精度最高",price:"10-28万元/台"},
+    {name:"安川",loc:"上海",lat:31.23,lng:121.47,type:"nation",note:"日本三大家，弧焊/点焊机器人",price:"8-25万元/台"},
+    {name:"新松",loc:"辽宁沈阳",lat:41.80,lng:123.43,type:"nation",note:"国产机器人第一，AGV/协作机器人",price:"6-20万元/台"},
+    {name:"埃斯顿",loc:"南京",lat:32.06,lng:118.79,type:"nation",note:"国产机器人第二，焊接/搬运机器人",price:"5-18万元/台"},
+    {name:"节卡",loc:"上海",lat:31.23,lng:121.47,type:"200km",note:"协作机器人国产第一，上海120km，某某区周边",price:"8-20万元/台"},
+    {name:"遨博",loc:"上海",lat:31.23,lng:121.47,type:"200km",note:"协作机器人，欧盟CE/美国UL认证",price:"7-18万元/台"},
+    {name:"云动机器人",loc:"某某区本地",lat:31.08,lng:119.91,type:"local",note:"某某区本地，视觉引导机器人",price:"面议"},
+    {name:"越疆科技",loc:"深圳",lat:22.54,lng:114.06,type:"nation",note:"协作机器人出口，多功能桌面型",price:"5-15万元/台"},
+  ]},
+  cnc:{name:"数控系统/丝杠",icon:"&#128260;",intro:"高端数控机床是精密制造基础，丝杠是直线运动核心部件。某某区周边200km内有多家数控系统和丝杠企业。",suppliers:[
+    {name:"华中数控",loc:"湖北武汉",lat:30.58,lng:114.31,type:"nation",note:"国产数控系统第一，HNC-8系列",price:"3-10万元/套"},
+    {name:"广州数控",loc:"广东广州",lat:23.13,lng:113.27,type:"nation",note:"GSK数控系统，普及型数控",price:"2-8万元/套"},
+    {name:"凯恩帝",loc:"北京",lat:39.91,lng:116.39,type:"nation",note:"数控系统国内领先，步进/伺服",price:"2-6万元/套"},
+    {name:"维宏股份",loc:"上海",lat:31.23,lng:121.47,type:"nation",note:"运动控制卡/数控系统，激光切割",price:"1-5万元/套"},
+    {name:"新代科技",loc:"江苏苏州",lat:31.30,lng:120.62,type:"200km",note:"台湾最大数控系统，苏州80km，某某区周边",price:"2-7万元/套"},
+    {name:"南京工艺",loc:"江苏南京",lat:32.06,lng:118.79,type:"nation",note:"滚珠丝杠/直线导轨，航天配套",price:"500-3000元/根"},
+    {name:"上银科技",loc:"江苏苏州",lat:31.30,lng:120.62,type:"200km",note:"台湾HIWIN，丝杠/导轨/模组，苏州80km",price:"800-4000元/根"},
+    {name:"THK",loc:"上海",lat:31.23,lng:121.47,type:"nation",note:"日本THK，线性导轨全球龙头",price:"1000-5000元/根"},
+  ]},
+  cathode:{name:"正极材料",icon:"&#129514;",intro:"正极材料是电池成本占比最大的环节（约40%），主流路线为磷酸铁锂（LFP）和三元材料（NCM/NCA）。2024年湖南裕能、德方纳米为LFP龙头。",suppliers:[
+    {name:"湖南裕能",loc:"湖南湘潭",lat:27.83,lng:112.94,type:"nation",note:"磷酸铁锂出货量全球第一，宁德/比亚迪主供",price:"3-5万元/吨"},
+    {name:"容百科技",loc:"浙江余姚",lat:29.99,lng:121.15,type:"nation",note:"三元正极龙头，高镍市占率第一",price:"12-20万元/吨"},
+    {name:"当升科技",loc:"北京",lat:39.91,lng:116.39,type:"nation",note:"三元/LP并行，SK on/三星SDI主供",price:"10-18万元/吨"},
+    {name:"德方纳米",loc:"广东深圳",lat:22.54,lng:114.06,type:"nation",note:"液相法磷酸铁锂，成本优势明显",price:"3-5万元/吨"},
+    {name:"万润新能",loc:"湖北十堰",lat:32.65,lng:110.79,type:"nation",note:"磷酸铁锂正极，宁德时代配套",price:"3-4.5万元/吨"},
+    {name:"长远锂科",loc:"湖南长沙",lat:28.23,lng:112.94,type:"nation",note:"五矿集团旗下，三元/磷酸铁锂",price:"8-15万元/吨"},
+    {name:"振华新材",loc:"贵州贵阳",lat:26.65,lng:106.71,type:"nation",note:"单晶三元正极，宁德时代主供",price:"10-16万元/吨"},
+    {name:"厦钨新能",loc:"福建厦门",lat:24.49,lng:118.11,type:"nation",note:"钴酸锂/三元，ATL/比亚迪配套",price:"8-14万元/吨"},
+    {name:"巴莫科技",loc:"天津",lat:39.13,lng:117.20,type:"nation",note:"三元正极，LG/三星SDI配套",price:"10-18万元/吨"},
+    {name:"中伟股份",loc:"湖南长沙",lat:28.23,lng:112.94,type:"nation",note:"三元前驱体全球第一，LG/三星主供",price:"7-12万元/吨"},
+  ]},
+  anode:{name:"负极材料",icon:"&#9898;",intro:"负极材料以人造石墨为主，硅碳复合为发展方向。贝特瑞连续多年全球第一，杉杉/璞泰来紧随其后。",suppliers:[
+    {name:"贝特瑞",loc:"广东深圳",lat:22.54,lng:114.06,type:"nation",note:"负极材料全球第一，硅碳负极领先",price:"3-6万元/吨"},
+    {name:"杉杉股份",loc:"浙江宁波",lat:29.87,lng:121.55,type:"nation",note:"负极材料全球第二，硅氧/石墨双线",price:"3-5万元/吨"},
+    {name:"璞泰来",loc:"上海",lat:31.23,lng:121.47,type:"nation",note:"负极+涂覆隔膜一体化，ATL主供",price:"4-7万元/吨"},
+    {name:"中科电气",loc:"湖南岳阳",lat:29.36,lng:113.12,type:"nation",note:"负极材料，快速扩张，亿纬/宁德配套",price:"3-5万元/吨"},
+    {name:"翔丰华",loc:"广东深圳",lat:22.54,lng:114.06,type:"nation",note:"负极材料，LG/三星SDI配套",price:"3-5万元/吨"},
+    {name:"尚太科技",loc:"河北石家庄",lat:38.04,lng:114.51,type:"nation",note:"负极材料成本优势，宁德/国轩主供",price:"2.5-4万元/吨"},
+    {name:"凯金能源",loc:"广东东莞",lat:23.04,lng:113.75,type:"nation",note:"负极材料，孚能/多氟多配套",price:"3-5万元/吨"},
+    {name:"天奈科技",loc:"江苏常州",lat:31.81,lng:119.97,type:"nation",note:"碳纳米管导电剂，全球第一",price:"10-20万元/吨"},
+  ]},
+  electrolyte:{name:"电解液",icon:"&#128167;",intro:"电解液是锂离子导通媒介，六氟磷酸锂为核心锂盐。天赐材料是全球第一，约占30%份额。",suppliers:[
+    {name:"天赐材料",loc:"广东广州",lat:23.13,lng:113.27,type:"nation",note:"电解液全球第一，自产六氟磷酸锂",price:"3-6万元/吨"},
+    {name:"新宙邦",loc:"广东深圳",lat:22.54,lng:114.06,type:"nation",note:"电解液全球第二，LG/三星SDI配套",price:"4-7万元/吨"},
+    {name:"江苏国泰",loc:"江苏张家港",lat:31.88,lng:120.56,type:"nation",note:"电解液+供应链双主业",price:"3-6万元/吨"},
+    {name:"瑞泰新材",loc:"江苏张家港",lat:31.88,lng:120.56,type:"nation",note:"电解液，LG/ATL配套",price:"3-6万元/吨"},
+    {name:"奥克股份",loc:"辽宁辽阳",lat:41.27,lng:123.17,type:"nation",note:"电解液溶剂，EC/DMC为主",price:"2-4万元/吨"},
+    {name:"永太科技",loc:"浙江台州",lat:28.66,lng:121.36,type:"nation",note:"氟化工切入电解液，添加剂",price:"4-7万元/吨"},
+    {name:"多氟多",loc:"河南焦作",lat:35.22,lng:113.24,type:"nation",note:"六氟磷酸锂全球龙头，自供+外销",price:"8-15万元/吨"},
+    {name:"石大胜华",loc:"山东东营",lat:37.45,lng:118.67,type:"nation",note:"电解液溶剂全球龙头",price:"2-4万元/吨"},
+    {name:"天际股份",loc:"江苏常熟",lat:31.65,lng:120.75,type:"nation",note:"六氟磷酸锂，电解液配套",price:"8-14万元/吨"},
+    {name:"冠城大通",loc:"福建福州",lat:26.08,lng:119.30,type:"nation",note:"电解液，储能为方向",price:"3-5万元/吨"},
+  ]},
+  separator:{name:"隔膜",icon:"&#128203;",intro:"隔膜是锂电池四大材料中壁垒最高的环节，湿法涂覆为主流。恩捷股份是全球湿法隔膜绝对龙头。",suppliers:[
+    {name:"恩捷股份",loc:"云南玉溪",lat:24.35,lng:102.52,type:"nation",note:"湿法隔膜全球第一，市占率超50%",price:"1-2元/㎡"},
+    {name:"星源材质",loc:"广东深圳",lat:22.54,lng:114.06,type:"nation",note:"干法隔膜第一，LG/三星SDI配套",price:"0.8-1.5元/㎡"},
+    {name:"中材科技",loc:"江苏南京",lat:32.06,lng:118.79,type:"nation",note:"湿法隔膜快速扩张，宁德/比亚迪配套",price:"1-2元/㎡"},
+    {name:"沧州明珠",loc:"河北沧州",lat:38.30,lng:116.83,type:"nation",note:"隔膜+管道双主业",price:"0.8-1.5元/㎡"},
+    {name:"纽米科技",loc:"云南昆明",lat:25.04,lng:102.71,type:"nation",note:"湿法隔膜，涂覆隔膜",price:"1-1.8元/㎡"},
+    {name:"惠强新材",loc:"河南郑州",lat:34.75,lng:113.63,type:"nation",note:"干法隔膜，磷酸铁锂配套",price:"0.6-1.2元/㎡"},
+    {name:"中兴新材",loc:"深圳",lat:22.54,lng:114.06,type:"nation",note:"干法隔膜，储能方向",price:"0.6-1.2元/㎡"},
+    {name:"辽源鸿图",loc:"吉林辽源",lat:42.90,lng:125.15,type:"nation",note:"湿法隔膜，涂覆隔膜",price:"1-1.8元/㎡"},
+    {name:"金力股份",loc:"河北邯郸",lat:36.61,lng:114.53,type:"nation",note:"隔膜，欣旺达/亿纬配套",price:"1-1.8元/㎡"},
+    {name:"博盛新材",loc:"江苏盐城",lat:33.35,lng:120.16,type:"nation",note:"隔膜，储能方向扩张",price:"0.8-1.5元/㎡"},
+  ]},
+  inverter:{name:"电机控制器",icon:"&#128295;",intro:"电机控制器（MCU/逆变器）是电驱系统核心，IGBT和SiC是关键功率器件。SiC器件正处于加速渗透期，成本是主要瓶颈。",suppliers:[
+    {name:"英飞凌",loc:"德国/中国",lat:48.14,lng:11.58,type:"nation",note:"IGBT模块全球第一，车规级垄断",price:"600-2000元/模块"},
+    {name:"斯达半导",loc:"浙江嘉兴",lat:30.75,lng:120.75,type:"nation",note:"IGBT国产第一，比亚迪/汇川主供",price:"200-800元/模块"},
+    {name:"时代电气",loc:"湖南株洲",lat:27.83,lng:113.13,type:"nation",note:"IGBT/SiC，轨道交通切入汽车",price:"300-1000元/模块"},
+    {name:"士兰微",loc:"浙江杭州",lat:30.27,lng:120.15,type:"nation",note:"IGBT产能扩张，车规级突破",price:"200-600元/模块"},
+    {name:"华润微",loc:"江苏无锡",lat:31.49,lng:120.29,type:"nation",note:"功率半导体，IGBT封装",price:"200-700元/模块"},
+    {name:"三安光电",loc:"福建厦门",lat:24.49,lng:118.11,type:"nation",note:"SiC衬底+器件，化合物半导体",price:"800-3000元/模块"},
+    {name:"天岳先进",loc:"上海",lat:31.23,lng:121.47,type:"nation",note:"SiC衬底，国产替代加速",price:"面议"},
+    {name:"中车时代电气",loc:"湖南株洲",lat:27.83,lng:113.13,type:"nation",note:"IGBT第六代，SiC MOSFET",price:"400-1200元/模块"},
+    {name:"比亚迪半导体",loc:"广东深圳",lat:22.54,lng:114.06,type:"nation",note:"SiC功率模块自供，汉EV车型",price:"500-1500元/模块"},
+    {name:"安森美",loc:"美国/中国",lat:43.65,lng:-79.38,type:"nation",note:"IGBT/SiC，Tesla/GM配套",price:"600-2000元/模块"},
+    {name:"Wolfspeed",loc:"美国",lat:35.91,lng:-78.99,type:"nation",note:"SiC全球龙头，8英寸SiC量产",price:"面议"},
+    {name:"瞻芯电子",loc:"上海",lat:31.23,lng:121.47,type:"nation",note:"SiC MOSFET国产新锐",price:"面议"},
+  ]},
+  ev:{name:"整车企业",icon:"&#128663;",intro:"2024年中国新能源汽车销量约1300万辆，比亚迪、特斯拉、吉利、长安等为主流头部企业。200km内的零跑、极氪、大众安徽具有区位协同优势。",suppliers:[
+    {name:"比亚迪",loc:"广东深圳",lat:22.54,lng:114.06,type:"nation",note:"全球新能源销量第一，垂直整合最强",price:"7-35万/台"},
+    {name:"特斯拉",loc:"上海",lat:31.23,lng:121.47,type:"nation",note:"全球标杆，Model 3/Y热销，上海工厂产能100万+",price:"25-35万/台"},
+    {name:"吉利汽车",loc:"浙江杭州",lat:30.27,lng:120.15,type:"nation",note:"品牌矩阵完善，极氪/领克/银河",price:"8-40万/台"},
+    {name:"长安汽车",loc:"重庆",lat:29.56,lng:106.55,type:"nation",note:"深蓝/阿维塔/启源多品牌",price:"8-40万/台"},
+    {name:"蔚来汽车",loc:"安徽合肥",lat:31.85,lng:117.28,type:"nation",note:"高端换电，BAAS模式，服务标杆",price:"30-60万/台"},
+    {name:"小鹏汽车",loc:"广东广州",lat:23.13,lng:113.27,type:"nation",note:"智能驾驶领先，P7/G6/X9",price:"15-40万/台"},
+    {name:"理想汽车",loc:"北京",lat:39.91,lng:116.39,type:"nation",note:"增程式龙头，冰箱沙发大沙发",price:"25-50万/台"},
+    {name:"零跑汽车",loc:"浙江杭州",lat:30.27,lng:120.15,type:"200km",note:"杭州总部，某某区周边80km，性价比",price:"8-20万/台"},
+    {name:"极氪智能",loc:"浙江宁波",lat:29.87,lng:121.55,type:"nation",note:"宁波，某某区周边150km，SEA浩瀚架构",price:"18-70万/台"},
+    {name:"大众安徽",loc:"安徽合肥",lat:31.85,lng:117.28,type:"nation",note:"大众集团在华新能源总部，MEB+CEA",price:"15-30万/台"},
+    {name:"哪吒汽车",loc:"浙江桐乡",lat:30.63,lng:120.48,type:"200km",note:"桐乡，某某区周边100km，出海领先",price:"7-20万/台"},
+    {name:"奇瑞汽车",loc:"安徽芜湖",lat:31.33,lng:118.37,type:"nation",note:"新能源出口第一，星途/ICAR",price:"7-25万/台"},
+  ]},
+};
+
+var factoryData=[
+  {name:"天子湖第一片区厂房",area:"一期50000㎡",height:"层高9m",power:"3000KVA",rent:"12元/㎡/月",note:"标准单层厂房，可架行车，适合电机/装配",tags:[{t:"单层",c:"#1f6feb"},{t:"现房",c:"#238636"}]},
+  {name:"天子湖第二片区厂房",area:"二期80000㎡",height:"层高12m",power:"5000KVA",rent:"14元/㎡/月",note:"大跨度厂房，带牛腿，适合冲压/焊接",tags:[{t:"单层",c:"#1f6feb"},{t:"现房",c:"#238636"}]},
+  {name:"天子湖第三片区厂房",area:"三期60000㎡",height:"底层8m+二层6m",power:"4000KVA",rent:"13元/㎡/月",note:"多层厂房，首层8m，适合精密装配",tags:[{t:"多层",c:"#f0883e"},{t:"现房",c:"#238636"}]},
+  {name:"天子湖第四片区厂房",area:"四期120000㎡",height:"层高10m",power:"6300KVA",rent:"15元/㎡/月",note:"全新厂房，大承重，适合压铸/铸造",tags:[{t:"单层",c:"#1f6feb"},{t:"2024年底",c:"#6e7681"}]},
+  {name:"天衡小微园",area:"单体3000-8000㎡",height:"层高6m",power:"1000KVA/栋",rent:"11元/㎡/月",note:"小微园，配套完善，适合小批量生产",tags:[{t:"多层",c:"#f0883e"},{t:"现房",c:"#238636"}]},
+  {name:"网驿智慧园",area:"单体5000-12000㎡",height:"层高7.5m",power:"2000KVA/栋",rent:"12元/㎡/月",note:"智慧园区，研发+生产，适合轻量化智造",tags:[{t:"多层",c:"#f0883e"},{t:"现房",c:"#238636"}]},
+  {name:"共创园标准厂房",area:"120000㎡",height:"单层10m",power:"6300KVA",rent:"14元/㎡/月",note:"大型标准厂房，前2年免租，适合重大项目",tags:[{t:"单层",c:"#1f6feb"},{t:"2年免租",c:"#238636"},{t:"现房",c:"#238636"}]},
+  {name:"西湖科创园",area:"单体2000-6000㎡",height:"层高5m",power:"630KVA/栋",rent:"10元/㎡/月",note:"研发办公一体，适合科技型小微项目",tags:[{t:"研发",c:"#8b949e"},{t:"现房",c:"#238636"}]},
+];
+
+var filterOptions={
+  type:["电池系统","电驱电机","智能驾驶","智能座舱","热管理","底盘传动","精密制造","核心材料","整车"],
+  scale:["1亿以下","1-5亿","5-10亿","10亿以上"],
+  factory:["无需厂房","500-2000㎡","2000-5000㎡","5000-10000㎡","10000㎡以上"],
+  tech:["低壁垒(配套加工)","中壁垒(总成件)","高壁垒(核心部件)","极高壁垒(芯片/算法)"],
+  match:["5km内全配套","20km内全配套","50km内全配套","100km内主要配套","200km内主要配套"],
+};
+
+// 某某区本地坐标
+var XXQ_LAT = 31.08;
+var XXQ_LNG = 119.91;
+
+// ====== 全局地图对象 ======
+var mainMap=null;
+var detailMap=null;
+var localMap=null;
+var currentDetailKey=null;
+var selType=[],selScale=[],selFactory=[],selTech=[],selMatch=[];
+
+// ====== 初始化 ======
+window.onload=function(){
+  initChainGrid();
+  initDetailFilter();
+  initFilterPanel();
+  initFactoryGrid();
+  initMainMap();
+  initLocalMap();
+};
+
+// ====== Tab切换 ======
+function showTab(id){
+  document.querySelectorAll(".tab-btn").forEach(b=>b.classList.remove("active"));
+  document.querySelectorAll(".tab-content").forEach(c=>c.classList.remove("active"));
+  event.target.classList.add("active");
+  document.getElementById("tab-"+id).classList.add("active");
+  if(id==="location" && mainMap) setTimeout(function(){mainMap.invalidateSize()},100);
+  if(id==="local" && localMap) setTimeout(function(){localMap.invalidateSize()},100);
+}
+
+// ====== 产业链卡片 ======
+function initChainGrid(){
+  var grid=document.getElementById("chainGrid");
+  grid.innerHTML="";
+  chainData.forEach(function(item){
+    var badge="";
+    if(item.local>0) badge="<span class='badge badge-local'>本地"+item.local+"家</span>";
+    else if(item.total==="10+"||item.total==="12+"||item.total==="15+"||item.total==="20+") badge="<span class='badge badge-200km'>"+item.total+"供应商</span>";
+    else badge="<span class='badge badge-nation'>"+item.total+"供应商</span>";
+    var catNames={battery:"电池",motor:"电驱",smart:"智驾",chassis:"底盘",cabin:"座舱",material:"材料",tooling:"制造"};
+    var catColor={battery:"#f85149",motor:"#f0883e",smart:"#58a6ff",chassis:"#3fb950",cabin:"#bc8cff",material:"#f778ba",tooling:"#79c0ff"};
+    var card=document.createElement("div");
+    card.className="chain-card";
+    card.style.borderLeft="3px solid "+catColor[item.cat];
+    card.innerHTML="<span class='badge' style='background:"+catColor[item.cat]+";color:#fff'>"+catNames[item.cat]+"</span>"+badge+
+      "<div class='card-icon'>"+item.icon+"</div>"+
+      "<h3>"+item.name+"</h3><div class='desc'>"+item.desc+"</div>"+
+      "<div class='stats'><span>共<strong>"+item.total+"</strong>家供应商</span><span>本地<strong>"+item.local+"</strong>家</span></div>";
+    card.onclick=function(){showDetail(item.id);};
+    grid.appendChild(card);
+  });
+}
+
+function filterChain(el,cat){
+  el.parentElement.querySelectorAll(".filter-tag").forEach(t=>t.classList.remove("selected"));
+  el.classList.add("selected");
+  var cards=document.querySelectorAll("#chainGrid .chain-card");
+  cards.forEach(function(card){
+    if(cat==="all"){card.style.display="";return;}
+    var item=chainData.find(function(i){return i.id===card.querySelector("h3").textContent.replace("电池系统","battery").replace("正极材料","cathode").replace("负极材料","anode").replace("电解液","electrolyte").replace("隔膜","separator").replace("驱动电机","motor").replace("电机控制器","inverter").replace("精密减速器","reducer").replace("热管理系统","thermal").replace("智能驾驶","smartdrive").replace("智能座舱","smartcabin").replace("底盘/传动","chassis").replace("连接器/线束","connector").replace("伺服系统","servo").replace("工业机器人","robot").replace("数控系统/丝杠","cnc").replace("整车企业","ev")||i.name===card.querySelector("h3").textContent;});
+    if(item&&item.cat===cat) card.style.display="";
+    else if(item) card.style.display="none";
+  });
+}
+
+// ====== 零部件筛选 ======
+function initDetailFilter(){
+  var row=document.getElementById("detailFilter");
+  var allBtn=document.createElement("span");
+  allBtn.className="filter-tag selected";
+  allBtn.textContent="全部";
+  allBtn.onclick=function(){
+    document.querySelectorAll("#detailFilter .filter-tag").forEach(t=>t.classList.remove("selected"));
+    allBtn.classList.add("selected");
+    showAllDetail();
+  };
+  row.appendChild(allBtn);
+  var cats=[
+    {key:"battery,electrolyte,cathode,anode,separator,ev",label:"电池系统"},
+    {key:"motor,inverter",label:"电驱/电机"},
+    {key:"thermal,chassis,connector",label:"底盘/热管理"},
+    {key:"smartdrive,smartcabin",label:"智能科技"},
+    {key:"reducer,servo,robot,cnc",label:"精密制造"},
+    {key:"cathode,anode,electrolyte,separator",label:"核心材料"},
+  ];
+  cats.forEach(function(c){
+    var btn=document.createElement("span");
+    btn.className="filter-tag";
+    btn.textContent=c.label;
+    btn.onclick=function(){
+      document.querySelectorAll("#detailFilter .filter-tag").forEach(t=>t.classList.remove("selected"));
+      btn.classList.add("selected");
+      showCategoryDetail(c.key.split(","));
+    };
+    row.appendChild(btn);
+  });
+}
+
+function showAllDetail(){
+  var keys=Object.keys(supplyData);
+  showCategoryDetail(keys);
+}
+
+function showCategoryDetail(keys){
+  var keys_str=keys.join(",");
+  if(keys.length>1){
+    var html="<div style='margin-bottom:16px'>";
+    keys.forEach(function(k){
+      if(supplyData[k]) html+=renderDetailHTML(k,false);
+    });
+    html+="</div>";
+    document.getElementById("detailContent").innerHTML=html;
+  } else if(keys.length===1 && supplyData[keys[0]]){
+    renderDetail(keys[0],true);
+  }
+}
+
+function renderDetailHTML(key,showMap){
+  var d=supplyData[key];
+  if(!d) return "";
+  var html="<div style='margin-bottom:24px'>";
+  html+="<h3 style='color:#58a6ff;font-size:14px;margin-bottom:8px;padding-bottom:8px;border-bottom:1px solid #21262d'>"+d.icon+" "+d.name+"</h3>";
+  html+="<p style='font-size:12px;color:#8b949e;margin-bottom:12px;line-height:1.6'>"+d.intro+"</p>";
+  html+="<table class='supply-table'>";
+  html+="<tr><th style='width:120px'>企业名称</th><th>位置</th><th style='width:200px'>简介</th><th style='width:100px'>参考价格</th><th style='width:80px'>来源</th></tr>";
+  d.suppliers.forEach(function(s){
+    var mtype=s.type==="local"?"marker-local":(s.type==="200km"?"marker-200km":"marker-nation");
+    var tname=s.type==="local"?"某某本地":(s.type==="200km"?"200km":"全国");
+    html+="<tr>";
+    html+="<td><strong style='color:#e6edf3'>"+s.name+"</strong></td>";
+    html+="<td class='loc'>"+s.loc+"</td>";
+    html+="<td style='font-size:12px;color:#8b949e'>"+s.note+"</td>";
+    html+="<td class='price'>"+s.price+"</td>";
+    html+="<td><span class='marker "+mtype+"'></span><span style='font-size:11px'>"+tname+"</span></td>";
+    html+="</tr>";
+  });
+  html+="</table>";
+  if(showMap){
+    html+="<div id='detailMap' style='height:380px;border-radius:8px;border:1px solid #30363d;margin-top:16px'></div>";
+  }
+  html+="</div>";
+  return html;
+}
+
+function renderDetail(key,showMap){
+  document.getElementById("detailContent").innerHTML=renderDetailHTML(key,showMap);
+  if(showMap){
+    setTimeout(function(){
+      initDetailMap(key);
+    },100);
+  }
+}
+
+// ====== 弹窗 ======
+function showDetail(key){
+  var d=supplyData[key];
+  if(!d) return;
+  currentDetailKey=key;
+  var modal=document.getElementById("modal-detail");
+  if(!modal){
+    modal=document.createElement("div");
+    modal.id="modal-detail";
+    modal.className="modal";
+    modal.innerHTML="<div class='modal-box'><div class='modal-header'><h2>"+d.icon+" "+d.name+"</h2><button class='modal-close' onclick='closeModal()'>&times;</button></div><div class='modal-body' id='modalBody'></div></div>";
+    document.body.appendChild(modal);
+  }
+  var body=document.getElementById("modalBody");
+  body.innerHTML="<p style='font-size:13px;color:#8b949e;margin-bottom:14px;line-height:1.6'>"+d.intro+"</p>";
+  body.innerHTML+="<div class='legend'>"+
+    "<span><span class='marker marker-local'></span>某某区本地企业</span>"+
+    "<span><span class='marker marker-200km'></span>200km内配套</span>"+
+    "<span><span class='marker marker-nation'></span>全国头部企业</span></div>";
+  body.innerHTML+="<table class='supply-table'>";
+  body.innerHTML+="<tr><th style='width:130px'>企业名称</th><th>位置</th><th style='width:220px'>简介</th><th style='width:100px'>参考价格</th><th style='width:80px'>来源</th></tr>";
+  d.suppliers.forEach(function(s){
+    var mtype=s.type==="local"?"marker-local":(s.type==="200km"?"marker-200km":"marker-nation");
+    var tname=s.type==="local"?"某某本地":(s.type==="200km"?"200km":"全国");
+    body.innerHTML+="<tr>";
+    body.innerHTML+="<td><strong style='color:#e6edf3'>"+s.name+"</strong></td>";
+    body.innerHTML+="<td class='loc'>"+s.loc+"</td>";
+    body.innerHTML+="<td style='font-size:12px;color:#8b949e'>"+s.note+"</td>";
+    body.innerHTML+="<td class='price'>"+s.price+"</td>";
+    body.innerHTML+="<td><span class='marker "+mtype+"'></span><span style='font-size:11px'>"+tname+"</span></td>";
+    body.innerHTML+="</tr>";
+  });
+  body.innerHTML+="</table>";
+  body.innerHTML+="<div id='detailMap' style='height:380px;border-radius:8px;border:1px solid #30363d;margin-top:16px'></div>";
+  modal.classList.add("show");
+  setTimeout(function(){initDetailMap(key);},100);
+}
+
+function closeModal(){
+  document.getElementById("modal-detail").classList.remove("show");
+}
+
+// ====== 地图 ======
+function initMainMap(){
+  if(typeof L==="undefined") return;
+  mainMap=L.map("mainMap").setView([31.08,119.91],7);
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{attribution:"&copy; OpenStreetMap"}).addTo(mainMap);
+  var circle=L.circle([31.08,119.91],{color:"#1f6feb",fillColor:"#1f6feb",fillOpacity:0.15,radius:200000}).addTo(mainMap);
+  L.marker([31.08,119.91],{icon:L.divIcon({className:"",html:"<div style='background:#1f6feb;color:#fff;padding:4px 8px;border-radius:12px;font-size:12px;font-weight:600;border:2px solid #fff'>某某区</div>",iconSize:[60,24],iconAnchor:[30,12]})}).addTo(mainMap).bindPopup("某某区（位于湖州长兴）");
+  var hotspots=[
+    {name:"杭州零跑/吉利",lat:30.27,lng:120.15,icon:"&#128663;",c:"#f0883e"},
+    {name:"苏州绿的谐波/汇川",lat:31.30,lng:120.62,icon:"&#9881;",c:"#58a6ff"},
+    {name:"上海特斯拉",lat:31.23,lng:121.47,icon:"&#128663;",c:"#f85149"},
+    {name:"宁波极氪/拓普",lat:29.87,lng:121.55,icon:"&#128663;",c:"#3fb950"},
+    {name:"常州蜂巢/理想",lat:31.81,lng:119.97,icon:"&#128267;",c:"#f85149"},
+    {name:"无锡先导",lat:31.49,lng:120.29,icon:"&#128295;",c:"#58a6ff"},
+    {name:"合肥蔚来/大众",lat:31.85,lng:117.28,icon:"&#128663;",c:"#bc8cff"},
+  ];
+  hotspots.forEach(function(h){
+    L.circleMarker([h.lat,h.lng],{color:h.c,fillColor:h.c,fillOpacity:0.7,radius:8,weight:2}).addTo(mainMap).bindPopup("<div style='font-size:13px'>"+h.name+"</div>");
+  });
+}
+
+function initLocalMap(){
+  if(typeof L==="undefined") return;
+  if(localMap) localMap.remove();
+  localMap=L.map("localMap").setView([31.08,119.91],8);
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{attribution:"&copy; OpenStreetMap"}).addTo(localMap);
+  L.circle([31.08,119.91],{color:"#1f6feb",fillColor:"#1f6feb",fillOpacity:0.15,radius:80000}).addTo(localMap);
+  L.circle([31.08,119.91],{color:"#1f6feb",fillColor:"none",fillOpacity:0,radius:80000,weight:1,dashArray:"5,5"}).addTo(localMap);
+  L.marker([31.08,119.91],{icon:L.divIcon({className:"",html:"<div style='background:#1f6feb;color:#fff;padding:4px 8px;border-radius:12px;font-size:12px;font-weight:600;border:2px solid #fff'>某某区</div>",iconSize:[60,24],iconAnchor:[30,12]})}).addTo(localMap).bindPopup("某某区（天子湖片区，位于湖州长兴）");
+  var localMarkers=[
+    {name:"桢正运动控制(伺服)",lat:31.08,lng:119.91,c:"#238636",type:"local"},
+    {name:"云动机器人",lat:31.08,lng:119.91,c:"#238636",type:"local"},
+    {name:"豪斯特/奇碟/元睿",lat:31.08,lng:119.91,c:"#238636",type:"local"},
+    {name:"振兴/广义铸造集群",lat:31.08,lng:119.91,c:"#238636",type:"local"},
+    {name:"周一空调/雪鹰制冷",lat:31.08,lng:119.91,c:"#238636",type:"local"},
+    {name:"汇川技术(苏州80km)",lat:31.30,lng:120.62,c:"#1f6feb",type:"200km"},
+    {name:"绿的谐波(苏州80km)",lat:31.30,lng:120.62,c:"#1f6feb",type:"200km"},
+    {name:"三花智控(绍兴)",lat:30.00,lng:120.58,c:"#1f6feb",type:"200km"},
+    {name:"银轮股份(天台)",lat:29.15,lng:120.98,c:"#1f6feb",type:"200km"},
+    {name:"零跑汽车(杭州80km)",lat:30.27,lng:120.15,c:"#1f6feb",type:"200km"},
+    {name:"极氪(宁波150km)",lat:29.87,lng:121.55,c:"#1f6feb",type:"200km"},
+    {name:"特斯拉(上海150km)",lat:31.23,lng:121.47,c:"#484f58",type:"nation"},
+    {name:"宁德时代(常州150km)",lat:31.81,lng:119.97,c:"#484f58",type:"nation"},
+  ];
+  localMarkers.forEach(function(m){
+    var popup=m.type==="local"?"<strong>某某区本地</strong><br>"+m.name:m.type==="200km"?"<strong>200km内</strong><br>"+m.name:"<strong>全国</strong><br>"+m.name;
+    L.circleMarker([m.lat,m.lng],{color:m.c,fillColor:m.c,fillOpacity:0.7,radius:m.type==="local"?8:6,weight:2}).addTo(localMap).bindPopup(popup);
+  });
+}
+
+function initDetailMap(key){
+  if(typeof L==="undefined"||!supplyData[key]) return;
+  if(detailMap) detailMap.remove();
+  detailMap=L.map("detailMap").setView([31.08,119.91],5);
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{attribution:"&copy; OpenStreetMap"}).addTo(detailMap);
+  L.circle([31.08,119.91],{color:"#1f6feb",fillColor:"#1f6feb",fillOpacity:0.1,radius:200000}).addTo(detailMap);
+  L.marker([31.08,119.91],{icon:L.divIcon({className:"",html:"<div style='background:#1f6feb;color:#fff;padding:3px 6px;border-radius:10px;font-size:11px;font-weight:600;border:2px solid #fff'>某某区</div>",iconSize:[50,20],iconAnchor:[25,10]})}).addTo(detailMap);
+  var d=supplyData[key];
+  d.suppliers.forEach(function(s){
+    var c=s.type==="local"?"#238636":(s.type==="200km"?"#1f6feb":"#484f58");
+    var op=s.type==="local"?0.9:(s.type==="200km"?0.7:0.5);
+    L.circleMarker([s.lat,s.lng],{color:c,fillColor:c,fillOpacity:op,radius:6,weight:2}).addTo(detailMap).bindPopup("<strong>"+s.name+"</strong><br><span style='font-size:12px;color:#8b949e'>"+s.loc+"</span><br><span style='font-size:11px'>"+s.note+"</span>");
+  });
+}
+
+// ====== 厂房 ======
+function initFactoryGrid(){
+  var grid=document.getElementById("factoryGrid");
+  if(!grid) return;
+  grid.innerHTML="";
+  factoryData.forEach(function(f){
+    var card=document.createElement("div");
+    card.className="factory-card";
+    var tagsHtml=f.tags.map(function(t){return "<span class='f-tag' style='background:"+t.c+"'>"+t.t+"</span>";}).join("");
+    card.innerHTML="<h4>"+f.name+"</h4><div class='f-detail'><p>"+f.area+" | "+f.height+" | "+f.power+"</p><p>租金："+f.rent+"</p><p style='margin-top:4px'>"+f.note+"</p></div><div class='f-tags'>"+tagsHtml+"</div>";
+    grid.appendChild(card);
+  });
+}
+
+// ====== 筛选 ======
+function initFilterPanel(){
+  function buildRow(id,opts){
+    var row=document.getElementById(id);
+    if(!row) return;
+    row.innerHTML="";
+    opts.forEach(function(o){
+      var tag=document.createElement("span");
+      tag.className="filter-tag";
+      tag.textContent=o;
+      tag.onclick=function(){
+        tag.classList.toggle("selected");
+      };
+      row.appendChild(tag);
+    });
+  }
+  buildRow("filterType",filterOptions.type);
+  buildRow("filterScale",filterOptions.scale);
+  buildRow("filterFactory",filterOptions.factory);
+  buildRow("filterTech",filterOptions.tech);
+  buildRow("filterMatch",filterOptions.match);
+}
+
+function getSelected(id){
+  var tags=document.querySelectorAll("#"+id+" .filter-tag.selected");
+  return Array.from(tags).map(function(t){return t.textContent;});
+}
+
+function runFilter(){
+  var types=getSelected("filterType");
+  var scales=getSelected("filterScale");
+  var factories=getSelected("filterFactory");
+  var techs=getSelected("filterTech");
+  var matches=getSelected("filterMatch");
+  var results=[];
+  var id=0;
+  // 生成模拟招商目标
+  var targets=[
+    {name:"某某新能源电池Pack项目",icon:"&#128267;",type:"电池系统",scale:"10亿以上",factory:"10000㎡以上",tech:"极高壁垒(芯片/算法)",match:"200km内主要配套",detail:"规划产能5GWh，投资15亿元，需求单层厂房15000㎡，层高10m，承重5t/㎡。200km内有宁德时代、蜂巢能源、中创新航，可就近采购电芯。"},
+    {name:"智驾域控制器生产基地",icon:"&#129504;",type:"智能驾驶",scale:"5-10亿",factory:"5000-10000㎡",tech:"极高壁垒(芯片/算法)",match:"50km内全配套",detail:"年产50万套智驾域控，投资8亿元，需求多层厂房首层8m，千级无尘车间。200km内有华为/地平线芯片，汇川伺服可就近采购。"},
+    {name:"精密减速器项目",icon:"&#9881;",type:"精密制造",scale:"1-5亿",factory:"2000-5000㎡",tech:"高壁垒(核心部件)",match:"20km内全配套",detail:"年产20万台谐波减速器，投资3亿元。某某区周边80km有绿的谐波、来福谐波，上下游配套完善。需求厂房5000㎡，层高8m。"},
+    {name:"热管理系统总成项目",icon:"&#127777;",type:"热管理",scale:"1-5亿",factory:"2000-5000㎡",tech:"中壁垒(总成件)",match:"20km内全配套",detail:"年产30万套新能源热管理总成，投资2亿元。某某区本地周一空调、雪鹰制冷可配套，某某区周边有三花智控、银轮股份、盾安环境。"},
+    {name:"新能源汽车线束项目",icon:"&#128268;",type:"底盘传动",scale:"1-5亿",factory:"3000-8000㎡",tech:"中壁垒(总成件)",match:"50km内全配套",detail:"年产50万套高压线束，投资2.5亿元。200km内有中航光电、瑞可达，可采购连接器。需求厂房5000㎡。"},
+    {name:"驱动电机定转子项目",icon:"&#9889;",type:"电驱电机",scale:"1亿以下",factory:"2000-5000㎡",tech:"中壁垒(总成件)",match:"100km内主要配套",detail:"年产30万台驱动电机定转子，投资0.8亿元。某某区周边80km有汇川技术、方正电机，就近配套。需求厂房3000㎡。"},
+    {name:"智能座舱域控项目",icon:"&#128722;",type:"智能座舱",scale:"5-10亿",factory:"5000-10000㎡",tech:"高壁垒(核心部件)",match:"100km内主要配套",detail:"年产30万套座舱域控+20万套HUD，投资6亿元。需求厂房8000㎡，含千级无尘车间。"},
+    {name:"正极前驱体项目",icon:"&#129514;",type:"核心材料",scale:"10亿以上",factory:"10000㎡以上",tech:"极高壁垒(芯片/算法)",match:"100km内主要配套",detail:"年产10万吨正极前驱体，投资20亿元，需求大型厂房10万㎡，有蒸汽/废水处理配套。"},
+    {name:"伺服电机本地扩产项目",icon:"&#127919;",type:"精密制造",scale:"1-5亿",factory:"2000-5000㎡",tech:"高壁垒(核心部件)",match:"20km内全配套",detail:"桢正运动控制扩产，年产10万台伺服电机，投资1.5亿元。某某区本地厂房直接租用，某某区周边100km有汇川技术、台达电子可配套。"},
+    {name:"底盘零部件项目",icon:"&#128736;",type:"底盘传动",scale:"1-5亿",factory:"5000-10000㎡",tech:"中壁垒(总成件)",match:"50km内全配套",detail:"年产100万套副车架/控制臂，投资3亿元。某某区本地有振兴铸造集群可就近采购铸件。"},
+  ];
+  targets.forEach(function(t){
+    var match=false;
+    if(types.length===0||types.indexOf(t.type)!==-1) match=true;
+    if(match){
+      results.push(t);
+      id++;
+    }
+  });
+  document.getElementById("resultCount").innerHTML="找到 <strong>"+results.length+"</strong> 个符合条件的招商目标";
+  var list=document.getElementById("resultList");
+  if(results.length===0){
+    list.innerHTML="<div style='text-align:center;padding:40px;color:#484f58'>请选择筛选条件后开始筛选</div>";
+    return;
+  }
+  list.innerHTML="";
+  results.forEach(function(r){
+    var item=document.createElement("div");
+    item.className="result-item";
+    item.innerHTML="<div class='ri-icon'>"+r.icon+"</div><div class='ri-info'><h4>"+r.name+"</h4><p>"+r.detail+"</p><div class='ri-tags'>"+
+      "<span class='f-tag' style='background:#1f6feb;font-size:11px'>"+r.type+"</span>"+
+      "<span class='f-tag' style='background:#238636;font-size:11px'>"+r.scale+"</span>"+
+      "<span class='f-tag' style='background:#f0883e;font-size:11px'>"+r.factory+"</span>"+
+      "<span class='f-tag' style='background:#bc8cff;font-size:11px'>"+r.tech+"</span>"+
+      "<span class='f-tag' style='background:#484f58;font-size:11px'>"+r.match+"</span>"+
+      "</div></div>";
+    list.appendChild(item);
+  });
+}
+
+function clearFilter(){
+  document.querySelectorAll(".filter-tag").forEach(function(t){t.classList.remove("selected");});
+  document.getElementById("resultCount").innerHTML="";
+  document.getElementById("resultList").innerHTML="<div style='text-align:center;padding:40px;color:#484f58'>请选择筛选条件后开始筛选</div>";
+}
+
+// 点击地图外部关闭弹窗
+document.addEventListener("click",function(e){
+  if(e.target.className==="modal") closeModal();
+});
+</script>
+</body>
+</html>
