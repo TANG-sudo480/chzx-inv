@@ -2051,6 +2051,25 @@ function clearFilter(){clearSmartFilter();}
 document.addEventListener("click",function(e){
   if(e.target.className==="modal") closeModal();
 });
+
+// 确保 DOM 加载完成后初始化
+document.addEventListener('DOMContentLoaded', function() {
+  console.log('Page loaded');
+  // 初始化筛选面板
+  if(typeof initFilterPanel === 'function') {
+    initFilterPanel();
+  }
+  // 确保第一个 tab 显示
+  var firstContent = document.querySelector('.tab-content');
+  if(firstContent && !firstContent.classList.contains('active')) {
+    firstContent.classList.add('active');
+  }
+  var firstBtn = document.querySelector('.tab-btn');
+  if(firstBtn && !firstBtn.classList.contains('active')) {
+    firstBtn.classList.add('active');
+  }
+});
+
 </script>
 </body>
 </html>
