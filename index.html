@@ -68,6 +68,7 @@ body{font-family:"PingFang SC","Microsoft YaHei",sans-serif;background:#0d1117;c
 .stat-box .num{font-size:22px;font-weight:700;color:#58a6ff}
 .stat-box .label{font-size:11px;color:#8b949e;margin-top:3px}
 .factory-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.factory-grid{display:grid}
 .factory-card{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:14px}
 .factory-card h4{font-size:13px;color:#58a6ff;margin-bottom:4px}
 .factory-card .f-detail{font-size:12px;color:#8b949e;line-height:1.6}
@@ -81,6 +82,28 @@ body{font-family:"PingFang SC","Microsoft YaHei",sans-serif;background:#0d1117;c
 .result-item .ri-info h4{font-size:14px;color:#e6edf3;margin-bottom:4px}
 .result-item .ri-info p{font-size:12px;color:#8b949e;line-height:1.5}
 .result-item .ri-tags{display:flex;gap:6px;margin-top:6px;flex-wrap:wrap}
+/* 全区企业表格样式 */
+.enterprise-header{margin-bottom:16px}
+.enterprise-stats{display:flex;gap:14px;margin-bottom:16px}
+.stat-card{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:14px 20px;text-align:center;min-width:100px}
+.stat-num{font-size:24px;font-weight:bold;color:#fff}
+.stat-label{font-size:12px;color:#8b949e;margin-top:4px}
+.enterprise-toolbar{display:flex;gap:16px;align-items:center;margin-bottom:14px;padding:12px;background:#161b22;border:1px solid #30363d;border-radius:8px;flex-wrap:wrap}
+.enterprise-toolbar .filter-group{display:flex;align-items:center;gap:8px}
+.enterprise-toolbar label{font-size:13px;color:#8b949e}
+.enterprise-toolbar select,.enterprise-toolbar input{padding:6px 10px;border:1px solid #30363d;border-radius:6px;background:#0d1117;color:#c9d1d9;font-size:13px}
+.enterprise-toolbar input{width:180px}
+.enterprise-table-container{max-height:600px;overflow-y:auto;border:1px solid #30363d;border-radius:8px}
+.enterprise-table{width:100%;border-collapse:collapse;font-size:13px}
+.enterprise-table thead{position:sticky;top:0;background:#161b22;z-index:1}
+.enterprise-table th{text-align:left;padding:10px 12px;color:#8b949e;font-weight:500;border-bottom:1px solid #30363d;white-space:nowrap}
+.enterprise-table td{padding:10px 12px;color:#c9d1d9;border-bottom:1px solid #21262d}
+.enterprise-table tr:hover{background:#1c2128}
+.enterprise-table tr:last-child td{border-bottom:none}
+.enterprise-table .ent-type{padding:3px 8px;border-radius:4px;font-size:11px;font-weight:500}
+.enterprise-table .type-guishang{background:#238636;color:#fff}
+.enterprise-table .type-xiaoweiyuan{background:#1f6feb;color:#fff}
+.enterprise-table .type-xinshenggui{background:#8957e5;color:#fff}
 .fishbone{padding:20px;background:#161b22;border-radius:10px}
 .bone-row{display:flex;justify-content:space-around;margin:8px 0;flex-wrap:wrap;gap:8px}
 .bone-item{background:#21262d;border:1px solid #30363d;border-radius:6px;padding:10px 12px;font-size:12px;color:#c9d1d9;text-align:center;min-width:120px;max-width:150px}
@@ -119,7 +142,8 @@ body{font-family:"PingFang SC","Microsoft YaHei",sans-serif;background:#0d1117;c
   <button class="tab-btn" onclick="showTab('chain')">产业链全景</button>
   <button class="tab-btn" onclick="showTab('detail')">零部件拆解</button>
   <button class="tab-btn" onclick="showTab('local')">本地资源</button>
-  <button class="tab-btn" onclick="showTab('factory')">空余厂房</button>
+  <button class="tab-btn" onclick="showTab('enterprise')">全区企业</button>
+	<button class="tab-btn" onclick="showTab('factory')">空余厂房</button>
   <button class="tab-btn" onclick="showTab('filter')">智能筛选</button>
   <button class="tab-btn" onclick="showTab('fishbone')">鱼骨图分析</button>
 </div>
@@ -238,6 +262,73 @@ body{font-family:"PingFang SC","Microsoft YaHei",sans-serif;background:#0d1117;c
 </div>
 
 <!-- 空余厂房 -->
+<!-- 全区企业 -->
+<div id="tab-enterprise" class="tab-content">
+  <div class="enterprise-header">
+    <h3 style="color:#58a6ff;margin-bottom:14px;font-size:14px">长合区全区企业名单</h3>
+    <div class="enterprise-stats">
+      <div class="stat-card" style="background:linear-gradient(135deg,#238636,#2ea043)">
+        <div class="stat-num" id="statGuishang">188</div>
+        <div class="stat-label">规上企业</div>
+      </div>
+      <div class="stat-card" style="background:linear-gradient(135deg,#1f6feb,#388bfd)">
+        <div class="stat-num" id="statXiaoweiyuan">45</div>
+        <div class="stat-label">小微园企业</div>
+      </div>
+      <div class="stat-card" style="background:linear-gradient(135deg,#8957e5,#a371f7)">
+        <div class="stat-num" id="statXinshenggui">53</div>
+        <div class="stat-label">新升规项目</div>
+      </div>
+    </div>
+  </div>
+  <div class="enterprise-toolbar">
+    <div class="filter-group">
+      <label>企业类型：</label>
+      <select id="entTypeFilter" onchange="filterEnterprise()">
+        <option value="all">全部</option>
+        <option value="规上">规上企业</option>
+        <option value="小微园">小微园企业</option>
+        <option value="新升规">新升规项目</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <label>所属片区：</label>
+      <select id="entAreaFilter" onchange="filterEnterprise()">
+        <option value="all">全部片区</option>
+        <option value="第一片区">第一片区</option>
+        <option value="第二片区">第二片区</option>
+        <option value="第三片区">第三片区</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <label>搜索：</label>
+      <input type="text" id="entSearchInput" placeholder="输入企业名称..." oninput="filterEnterprise()">
+    </div>
+    <div class="filter-group" style="margin-left:auto">
+      <span class="result-count">共 <span id="entResultCount">0</span> 家企业</span>
+    </div>
+  </div>
+  <div class="enterprise-table-container">
+    <table class="enterprise-table">
+      <thead>
+        <tr>
+          <th style="width:60px">序号</th>
+          <th>企业名称</th>
+          <th style="width:90px">企业类型</th>
+          <th style="width:100px">所属片区</th>
+          <th style="width:100px">联系人/法人</th>
+          <th style="width:130px">联系方式</th>
+          <th style="width:80px">服务专员</th>
+          <th>备注</th>
+        </tr>
+      </thead>
+      <tbody id="enterpriseTableBody">
+      </tbody>
+    </table>
+  </div>
+  <div class="pagination" id="entPagination"></div>
+</div>
+
 <div id="tab-factory" class="tab-content">
   <h3 style="color:#58a6ff;margin-bottom:14px;font-size:14px">空余厂房详情</h3>
   <div class="factory-grid" id="factoryGrid"></div>
@@ -333,6 +424,7 @@ body{font-family:"PingFang SC","Microsoft YaHei",sans-serif;background:#0d1117;c
 </div>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="local_enterprise_data.js"></script>
 <script>
 // ====== 产业链数据 ======
 var chainData=[
@@ -972,6 +1064,99 @@ var localMap=null;
 var currentDetailKey=null;
 var selType=[],selFinance=[],selExpand=[],selTrend=[],selTech=[],selMatch=[];
 
+// ====== 全区企业列表 ======
+var entCurrentPage=1;
+var entPageSize=50;
+var entFilteredData=[];
+
+function initEnterpriseTab(){
+  if(typeof localEnterpriseData === 'undefined') return;
+  document.getElementById('statGuishang').textContent=localEnterpriseData.guishang.length;
+  document.getElementById('statXiaoweiyuan').textContent=localEnterpriseData.xiaoweiyuan.length;
+  document.getElementById('statXinshenggui').textContent=localEnterpriseData.xinshenggui.length;
+  entCurrentPage=1;
+  filterEnterprise();
+}
+
+function filterEnterprise(){
+  var typeFilter=document.getElementById('entTypeFilter').value;
+  var areaFilter=document.getElementById('entAreaFilter').value;
+  var searchText=document.getElementById('entSearchInput').value.toLowerCase();
+  
+  entFilteredData=[];
+  
+  // 合并所有企业数据
+  localEnterpriseData.guishang.forEach(function(e){e._type='规上';entFilteredData.push(e);});
+  localEnterpriseData.xiaoweiyuan.forEach(function(e){e._type='小微园';entFilteredData.push(e);});
+  localEnterpriseData.xinshenggui.forEach(function(e){e._type='新升规';entFilteredData.push(e);});
+  
+  // 应用筛选
+  entFilteredData=entFilteredData.filter(function(e){
+    if(typeFilter!=='all' && e._type!==typeFilter) return false;
+    if(areaFilter!=='all' && (!e.area||!e.area.includes(areaFilter))) return false;
+    if(searchText && (!e.name||!e.name.toLowerCase().includes(searchText))) return false;
+    return true;
+  });
+  
+  entCurrentPage=1;
+  renderEnterpriseTable();
+}
+
+function renderEnterpriseTable(){
+  var tbody=document.getElementById('enterpriseTableBody');
+  if(!tbody) return;
+  
+  document.getElementById('entResultCount').textContent=entFilteredData.length;
+  
+  var start=(entCurrentPage-1)*entPageSize;
+  var end=Math.min(start+entPageSize,entFilteredData.length);
+  var pageData=entFilteredData.slice(start,end);
+  
+  tbody.innerHTML=pageData.map(function(e){
+    var typeClass=e._type==='规上'?'type-guishang':e._type==='小微园'?'type-xiaoweiyuan':'type-xinshenggui';
+    var contact=e.contact||e.legal||'-';
+    var phone=e.phone?'<a href="tel:'+e.phone+'" style="color:#58a6ff">'+e.phone+'</a>':'-';
+    var note=e.note||(e.park||'');
+    return '<tr>'+
+      '<td style="color:#8b949e">'+e.seq+'</td>'+
+      '<td><strong style="color:#e6edf3">'+e.name+'</strong></td>'+
+      '<td><span class="ent-type '+typeClass+'">'+e._type+'</span></td>'+
+      '<td>'+(e.area||'-')+'</td>'+
+      '<td>'+contact+'</td>'+
+      '<td>'+phone+'</td>'+
+      '<td>'+(e.agent||'-')+'</td>'+
+      '<td style="color:#8b949e;font-size:12px">'+note+'</td>'+
+    '</tr>';
+  }).join('');
+  
+  renderEntPagination();
+}
+
+function renderEntPagination(){
+  var totalPages=Math.ceil(entFilteredData.length/entPageSize);
+  var pagDiv=document.getElementById('entPagination');
+  if(!pagDiv) return;
+  
+  if(totalPages<=1){pagDiv.innerHTML='';return;}
+  
+  var html='<button '+(entCurrentPage>1?'':'disabled')+' onclick="entGoPage('+(entCurrentPage-1)+')">上一页</button>';
+  for(var i=1;i<=totalPages;i++){
+    if(i===1||i===totalPages||(i>=entCurrentPage-2&&i<=entCurrentPage+2)){
+      html+='<button '+(i===entCurrentPage?'class="active"':'')+' onclick="entGoPage('+i+')">'+i+'</button>';
+    } else if(i===entCurrentPage-3||i===entCurrentPage+3){
+      html+='<span>...</span>';
+    }
+  }
+  html+='<button '+(entCurrentPage<totalPages?'':'disabled')+' onclick="entGoPage('+(entCurrentPage+1)+')">下一页</button>';
+  html+='<span style="margin-left:10px;color:#8b949e">第'+entCurrentPage+'/'+totalPages+'页</span>';
+  pagDiv.innerHTML=html;
+}
+
+function entGoPage(p){
+  entCurrentPage=p;
+  renderEnterpriseTable();
+}
+
 // ====== 初始化 ======
 window.onload=function(){
   initChainGrid();
@@ -990,6 +1175,7 @@ function showTab(id){
   document.getElementById("tab-"+id).classList.add("active");
   if(id==="location" && mainMap) setTimeout(function(){mainMap.invalidateSize()},100);
   if(id==="local" && localMap) setTimeout(function(){localMap.invalidateSize()},100);
+  if(id==="enterprise") initEnterpriseTab();
 }
 
 // ====== 产业链卡片 ======
