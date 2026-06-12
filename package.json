@@ -4,7 +4,9 @@
   "description": "新能源汽车产业链按图索骥",
   "private": true,
   "scripts": {
-    "dev": "http-server -p 5000 -a 0.0.0.0 -c-1"
+    "dev": "http-server -p 5000 -a 0.0.0.0 -c-1",
+    "build": "mkdir -p dist && cp -r index.html local_enterprise_data.js dist/",
+    "preview": "http-server dist -p 5000 -a 0.0.0.0 -c-1"
   },
   "devDependencies": {
     "http-server": "^14.1.1",
