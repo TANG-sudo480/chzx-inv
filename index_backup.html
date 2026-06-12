@@ -1545,17 +1545,6 @@ window.onload=function(){
 };
 
 // ====== Tab切换 ======
-// 调试: 确保 DOM 加载完成
-document.addEventListener('DOMContentLoaded', function(){
-  console.log('DOM loaded');
-});
-
-// 全局错误处理
-window.onerror = function(msg, url, line, col, error) {
-  console.error('JS Error:', msg, 'at line', line);
-  return true;
-};
-
 function showTab(id, btn){
   // 移除所有active状态
   var btns = document.querySelectorAll(".tab-btn");
