@@ -174,7 +174,8 @@ body{font-family:"PingFang SC","Microsoft YaHei",sans-serif;background:#0d1117;c
       <span class="filter-tag" onclick="filterChain(this,'chassis')">底盘/车身</span>
       <span class="filter-tag" onclick="filterChain(this,'cabin')">智能座舱</span>
       <span class="filter-tag" onclick="filterChain(this,'material')">核心材料</span>
-      <span class="filter-tag" onclick="filterChain(this,'tooling')">精密制造</span>
+      <span class="filter-tag" onclick="filterChain(this,'tooling')">制造装备</span>
+      <span class="filter-tag" onclick="filterChain(this,'evtol')">eVTOL</span>
     </div>
   </div>
   <div class="grid" id="chainGrid"></div>
@@ -347,7 +348,11 @@ var chainData=[
   {id:"servo",icon:"&#127919;",name:"伺服系统",desc:"伺服电机/驱动器",cat:"tooling",count:8,local:1,total:"8+"},
   {id:"robot",icon:"&#129302;",name:"工业机器人",desc:"焊接/装配/喷涂机器人",cat:"tooling",count:10,local:2,total:"10+"},
   {id:"cnc",icon:"&#128260;",name:"数控系统",desc:"CNC/丝杠/轴承",cat:"tooling",count:8,local:0,total:"8+"},
-  {id:"ev",icon:"&#128663;",name:"整车企业",desc:"乘用车/商用车主机厂",cat:"battery",count:10,local:0,total:"10+"},
+  {id:"ev",icon:"&#128663;",name:"整车企业",desc:"乘用车/商用车主机厂",cat:"battery",count:10,local:0,total:"12+"},
+  {id:"casting",icon:"&#128293;",name:"精密铸造",desc:"铝合金压铸/精密铸件",cat:"tooling",count:8,local:4,total:"10+"},
+  {id:"tooling",icon:"&#128295;",name:"精密模具",desc:"冲压/压铸/注塑模具",cat:"tooling",count:6,local:4,total:"8+"},
+  {id:"equipment",icon:"&#9881;",name:"智能装备",desc:"自动化产线/检测设备",cat:"tooling",count:8,local:4,total:"10+"},
+  {id:"evtol",icon:"&#128640;",name:"eVTOL/低空",desc:"电动垂直起降飞行器",cat:"smart",count:6,local:1,total:"8+"},
 ];
 
 // ====== 供应商详细数据 ======
@@ -572,6 +577,50 @@ var supplyData={
     {name:"哪吒汽车",loc:"浙江桐乡",lat:30.63,lng:120.48,type:"200km",note:"桐乡，某某区周边100km，出海领先",price:"7-20万/台"},
     {name:"奇瑞汽车",loc:"安徽芜湖",lat:31.33,lng:118.37,type:"nation",note:"新能源出口第一，星途/ICAR",price:"7-25万/台"},
   ]},
+  casting:{name:"精密铸造/压铸",icon:"&#128293;",intro:"新能源汽车铝合金/镁合金压铸件用于电池托盘、电机壳体、底盘结构件等。某某区本地有振兴、广义等铸造集群。",suppliers:[
+    {name:"广东鸿图",loc:"广东肇庆",lat:23.05,lng:112.47,type:"nation",note:"压铸龙头，一体化压铸领先",price:"面议"},
+    {name:"文灿股份",loc:"广东佛山",lat:23.02,lng:113.12,type:"nation",note:"一体化压铸，蔚来/理想/小鹏配套",price:"面议"},
+    {name:"爱柯迪",loc:"浙江宁波",lat:29.87,lng:121.55,type:"nation",note:"汽车铝合金压铸件，博世/法雷奥配套",price:"面议"},
+    {name:"旭升集团",loc:"浙江宁波",lat:29.87,lng:121.55,type:"nation",note:"汽车精密压铸件，特斯拉主供",price:"面议"},
+    {name:"嵘泰股份",loc:"江苏扬州",lat:32.39,lng:119.42,type:"nation",note:"铝合金压铸，转向器壳体/发动机零件",price:"面议"},
+    {name:"祥鑫科技",loc:"广东东莞",lat:23.04,lng:113.75,type:"nation",note:"精密冲压/钣金，电池托盘/结构件",price:"面议"},
+    {name:"振兴铸造",loc:"某某区本地",lat:31.08,lng:119.91,type:"local",note:"某某区铸造集群，铝合金铸件",price:"面议"},
+    {name:"广义铸造",loc:"某某区本地",lat:31.08,lng:119.91,type:"local",note:"某某区本地，精密铸造",price:"面议"},
+    {name:"永诚铸造",loc:"某某区本地",lat:31.08,lng:119.91,type:"local",note:"某某区本地，铝合金铸造",price:"面议"},
+    {name:"德康畜牧装备",loc:"某某区本地",lat:31.08,lng:119.91,type:"local",note:"某某区，精密铸造/畜牧机械配件",price:"面议"},
+  ]},
+  tooling:{name:"精密模具/工装",icon:"&#128295;",intro:"模具是工业之母，新能源汽车需要大量精密模具（冲压模具、压铸模具、注塑模具）。某某区本地有博通等精密模具企业。",suppliers:[
+    {name:"东江集团",loc:"广东深圳",lat:22.54,lng:114.06,type:"nation",note:"精密模具龙头，注塑/冲压模具",price:"面议"},
+    {name:"亿和精密",loc:"广东深圳",lat:22.54,lng:114.06,type:"nation",note:"OA/汽车精密模具，冲压件",price:"面议"},
+    {name:"昌红科技",loc:"广东深圳",lat:22.54,lng:114.06,type:"nation",note:"精密模具/注塑，医疗+汽车",price:"面议"},
+    {name:"金马科技",loc:"浙江宁波",lat:29.87,lng:121.55,type:"nation",note:"汽车模具，检具/夹具",price:"面议"},
+    {name:"利羿精密",loc:"某某区本地",lat:31.08,lng:119.91,type:"local",note:"某某区本地，精密制造",price:"面议"},
+    {name:"正轩精密",loc:"某某区本地",lat:31.08,lng:119.91,type:"local",note:"某某区本地，精密加工",price:"面议"},
+    {name:"精轩精密",loc:"某某区本地",lat:31.08,lng:119.91,type:"local",note:"某某区本地，精密制造",price:"面议"},
+    {name:"博通精密",loc:"某某区本地",lat:31.08,lng:119.91,type:"local",note:"某某区本地，模具/工装",price:"面议"},
+  ]},
+  equipment:{name:"智能装备/产线",icon:"&#9881;",intro:"新能源汽车生产线需要大量自动化设备，包括焊接产线、装配线、检测设备等。某某区本地有淳迪、铭迪、创泽等智能装备企业。",suppliers:[
+    {name:"先导智能",loc:"江苏无锡",lat:31.49,lng:120.29,type:"nation",note:"锂电设备全球第一，电池整线",price:"整线数亿"},
+    {name:"赢合科技",loc:"广东深圳",lat:22.54,lng:114.06,type:"nation",note:"锂电设备，涂布机/卷绕机",price:"整线数千万"},
+    {name:"璞泰莱",loc:"江苏溧阳",lat:31.42,lng:119.48,type:"nation",note:"锂电设备，涂布机国内领先",price:"数千万"},
+    {name:"杭可科技",loc:"浙江杭州",lat:30.27,lng:120.15,type:"nation",note:"锂电池后段化成分容设备",price:"数千万"},
+    {name:"星云股份",loc:"福建福州",lat:26.08,lng:119.30,type:"nation",note:"锂电池检测设备，储能",price:"数百万"},
+    {name:"利元亨",loc:"广东惠州",lat:23.09,lng:114.41,type:"nation",note:"锂电池设备，叠片机领先",price:"数千万"},
+    {name:"淳迪自动化",loc:"某某区本地",lat:31.08,lng:119.91,type:"local",note:"某某区本地，智能装备",price:"面议"},
+    {name:"铭迪智能",loc:"某某区本地",lat:31.08,lng:119.91,type:"local",note:"某某区本地，自动化设备",price:"面议"},
+    {name:"创泽智能",loc:"某某区本地",lat:31.08,lng:119.91,type:"local",note:"某某区本地，三旭旗下",price:"面议"},
+    {name:"奇碟精密",loc:"某某区本地",lat:31.08,lng:119.91,type:"local",note:"某某区本地，整车配套",price:"面议"},
+  ]},
+  evtol:{name:"eVTOL/低空经济",icon:"&#128640;",intro:"eVTOL（电动垂直起降飞行器）是低空经济核心，2024年国家政策密集出台。某某区有云途飞行器等本地企业，长三角具有先发优势。",suppliers:[
+    {name:"亿航智能",loc:"广东广州",lat:23.13,lng:113.27,type:"nation",note:"全球首个获型号合格证的eVTOL企业",price:"面议"},
+    {name:"峰飞航空",loc:"上海",lat:31.23,lng:121.47,type:"nation",note:"eVTOL赛道，货运/载人双线",price:"面议"},
+    {name:"沃兰特",loc:"上海",lat:31.23,lng:121.47,type:"nation",note:"eVTOL，与上汽合作",price:"面议"},
+    {name:"小鹏汇天",loc:"广东广州",lat:23.13,lng:113.27,type:"nation",note:"小鹏旗下，飞行汽车",price:"面议"},
+    {name:"时的科技",loc:"上海",lat:31.23,lng:121.47,type:"nation",note:"eVTOL，倾转旋翼构型",price:"面议"},
+    {name:"云途飞行器",loc:"某某区本地",lat:31.08,lng:119.91,type:"local",note:"某某区本地，eVTOL整机",price:"面议"},
+    {name:"卓尔航空",loc:"湖北武汉",lat:30.58,lng:114.31,type:"nation",note:"轻型飞机/无人机",price:"面议"},
+    {name:"顺丰无人机",loc:"广东深圳",loc2:"湖北鄂州",lat:22.54,lng:114.06,type:"nation",note:"物流无人机，吨级大型",price:"面议"},
+  ]},
 };
 
 var factoryData=[
@@ -633,8 +682,8 @@ function initChainGrid(){
     if(item.local>0) badge="<span class='badge badge-local'>本地"+item.local+"家</span>";
     else if(item.total==="10+"||item.total==="12+"||item.total==="15+"||item.total==="20+") badge="<span class='badge badge-200km'>"+item.total+"供应商</span>";
     else badge="<span class='badge badge-nation'>"+item.total+"供应商</span>";
-    var catNames={battery:"电池",motor:"电驱",smart:"智驾",chassis:"底盘",cabin:"座舱",material:"材料",tooling:"制造"};
-    var catColor={battery:"#f85149",motor:"#f0883e",smart:"#58a6ff",chassis:"#3fb950",cabin:"#bc8cff",material:"#f778ba",tooling:"#79c0ff"};
+    var catNames={battery:"电池",motor:"电驱",smart:"智驾",chassis:"底盘",cabin:"座舱",material:"材料",tooling:"制造",evtol:"eVTOL"};
+    var catColor={battery:"#f85149",motor:"#f0883e",smart:"#58a6ff",chassis:"#3fb950",cabin:"#bc8cff",material:"#f778ba",tooling:"#79c0ff",evtol:"#ffa657"};
     var card=document.createElement("div");
     card.className="chain-card";
     card.style.borderLeft="3px solid "+catColor[item.cat];
@@ -653,7 +702,8 @@ function filterChain(el,cat){
   var cards=document.querySelectorAll("#chainGrid .chain-card");
   cards.forEach(function(card){
     if(cat==="all"){card.style.display="";return;}
-    var item=chainData.find(function(i){return i.id===card.querySelector("h3").textContent.replace("电池系统","battery").replace("正极材料","cathode").replace("负极材料","anode").replace("电解液","electrolyte").replace("隔膜","separator").replace("驱动电机","motor").replace("电机控制器","inverter").replace("精密减速器","reducer").replace("热管理系统","thermal").replace("智能驾驶","smartdrive").replace("智能座舱","smartcabin").replace("底盘/传动","chassis").replace("连接器/线束","connector").replace("伺服系统","servo").replace("工业机器人","robot").replace("数控系统/丝杠","cnc").replace("整车企业","ev")||i.name===card.querySelector("h3").textContent;});
+    var title=card.querySelector("h3").textContent;
+    var item=chainData.find(function(i){return i.name===title;});
     if(item&&item.cat===cat) card.style.display="";
     else if(item) card.style.display="none";
   });
@@ -672,11 +722,14 @@ function initDetailFilter(){
   };
   row.appendChild(allBtn);
   var cats=[
-    {key:"battery,electrolyte,cathode,anode,separator,ev",label:"电池系统"},
-    {key:"motor,inverter",label:"电驱/电机"},
-    {key:"thermal,chassis,connector",label:"底盘/热管理"},
+    {key:"battery,cathode,anode,electrolyte,separator",label:"电池材料"},
+    {key:"motor,inverter",label:"电驱系统"},
+    {key:"thermal,chassis,connector",label:"底盘热管理"},
     {key:"smartdrive,smartcabin",label:"智能科技"},
-    {key:"reducer,servo,robot,cnc",label:"精密制造"},
+    {key:"reducer,servo,cnc",label:"精密传动"},
+    {key:"casting,tooling,equipment",label:"制造装备"},
+    {key:"ev",label:"整车企业"},
+    {key:"robot,evtol",label:"机器人/eVTOL"},
     {key:"cathode,anode,electrolyte,separator",label:"核心材料"},
   ];
   cats.forEach(function(c){

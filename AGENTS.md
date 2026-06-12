@@ -47,3 +47,22 @@
 
 - 静态服务器必须在 5000 端口启动
 - 脚本内部使用 `SCRIPT_DIR` 推导项目根目录，不依赖调用时 pwd
+
+## 产业数据分类
+
+### 零部件拆解 tab 分类
+- **电池材料**: battery, cathode, anode, electrolyte, separator
+- **电驱系统**: motor, inverter
+- **底盘热管理**: thermal, chassis, connector
+- **智能科技**: smartdrive, smartcabin
+- **精密传动**: reducer, servo, cnc
+- **制造装备**: casting, tooling, equipment
+- **整车企业**: ev
+- **机器人/eVTOL**: robot, evtol
+- **核心材料**: cathode, anode, electrolyte, separator
+
+### 新增产业
+- **casting**: 精密铸造/压铸（振兴铸造、广义铸造等本地企业 + 广东鸿图、文灿股份等全国头部）
+- **tooling**: 精密模具/工装（利羿精密、正轩精密等本地企业）
+- **equipment**: 智能装备/产线（淳迪自动化、铭迪智能等本地企业 + 先导智能等全国龙头）
+- **evtol**: eVTOL/低空经济（云途飞行器本地企业 + 亿航智能、峰飞航空等全国企业）
