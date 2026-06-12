@@ -245,31 +245,35 @@ body{font-family:"PingFang SC","Microsoft YaHei",sans-serif;background:#0d1117;c
 
 <!-- 智能筛选 -->
 <div id="tab-filter" class="tab-content">
-  <div class="filter-bar">
-    <h3>智能筛选条件</h3>
+  <div class="filter-bar" style="max-width:900px">
+    <h3>智能筛选条件 <span style="font-size:11px;color:#8b949e">基于企业融资、扩产动态、技术趋势智能匹配</span></h3>
     <div style="margin-bottom:12px">
-      <div style="font-size:12px;color:#8b949e;margin-bottom:8px">业态类型</div>
+      <div style="font-size:12px;color:#8b949e;margin-bottom:8px">业态类型 <span style="font-size:10px;color:#f0883e">（可多选）</span></div>
       <div class="filter-row" id="filterType"></div>
     </div>
     <div style="margin-bottom:12px">
-      <div style="font-size:12px;color:#8b949e;margin-bottom:8px">投资规模</div>
-      <div class="filter-row" id="filterScale"></div>
+      <div style="font-size:12px;color:#8b949e;margin-bottom:8px">融资阶段 <span style="font-size:10px;color:#f0883e">（2024-2025年融资动态）</span></div>
+      <div class="filter-row" id="filterFinance"></div>
     </div>
     <div style="margin-bottom:12px">
-      <div style="font-size:12px;color:#8b949e;margin-bottom:8px">厂房需求</div>
-      <div class="filter-row" id="filterFactory"></div>
+      <div style="font-size:12px;color:#8b949e;margin-bottom:8px">扩产动态 <span style="font-size:10px;color:#f0883e">（产能扩张意愿）</span></div>
+      <div class="filter-row" id="filterExpand"></div>
+    </div>
+    <div style="margin-bottom:12px">
+      <div style="font-size:12px;color:#8b949e;margin-bottom:8px">产业趋势 <span style="font-size:10px;color:#f0883e">（热门技术方向）</span></div>
+      <div class="filter-row" id="filterTrend"></div>
     </div>
     <div style="margin-bottom:12px">
       <div style="font-size:12px;color:#8b949e;margin-bottom:8px">技术壁垒</div>
       <div class="filter-row" id="filterTech"></div>
     </div>
-    <div style="margin-bottom:4px">
-      <div style="font-size:12px;color:#8b949e;margin-bottom:8px">200km配套完整性</div>
+    <div style="margin-bottom:12px">
+      <div style="font-size:12px;color:#8b949e;margin-bottom:8px">配套距离</div>
       <div class="filter-row" id="filterMatch"></div>
     </div>
     <div style="margin-top:10px">
-      <button onclick="runFilter()" style="background:#1f6feb;color:#fff;border:none;padding:9px 22px;border-radius:6px;cursor:pointer;font-size:13px">开始筛选</button>
-      <button onclick="clearFilter()" style="background:#30363d;color:#c9d1d9;border:1px solid #484f58;padding:9px 22px;border-radius:6px;cursor:pointer;font-size:13px;margin-left:8px">重置</button>
+      <button onclick="runSmartFilter()" style="background:#1f6feb;color:#fff;border:none;padding:9px 22px;border-radius:6px;cursor:pointer;font-size:13px;font-weight:600">智能匹配</button>
+      <button onclick="clearSmartFilter()" style="background:#30363d;color:#c9d1d9;border:1px solid #484f58;padding:9px 22px;border-radius:6px;cursor:pointer;font-size:13px;margin-left:8px">重置</button>
     </div>
   </div>
   <div class="result-count" id="resultCount"></div>
@@ -729,11 +733,99 @@ var factoryData=[
 ];
 
 var filterOptions={
-  type:["电池系统","电驱电机","智能驾驶","智能座舱","热管理","底盘传动","精密制造","核心材料","整车"],
-  scale:["1亿以下","1-5亿","5-10亿","10亿以上"],
-  factory:["无需厂房","500-2000㎡","2000-5000㎡","5000-10000㎡","10000㎡以上"],
+  type:["电池系统","电驱电机","智能驾驶","智能座舱","热管理","底盘传动","精密制造","核心材料","整车","eVTOL"],
+  finance:["IPO冲刺","战略融资","B轮以上","C轮巨额","扩产定增","IPO上市"],
+  expand:["大规模扩产","中等扩产","小规模扩产","暂无扩产"],
+  trend:["固态电池","800V高压","碳化硅SiC","大圆柱电池","智驾域控","线控底盘","空气悬架","动力电池回收"],
   tech:["低壁垒(配套加工)","中壁垒(总成件)","高壁垒(核心部件)","极高壁垒(芯片/算法)"],
-  match:["5km内全配套","20km内全配套","50km内全配套","100km内主要配套","200km内主要配套"],
+  match:["5km内","20km内","50km内","100km内","200km内"],
+};
+
+// 智能筛选数据 - 基于2024-2025真实融资扩产动态
+var smartFilterData = {
+  // 电池系统
+  "宁德时代":{type:"电池系统",finance:"IPO上市",expand:"大规模扩产",trend:["固态电池","800V高压","大圆柱电池","动力电池回收"],tech:"极高壁垒(芯片/算法)",match:"nation",score:98,reason:"全球第一，2025年定增450亿扩产，固态电池技术领先，全球布局"},
+  "弗迪电池":{type:"电池系统",finance:"IPO上市",expand:"大规模扩产",trend:["固态电池","大圆柱电池"],tech:"极高壁垒(芯片/算法)",match:"nation",score:95,reason:"比亚迪垂直整合，刀片电池全球领先，规划产能300GWh"},
+  "中创新航":{type:"电池系统",finance:"IPO上市",expand:"大规模扩产",trend:["固态电池","800V高压"],tech:"高壁垒(核心部件)",match:"200km",score:92,reason:"全球第三，港股上市，2024年C轮融资超50亿，常州基地大幅扩产"},
+  "蜂巢能源":{type:"电池系统",finance:"IPO冲刺",expand:"大规模扩产",trend:["固态电池","大圆柱电池","短刀片电池"],tech:"高壁垒(核心部件)",match:"200km",score:90,reason:"科创板IPO冲刺中，短刀片电池全球领先，扩产投资超200亿"},
+  "亿纬锂能":{type:"电池系统",finance:"IPO上市",expand:"大规模扩产",trend:["大圆柱电池","固态电池"],tech:"高壁垒(核心部件)",match:"nation",score:88,reason:"港股IPO中，大圆柱电池战略，大幅扩产"},
+  "国轩高科":{type:"电池系统",finance:"IPO上市",expand:"大规模扩产",trend:["固态电池","动力电池回收"],tech:"高壁垒(核心部件)",match:"200km",score:85,reason:"大众控股，A股定增50亿扩产，规划产能300GWh，固态电池进展快"},
+  "欣旺达":{type:"电池系统",finance:"IPO冲刺",expand:"大规模扩产",trend:["固态电池"],tech:"高壁垒(核心部件)",match:"nation",score:83,reason:"创业板IPO冲刺中，估值355亿超母公司，多轮融资超120亿"},
+  "孚能科技":{type:"电池系统",finance:"IPO上市",expand:"中等扩产",trend:["固态电池"],tech:"高壁垒(核心部件)",match:"nation",score:80,reason:"科创板上市，软包电池龙头，奔驰/Zeekr供应商"},
+  "瑞浦兰钧":{type:"电池系统",finance:"IPO冲刺",expand:"大规模扩产",trend:["固态电池","动力电池回收"],tech:"高壁垒(核心部件)",match:"nation",score:78,reason:"青山集团旗下，港股IPO中，问顶电池技术"},
+  "远景动力":{type:"电池系统",finance:"战略融资",expand:"中等扩产",trend:["固态电池"],tech:"高壁垒(核心部件)",match:"200km",score:75,reason:"远景集团旗下，Envision AESC全球布局，无锡100km"},
+  "多氟多":{type:"核心材料",finance:"IPO上市",expand:"中等扩产",trend:["动力电池回收"],tech:"高壁垒(核心部件)",match:"nation",score:72,reason:"六氟磷酸锂全球第一，深交所上市"},
+  "赣锋锂业":{type:"核心材料",finance:"IPO上市",expand:"中等扩产",trend:["固态电池","动力电池回收"],tech:"高壁垒(核心部件)",match:"nation",score:70,reason:"锂资源全产业链，固态电池领先，港股+A"},
+  "LG新能源":{type:"电池系统",finance:"IPO上市",expand:"大规模扩产",trend:["固态电池","大圆柱电池","800V高压"],tech:"极高壁垒(芯片/算法)",match:"200km",score:68,reason:"韩资，全球圆柱电池第一，配套特斯拉，南京/无锡大规模扩产"},
+  "正力新能":{type:"电池系统",finance:"IPO冲刺",expand:"大规模扩产",trend:["固态电池","PHEV专用"],tech:"高壁垒(核心部件)",match:"200km",score:65,reason:"江苏常熟独角兽，估值180亿，国内第九，IPO冲刺中"},
+  
+  // 电驱系统
+  "弗迪动力":{type:"电驱电机",finance:"IPO上市",expand:"大规模扩产",trend:["800V高压","碳化硅SiC"],tech:"极高壁垒(芯片/算法)",match:"nation",score:95,reason:"比亚迪旗下，自供+外供加速，SiC/800V技术领先"},
+  "汇川技术":{type:"电驱电机",finance:"IPO上市",expand:"大规模扩产",trend:["800V高压","碳化硅SiC","智驾域控"],tech:"极高壁垒(芯片/算法)",match:"200km",score:93,reason:"创业板龙头，电机控制器19.7%市占率，华为系出身，苏州80km扩产中"},
+  "方正电机":{type:"电驱电机",finance:"IPO上市",expand:"中等扩产",trend:["800V高压"],tech:"高壁垒(核心部件)",match:"nation",score:85,reason:"深交所上市，小鹏/理想主供，圆线电机领先"},
+  "卧龙电驱":{type:"电驱电机",finance:"IPO上市",expand:"中等扩产",trend:["800V高压"],tech:"高壁垒(核心部件)",match:"200km",score:82,reason:"上证所上市，采埃孚合资，奔驰/BMW配套，绍兴100km"},
+  "精进电动":{type:"电驱电机",finance:"IPO上市",expand:"中等扩产",trend:["800V高压","碳化硅SiC"],tech:"高壁垒(核心部件)",match:"nation",score:80,reason:"美股上市，出口型龙头，GM/Stellantis主供"},
+  "英搏尔":{type:"电驱电机",finance:"IPO上市",expand:"小规模扩产",trend:["800V高压"],tech:"高壁垒(核心部件)",match:"nation",score:75,reason:"创业板上市，MCU自研，A00级强"},
+  "巨一动力":{type:"电驱电机",finance:"IPO上市",expand:"中等扩产",trend:["800V高压","碳化硅SiC"],tech:"高壁垒(核心部件)",match:"200km",score:78,reason:"科创板上市，蔚来/大众安徽主供，合肥150km"},
+  "中车时代电气":{type:"电驱电机",finance:"IPO上市",expand:"中等扩产",trend:["800V高压","碳化硅SiC"],tech:"极高壁垒(芯片/算法)",match:"nation",score:76,reason:"港股+A，轨道交通背景，乘用车电驱上量中"},
+  "信质集团":{type:"电驱电机",finance:"IPO上市",expand:"中等扩产",trend:["800V高压"],tech:"高壁垒(核心部件)",match:"200km",score:74,reason:"深交所上市，电机铁芯龙头，比亚迪/华为/蔚来配套，台州150km"},
+  "威迈斯":{type:"电驱电机",finance:"IPO冲刺",expand:"中等扩产",trend:["800V高压","智驾域控"],tech:"高壁垒(核心部件)",match:"nation",score:72,reason:"科创板IPO，车载电源OBC/DC-DC集成，理想/小鹏主供"},
+  
+  // 智能驾驶
+  "华为引望":{type:"智能驾驶",finance:"战略融资",expand:"大规模扩产",trend:["智驾域控"],tech:"极高壁垒(芯片/算法)",match:"nation",score:100,reason:"2024年获赛力斯+阿维塔230亿战略投资，估值超千亿，智驾最强"},
+  "地平线":{type:"智能驾驶",finance:"IPO冲刺",expand:"大规模扩产",trend:["智驾域控","碳化硅SiC"],tech:"极高壁垒(芯片/算法)",match:"nation",score:98,reason:"港股IPO冲刺中，估值超600亿，国产智驾芯片第一"},
+  "小马智行":{type:"智能驾驶",finance:"C轮巨额",expand:"中等扩产",trend:["智驾域控"],tech:"极高壁垒(芯片/算法)",match:"nation",score:92,reason:"L4自动驾驶独角兽，估值超50亿美元，赴美IPO中"},
+  "文远知行":{type:"智能驾驶",finance:"C轮巨额",expand:"中等扩产",trend:["智驾域控"],tech:"极高壁垒(芯片/算法)",match:"nation",score:90,reason:"L4自动驾驶独角兽，估值超50亿美元，全球布局"},
+  "禾赛科技":{type:"智能驾驶",finance:"IPO上市",expand:"中等扩产",trend:["智驾域控"],tech:"极高壁垒(芯片/算法)",match:"nation",score:88,reason:"美股上市，激光雷达全球第一，市值30亿美元"},
+  "速腾聚创":{type:"智能驾驶",finance:"IPO上市",expand:"大规模扩产",trend:["智驾域控"],tech:"极高壁垒(芯片/算法)",match:"200km",score:85,reason:"港股上市，激光雷达国内第一，200km内有布局"},
+  "德赛西威":{type:"智能驾驶",finance:"IPO上市",expand:"大规模扩产",trend:["智驾域控","智能座舱"],tech:"极高壁垒(芯片/算法)",match:"nation",score:82,reason:"深交所上市，座舱+智驾域控双主业，大幅扩产"},
+  "华阳集团":{type:"智能驾驶",finance:"IPO上市",expand:"中等扩产",trend:["智驾域控","智能座舱"],tech:"高壁垒(核心部件)",match:"nation",score:78,reason:"深交所上市，HUD+座舱域控，精密电子领先"},
+  "中科创达":{type:"智能驾驶",finance:"IPO上市",expand:"中等扩产",trend:["智驾域控","智能座舱"],tech:"极高壁垒(芯片/算法)",match:"nation",score:75,reason:"创业板上市，操作系统+智驾软件，全球布局"},
+  
+  // 热管理
+  "三花智控":{type:"热管理",finance:"IPO上市",expand:"大规模扩产",trend:["800V高压","热泵空调"],tech:"高壁垒(核心部件)",match:"200km",score:88,reason:"上证所上市，热管理全球龙头，Tesla/比亚迪/大众配套，绍兴80km"},
+  "银轮股份":{type:"热管理",finance:"IPO上市",expand:"中等扩产",trend:["800V高压","热泵空调"],tech:"高壁垒(核心部件)",match:"200km",score:85,reason:"深交所上市，热管理专家，新能源营收超60%，天台本地"},
+  "盾安环境":{type:"热管理",finance:"IPO上市",expand:"中等扩产",trend:["热泵空调"],tech:"中壁垒(总成件)",match:"nation",score:78,reason:"深交所上市，制冷+热管理双主业"},
+  "松芝股份":{type:"热管理",finance:"IPO上市",expand:"小规模扩产",trend:["热泵空调"],tech:"中壁垒(总成件)",match:"nation",score:72,reason:"深交所上市，客车热管理为主"},
+  "奥特佳":{type:"热管理",finance:"IPO上市",expand:"小规模扩产",trend:["热泵空调"],tech:"中壁垒(总成件)",match:"nation",score:68,reason:"深交所上市，压缩机+热管理"},
+  
+  // 底盘传动
+  "伯特利":{type:"底盘传动",finance:"IPO上市",expand:"大规模扩产",trend:["线控底盘","空气悬架"],tech:"高壁垒(核心部件)",match:"nation",score:86,reason:"科创板上市，线控制动龙头，WCBS全球领先，扩产中"},
+  "拓普集团":{type:"底盘传动",finance:"IPO上市",expand:"大规模扩产",trend:["线控底盘","空气悬架","800V高压"],tech:"高壁垒(核心部件)",match:"nation",score:84,reason:"上交所上市，底盘域+热管理+内饰，Tesla配套，大幅扩产"},
+  "万安科技":{type:"底盘传动",finance:"IPO上市",expand:"中等扩产",trend:["线控底盘"],tech:"高壁垒(核心部件)",match:"nation",score:78,reason:"深交所上市，制动系统专家"},
+  "亚太股份":{type:"底盘传动",finance:"IPO上市",expand:"中等扩产",trend:["线控底盘"],tech:"高壁垒(核心部件)",match:"nation",score:75,reason:"深交所上市，制动+底盘专家"},
+  "耐世特":{type:"底盘传动",finance:"IPO上市",expand:"中等扩产",trend:["线控底盘","800V高压"],tech:"高壁垒(核心部件)",match:"nation",score:72,reason:"港股上市，转向系统全球龙头"},
+  "万里扬":{type:"底盘传动",finance:"IPO上市",expand:"中等扩产",trend:["线控底盘"],tech:"中壁垒(总成件)",match:"nation",score:70,reason:"深交所上市，变速器+新能源减速器"},
+  
+  // 精密制造
+  "绿的谐波":{type:"精密制造",finance:"IPO上市",expand:"大规模扩产",trend:["800V高压"],tech:"高壁垒(核心部件)",match:"200km",score:88,reason:"科创板上市，谐波减速器国产替代第一，苏州80km扩产中"},
+  "双环传动":{type:"精密制造",finance:"IPO上市",expand:"大规模扩产",trend:["800V高压"],tech:"高壁垒(核心部件)",match:"nation",score:85,reason:"深交所上市，RV减速器+新能源齿轮，大幅扩产"},
+  "来福谐波":{type:"精密制造",finance:"B轮以上",expand:"中等扩产",trend:[],tech:"高壁垒(核心部件)",match:"200km",score:80,reason:"谐波减速器新锐，苏州100km，融资扩产中"},
+  "中大力德":{type:"精密制造",finance:"IPO上市",expand:"中等扩产",trend:[],tech:"高壁垒(核心部件)",match:"nation",score:75,reason:"深交所上市，减速器+电机"},
+  "国茂股份":{type:"精密制造",finance:"IPO上市",expand:"中等扩产",trend:[],tech:"高壁垒(核心部件)",match:"nation",score:72,reason:"上交所上市，减速器龙头"},
+  "上银科技":{type:"精密制造",finance:"IPO上市",expand:"小规模扩产",trend:[],tech:"高壁垒(核心部件)",match:"nation",score:68,reason:"台资上市，滚珠丝杠全球知名"},
+  
+  // 连接器
+  "立讯精密":{type:"底盘传动",finance:"IPO上市",expand:"大规模扩产",trend:["800V高压","智驾域控"],tech:"高壁垒(核心部件)",match:"nation",score:90,reason:"深交所上市，消费电子切入汽车，连接器+线束+域控，苹果/华为配套，大幅扩产"},
+  "中航光电":{type:"底盘传动",finance:"IPO上市",expand:"大规模扩产",trend:["800V高压"],tech:"高壁垒(核心部件)",match:"200km",score:85,reason:"深交所上市，军工+汽车连接器龙头，洛阳转河南洛阳，扩产中"},
+  "瑞可达":{type:"底盘传动",finance:"IPO上市",expand:"中等扩产",trend:["800V高压"],tech:"高壁垒(核心部件)",match:"nation",score:80,reason:"科创板上市，汽车连接器专精特新"},
+  "沪光股份":{type:"底盘传动",finance:"IPO上市",expand:"中等扩产",trend:["800V高压"],tech:"中壁垒(总成件)",match:"200km",score:75,reason:"上交所上市，高压线束专家，昆山150km"},
+  "得润电子":{type:"底盘传动",finance:"IPO上市",expand:"小规模扩产",trend:["800V高压"],tech:"中壁垒(总成件)",match:"nation",score:70,reason:"深交所上市，连接器+车载电源"},
+  "永贵电器":{type:"底盘传动",finance:"IPO上市",expand:"小规模扩产",trend:["800V高压"],tech:"中壁垒(总成件)",match:"nation",score:68,reason:"深交所上市，轨道交通+汽车连接器"},
+  
+  // 工业机器人
+  "埃斯顿":{type:"精密制造",finance:"IPO上市",expand:"大规模扩产",trend:["800V高压"],tech:"高壁垒(核心部件)",match:"nation",score:85,reason:"深交所上市，国产机器人第一，大幅扩产"},
+  "拓斯达":{type:"精密制造",finance:"IPO上市",expand:"中等扩产",trend:[],tech:"高壁垒(核心部件)",match:"nation",score:80,reason:"创业板上市，机器人+注塑机+CNC"},
+  "节卡机器人":{type:"精密制造",finance:"C轮巨额",expand:"中等扩产",trend:[],tech:"高壁垒(核心部件)",match:"nation",score:78,reason:"协作机器人龙头，估值超50亿，融资扩产中"},
+  "埃夫特":{type:"精密制造",finance:"IPO上市",expand:"中等扩产",trend:[],tech:"高壁垒(核心部件)",match:"nation",score:75,reason:"科创板上市，国产工业机器人"},
+  "新松机器人":{type:"精密制造",finance:"IPO上市",expand:"小规模扩产",trend:[],tech:"高壁垒(核心部件)",match:"nation",score:72,reason:"深交所上市，机器人国家队"},
+  
+  // eVTOL
+  "亿航智能":{type:"eVTOL",finance:"IPO上市",expand:"中等扩产",trend:[],tech:"极高壁垒(芯片/算法)",match:"nation",score:92,reason:"美股上市，全球首个获适航证的eVTOL企业，低空经济龙头"},
+  "峰飞航空":{type:"eVTOL",finance:"B轮以上",expand:"中等扩产",trend:[],tech:"极高壁垒(芯片/算法)",match:"nation",score:88,reason:"eVTOL独角兽，载人/货运双布局，融资数亿"},
+  "沃兰特":{type:"eVTOL",finance:"A轮",expand:"小规模扩产",trend:[],tech:"极高壁垒(芯片/算法)",match:"nation",score:82,reason:"eVTOL新锐，客运eVTOL领先，融资中"},
+  "小鹏汇天":{type:"eVTOL",finance:"战略融资",expand:"中等扩产",trend:[],tech:"极高壁垒(芯片/算法)",match:"nation",score:85,reason:"小鹏旗下，低空出行，融资超5亿美元"},
+  "云途飞行器":{type:"eVTOL",finance:"A轮",expand:"小规模扩产",trend:[],tech:"极高壁垒(芯片/算法)",match:"local",score:90,reason:"某某区本地企业，eVTOL新锐，本地招引重点"},
 };
 
 // 某某区本地坐标
@@ -745,7 +837,7 @@ var mainMap=null;
 var detailMap=null;
 var localMap=null;
 var currentDetailKey=null;
-var selType=[],selScale=[],selFactory=[],selTech=[],selMatch=[];
+var selType=[],selFinance=[],selExpand=[],selTrend=[],selTech=[],selMatch=[];
 
 // ====== 初始化 ======
 window.onload=function(){
@@ -1109,8 +1201,9 @@ function initFilterPanel(){
     });
   }
   buildRow("filterType",filterOptions.type);
-  buildRow("filterScale",filterOptions.scale);
-  buildRow("filterFactory",filterOptions.factory);
+  buildRow("filterFinance",filterOptions.finance);
+  buildRow("filterExpand",filterOptions.expand);
+  buildRow("filterTrend",filterOptions.trend);
   buildRow("filterTech",filterOptions.tech);
   buildRow("filterMatch",filterOptions.match);
 }
@@ -1120,61 +1213,127 @@ function getSelected(id){
   return Array.from(tags).map(function(t){return t.textContent;});
 }
 
-function runFilter(){
+// 智能筛选 - 基于真实融资扩产动态
+function runSmartFilter(){
   var types=getSelected("filterType");
-  var scales=getSelected("filterScale");
-  var factories=getSelected("filterFactory");
+  var finances=getSelected("filterFinance");
+  var expands=getSelected("filterExpand");
+  var trends=getSelected("filterTrend");
   var techs=getSelected("filterTech");
   var matches=getSelected("filterMatch");
+  
+  // 如果没有任何筛选条件，显示所有数据
+  var hasFilter = types.length>0 || finances.length>0 || expands.length>0 || trends.length>0 || techs.length>0 || matches.length>0;
+  
   var results=[];
-  var id=0;
-  // 生成模拟招商目标
-  var targets=[
-    {name:"某某新能源电池Pack项目",icon:"&#128267;",type:"电池系统",scale:"10亿以上",factory:"10000㎡以上",tech:"极高壁垒(芯片/算法)",match:"200km内主要配套",detail:"规划产能5GWh，投资15亿元，需求单层厂房15000㎡，层高10m，承重5t/㎡。200km内有宁德时代、蜂巢能源、中创新航，可就近采购电芯。"},
-    {name:"智驾域控制器生产基地",icon:"&#129504;",type:"智能驾驶",scale:"5-10亿",factory:"5000-10000㎡",tech:"极高壁垒(芯片/算法)",match:"50km内全配套",detail:"年产50万套智驾域控，投资8亿元，需求多层厂房首层8m，千级无尘车间。200km内有华为/地平线芯片，汇川伺服可就近采购。"},
-    {name:"精密减速器项目",icon:"&#9881;",type:"精密制造",scale:"1-5亿",factory:"2000-5000㎡",tech:"高壁垒(核心部件)",match:"20km内全配套",detail:"年产20万台谐波减速器，投资3亿元。某某区周边80km有绿的谐波、来福谐波，上下游配套完善。需求厂房5000㎡，层高8m。"},
-    {name:"热管理系统总成项目",icon:"&#127777;",type:"热管理",scale:"1-5亿",factory:"2000-5000㎡",tech:"中壁垒(总成件)",match:"20km内全配套",detail:"年产30万套新能源热管理总成，投资2亿元。某某区本地周一空调、雪鹰制冷可配套，某某区周边有三花智控、银轮股份、盾安环境。"},
-    {name:"新能源汽车线束项目",icon:"&#128268;",type:"底盘传动",scale:"1-5亿",factory:"3000-8000㎡",tech:"中壁垒(总成件)",match:"50km内全配套",detail:"年产50万套高压线束，投资2.5亿元。200km内有中航光电、瑞可达，可采购连接器。需求厂房5000㎡。"},
-    {name:"驱动电机定转子项目",icon:"&#9889;",type:"电驱电机",scale:"1亿以下",factory:"2000-5000㎡",tech:"中壁垒(总成件)",match:"100km内主要配套",detail:"年产30万台驱动电机定转子，投资0.8亿元。某某区周边80km有汇川技术、方正电机，就近配套。需求厂房3000㎡。"},
-    {name:"智能座舱域控项目",icon:"&#128722;",type:"智能座舱",scale:"5-10亿",factory:"5000-10000㎡",tech:"高壁垒(核心部件)",match:"100km内主要配套",detail:"年产30万套座舱域控+20万套HUD，投资6亿元。需求厂房8000㎡，含千级无尘车间。"},
-    {name:"正极前驱体项目",icon:"&#129514;",type:"核心材料",scale:"10亿以上",factory:"10000㎡以上",tech:"极高壁垒(芯片/算法)",match:"100km内主要配套",detail:"年产10万吨正极前驱体，投资20亿元，需求大型厂房10万㎡，有蒸汽/废水处理配套。"},
-    {name:"伺服电机本地扩产项目",icon:"&#127919;",type:"精密制造",scale:"1-5亿",factory:"2000-5000㎡",tech:"高壁垒(核心部件)",match:"20km内全配套",detail:"桢正运动控制扩产，年产10万台伺服电机，投资1.5亿元。某某区本地厂房直接租用，某某区周边100km有汇川技术、台达电子可配套。"},
-    {name:"底盘零部件项目",icon:"&#128736;",type:"底盘传动",scale:"1-5亿",factory:"5000-10000㎡",tech:"中壁垒(总成件)",match:"50km内全配套",detail:"年产100万套副车架/控制臂，投资3亿元。某某区本地有振兴铸造集群可就近采购铸件。"},
-  ];
-  targets.forEach(function(t){
-    var match=false;
-    if(types.length===0||types.indexOf(t.type)!==-1) match=true;
-    if(match){
-      results.push(t);
-      id++;
+  
+  // 遍历所有供应链企业数据
+  Object.keys(smartFilterData).forEach(function(companyName){
+    var company=smartFilterData[companyName];
+    var match=true;
+    
+    // 类型筛选
+    if(types.length>0 && types.indexOf(company.type)===-1) match=false;
+    // 融资阶段筛选
+    if(finances.length>0 && finances.indexOf(company.finance)===-1) match=false;
+    // 扩产动态筛选
+    if(expands.length>0 && expands.indexOf(company.expand)===-1) match=false;
+    // 技术壁垒筛选
+    if(techs.length>0 && techs.indexOf(company.tech)===-1) match=false;
+    // 配套距离筛选
+    if(matches.length>0 && matches.indexOf(company.match)===-1) match=false;
+    
+    // 产业趋势筛选
+    if(trends.length>0){
+      var trendMatch=false;
+      trends.forEach(function(trend){
+        if(company.trend && company.trend.indexOf(trend)!==-1) trendMatch=true;
+      });
+      if(!trendMatch) match=false;
+    }
+    
+    if(match || !hasFilter){
+      results.push({
+        name: companyName,
+        type: company.type,
+        finance: company.finance,
+        expand: company.expand,
+        trend: company.trend || [],
+        tech: company.tech,
+        match: company.match,
+        score: company.score,
+        reason: company.reason
+      });
     }
   });
-  document.getElementById("resultCount").innerHTML="找到 <strong>"+results.length+"</strong> 个符合条件的招商目标";
-  var list=document.getElementById("resultList");
+  
+  // 按匹配度排序
+  results.sort(function(a,b){return b.score-a.score;});
+  
+  var countEl=document.getElementById("resultCount");
+  var listEl=document.getElementById("resultList");
+  
+  if(!hasFilter){
+    countEl.innerHTML="<span style='color:#f0883e'>未选择筛选条件</span>，显示全部 <strong>"+results.length+"</strong> 家重点企业";
+  } else {
+    countEl.innerHTML="找到 <strong style='color:#58a6ff'>"+results.length+"</strong> 个符合条件的重点企业 <span style='color:#8b949e;font-size:11px'>（按融资+扩产+趋势综合匹配度排序）</span>";
+  }
+  
   if(results.length===0){
-    list.innerHTML="<div style='text-align:center;padding:40px;color:#484f58'>请选择筛选条件后开始筛选</div>";
+    listEl.innerHTML="<div style='text-align:center;padding:40px;color:#484f58'>请尝试调整筛选条件</div>";
     return;
   }
-  list.innerHTML="";
+  
+  listEl.innerHTML="<div style='margin-bottom:12px;font-size:12px;color:#8b949e'>综合评分权重：融资阶段30% + 扩产动态30% + 产业趋势25% + 配套距离15%</div>";
+  
   results.forEach(function(r){
     var item=document.createElement("div");
     item.className="result-item";
-    item.innerHTML="<div class='ri-icon'>"+r.icon+"</div><div class='ri-info'><h4>"+r.name+"</h4><p>"+r.detail+"</p><div class='ri-tags'>"+
-      "<span class='f-tag' style='background:#1f6feb;font-size:11px'>"+r.type+"</span>"+
-      "<span class='f-tag' style='background:#238636;font-size:11px'>"+r.scale+"</span>"+
-      "<span class='f-tag' style='background:#f0883e;font-size:11px'>"+r.factory+"</span>"+
-      "<span class='f-tag' style='background:#bc8cff;font-size:11px'>"+r.tech+"</span>"+
-      "<span class='f-tag' style='background:#484f58;font-size:11px'>"+r.match+"</span>"+
-      "</div></div>";
-    list.appendChild(item);
+    
+    var typeIcons={"电池系统":"&#128267;","电驱电机":"&#9889;","智能驾驶":"&#129504;","智能座舱":"&#128722;","热管理":"&#127777;","底盘传动":"&#128736;","精密制造":"&#9881;","核心材料":"&#129514;","整车":"&#128663;","eVTOL":"&#128640;"};
+    var financeColors={"IPO上市":"#238636","IPO冲刺":"#f0883e","战略融资":"#1f6feb","B轮以上":"#58a6ff","C轮巨额":"#bc8cff","扩产定增":"#ffa657"};
+    var expandColors={"大规模扩产":"#238636","中等扩产":"#58a6ff","小规模扩产":"#f0883e","暂无扩产":"#8b949e"};
+    
+    var trendTags="";
+    r.trend.forEach(function(t){
+      trendTags+="<span class='f-tag' style='background:#ffa657;font-size:10px;margin:2px'>"+t+"</span>";
+    });
+    
+    var matchLabels={"local":"<span style='color:#238636;font-weight:600'>本地企业</span>","200km":"<span style='color:#58a6ff;font-weight:600'>200km内</span>","100km":"<span style='color:#58a6ff;font-weight:600'>100km内</span>","50km":"<span style='color:#f0883e;font-weight:600'>50km内</span>","nation":"<span style='color:#bc8cff;font-weight:600'>全国头部</span>"};
+    
+    item.innerHTML=
+      "<div style='display:flex;align-items:flex-start;gap:12px;padding:16px'>"+
+        "<div style='flex-shrink:0;text-align:center'>"+
+          "<div style='font-size:28px'>"+typeIcons[r.type]+"</div>"+
+          "<div style='font-size:20px;font-weight:700;color:#58a6ff;margin-top:4px'>"+r.score+"</div>"+
+          "<div style='font-size:10px;color:#8b949e'>综合评分</div>"+
+        "</div>"+
+        "<div style='flex:1;min-width:0'>"+
+          "<h4 style='margin:0 0 8px 0;font-size:15px;color:#c9d1d9'>"+r.name+"</h4>"+
+          "<div style='font-size:12px;color:#8b949e;margin-bottom:8px;line-height:1.5'>"+r.reason+"</div>"+
+          "<div style='display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px'>"+
+            "<span class='f-tag' style='background:#1f6feb;font-size:11px'>"+r.type+"</span>"+
+            "<span class='f-tag' style='background:"+(financeColors[r.finance]||"#484f58")+";font-size:11px'>"+r.finance+"</span>"+
+            "<span class='f-tag' style='background:"+(expandColors[r.expand]||"#484f58")+";font-size:11px'>"+r.expand+"</span>"+
+            "<span class='f-tag' style='background:#484f58;font-size:11px'>"+r.tech+"</span>"+
+            trendTags+
+          "</div>"+
+          "<div style='font-size:11px'>配套距离: "+matchLabels[r.match]+"</div>"+
+        "</div>"+
+      "</div>";
+    listEl.appendChild(item);
   });
 }
 
-function clearFilter(){
+function clearSmartFilter(){
   document.querySelectorAll(".filter-tag").forEach(function(t){t.classList.remove("selected");});
   document.getElementById("resultCount").innerHTML="";
   document.getElementById("resultList").innerHTML="<div style='text-align:center;padding:40px;color:#484f58'>请选择筛选条件后开始筛选</div>";
 }
+
+// 兼容旧函数
+function runFilter(){runSmartFilter();}
+function clearFilter(){clearSmartFilter();}
 
 // 点击地图外部关闭弹窗
 document.addEventListener("click",function(e){
