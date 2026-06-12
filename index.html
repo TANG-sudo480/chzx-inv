@@ -359,174 +359,174 @@ var chainData=[
 // 数据格式：rank(排名) | name | listed(上市板块) | marketCap(市值/营收) | loc(位置) | lat | lng | type | note | price
 var supplyData={
   battery:{name:"电池系统",icon:"&#128267;",intro:"新能源汽车核心能量单元，由电芯、模组、电池包及BMS电池管理系统组成。2024年中国动力电池装车量超400GWh，宁德时代市占率约45%，弗迪电池（比亚迪）约25%。200km范围内有蜂巢能源（常州）、中创新航（常州）等头部企业。",suppliers:[
-    {rank:1,name:"宁德时代",listed:"创业板",marketCap:"市值~万亿",loc:"福建宁德",lat:26.65,lng:119.55,type:"nation",note:"全球第一，市占率45%，能量密度255Wh/kg，LFP+三元双线，创业板权重第一",price:"0.8-1.2元/Wh"},
-    {rank:2,name:"弗迪电池",listed:"港股",marketCap:"比亚迪旗下",loc:"广东深圳/重庆",lat:22.54,lng:114.06,type:"nation",note:"比亚迪旗下，刀片电池，LFP路线，全球第二，市值数千亿",price:"0.6-0.9元/Wh"},
-    {rank:3,name:"中创新航",listed:"港股",marketCap:"营收~500亿",loc:"江苏常州",lat:31.81,lng:119.97,type:"200km",note:"全球第三，CISNI闪充电池，常州总部，200km内，宁德/广汽配套",price:"0.7-1.0元/Wh"},
-    {rank:4,name:"蜂巢能源",listed:"科创板",marketCap:"营收~200亿",loc:"江苏常州/四川遂宁",lat:31.81,lng:119.97,type:"200km",note:"长城旗下，短刀片电池全球领先，常州总部，200km内，IPO辅导中",price:"0.65-0.95元/Wh"},
-    {rank:5,name:"亿纬锂能",listed:"创业板",marketCap:"市值~1500亿",loc:"广东惠州",lat:23.09,lng:114.41,type:"nation",note:"大圆柱电池战略，荆门/惠州双基地，创业板明星股",price:"0.7-1.1元/Wh"},
-    {rank:6,name:"国轩高科",listed:"深交所",marketCap:"市值~500亿",loc:"安徽合肥",lat:31.85,lng:117.28,type:"200km",note:"大众控股，LFP主力，大众/塔塔配套，合肥150km",price:"0.55-0.85元/Wh"},
-    {rank:7,name:"欣旺达",listed:"创业板",marketCap:"市值~400亿",loc:"广东深圳",lat:22.54,lng:114.06,type:"nation",note:"HEV混动电池龙头，消费电子切入动力，创业板",price:"0.7-1.0元/Wh"},
-    {rank:8,name:"孚能科技",listed:"科创板",marketCap:"市值~300亿",loc:"江西赣州/江苏镇江",lat:25.85,lng:114.93,type:"nation",note:"软包电池龙头，奔驰/Zeekr战略供应商，科创板",price:"0.8-1.2元/Wh"},
-    {rank:9,name:"瑞浦兰钧",listed:"港股",marketCap:"青山集团旗下",loc:"浙江温州/广西柳州",lat:27.99,lng:120.67,type:"nation",note:"青山集团旗下，问顶电池技术，港股IPO中",price:"0.5-0.8元/Wh"},
-    {rank:10,name:"远景动力",listed:"非上市",marketCap:"远景集团",loc:"江苏无锡/湖北十堰",lat:31.49,lng:120.29,type:"200km",note:"远景集团旗下，Envision AESC全球布局，无锡100km",price:"0.7-1.1元/Wh"},
-    {rank:11,name:"多氟多",listed:"深交所",marketCap:"市值~300亿",loc:"河南焦作",lat:35.22,lng:113.24,type:"nation",note:"六氟磷酸锂全球龙头，向上游延伸，深交所",price:"0.6-0.9元/Wh"},
-    {rank:12,name:"赣锋锂业",listed:"港股+A",marketCap:"市值~800亿",loc:"江西新余",lat:27.82,lng:114.92,type:"nation",note:"锂资源全产业链，固态电池领先，港股+A",price:"0.8-1.2元/Wh"},
-    {rank:13,name:"LG新能源",listed:"韩交所",marketCap:"LG集团",loc:"江苏南京/无锡",lat:32.06,lng:118.79,type:"nation",note:"韩资，全球圆柱电池第一，配套特斯拉，南京/无锡",price:"0.9-1.3元/Wh"},
-    {rank:14,name:"松下电池",listed:"日交所",marketCap:"松下集团",loc:"江苏苏州/辽宁大连",lat:31.30,lng:120.62,type:"200km",note:"特斯拉北美主供，4680大圆柱，苏州80km",price:"1.0-1.5元/Wh"},
-    {rank:15,name:"星恒电源",listed:"港股",marketCap:"顺丰集团",loc:"江苏苏州",lat:31.30,lng:120.62,type:"200km",note:"轻型电动车锂电龙头，LFP技术，顺丰控股，苏州80km",price:"0.5-0.7元/Wh"},
+    {rank:1,name:"宁德时代",listed:"创业板",marketCap:"市值~1万亿元",loc:"福建宁德",lat:26.65,lng:119.55,type:"nation",note:"全球第一，市占率45%，能量密度255Wh/kg，LFP+三元双线，创业板权重第一",founded:"2011年",capacity:"产能超400GWh/年，全球第一",customers:"特斯拉/宝马/大众/蔚来/理想/吉利",price:"0.8-1.2元/Wh"},
+    {rank:2,name:"弗迪电池",listed:"港股",marketCap:"比亚迪旗下",loc:"广东深圳/重庆",lat:22.54,lng:114.06,type:"nation",note:"比亚迪旗下，刀片电池，LFP路线，全球第二，市值数千亿",founded:"2019年",capacity:"产能超100GWh/年",customers:"比亚迪全系/部分外供",price:"0.6-0.9元/Wh"},
+    {rank:3,name:"中创新航",listed:"港股",marketCap:"营收~500亿",loc:"江苏常州",lat:31.81,lng:119.97,type:"200km",note:"全球第三，CISNI闪充电池，常州总部，200km内，宁德/广汽配套",founded:"2007年",capacity:"产能超80GWh/年",customers:"广汽/长安/吉利/小鹏",price:"0.7-1.0元/Wh"},
+    {rank:4,name:"蜂巢能源",listed:"科创板",marketCap:"营收~200亿",loc:"江苏常州/四川遂宁",lat:31.81,lng:119.97,type:"200km",note:"长城旗下，短刀片电池全球领先，常州总部，200km内，IPO辅导中",founded:"2018年",capacity:"产能超60GWh/年",customers:"长城/理想/吉利/岚图",price:"0.65-0.95元/Wh"},
+    {rank:5,name:"亿纬锂能",listed:"创业板",marketCap:"市值~1500亿",loc:"广东惠州",lat:23.09,lng:114.41,type:"nation",note:"大圆柱电池战略，荆门/惠州双基地，创业板明星股",founded:"2001年",capacity:"产能超50GWh/年",customers:"宝马/戴姆勒/小鹏/广汽",price:"0.7-1.1元/Wh"},
+    {rank:6,name:"国轩高科",listed:"深交所",marketCap:"市值~500亿",loc:"安徽合肥",lat:31.85,lng:117.28,type:"200km",note:"大众控股，LFP主力，大众/塔塔配套，合肥150km",founded:"2006年",capacity:"产能超50GWh/年",customers:"大众/奇瑞/江淮/零跑",price:"0.55-0.85元/Wh"},
+    {rank:7,name:"欣旺达",listed:"创业板",marketCap:"市值~400亿",loc:"广东深圳",lat:22.54,lng:114.06,type:"nation",note:"HEV混动电池龙头，消费电子切入动力，创业板",founded:"1997年",capacity:"产能超40GWh/年",customers:"雷诺/日产/吉利/东风",price:"0.7-1.0元/Wh"},
+    {rank:8,name:"孚能科技",listed:"科创板",marketCap:"市值~300亿",loc:"江西赣州/江苏镇江",lat:25.85,lng:114.93,type:"nation",note:"软包电池龙头，奔驰/Zeekr战略供应商，科创板",founded:"2009年",capacity:"产能超30GWh/年",customers:"奔驰/广汽/吉利/江铃",price:"0.8-1.2元/Wh"},
+    {rank:9,name:"瑞浦兰钧",listed:"港股",marketCap:"青山集团旗下",loc:"浙江温州/广西柳州",lat:27.99,lng:120.67,type:"nation",note:"青山集团旗下，问顶电池技术，港股IPO中",founded:"2017年",capacity:"产能超40GWh/年",customers:"通用/零跑/五菱",price:"0.5-0.8元/Wh"},
+    {rank:10,name:"远景动力",listed:"非上市",marketCap:"远景集团",loc:"江苏无锡/湖北十堰",lat:31.49,lng:120.29,type:"200km",note:"远景集团旗下，Envision AESC全球布局，无锡100km",founded:"2007年",capacity:"产能超30GWh/年",customers:"奔驰/雷诺/日产/宝马",price:"0.7-1.1元/Wh"},
+    {rank:11,name:"多氟多",listed:"深交所",marketCap:"市值~300亿",loc:"河南焦作",lat:35.22,lng:113.24,type:"nation",note:"六氟磷酸锂全球龙头，向上游延伸，深交所",founded:"1999年",capacity:"六氟产能全球第一",customers:"比亚迪/宁德/LG/三星",price:"0.6-0.9元/Wh"},
+    {rank:12,name:"赣锋锂业",listed:"港股+A",marketCap:"市值~800亿",loc:"江西新余",lat:27.82,lng:114.92,type:"nation",note:"锂资源全产业链，固态电池领先，港股+A",founded:"2000年",capacity:"锂盐产能超10万吨/年",customers:"特斯拉/宝马/大众/LG",price:"0.8-1.2元/Wh"},
+    {rank:13,name:"LG新能源",listed:"韩交所",marketCap:"LG集团",loc:"江苏南京/广东无锡",lat:32.06,lng:118.79,type:"nation",note:"韩资，全球圆柱电池第一，配套特斯拉，南京/无锡",founded:"2020年",capacity:"产能超100GWh/年",customers:"特斯拉/通用/大众/苹果",price:"0.9-1.3元/Wh"},
+    {rank:14,name:"松下电池",listed:"日交所",marketCap:"松下集团",loc:"江苏苏州/辽宁大连",lat:31.30,lng:120.62,type:"200km",note:"特斯拉北美主供，4680大圆柱，苏州80km",founded:"1918年",capacity:"产能超80GWh/年",customers:"特斯拉/丰田/本田",price:"1.0-1.5元/Wh"},
+    {rank:15,name:"星恒电源",listed:"港股",marketCap:"顺丰集团",loc:"江苏苏州",lat:31.30,lng:120.62,type:"200km",note:"轻型电动车锂电龙头，LFP技术，顺丰控股，苏州80km",founded:"2003年",capacity:"产能超10GWh/年",customers:"五菱/爱玛/雅迪/台铃",price:"0.5-0.7元/Wh"},
   ]},
   motor:{name:"驱动电机",icon:"&#9889;",intro:"新能源汽车动力核心，将电能转化为机械能。2024年国内驱动电机装机量超1200万台，第三方供应商汇川技术市占率约19.7%居首。200km范围内有汇川技术（苏州）、卧龙电驱（绍兴）等上市公司。",suppliers:[
-    {rank:1,name:"弗迪动力",listed:"港股",marketCap:"比亚迪旗下",loc:"广东深圳",lat:22.54,lng:114.06,type:"nation",note:"比亚迪旗下，自供为主，2024外供加速，港股上市公司体系",price:"2500-5000元/台"},
-    {rank:2,name:"汇川技术",listed:"创业板",marketCap:"市值~1800亿",loc:"江苏苏州",lat:31.30,lng:120.62,type:"200km",note:"第三方电机控制器第一19.7%，华为系出身，创业板龙头，苏州80km",price:"3000-6000元/台"},
-    {rank:3,name:"方正电机",listed:"深交所",marketCap:"市值~60亿",loc:"浙江丽水",lat:28.46,lng:119.92,type:"nation",note:"小鹏/理想主供，圆线电机领先，深交所",price:"2800-5000元/台"},
-    {rank:4,name:"卧龙电驱",listed:"上证所",marketCap:"市值~300亿",loc:"浙江绍兴",lat:30.00,lng:120.58,type:"200km",note:"采埃孚合资，奔驰/BMW/捷豹路虎配套，绍兴100km，上证所",price:"4000-8000元/台"},
-    {rank:5,name:"精进电动",listed:"美股",marketCap:"市值~2亿美元",loc:"北京",lat:39.91,lng:116.39,type:"nation",note:"出口型龙头，GM/Stellantis主供，美股NASDAQ上市",price:"3500-7000元/台"},
-    {rank:6,name:"英搏尔",listed:"创业板",marketCap:"市值~80亿",loc:"广东珠海",lat:22.27,lng:113.57,type:"nation",note:"MCU驱动芯片自研，A00级市场强，创业板",price:"2000-4000元/台"},
-    {rank:7,name:"巨一动力",listed:"科创板",marketCap:"营收~30亿",loc:"安徽合肥",lat:31.85,lng:117.28,type:"200km",note:"蔚来/大众安徽主供，电驱集成化，科创板，合肥150km",price:"3500-6500元/台"},
-    {rank:8,name:"阳光电动力",listed:"创业板",marketCap:"阳光电源旗下",loc:"安徽合肥",lat:31.85,lng:117.28,type:"200km",note:"阳光电源旗下，商用车主供，合肥150km",price:"3000-5500元/台"},
-    {rank:9,name:"中车时代电气",listed:"港股+A",marketCap:"市值~800亿",loc:"湖南株洲",lat:27.83,lng:113.13,type:"nation",note:"轨道交通背景，乘用车电驱快速上量，港股+A",price:"3500-6000元/台"},
-    {rank:10,name:"信质集团",listed:"深交所",marketCap:"市值~80亿",loc:"浙江台州",lat:28.66,lng:121.36,type:"200km",note:"电机铁芯龙头，转子/定子专业配套，深交所，台州150km",price:"800-1500元/台"},
-    {rank:11,name:"威迈斯",listed:"科创板",marketCap:"IPO中",loc:"广东深圳",lat:22.54,lng:114.06,type:"nation",note:"车载电源龙头，OBC/DC-DC集成，科创板IPO",price:"1500-3000元/台"},
-    {rank:12,name:"蓝海华腾",listed:"创业板",marketCap:"市值~40亿",loc:"广东深圳",lat:22.54,lng:114.06,type:"nation",note:"电机控制器+驱动集成，创业板",price:"2500-4500元/台"},
-    {rank:13,name:"上海电驱动",listed:"A股",marketCap:"上海电科所",loc:"上海",lat:31.23,lng:121.47,type:"200km",note:"上海电科所旗下，宇通/申龙配套，上海150km",price:"3000-5500元/台"},
-    {rank:14,name:"格雷博",listed:"非上市",marketCap:"专注电驱",loc:"上海",lat:31.23,lng:121.47,type:"200km",note:"新能源商用车驱动领先，上海150km",price:"5000-10000元/台"},
-    {rank:15,name:"舜驱动力",listed:"非上市",marketCap:"SiC新锐",loc:"上海",lat:31.23,lng:121.47,type:"200km",note:"800V SiC电机控制器，上海150km",price:"4000-7000元/台"},
+    {rank:1,name:"弗迪动力",listed:"港股",marketCap:"比亚迪旗下",loc:"广东深圳",lat:22.54,lng:114.06,type:"nation",note:"比亚迪旗下，自供为主，2024外供加速，港股上市公司体系",founded:"2003年",capacity:"产能超300万台/年",customers:"比亚迪全系/部分外供",price:"2500-5000元/台"},
+    {rank:2,name:"汇川技术",listed:"创业板",marketCap:"市值~1800亿",loc:"江苏苏州",lat:31.30,lng:120.62,type:"200km",note:"第三方电机控制器第一19.7%，华为系出身，创业板龙头，苏州80km",founded:"2003年",capacity:"产能超200万台/年",customers:"理想/小鹏/广汽/长城/吉利",price:"3000-6000元/台"},
+    {rank:3,name:"方正电机",listed:"深交所",marketCap:"市值~60亿",loc:"浙江丽水",lat:28.46,lng:119.92,type:"nation",note:"小鹏/理想主供，圆线电机领先，深交所",founded:"1995年",capacity:"产能超100万台/年",customers:"小鹏/理想/五菱/吉利",price:"2800-5000元/台"},
+    {rank:4,name:"卧龙电驱",listed:"上证所",marketCap:"市值~300亿",loc:"浙江绍兴",lat:30.00,lng:120.58,type:"200km",note:"采埃孚合资，奔驰/BMW/捷豹路虎配套，绍兴100km，上证所",founded:"1984年",capacity:"产能超150万台/年",customers:"奔驰/BMW/捷豹/吉利/宇通",price:"4000-8000元/台"},
+    {rank:5,name:"精进电动",listed:"美股",marketCap:"市值~2亿美元",loc:"北京",lat:39.91,lng:116.39,type:"nation",note:"出口型龙头，GM/Stellantis主供，美股NASDAQ上市",founded:"2010年",capacity:"产能超80万台/年",customers:"GM/Stellantis/菲亚特",price:"3500-7000元/台"},
+    {rank:6,name:"英搏尔",listed:"创业板",marketCap:"市值~80亿",loc:"广东珠海",lat:22.27,lng:113.57,type:"nation",note:"MCU驱动芯片自研，A00级市场强，创业板",founded:"2003年",capacity:"产能超50万台/年",customers:"五菱/北汽/江淮/威马",price:"2000-4000元/台"},
+    {rank:7,name:"巨一动力",listed:"科创板",marketCap:"营收~30亿",loc:"安徽合肥",lat:31.85,lng:117.28,type:"200km",note:"蔚来/大众安徽主供，电驱集成化，科创板，合肥150km",founded:"2005年",capacity:"产能超80万台/年",customers:"蔚来/大众安徽/江淮",price:"3500-6500元/台"},
+    {rank:8,name:"阳光电动力",listed:"创业板",marketCap:"阳光电源旗下",loc:"安徽合肥",lat:31.85,lng:117.28,type:"200km",note:"阳光电源旗下，商用车主供，合肥150km",founded:"2013年",capacity:"产能超50万台/年",customers:"中通/宇通/金龙",price:"3000-5500元/台"},
+    {rank:9,name:"中车时代电气",listed:"港股+A",marketCap:"市值~800亿",loc:"湖南株洲",lat:27.83,lng:113.13,type:"nation",note:"轨道交通背景，乘用车电驱快速上量，港股+A",founded:"1959年",capacity:"产能超100万台/年",customers:"长安/东风/一汽",price:"3500-6000元/台"},
+    {rank:10,name:"信质集团",listed:"深交所",marketCap:"市值~80亿",loc:"浙江台州",lat:28.66,lng:121.36,type:"200km",note:"电机铁芯龙头，转子/定子专业配套，深交所，台州150km",founded:"1990年",capacity:"产能超200万台/年",customers:"比亚迪/华为/蔚来/小鹏",price:"800-1500元/台"},
+    {rank:11,name:"威迈斯",listed:"科创板",marketCap:"IPO中",loc:"广东深圳",lat:22.54,lng:114.06,type:"nation",note:"车载电源龙头，OBC/DC-DC集成，科创板IPO",founded:"2005年",capacity:"产能超100万台/年",customers:"理想/小鹏/零跑/哪吒",price:"1500-3000元/台"},
+    {rank:12,name:"蓝海华腾",listed:"创业板",marketCap:"市值~40亿",loc:"广东深圳",lat:22.54,lng:114.06,type:"nation",note:"电机控制器+驱动集成，创业板",founded:"2006年",capacity:"产能超30万台/年",customers:"金龙/中通/安凯/东风",price:"2500-4500元/台"},
+    {rank:13,name:"上海电驱动",listed:"A股",marketCap:"上海电科所",loc:"上海",lat:31.23,lng:121.47,type:"200km",note:"上海电科所旗下，宇通/申龙配套，上海150km",founded:"2006年",capacity:"产能超50万台/年",customers:"宇通/申龙/中通",price:"3000-5500元/台"},
+    {rank:14,name:"格雷博",listed:"非上市",marketCap:"专注电驱",loc:"上海",lat:31.23,lng:121.47,type:"200km",note:"新能源商用车驱动领先，上海150km",founded:"2010年",capacity:"产能超30万台/年",customers:"金龙/宇通/中通",price:"5000-10000元/台"},
+    {rank:15,name:"舜驱动力",listed:"非上市",marketCap:"SiC新锐",loc:"上海",lat:31.23,lng:121.47,type:"200km",note:"800V SiC电机控制器，上海150km",founded:"2018年",capacity:"产能超20万台/年",customers:"多家新能源车企",price:"4000-7000元/台"},
   ]},
   thermal:{name:"热管理系统",icon:"&#127777;",intro:"新能源汽车热管理系统价值量约3000-6000元/车，包括电池热管理（液冷/直冷）、电机热管理、座舱热管理（热泵空调）三大模块。200km范围内有三花智控（绍兴）、银轮股份（天台）等上市公司。",suppliers:[
-    {rank:1,name:"三花智控",listed:"深交所",marketCap:"市值~800亿",loc:"浙江绍兴",lat:30.00,lng:120.58,type:"200km",note:"电子膨胀阀全球52.6%，热泵系统领先，创业板权重，深交所，绍兴100km",price:"800-2000元/套阀"},
-    {rank:2,name:"银轮股份",listed:"深交所",marketCap:"市值~100亿",loc:"浙江天台",lat:29.15,lng:120.98,type:"200km",note:"电池液冷板国内领先，新能源收入超60%，深交所，天台120km",price:"600-1500元/套"},
-    {rank:3,name:"盾安环境",listed:"深交所",marketCap:"市值~150亿",loc:"浙江绍兴",lat:30.00,lng:120.58,type:"200km",note:"热泵核心阀件，大客户比亚迪/理想，深交所，绍兴100km",price:"500-1200元/套"},
-    {rank:4,name:"松芝股份",listed:"深交所",marketCap:"市值~50亿",loc:"上海",lat:31.23,lng:121.47,type:"200km",note:"客车空调龙头，乘用车热管理上量，深交所，上海150km",price:"2000-4000元/套"},
-    {rank:5,name:"奥特佳",listed:"深交所",marketCap:"市值~80亿",loc:"江苏南京",lat:32.06,lng:118.79,type:"nation",note:"汽车空调压缩机，比亚迪/蔚来配套，深交所",price:"1200-2500元/套"},
-    {rank:6,name:"华域三电",listed:"上交所",marketCap:"华域汽车旗下",loc:"上海",lat:31.23,lng:121.47,type:"200km",note:"华域汽车旗下，电动压缩机，上交所，上海150km",price:"1500-3000元/套"},
-    {rank:7,name:"腾龙股份",listed:"上交所",marketCap:"市值~60亿",loc:"江苏常州",lat:31.81,lng:119.97,type:"200km",note:"汽车空调管路，小鹏/理想/极氪配套，上交所，常州100km",price:"300-800元/套"},
-    {rank:8,name:"高澜股份",listed:"创业板",marketCap:"市值~40亿",loc:"广东广州",lat:23.13,lng:113.27,type:"nation",note:"水冷板/热管理系统，储能/新能源车，创业板",price:"500-1500元/套"},
-    {rank:9,name:"纳瓦电子",listed:"非上市",marketCap:"热管理新锐",loc:"上海",lat:31.23,lng:121.47,type:"200km",note:"热泵系统，PTC加热器，上海150km",price:"400-1000元/套"},
-    {rank:10,name:"朗进科技",listed:"创业板",marketCap:"市值~30亿",loc:"山东莱芜",lat:36.21,lng:117.66,type:"nation",note:"轨道交通空调切入新能源，创业板",price:"800-2000元/套"},
-    {rank:11,name:"周一空调",listed:"非上市",marketCap:"本地企业",loc:"某某区本地",lat:31.08,lng:119.91,type:"local",note:"某某区本地热管理企业，冷凝器/蒸发器",price:"面议"},
-    {rank:12,name:"雪鹰制冷",listed:"非上市",marketCap:"本地企业",loc:"某某区本地",lat:31.08,lng:119.91,type:"local",note:"某某区本地，热泵空调配件",price:"面议"},
-    {rank:13,name:"三制冷配",listed:"非上市",marketCap:"中小企业",loc:"江苏苏州",lat:31.30,lng:120.62,type:"200km",note:"热管理系统配件，苏州80km",price:"面议"},
-    {rank:14,name:"超力空调",listed:"非上市",marketCap:"配套企业",loc:"浙江嘉兴",lat:30.75,lng:120.75,type:"200km",note:"汽车空调系统，嘉兴100km",price:"面议"},
-    {rank:15,name:"泰诺风",listed:"非上市",marketCap:"中小企业",loc:"江苏苏州",lat:31.30,lng:120.62,type:"200km",note:"热交换器/冷却系统，苏州80km",price:"面议"},
+    {rank:1,name:"三花智控",listed:"深交所",marketCap:"市值~800亿",loc:"浙江绍兴",lat:30.00,lng:120.58,type:"200km",note:"电子膨胀阀全球52.6%，热泵系统领先，创业板权重，深交所，绍兴100km",founded:"1987年",capacity:"膨胀阀产能超1亿件/年",customers:"特斯拉/比亚迪/大众/吉利/蔚来",price:"800-2000元/套阀"},
+    {rank:2,name:"银轮股份",listed:"深交所",marketCap:"市值~100亿",loc:"浙江天台",lat:29.15,lng:120.98,type:"200km",note:"电池液冷板国内领先，新能源收入超60%，深交所，天台120km",founded:"1999年",capacity:"热管理产能超500万套/年",customers:"宁德/比亚迪/特斯拉/吉利",price:"600-1500元/套"},
+    {rank:3,name:"盾安环境",listed:"深交所",marketCap:"市值~150亿",loc:"浙江绍兴",lat:30.00,lng:120.58,type:"200km",note:"热泵核心阀件，大客户比亚迪/理想，深交所，绍兴100km",founded:"1987年",capacity:"阀件产能超5000万套/年",customers:"比亚迪/理想/吉利/广汽",price:"500-1200元/套"},
+    {rank:4,name:"松芝股份",listed:"深交所",marketCap:"市值~50亿",loc:"上海",lat:31.23,lng:121.47,type:"200km",note:"客车空调龙头，乘用车热管理上量，深交所，上海150km",founded:"2000年",capacity:"空调产能超200万套/年",customers:"比亚迪/宇通/金龙",price:"2000-4000元/套"},
+    {rank:5,name:"奥特佳",listed:"深交所",marketCap:"市值~80亿",loc:"江苏南京",lat:32.06,lng:118.79,type:"nation",note:"汽车空调压缩机，比亚迪/蔚来配套，深交所",founded:"1999年",capacity:"压缩机产能超500万台/年",customers:"比亚迪/蔚来/理想/吉利",price:"1200-2500元/套"},
+    {rank:6,name:"华域三电",listed:"上交所",marketCap:"华域汽车旗下",loc:"上海",lat:31.23,lng:121.47,type:"200km",note:"华域汽车旗下，电动压缩机，上交所，上海150km",founded:"2005年",capacity:"电动压缩机产能超100万台/年",customers:"大众/通用/吉利",price:"1500-3000元/套"},
+    {rank:7,name:"腾龙股份",listed:"上交所",marketCap:"市值~60亿",loc:"江苏常州",lat:31.81,lng:119.97,type:"200km",note:"汽车空调管路，小鹏/理想/极氪配套，上交所，常州100km",founded:"2005年",capacity:"管路产能超500万套/年",customers:"小鹏/理想/极氪/吉利",price:"300-800元/套"},
+    {rank:8,name:"高澜股份",listed:"创业板",marketCap:"市值~40亿",loc:"广东广州",lat:23.13,lng:113.27,type:"nation",note:"水冷板/热管理系统，储能/新能源车，创业板",founded:"2001年",capacity:"水冷板产能超500万套/年",customers:"宁德/比亚迪/华为/中兴",price:"500-1500元/套"},
+    {rank:9,name:"纳瓦电子",listed:"非上市",marketCap:"热管理新锐",loc:"上海",lat:31.23,lng:121.47,type:"200km",note:"热泵系统，PTC加热器，上海150km",founded:"2015年",capacity:"PTC加热器产能超200万套/年",customers:"多家新能源车企",price:"400-1000元/套"},
+    {rank:10,name:"朗进科技",listed:"创业板",marketCap:"市值~30亿",loc:"山东莱芜",lat:36.21,lng:117.66,type:"nation",note:"轨道交通空调切入新能源，创业板",founded:"2000年",capacity:"空调产能超50万套/年",customers:"中车/比亚迪/宇通",price:"800-2000元/套"},
+    {rank:11,name:"周一空调",listed:"非上市",marketCap:"本地企业",loc:"某某区本地",lat:31.08,lng:119.91,type:"local",note:"某某区本地热管理企业，冷凝器/蒸发器",founded:"2010年",capacity:"年产值数千万元",customers:"本地配套",price:"面议"},
+    {rank:12,name:"雪鹰制冷",listed:"非上市",marketCap:"本地企业",loc:"某某区本地",lat:31.08,lng:119.91,type:"local",note:"某某区本地，热泵空调配件",founded:"2015年",capacity:"年产值数千万元",customers:"本地配套",price:"面议"},
+    {rank:13,name:"三制冷配",listed:"非上市",marketCap:"中小企业",loc:"江苏苏州",lat:31.30,lng:120.62,type:"200km",note:"热管理系统配件，苏州80km",founded:"2010年",capacity:"配件产能",customers:"热管理整机厂配套",price:"面议"},
+    {rank:14,name:"超力空调",listed:"非上市",marketCap:"配套企业",loc:"浙江嘉兴",lat:30.75,lng:120.75,type:"200km",note:"汽车空调系统，嘉兴100km",founded:"2012年",capacity:"空调产能",customers:"本地整车配套",price:"面议"},
+    {rank:15,name:"泰诺风",listed:"非上市",marketCap:"中小企业",loc:"江苏苏州",lat:31.30,lng:120.62,type:"200km",note:"热交换器/冷却系统，苏州80km",founded:"2008年",capacity:"热交换器产能",customers:"汽车/空调厂家配套",price:"面议"},
   ]},
   smartdrive:{name:"智能驾驶",icon:"&#129504;",intro:"智能驾驶分为感知层（摄像头/激光雷达/毫米波雷达）、决策层（芯片/域控）、执行层（线控底盘）。2024年L2+渗透率超50%，城市NOA加速落地。200km范围内有华为车BU（上海）、禾赛科技（上海）、图达通（苏州）等头部企业。",suppliers:[
-    {rank:1,name:"华为车BU",listed:"非上市",marketCap:"华为体系",loc:"深圳/上海",lat:22.54,lng:114.06,type:"nation",note:"MDC810域控，激光雷达，鸿蒙智行全系，HI模式赋能多家车企",price:"全套含激光雷达2-6万"},
-    {rank:2,name:"地平线",listed:"港股",marketCap:"IPO中~600亿",loc:"北京",lat:39.91,lng:116.39,type:"nation",note:"Journey系列芯片，征程5/6，本土L2+首选，港股上市",price:"3000-8000元/套"},
-    {rank:3,name:"德赛西威",listed:"深交所",marketCap:"市值~600亿",loc:"广东惠州",lat:23.09,lng:114.41,type:"nation",note:"IPU01-04域控，小鹏/理想/吉利主供，智能座舱+智驾双线，深交所",price:"5000-15000元/套"},
-    {rank:4,name:"禾赛科技",listed:"美股",marketCap:"市值~15亿美元",loc:"上海",lat:31.23,lng:121.47,type:"200km",note:"激光雷达全球第一，AT128/ET25，市占率37%，美股NASDAQ，上海150km",price:"2000-5000元/台"},
-    {rank:5,name:"速腾聚创",listed:"港股",marketCap:"市值~200亿",loc:"广东深圳",lat:22.54,lng:114.06,type:"nation",note:"M系列激光雷达，比亚迪/赛力斯主供，港股上市",price:"2000-4500元/台"},
-    {rank:6,name:"图达通",listed:"港股",marketCap:"市值~80亿",loc:"江苏苏州",lat:31.30,lng:120.62,type:"200km",note:"Innovusion，蔚来ET7/ES8标配，1550nm激光雷达，苏州80km",price:"4000-8000元/台"},
-    {rank:7,name:"英伟达",listed:"美股",marketCap:"市值~2万亿美元",loc:"美国/中国",lat:37.09,lng:-121.89,type:"nation",note:"Orin-X/Thor芯片，蔚来/小米/比亚迪高阶，美股NASDAQ",price:"5000-20000元/芯片"},
-    {rank:8,name:"高通",listed:"美股",marketCap:"市值~2000亿美元",loc:"美国/中国",lat:37.39,lng:-122.08,type:"nation",note:"Snapdragon Ride，骁龙座舱+智驾融合，美股NASDAQ",price:"4000-15000元/套"},
-    {rank:9,name:"黑芝麻智能",listed:"港股",marketCap:"市值~100亿",loc:"上海",lat:31.23,lng:121.47,type:"200km",note:"华山A1000芯片，2024港股上市，智驾芯片新锐，上海150km",price:"2000-5000元/套"},
-    {rank:10,name:"舜宇光学",listed:"港股",marketCap:"市值~600亿",loc:"浙江余姚",lat:29.99,lng:121.15,type:"nation",note:"车载镜头全球38%，8MP ADAS镜头，港股上市",price:"80-300元/颗"},
-    {rank:11,name:"韦尔股份",listed:"上交所",marketCap:"市值~800亿",loc:"上海",lat:31.23,lng:121.47,type:"200km",note:"CIS图像传感器全球43%，车载份额全球第二，上交所，上海150km",price:"50-200元/颗"},
-    {rank:12,name:"博世",listed:"外企",marketCap:"博世集团",loc:"苏州/无锡",lat:31.30,lng:120.62,type:"200km",note:"第五代毫米波雷达，传感器全套，外资Tier1，苏州80km",price:"500-2000元/台"},
-    {rank:13,name:"大疆览沃",listed:"非上市",marketCap:"大疆创新",loc:"广东深圳",lat:22.54,lng:114.06,type:"nation",note:"低成本L2，8MP摄像头，标配宝骏/五菱，大疆旗下",price:"1000-3000元/套"},
-    {rank:14,name:"大陆集团",listed:"德交所",marketCap:"市值~200亿欧元",loc:"上海",lat:31.23,lng:121.47,type:"200km",note:"制动/传感器/域控全套Tier1，大陆集团，上海150km",price:"3000-10000元/套"},
-    {rank:15,name:"安波福",listed:"美股",marketCap:"市值~300亿美元",loc:"上海",lat:31.23,lng:121.47,type:"200km",note:"主动安全/ADAS域控，GM/Ford主供，美股NYSE，上海150km",price:"4000-12000元/套"},
+    {rank:1,name:"华为车BU",listed:"非上市",marketCap:"华为体系",loc:"深圳/上海",lat:22.54,lng:114.06,type:"nation",note:"MDC810域控，激光雷达，鸿蒙智行全系，HI模式赋能多家车企",founded:"2019年",capacity:"智能驾驶全栈能力",customers:"问界/智界/享界/阿维塔",price:"全套含激光雷达2-6万"},
+    {rank:2,name:"地平线",listed:"港股",marketCap:"IPO中~600亿",loc:"北京",lat:39.91,lng:116.39,type:"nation",note:"Journey系列芯片，征程5/6，本土L2+首选，港股上市",founded:"2015年",capacity:"芯片年出货超百万颗",customers:"长安/奇瑞/吉利/比亚迪",price:"3000-8000元/套"},
+    {rank:3,name:"德赛西威",listed:"深交所",marketCap:"市值~600亿",loc:"广东惠州",lat:23.09,lng:114.41,type:"nation",note:"IPU01-04域控，小鹏/理想/吉利主供，智能座舱+智驾双线，深交所",founded:"1986年",capacity:"域控年产能超100万套",customers:"小鹏/理想/吉利/比亚迪",price:"5000-15000元/套"},
+    {rank:4,name:"禾赛科技",listed:"美股",marketCap:"市值~15亿美元",loc:"上海",lat:31.23,lng:121.47,type:"200km",note:"激光雷达全球第一，AT128/ET25，市占率37%，美股NASDAQ，上海150km",founded:"2014年",capacity:"激光雷达年产能超50万台",customers:"理想/小米/比亚迪/广汽",price:"2000-5000元/台"},
+    {rank:5,name:"速腾聚创",listed:"港股",marketCap:"市值~200亿",loc:"广东深圳",lat:22.54,lng:114.06,type:"nation",note:"M系列激光雷达，比亚迪/赛力斯主供，港股上市",founded:"2014年",capacity:"激光雷达年产能超50万台",customers:"比亚迪/赛力斯/小鹏/吉利",price:"2000-4500元/台"},
+    {rank:6,name:"图达通",listed:"港股",marketCap:"市值~80亿",loc:"江苏苏州",lat:31.30,lng:120.62,type:"200km",note:"Innovusion，蔚来ET7/ES8标配，1550nm激光雷达，苏州80km",founded:"2016年",capacity:"激光雷达产能",customers:"蔚来/百度/商汤",price:"4000-8000元/台"},
+    {rank:7,name:"英伟达",listed:"美股",marketCap:"市值~2万亿美元",loc:"美国/中国",lat:37.09,lng:-121.89,type:"nation",note:"Orin-X/Thor芯片，蔚来/小米/比亚迪高阶，美股NASDAQ",founded:"1993年",capacity:"芯片产能全球领先",customers:"蔚来/小米/比亚迪/理想",price:"5000-20000元/芯片"},
+    {rank:8,name:"高通",listed:"美股",marketCap:"市值~2000亿美元",loc:"美国/中国",lat:37.39,lng:-122.08,type:"nation",note:"Snapdragon Ride，骁龙座舱+智驾融合，美股NASDAQ",founded:"1985年",capacity:"芯片产能全球领先",customers:"理想/小米/极氪/长城",price:"4000-15000元/套"},
+    {rank:9,name:"黑芝麻智能",listed:"港股",marketCap:"市值~100亿",loc:"上海",lat:31.23,lng:121.47,type:"200km",note:"华山A1000芯片，2024港股上市，智驾芯片新锐，上海150km",founded:"2016年",capacity:"芯片年产能超百万颗",customers:"一汽/东风/江铃",price:"2000-5000元/套"},
+    {rank:10,name:"舜宇光学",listed:"港股",marketCap:"市值~600亿",loc:"浙江余姚",lat:29.99,lng:121.15,type:"nation",note:"车载镜头全球38%，8MP ADAS镜头，港股上市",founded:"1984年",capacity:"镜头年产能超2亿颗",customers:"Mobileye/英伟达/华为",price:"80-300元/颗"},
+    {rank:11,name:"韦尔股份",listed:"上交所",marketCap:"市值~800亿",loc:"上海",lat:31.23,lng:121.47,type:"200km",note:"CIS图像传感器全球43%，车载份额全球第二，上交所，上海150km",founded:"2007年",capacity:"CIS年产能超10亿颗",customers:"Mobileye/英伟达/特斯拉",price:"50-200元/颗"},
+    {rank:12,name:"博世",listed:"外企",marketCap:"博世集团",loc:"苏州/无锡",lat:31.30,lng:120.62,type:"200km",note:"第五代毫米波雷达，传感器全套，外资Tier1，苏州80km",founded:"1886年",capacity:"传感器产能全球领先",customers:"全球主流车企",price:"500-2000元/台"},
+    {rank:13,name:"大疆览沃",listed:"非上市",marketCap:"大疆创新",loc:"广东深圳",lat:22.54,lng:114.06,type:"nation",note:"低成本L2，8MP摄像头，标配宝骏/五菱，大疆旗下",founded:"2019年",capacity:"车载摄像头产能超百万套",customers:"五菱/宝骏/奇瑞",price:"1000-3000元/套"},
+    {rank:14,name:"大陆集团",listed:"德交所",marketCap:"市值~200亿欧元",loc:"上海",lat:31.23,lng:121.47,type:"200km",note:"制动/传感器/域控全套Tier1，大陆集团，上海150km",founded:"1871年",capacity:"汽车电子产能全球领先",customers:"全球主流车企",price:"3000-10000元/套"},
+    {rank:15,name:"安波福",listed:"美股",marketCap:"市值~300亿美元",loc:"上海",lat:31.23,lng:121.47,type:"200km",note:"主动安全/ADAS域控，GM/Ford主供，美股NYSE，上海150km",founded:"2018年",capacity:"ADAS产能全球领先",customers:"通用/福特/Stellantis",price:"4000-12000元/套"},
   ]},
   smartcabin:{name:"智能座舱",icon:"&#128722;",intro:"智能座舱包括座舱域控、HUD抬头显示、数字仪表、音响系统、车载信息娱乐等。2024年座舱域控渗透率约25%，HUD进入放量期。200km范围内有德赛西威（惠州）、华阳集团（惠州）、亿咖通（杭州）等企业。",suppliers:[
-    {rank:1,name:"德赛西威",listed:"深交所",marketCap:"市值~600亿",loc:"广东惠州",lat:23.09,lng:114.41,type:"nation",note:"座舱域控15.3%份额，理想/小鹏/比亚迪，智能驾驶+座舱双线，深交所",price:"3000-8000元/套"},
-    {rank:2,name:"华阳集团",listed:"深交所",marketCap:"市值~150亿",loc:"广东惠州",lat:23.09,lng:114.41,type:"nation",note:"HUD国内龙头，W-HUD/AR-HUD，深交所",price:"800-3000元/台"},
-    {rank:3,name:"华为鸿蒙座舱",listed:"非上市",marketCap:"华为体系",loc:"深圳",lat:22.54,lng:114.06,type:"nation",note:"麒麟芯片+鸿蒙OS，问界/智界/享界全系",price:"含车机1-3万"},
-    {rank:4,name:"亿咖通",listed:"美股",marketCap:"市值~5亿美元",loc:"浙江杭州",lat:30.27,lng:120.15,type:"200km",note:"星纪魅族OS，吉利全系配套，美股NASDAQ，杭州80km",price:"1000-3000元/套"},
-    {rank:5,name:"中科创达",listed:"创业板",marketCap:"市值~400亿",loc:"北京",lat:39.91,lng:116.39,type:"nation",note:"操作系统OS+中间件，高通/华为深度合作，创业板",price:"500-2000元/套"},
-    {rank:6,name:"航盛电子",listed:"非上市",marketCap:"营收~50亿",loc:"广东深圳",lat:22.54,lng:114.06,type:"nation",note:"车载电子老牌，一汽/东风/广汽配套",price:"500-2000元/套"},
-    {rank:7,name:"均胜电子",listed:"上交所",marketCap:"市值~200亿",loc:"浙江宁波",lat:29.87,lng:121.55,type:"nation",note:"HMI/方向盘开关，宝马/奔驰/大众配套，上交所",price:"800-2500元/套"},
-    {rank:8,name:"京东方",listed:"深交所",marketCap:"市值~1500亿",loc:"北京",lat:39.91,lng:116.39,type:"nation",note:"车载显示全球第三，BOE at AFEELIA，深交所",price:"500-2000元/块"},
-    {rank:9,name:"深天马",listed:"深交所",marketCap:"市值~200亿",loc:"广东深圳",lat:22.54,lng:114.06,type:"nation",note:"车载显示屏，比亚迪/理想/Tesla中控，深交所",price:"400-1500元/块"},
-    {rank:10,name:"上声电子",listed:"科创板",marketCap:"市值~60亿",loc:"江苏苏州",lat:31.30,lng:120.62,type:"200km",note:"车载扬声器，蔚来/小鹏/特斯拉配套，科创板，苏州80km",price:"300-1500元/套"},
-    {rank:11,name:"水晶光电",listed:"深交所",marketCap:"市值~150亿",loc:"浙江台州",lat:28.66,lng:121.36,type:"nation",note:"HUD光机/wear AR，PMA晶圆ALD，深交所",price:"500-2000元/台"},
-    {rank:12,name:"华为音响",listed:"非上市",marketCap:"华为体系",loc:"深圳",lat:22.54,lng:114.06,type:"nation",note:"HUAWEI SOUND，问界/智界全系",price:"2000-5000元/套"},
-    {rank:13,name:"华安鑫创",listed:"创业板",marketCap:"市值~40亿",loc:"广东深圳",lat:22.54,lng:114.06,type:"nation",note:"汽车显示屏模组，定制化服务，创业板",price:"300-1200元/块"},
-    {rank:14,name:"马瑞利",listed:"外企",marketCap:"Stellantis旗下",loc:"上海/广州",lat:31.23,lng:121.47,type:"200km",note:"全球Tier1，座舱/车灯/排气，上海150km",price:"1000-5000元/套"},
-    {rank:15,name:"大陆汽车电子",listed:"德交所",marketCap:"大陆集团",loc:"上海",lat:31.23,lng:121.47,type:"200km",note:"车载液晶仪表/域控制器，大陆集团，上海150km",price:"1500-4000元/套"},
+    {rank:1,name:"德赛西威",listed:"深交所",marketCap:"市值~600亿",loc:"广东惠州",lat:23.09,lng:114.41,type:"nation",note:"座舱域控15.3%份额，理想/小鹏/比亚迪，智能驾驶+座舱双线，深交所",founded:"1986年",capacity:"座舱域控年产能超200万套",customers:"理想/小鹏/比亚迪/丰田",price:"3000-8000元/套"},
+    {rank:2,name:"华阳集团",listed:"深交所",marketCap:"市值~150亿",loc:"广东惠州",lat:23.09,lng:114.41,type:"nation",note:"HUD国内龙头，W-HUD/AR-HUD，深交所",founded:"1993年",capacity:"HUD年产能超100万台",customers:"长城/长安/广汽/比亚迪",price:"800-3000元/台"},
+    {rank:3,name:"华为鸿蒙座舱",listed:"非上市",marketCap:"华为体系",loc:"深圳",lat:22.54,lng:114.06,type:"nation",note:"麒麟芯片+鸿蒙OS，问界/智界/享界全系",founded:"2019年",capacity:"座舱系统整体解决方案",customers:"问界/智界/享界/阿维塔",price:"含车机1-3万"},
+    {rank:4,name:"亿咖通",listed:"美股",marketCap:"市值~5亿美元",loc:"浙江杭州",lat:30.27,lng:120.15,type:"200km",note:"星纪魅族OS，吉利全系配套，美股NASDAQ，杭州80km",founded:"2017年",capacity:"车机系统年产能超100万套",customers:"吉利/领克/极氪/宝腾",price:"1000-3000元/套"},
+    {rank:5,name:"中科创达",listed:"创业板",marketCap:"市值~400亿",loc:"北京",lat:39.91,lng:116.39,type:"nation",note:"操作系统OS+中间件，高通/华为深度合作，创业板",founded:"2008年",capacity:"软件服务能力",customers:"高通/华为/OPPO/小米",price:"500-2000元/套"},
+    {rank:6,name:"航盛电子",listed:"非上市",marketCap:"营收~50亿",loc:"广东深圳",lat:22.54,lng:114.06,type:"nation",note:"车载电子老牌，一汽/东风/广汽配套",founded:"1993年",capacity:"座舱系统年产能超150万套",customers:"一汽/东风/广汽/长安",price:"500-2000元/套"},
+    {rank:7,name:"均胜电子",listed:"上交所",marketCap:"市值~200亿",loc:"浙江宁波",lat:29.87,lng:121.55,type:"nation",note:"HMI/方向盘开关，宝马/奔驰/大众配套，上交所",founded:"2004年",capacity:"汽车电子年产能超500万套",customers:"宝马/奔驰/大众/奥迪",price:"800-2500元/套"},
+    {rank:8,name:"京东方",listed:"深交所",marketCap:"市值~1500亿",loc:"北京",lat:39.91,lng:116.39,type:"nation",note:"车载显示全球第三，BOE at AFEELIA，深交所",founded:"1993年",capacity:"显示屏年产能超5000万片",customers:"理想/蔚来/比亚迪/上汽",price:"500-2000元/块"},
+    {rank:9,name:"深天马",listed:"深交所",marketCap:"市值~200亿",loc:"广东深圳",lat:22.54,lng:114.06,type:"nation",note:"车载显示屏，比亚迪/理想/Tesla中控，深交所",founded:"1983年",capacity:"显示屏年产能超3000万片",customers:"比亚迪/理想/特斯拉/吉利",price:"400-1500元/块"},
+    {rank:10,name:"上声电子",listed:"科创板",marketCap:"市值~60亿",loc:"江苏苏州",lat:31.30,lng:120.62,type:"200km",note:"车载扬声器，蔚来/小鹏/特斯拉配套，科创板，苏州80km",founded:"1992年",capacity:"扬声器年产能超1亿只",customers:"蔚来/小鹏/特斯拉/大众",price:"300-1500元/套"},
+    {rank:11,name:"水晶光电",listed:"深交所",marketCap:"市值~150亿",loc:"浙江台州",lat:28.66,lng:121.36,type:"nation",note:"HUD光机/wear AR，PMA晶圆ALD，深交所",founded:"2002年",capacity:"光学元件年产能超5亿件",customers:"华为/苹果/三星/索尼",price:"500-2000元/台"},
+    {rank:12,name:"华为音响",listed:"非上市",marketCap:"华为体系",loc:"深圳",lat:22.54,lng:114.06,type:"nation",note:"HUAWEI SOUND，问界/智界全系",founded:"2019年",capacity:"音响系统产能",customers:"问界/智界/享界",price:"2000-5000元/套"},
+    {rank:13,name:"华安鑫创",listed:"创业板",marketCap:"市值~40亿",loc:"广东深圳",lat:22.54,lng:114.06,type:"nation",note:"汽车显示屏模组，定制化服务，创业板",founded:"2006年",capacity:"显示屏模组年产能超200万套",customers:"理想/小鹏/比亚迪",price:"300-1200元/块"},
+    {rank:14,name:"马瑞利",listed:"外企",marketCap:"Stellantis旗下",loc:"上海/广州",lat:31.23,lng:121.47,type:"200km",note:"全球Tier1，座舱/车灯/排气，上海150km",founded:"1891年",capacity:"汽车零部件全球产能",customers:"全球主流车企",price:"1000-5000元/套"},
+    {rank:15,name:"大陆汽车电子",listed:"德交所",marketCap:"大陆集团",loc:"上海",lat:31.23,lng:121.47,type:"200km",note:"车载液晶仪表/域控制器，大陆集团，上海150km",founded:"1871年",capacity:"汽车电子全球产能",customers:"全球主流车企",price:"1500-4000元/套"},
   ]},
   chassis:{name:"底盘/传动",icon:"&#128736;",intro:"底盘系统包括制动系统（ESC/IPB）、转向系统（EPS）、悬架系统（CDC/空气悬架）及传动系统。2024年空悬渗透率约15%，线控底盘加速。200km范围内有拓普集团（宁波）、伯特利（芜湖）、亚太股份（杭州）等上市公司。",suppliers:[
-    {rank:1,name:"拓普集团",listed:"上交所",marketCap:"市值~600亿",loc:"浙江宁波",lat:29.87,lng:121.55,type:"nation",note:"特斯拉全球供货，空气悬架+转向节+轻量化，营收超200亿，上交所",price:"2000-8000元/套"},
-    {rank:2,name:"伯特利",listed:"深交所",marketCap:"市值~200亿",loc:"安徽芜湖",lat:31.33,lng:118.37,type:"200km",note:"ESC/EPB龙头，线控制动WCBS领先，深交所，芜湖150km",price:"1500-4000元/套"},
-    {rank:3,name:"万安科技",listed:"深交所",marketCap:"市值~60亿",loc:"浙江诸暨",lat:29.71,lng:120.24,type:"200km",note:"制动/悬架，比亚迪/吉利/红旗配套，深交所，诸暨120km",price:"800-2000元/套"},
-    {rank:4,name:"亚太股份",listed:"深交所",marketCap:"市值~50亿",loc:"浙江杭州",lat:30.27,lng:120.15,type:"200km",note:"ESC/EBS/ABS，国内制动龙头，深交所，杭州80km",price:"1000-3000元/套"},
-    {rank:5,name:"万里扬",listed:"深交所",marketCap:"市值~80亿",loc:"浙江金华",lat:29.10,lng:119.65,type:"200km",note:"CVT变速器，新能源减速器，深交所，金华100km",price:"3000-6000元/台"},
-    {rank:6,name:"耐世特",listed:"港股",marketCap:"市值~200亿",loc:"江苏苏州",lat:31.30,lng:120.62,type:"200km",note:"EPS转向系统，GM/Ford/Stellantis配套，港股，苏州80km",price:"800-2000元/套"},
-    {rank:7,name:"中鼎股份",listed:"深交所",marketCap:"市值~120亿",loc:"安徽宁国",lat:30.63,lng:118.98,type:"200km",note:"密封系统/减震降噪，比亚迪/特斯拉配套，深交所",price:"500-2000元/套"},
-    {rank:8,name:"保隆科技",listed:"上交所",marketCap:"市值~100亿",loc:"上海",lat:31.23,lng:121.47,type:"200km",note:"胎压监测/空气悬架/传感器，上交所，上海150km",price:"300-1500元/套"},
-    {rank:9,name:"泉峰汽车",listed:"上交所",marketCap:"市值~40亿",loc:"江苏南京",lat:32.06,lng:118.79,type:"nation",note:"电机壳体/变速箱壳体，比亚迪主供，上交所",price:"300-1000元/件"},
-    {rank:10,name:"天汽模",listed:"深交所",marketCap:"市值~50亿",loc:"天津",lat:39.13,lng:117.20,type:"nation",note:"汽车模具龙头，特斯拉/蔚来配套，深交所",price:"面议"},
-    {rank:11,name:"伯特利WCBS",listed:"深交所",marketCap:"伯特利旗下",loc:"安徽芜湖",lat:31.33,lng:118.37,type:"200km",note:"线控制动One-Box，2025年量价齐升，芜湖150km",price:"2000-4000元/套"},
-    {rank:12,name:"豪斯特",listed:"非上市",marketCap:"本地企业",loc:"某某区本地",lat:31.08,lng:119.91,type:"local",note:"某某区本地，冲压/焊接件，整车配套",price:"面议"},
-    {rank:13,name:"振兴铸造",listed:"非上市",marketCap:"本地企业",loc:"某某区本地",lat:31.08,lng:119.91,type:"local",note:"某某区铸造集群，铝合金铸件",price:"面议"},
-    {rank:14,name:"德康畜牧装备",listed:"非上市",marketCap:"本地企业",loc:"某某区本地",lat:31.08,lng:119.91,type:"local",note:"某某区，精密铸造/畜牧机械配件",price:"面议"},
-    {rank:15,name:"华域汽车",listed:"上交所",marketCap:"市值~800亿",loc:"上海",lat:31.23,lng:121.47,type:"200km",note:"国内最大的汽车零部件企业，制动/转向/内饰全覆盖，上交所",price:"1000-5000元/套"},
+    {rank:1,name:"拓普集团",listed:"上交所",marketCap:"市值~600亿",loc:"浙江宁波",lat:29.87,lng:121.55,type:"nation",note:"特斯拉全球供货，空气悬架+转向节+轻量化，营收超200亿，上交所",founded:"1983年",capacity:"底盘部件年产能超500万套",customers:"特斯拉/比亚迪/吉利/蔚来",price:"2000-8000元/套"},
+    {rank:2,name:"伯特利",listed:"深交所",marketCap:"市值~200亿",loc:"安徽芜湖",lat:31.33,lng:118.37,type:"200km",note:"ESC/EPB龙头，线控制动WCBS领先，深交所，芜湖150km",founded:"2004年",capacity:"制动系统年产能超300万套",customers:"吉利/长安/奇瑞/广汽",price:"1500-4000元/套"},
+    {rank:3,name:"万安科技",listed:"深交所",marketCap:"市值~60亿",loc:"浙江诸暨",lat:29.71,lng:120.24,type:"200km",note:"制动/悬架，比亚迪/吉利/红旗配套，深交所，诸暨120km",founded:"1998年",capacity:"制动部件年产能超200万套",customers:"比亚迪/吉利/一汽/红旗",price:"800-2000元/套"},
+    {rank:4,name:"亚太股份",listed:"深交所",marketCap:"市值~50亿",loc:"浙江杭州",lat:30.27,lng:120.15,type:"200km",note:"ESC/EBS/ABS，国内制动龙头，深交所，杭州80km",founded:"2000年",capacity:"制动系统年产能超200万套",customers:"长安/江淮/海马/金龙",price:"1000-3000元/套"},
+    {rank:5,name:"万里扬",listed:"深交所",marketCap:"市值~80亿",loc:"浙江金华",lat:29.10,lng:119.65,type:"200km",note:"CVT变速器，新能源减速器，深交所，金华100km",founded:"2003年",capacity:"变速器年产能超100万台",customers:"奇瑞/吉利/比亚迪",price:"3000-6000元/台"},
+    {rank:6,name:"耐世特",listed:"港股",marketCap:"市值~200亿",loc:"江苏苏州",lat:31.30,lng:120.62,type:"200km",note:"EPS转向系统，GM/Ford/Stellantis配套，港股，苏州80km",founded:"1906年",capacity:"转向系统年产能超500万套",customers:"通用/福特/克莱斯勒",price:"800-2000元/套"},
+    {rank:7,name:"中鼎股份",listed:"深交所",marketCap:"市值~120亿",loc:"安徽宁国",lat:30.63,lng:118.98,type:"200km",note:"密封系统/减震降噪，比亚迪/特斯拉配套，深交所",founded:"1980年",capacity:"密封件年产能超10亿件",customers:"比亚迪/特斯拉/蔚来/吉利",price:"500-2000元/套"},
+    {rank:8,name:"保隆科技",listed:"上交所",marketCap:"市值~100亿",loc:"上海",lat:31.23,lng:121.47,type:"200km",note:"胎压监测/空气悬架/传感器，上交所，上海150km",founded:"1997年",capacity:"传感器年产能超5000万只",customers:"宝马/奔驰/大众/通用",price:"300-1500元/套"},
+    {rank:9,name:"泉峰汽车",listed:"上交所",marketCap:"市值~40亿",loc:"江苏南京",lat:32.06,lng:118.79,type:"nation",note:"电机壳体/变速箱壳体，比亚迪主供，上交所",founded:"2012年",capacity:"压铸件年产能超5000吨",customers:"比亚迪/宝马/采埃孚",price:"300-1000元/件"},
+    {rank:10,name:"天汽模",listed:"深交所",marketCap:"市值~50亿",loc:"天津",lat:39.13,lng:117.20,type:"nation",note:"汽车模具龙头，特斯拉/蔚来配套，深交所",founded:"1965年",capacity:"模具年产能超5000套",customers:"特斯拉/蔚来/理想/宝马",price:"面议"},
+    {rank:11,name:"伯特利WCBS",listed:"深交所",marketCap:"伯特利旗下",loc:"安徽芜湖",lat:31.33,lng:118.37,type:"200km",note:"线控制动One-Box，2025年量价齐升，芜湖150km",founded:"2004年",capacity:"线控制动年产能超100万套",customers:"吉利/长安/广汽",price:"2000-4000元/套"},
+    {rank:12,name:"豪斯特",listed:"非上市",marketCap:"本地企业",loc:"某某区本地",lat:31.08,lng:119.91,type:"local",note:"某某区本地，冲压/焊接件，整车配套",founded:"2010年",capacity:"冲压件产能",customers:"本地整车配套",price:"面议"},
+    {rank:13,name:"振兴铸造",listed:"非上市",marketCap:"本地企业",loc:"某某区本地",lat:31.08,lng:119.91,type:"local",note:"某某区铸造集群，铝合金铸件",founded:"2000年",capacity:"铸件产能",customers:"本地配套",price:"面议"},
+    {rank:14,name:"德康畜牧装备",listed:"非上市",marketCap:"本地企业",loc:"某某区本地",lat:31.08,lng:119.91,type:"local",note:"某某区，精密铸造/畜牧机械配件",founded:"2015年",capacity:"铸件产能",customers:"本地配套",price:"面议"},
+    {rank:15,name:"华域汽车",listed:"上交所",marketCap:"市值~800亿",loc:"上海",lat:31.23,lng:121.47,type:"200km",note:"国内最大的汽车零部件企业，制动/转向/内饰全覆盖，上交所",founded:"1992年",capacity:"零部件产能全球领先",customers:"上汽/通用/大众/特斯拉",price:"1000-5000元/套"},
   ]},
   connector:{name:"连接器/线束",icon:"&#128268;",intro:"新能源汽车高压连接器价值量约2000-5000元/车，主要用于电池Pack、电机、DC-DC、OBC等高压模块。200km范围内有瑞可达（苏州）等上市公司。",suppliers:[
-    {rank:1,name:"中航光电",listed:"深交所",marketCap:"市值~800亿",loc:"河南洛阳",lat:34.62,lng:112.45,type:"nation",note:"高压连接器约18%份额，电池/电机主供，深交所军工龙头",price:"200-800元/对"},
-    {rank:2,name:"立讯精密",listed:"深交所",marketCap:"市值~2500亿",loc:"广东东莞",lat:23.04,lng:113.75,type:"nation",note:"约16%份额，苹果+汽车双驱动，收购莱尼，深交所权重股",price:"150-600元/对"},
-    {rank:3,name:"瑞可达",listed:"科创板",marketCap:"市值~80亿",loc:"江苏苏州",lat:31.30,lng:120.62,type:"200km",note:"高压连接器新锐，蔚来/宁德时代主供，科创板，苏州80km",price:"150-500元/对"},
-    {rank:4,name:"得润电子",listed:"深交所",marketCap:"市值~60亿",loc:"广东深圳",lat:22.54,lng:114.06,type:"nation",note:"汽车线束+连接器，宝马/大众配套，深交所",price:"100-400元/对"},
-    {rank:5,name:"徕木股份",listed:"上交所",marketCap:"市值~50亿",loc:"上海",lat:31.23,lng:121.47,type:"200km",note:"精密连接器，比亚迪/吉利配套，上交所，上海150km",price:"100-350元/对"},
-    {rank:6,name:"永贵电器",listed:"深交所",marketCap:"市值~60亿",loc:"浙江杭州",lat:30.27,lng:120.15,type:"200km",note:"轨道交通连接器切入，新能源汽车上量，深交所，杭州80km",price:"100-400元/对"},
-    {rank:7,name:"航天电器",listed:"深交所",marketCap:"市值~300亿",loc:"贵州贵阳",lat:26.65,lng:106.71,type:"nation",note:"军工背景，高端连接器，深交所",price:"200-600元/对"},
-    {rank:8,name:"意华股份",listed:"深交所",marketCap:"市值~80亿",loc:"浙江温州",lat:27.99,lng:120.67,type:"nation",note:"连接器+太阳能支架，华为连接器供应商，深交所",price:"80-300元/对"},
-    {rank:9,name:"电连技术",listed:"创业板",marketCap:"市值~150亿",loc:"广东深圳",lat:22.54,lng:114.06,type:"nation",note:"汽车Fakra连接器，摄像头高速连接，创业板",price:"50-200元/个"},
-    {rank:10,name:"兴瑞科技",listed:"深交所",marketCap:"市值~60亿",loc:"浙江宁波",lat:29.87,lng:121.55,type:"nation",note:"精密镶嵌件/连接器，松下/索尼汽车，深交所",price:"50-200元/个"},
-    {rank:11,name:"鼎通科技",listed:"科创板",marketCap:"市值~40亿",loc:"广东东莞",lat:23.04,lng:113.75,type:"nation",note:"通讯/汽车连接器，科创板",price:"80-300元/对"},
-    {rank:12,name:"合兴股份",listed:"上交所",marketCap:"市值~50亿",loc:"浙江温州",lat:27.99,lng:120.67,type:"nation",note:"汽车连接器/线束，上交所",price:"100-400元/对"},
-    {rank:13,name:"沪光股份",listed:"上交所",marketCap:"市值~60亿",loc:"江苏昆山",lat:31.39,lng:120.96,type:"200km",note:"汽车线束龙头，理想/大众配套，上交所，昆山120km",price:"500-2000元/套"},
-    {rank:14,name:"永鼎股份",listed:"上交所",marketCap:"市值~80亿",loc:"江苏苏州",lat:31.30,lng:120.62,type:"200km",note:"光缆+汽车线束，上交所，苏州80km",price:"300-1500元/套"},
-    {rank:15,name:"福尔达",listed:"非上市",marketCap:"龚楦家族",loc:"浙江宁波",lat:29.87,lng:121.55,type:"nation",note:"汽车智能灯光/座舱功能件，吉利/一汽配套",price:"200-800元/套"},
+    {rank:1,name:"中航光电",listed:"深交所",marketCap:"市值~800亿",loc:"河南洛阳",lat:34.62,lng:112.45,type:"nation",note:"高压连接器约18%份额，电池/电机主供，深交所军工龙头",founded:"1972年",capacity:"连接器年产能超50亿件",customers:"华为/中兴/特高压/军工",price:"200-800元/对"},
+    {rank:2,name:"立讯精密",listed:"深交所",marketCap:"市值~2500亿",loc:"广东东莞",lat:23.04,lng:113.75,type:"nation",note:"约16%份额，苹果+汽车双驱动，收购莱尼，深交所权重股",founded:"2004年",capacity:"连接器年产能超100亿件",customers:"苹果/华为/特斯拉/比亚迪",price:"150-600元/对"},
+    {rank:3,name:"瑞可达",listed:"科创板",marketCap:"市值~80亿",loc:"江苏苏州",lat:31.30,lng:120.62,type:"200km",note:"高压连接器新锐，蔚来/宁德时代主供，科创板，苏州80km",founded:"2006年",capacity:"连接器年产能超1亿件",customers:"蔚来/宁德/中兴/爱立信",price:"150-500元/对"},
+    {rank:4,name:"得润电子",listed:"深交所",marketCap:"市值~60亿",loc:"广东深圳",lat:22.54,lng:114.06,type:"nation",note:"汽车线束+连接器，宝马/大众配套，深交所",founded:"1992年",capacity:"线束年产能超500万套",customers:"宝马/大众/奔驰/标致",price:"100-400元/对"},
+    {rank:5,name:"徕木股份",listed:"上交所",marketCap:"市值~50亿",loc:"上海",lat:31.23,lng:121.47,type:"200km",note:"精密连接器，比亚迪/吉利配套，上交所，上海150km",founded:"2003年",capacity:"连接器年产能超5亿件",customers:"比亚迪/吉利/长安/法雷奥",price:"100-350元/对"},
+    {rank:6,name:"永贵电器",listed:"深交所",marketCap:"市值~60亿",loc:"浙江杭州",lat:30.27,lng:120.15,type:"200km",note:"轨道交通连接器切入，新能源汽车上量，深交所，杭州80km",founded:"1973年",capacity:"连接器年产能超2亿件",customers:"中车/比亚迪/华为",price:"100-400元/对"},
+    {rank:7,name:"航天电器",listed:"深交所",marketCap:"市值~300亿",loc:"贵州贵阳",lat:26.65,lng:106.71,type:"nation",note:"军工背景，高端连接器，深交所",founded:"1961年",capacity:"连接器年产能超10亿件",customers:"军工/航天/航空",price:"200-600元/对"},
+    {rank:8,name:"意华股份",listed:"深交所",marketCap:"市值~80亿",loc:"浙江温州",lat:27.99,lng:120.67,type:"nation",note:"连接器+太阳能支架，华为连接器供应商，深交所",founded:"1995年",capacity:"连接器年产能超10亿件",customers:"华为/中兴/富士康",price:"80-300元/对"},
+    {rank:9,name:"电连技术",listed:"创业板",marketCap:"市值~150亿",loc:"广东深圳",lat:22.54,lng:114.06,type:"nation",note:"汽车Fakra连接器，摄像头高速连接，创业板",founded:"2006年",capacity:"连接器年产能超10亿件",customers:"华为/小米/OPPO/vivo",price:"50-200元/个"},
+    {rank:10,name:"兴瑞科技",listed:"深交所",marketCap:"市值~60亿",loc:"浙江宁波",lat:29.87,lng:121.55,type:"nation",note:"精密镶嵌件/连接器，松下/索尼汽车，深交所",founded:"1990年",capacity:"精密件年产能超10亿件",customers:"松下/索尼/博世",price:"50-200元/个"},
+    {rank:11,name:"鼎通科技",listed:"科创板",marketCap:"市值~40亿",loc:"广东东莞",lat:23.04,lng:113.75,type:"nation",note:"通讯/汽车连接器，科创板",founded:"2003年",capacity:"连接器年产能超5亿件",customers:"华为/中兴/诺基亚",price:"80-300元/对"},
+    {rank:12,name:"合兴股份",listed:"上交所",marketCap:"市值~50亿",loc:"浙江温州",lat:27.99,lng:120.67,type:"nation",note:"汽车连接器/线束，上交所",founded:"1999年",capacity:"线束年产能超200万套",customers:"博世/大陆/麦格纳",price:"100-400元/对"},
+    {rank:13,name:"沪光股份",listed:"上交所",marketCap:"市值~60亿",loc:"江苏昆山",lat:31.39,lng:120.96,type:"200km",note:"汽车线束龙头，理想/大众配套，上交所，昆山120km",founded:"1997年",capacity:"线束年产能超200万套",customers:"理想/大众/奔驰",price:"500-2000元/套"},
+    {rank:14,name:"永鼎股份",listed:"上交所",marketCap:"市值~80亿",loc:"江苏苏州",lat:31.30,lng:120.62,type:"200km",note:"光缆+汽车线束，上交所，苏州80km",founded:"1994年",capacity:"线束年产能超100万套",customers:"华为/大唐/运营商",price:"300-1500元/套"},
+    {rank:15,name:"福尔达",listed:"非上市",marketCap:"龚楦家族",loc:"浙江宁波",lat:29.87,lng:121.55,type:"nation",note:"汽车智能灯光/座舱功能件，吉利/一汽配套",founded:"1995年",capacity:"功能件年产能超1000万套",customers:"吉利/一汽/广汽",price:"200-800元/套"},
   ]},
   reducer:{name:"精密减速器",icon:"&#9881;",intro:"机器人关节减速器分为RV减速器（负载大）和谐波减速器（轻量精密）。某某区周边80km的绿的谐波在国内谐波减速器市场份额约30%。200km范围内有绿的谐波（苏州）、双环传动（嘉兴）等上市公司。",suppliers:[
-    {rank:1,name:"绿的谐波",listed:"科创板",marketCap:"市值~200亿",loc:"江苏苏州",lat:31.30,lng:120.62,type:"200km",note:"谐波减速器国产第一，市占率30%，某某区周边80km，科创板",price:"2000-8000元/台"},
-    {rank:2,name:"双环传动",listed:"深交所",marketCap:"市值~300亿",loc:"浙江嘉兴",lat:30.75,lng:120.75,type:"200km",note:"RV减速器国产化，比亚迪/广汽配套，深交所，嘉兴100km",price:"3000-12000元/台"},
-    {rank:3,name:"中大力德",listed:"深交所",marketCap:"市值~60亿",loc:"浙江宁波",lat:29.87,lng:121.55,type:"nation",note:"减速电机/减速器，机器人+自动化，深交所",price:"1000-5000元/台"},
-    {rank:4,name:"来福谐波",listed:"非上市",marketCap:"谐波新锐",loc:"江苏苏州",lat:31.30,lng:120.62,type:"200km",note:"谐波减速器，与绿的谐波并列双雄，苏州80km",price:"2000-8000元/台"},
-    {rank:5,name:"科达制造",listed:"上交所",marketCap:"市值~300亿",loc:"广东佛山",lat:23.02,lng:113.12,type:"nation",note:"减速器+锂电设备双主业，上交所",price:"3000-10000元/台"},
-    {rank:6,name:"秦川机床",listed:"深交所",marketCap:"市值~80亿",loc:"陕西宝鸡",lat:34.37,lng:107.24,type:"nation",note:"RV减速器五轴联动，数控机床，深交所",price:"5000-15000元/台"},
-    {rank:7,name:"丰立智能",listed:"创业板",marketCap:"市值~40亿",loc:"浙江台州",lat:28.66,lng:121.36,type:"nation",note:"精密减速器，机器人关节配套，创业板",price:"2000-6000元/台"},
-    {rank:8,name:"国茂股份",listed:"上交所",marketCap:"市值~80亿",loc:"江苏常州",lat:31.81,lng:119.97,type:"200km",note:"通用减速机，切入机器人关节，上交所，常州100km",price:"2000-7000元/台"},
-    {rank:9,name:"宁波东力",listed:"深交所",marketCap:"市值~40亿",loc:"浙江宁波",lat:29.87,lng:121.55,type:"nation",note:"齿轮箱/减速器，轨道交通+机器人，深交所",price:"3000-10000元/台"},
-    {rank:10,name:"昊志机电",listed:"创业板",marketCap:"市值~50亿",loc:"广东广州",lat:23.13,lng:113.27,type:"nation",note:"高速电主轴/谐波减速器，创业板",price:"2000-8000元/台"},
-    {rank:11,name:"通力科技",listed:"非上市",marketCap:"减速机专家",loc:"浙江温州",lat:27.99,lng:120.67,type:"nation",note:"通用减速机，工业自动化配套",price:"1000-5000元/台"},
-    {rank:12,name:"纽立德",listed:"非上市",marketCap:"谐波新锐",loc:"江苏苏州",lat:31.30,lng:120.62,type:"200km",note:"谐波减速器研发，苏州80km",price:"2000-7000元/台"},
-    {rank:13,name:"宇环数控",listed:"深交所",marketCap:"市值~30亿",loc:"湖南长沙",lat:28.23,lng:112.94,type:"nation",note:"数控磨削装备，精密减速器加工，深交所",price:"面议"},
-    {rank:14,name:"奥华减速机",listed:"非上市",marketCap:"中小企业",loc:"浙江杭州",lat:30.27,lng:120.15,type:"200km",note:"精密减速机，杭州80km",price:"1500-5000元/台"},
-    {rank:15,name:"斯德宝",listed:"非上市",marketCap:"中小企业",loc:"江苏常州",lat:31.81,lng:119.97,type:"200km",note:"精密减速器，常州100km",price:"2000-6000元/台"},
+    {rank:1,name:"绿的谐波",listed:"科创板",marketCap:"市值~200亿",loc:"江苏苏州",lat:31.30,lng:120.62,type:"200km",note:"谐波减速器国产第一，市占率30%，某某区周边80km，科创板",founded:"2011年",capacity:"减速器年产能超100万台",customers:"ABB/库卡/埃斯顿/新松",price:"2000-8000元/台"},
+    {rank:2,name:"双环传动",listed:"深交所",marketCap:"市值~300亿",loc:"浙江嘉兴",lat:30.75,lng:120.75,type:"200km",note:"RV减速器国产化，比亚迪/广汽配套，深交所，嘉兴100km",founded:"1980年",capacity:"齿轮件年产能超5000万件",customers:"比亚迪/广汽/吉利",price:"3000-12000元/台"},
+    {rank:3,name:"中大力德",listed:"深交所",marketCap:"市值~60亿",loc:"浙江宁波",lat:29.87,lng:121.55,type:"nation",note:"减速电机/减速器，机器人+自动化，深交所",founded:"2006年",capacity:"减速器年产能超50万台",customers:"杭叉/诺力/比亚迪",price:"1000-5000元/台"},
+    {rank:4,name:"来福谐波",listed:"非上市",marketCap:"谐波新锐",loc:"江苏苏州",lat:31.30,lng:120.62,type:"200km",note:"谐波减速器，与绿的谐波并列双雄，苏州80km",founded:"2013年",capacity:"减速器年产能超50万台",customers:"机器人整机厂配套",price:"2000-8000元/台"},
+    {rank:5,name:"科达制造",listed:"上交所",marketCap:"市值~300亿",loc:"广东佛山",lat:23.02,lng:113.12,type:"nation",note:"减速器+锂电设备双主业，上交所",founded:"1992年",capacity:"陶瓷机械全球领先",customers:"建材/锂电厂家",price:"3000-10000元/台"},
+    {rank:6,name:"秦川机床",listed:"深交所",marketCap:"市值~80亿",loc:"陕西宝鸡",lat:34.37,lng:107.24,type:"nation",note:"RV减速器五轴联动，数控机床，深交所",founded:"1965年",capacity:"机床年产能超5000台",customers:"航空航天/军工/汽车",price:"5000-15000元/台"},
+    {rank:7,name:"丰立智能",listed:"创业板",marketCap:"市值~40亿",loc:"浙江台州",lat:28.66,lng:121.36,type:"nation",note:"精密减速器，机器人关节配套，创业板",founded:"1995年",capacity:"精密件年产能超1亿件",customers:"机器人整机厂配套",price:"2000-6000元/台"},
+    {rank:8,name:"国茂股份",listed:"上交所",marketCap:"市值~80亿",loc:"江苏常州",lat:31.81,lng:119.97,type:"200km",note:"通用减速机，切入机器人关节，上交所，常州100km",founded:"1993年",capacity:"减速机年产能超50万台",customers:"通用机械/自动化",price:"2000-7000元/台"},
+    {rank:9,name:"宁波东力",listed:"深交所",marketCap:"市值~40亿",loc:"浙江宁波",lat:29.87,lng:121.55,type:"nation",note:"齿轮箱/减速器，轨道交通+机器人，深交所",founded:"1998年",capacity:"齿轮箱年产能超10万台",customers:"轨道交通/自动化",price:"3000-10000元/台"},
+    {rank:10,name:"昊志机电",listed:"创业板",marketCap:"市值~50亿",loc:"广东广州",lat:23.13,lng:113.27,type:"nation",note:"高速电主轴/谐波减速器，创业板",founded:"2000年",capacity:"电主轴年产能超10万台",customers:"数控机床/机器人",price:"2000-8000元/台"},
+    {rank:11,name:"通力科技",listed:"非上市",marketCap:"减速机专家",loc:"浙江温州",lat:27.99,lng:120.67,type:"nation",note:"通用减速机，工业自动化配套",founded:"2000年",capacity:"减速机年产能超30万台",customers:"通用机械厂家",price:"1000-5000元/台"},
+    {rank:12,name:"纽立德",listed:"非上市",marketCap:"谐波新锐",loc:"江苏苏州",lat:31.30,lng:120.62,type:"200km",note:"谐波减速器研发，苏州80km",founded:"2018年",capacity:"减速器产能爬坡中",customers:"机器人整机厂配套",price:"2000-7000元/台"},
+    {rank:13,name:"宇环数控",listed:"深交所",marketCap:"市值~30亿",loc:"湖南长沙",lat:28.23,lng:112.94,type:"nation",note:"数控磨削装备，精密减速器加工，深交所",founded:"2004年",capacity:"数控机床年产能超1000台",customers:"消费电子/汽车",price:"面议"},
+    {rank:14,name:"奥华减速机",listed:"非上市",marketCap:"中小企业",loc:"浙江杭州",lat:30.27,lng:120.15,type:"200km",note:"精密减速机，杭州80km",founded:"2010年",capacity:"减速机年产能超10万台",customers:"本地配套",price:"1500-5000元/台"},
+    {rank:15,name:"斯德宝",listed:"非上市",marketCap:"中小企业",loc:"江苏常州",lat:31.81,lng:119.97,type:"200km",note:"精密减速器，常州100km",founded:"2015年",capacity:"减速器产能",customers:"本地配套",price:"2000-6000元/台"},
   ]},
   servo:{name:"精密传动/servo",icon:"&#127919;",intro:"伺服电机是工业机器人和高端装备的核心驱动。某某区周边80km内有卧龙电驱（绍兴）等上市公司。200km范围内伺服相关上市企业包括汇川技术（苏州）、禾川科技（浙江衢州）等。",suppliers:[
-    {rank:1,name:"汇川技术",listed:"深交所",marketCap:"市值~1800亿",loc:"江苏苏州",lat:31.30,lng:120.62,type:"200km",note:"伺服系统国产第一，工业机器人+新能源汽车双驱，深交所，苏州80km",price:"800-3000元/台"},
-    {rank:2,name:"卧龙电驱",listed:"上交所",marketCap:"市值~300亿",loc:"浙江绍兴",lat:30.00,lng:120.58,type:"200km",note:"电机龙头，伺服电机+新能源汽车电机，上交所，绍兴80km",price:"1000-5000元/台"},
-    {rank:3,name:"禾川科技",listed:"科创板",marketCap:"市值~60亿",loc:"浙江衢州",lat:28.97,lng:118.87,type:"200km",note:"伺服系统，小型PLC，科创板，衢州150km",price:"500-2000元/台"},
-    {rank:4,name:"伟创电气",listed:"创业板",marketCap:"市值~60亿",loc:"深圳+苏州",lat:31.30,lng:120.62,type:"200km",note:"伺服/变频器，工业自动化，苏州80km",price:"600-2500元/台"},
-    {rank:5,name:"鸣志电器",listed:"上交所",marketCap:"市值~120亿",loc:"上海",lat:31.23,lng:121.47,type:"200km",note:"步进电机+伺服，医疗/半导体/机器人，上交所，上海150km",price:"300-1500元/台"},
-    {rank:6,name:"步科股份",listed:"科创板",marketCap:"市值~40亿",loc:"上海",lat:31.23,lng:121.47,type:"200km",note:"伺服驱动/人机界面，科创板，上海150km",price:"400-1200元/台"},
-    {rank:7,name:"雷赛智能",listed:"深交所",marketCap:"市值~80亿",loc:"广东深圳",lat:22.54,lng:114.06,type:"nation",note:"伺服系统/运动控制，PLC，深交所",price:"500-2000元/台"},
-    {rank:8,name:"信捷电气",listed:"上交所",marketCap:"市值~60亿",loc:"江苏无锡",lat:31.49,lng:120.29,type:"200km",note:"PLC+伺服+变频器，上交所，无锡100km",price:"400-1500元/台"},
-    {rank:9,name:"埃斯顿",listed:"深交所",marketCap:"市值~150亿",loc:"江苏南京",lat:32.06,lng:118.79,type:"200km",note:"国产机器人龙头，伺服自研，深交所，南京150km",price:"1500-5000元/台"},
-    {rank:10,name:"日发精机",listed:"深交所",marketCap:"市值~50亿",loc:"浙江新昌",lat:29.50,lng:120.82,type:"200km",note:"数控机床/航空装备，精密传动，深交所，新昌90km",price:"面议"},
-    {rank:11,name:"微光股份",listed:"深交所",marketCap:"市值~50亿",loc:"浙江杭州",lat:30.27,lng:120.15,type:"200km",note:"微电机+伺服，深交所，杭州80km",price:"200-800元/台"},
-    {rank:12,name:"德马科技",listed:"科创板",marketCap:"市值~30亿",loc:"浙江湖州",lat:30.87,lng:120.09,type:"local",note:"物流自动化装备，伺服电机，科创板，湖州本地",price:"1000-4000元/套"},
-    {rank:13,name:"台达电子",listed:"台股",marketCap:"千亿级",loc:"江苏吴江",lat:31.16,lng:120.65,type:"200km",note:"台达伺服/变频器，吴江100km，某某区周边",price:"800-3000元/台"},
-    {rank:14,name:"科力尔",listed:"深交所",marketCap:"市值~50亿",loc:"湖南永州",lat:26.42,lng:111.61,type:"nation",note:"微电机/伺服，深交所",price:"200-800元/台"},
-    {rank:15,name:"桢正运动控制",listed:"非上市",marketCap:"本地企业",loc:"某某区本地",lat:31.08,lng:119.91,type:"local",note:"某某区本地伺服电机，专注机器人关节",price:"面议"},
+    {rank:1,name:"汇川技术",listed:"深交所",marketCap:"市值~1800亿",loc:"江苏苏州",lat:31.30,lng:120.62,type:"200km",note:"伺服系统国产第一，工业机器人+新能源汽车双驱，深交所，苏州80km",founded:"2003年",capacity:"伺服系统年产能超200万台",customers:"华为/宁德/比亚迪/隆基",price:"800-3000元/台"},
+    {rank:2,name:"卧龙电驱",listed:"上交所",marketCap:"市值~300亿",loc:"浙江绍兴",lat:30.00,lng:120.58,type:"200km",note:"电机龙头，伺服电机+新能源汽车电机，上交所，绍兴80km",founded:"1984年",capacity:"电机年产能超5000万千瓦",customers:"奔驰/GE/ABB",price:"1000-5000元/台"},
+    {rank:3,name:"禾川科技",listed:"科创板",marketCap:"市值~60亿",loc:"浙江衢州",lat:28.97,lng:118.87,type:"200km",note:"伺服系统，小型PLC，科创板，衢州150km",founded:"2011年",capacity:"伺服年产能超100万台",customers:"光伏/锂电/3C厂家",price:"500-2000元/台"},
+    {rank:4,name:"伟创电气",listed:"创业板",marketCap:"市值~60亿",loc:"深圳+苏州",lat:31.30,lng:120.62,type:"200km",note:"伺服/变频器，工业自动化，苏州80km",founded:"2005年",capacity:"伺服年产能超50万台",customers:"纺织/包装/机器人",price:"600-2500元/台"},
+    {rank:5,name:"鸣志电器",listed:"上交所",marketCap:"市值~120亿",loc:"上海",lat:31.23,lng:121.47,type:"200km",note:"步进电机+伺服，医疗/半导体/机器人，上交所，上海150km",founded:"1995年",capacity:"电机年产能超1亿台",customers:"华为/谷歌/苹果",price:"300-1500元/台"},
+    {rank:6,name:"步科股份",listed:"科创板",marketCap:"市值~40亿",loc:"上海",lat:31.23,lng:121.47,type:"200km",note:"伺服驱动/人机界面，科创板，上海150km",founded:"2008年",capacity:"伺服驱动年产能超100万台",customers:"医疗/物流/机器人",price:"400-1200元/台"},
+    {rank:7,name:"雷赛智能",listed:"深交所",marketCap:"市值~80亿",loc:"广东深圳",lat:22.54,lng:114.06,type:"nation",note:"伺服系统/运动控制，PLC，深交所",founded:"1997年",capacity:"运动控制年产能超100万套",customers:"电子加工/激光/机器人",price:"500-2000元/台"},
+    {rank:8,name:"信捷电气",listed:"上交所",marketCap:"市值~60亿",loc:"江苏无锡",lat:31.49,lng:120.29,type:"200km",note:"PLC+伺服+变频器，上交所，无锡100km",founded:"2000年",capacity:"PLC年产能超100万台",customers:"包装/纺织/3C",price:"400-1500元/台"},
+    {rank:9,name:"埃斯顿",listed:"深交所",marketCap:"市值~150亿",loc:"江苏南京",lat:32.06,lng:118.79,type:"200km",note:"国产机器人龙头，伺服自研，深交所，南京150km",founded:"1993年",capacity:"机器人年产能超5万台",customers:"汽车/家电/金属加工",price:"1500-5000元/台"},
+    {rank:10,name:"日发精机",listed:"深交所",marketCap:"市值~50亿",loc:"浙江新昌",lat:29.50,lng:120.82,type:"200km",note:"数控机床/航空装备，精密传动，深交所，新昌90km",founded:"2000年",capacity:"机床年产能超1000台",customers:"航空航天/汽车",price:"面议"},
+    {rank:11,name:"微光股份",listed:"深交所",marketCap:"市值~50亿",loc:"浙江杭州",lat:30.27,lng:120.15,type:"200km",note:"微电机+伺服，深交所，杭州80km",founded:"1986年",capacity:"电机年产能超5000万台",customers:"HVAC/机器人/新能源",price:"200-800元/台"},
+    {rank:12,name:"德马科技",listed:"科创板",marketCap:"市值~30亿",loc:"浙江湖州",lat:30.87,lng:120.09,type:"local",note:"物流自动化装备，伺服电机，科创板，湖州本地",founded:"2005年",capacity:"物流装备产能",customers:"电商/物流/仓储",price:"1000-4000元/套"},
+    {rank:13,name:"台达电子",listed:"台股",marketCap:"千亿级",loc:"江苏吴江",lat:31.16,lng:120.65,type:"200km",note:"台达伺服/变频器，吴江100km，某某区周边",founded:"1971年",capacity:"伺服年产能超500万台",customers:"全球自动化厂家",price:"800-3000元/台"},
+    {rank:14,name:"科力尔",listed:"深交所",marketCap:"市值~50亿",loc:"湖南永州",lat:26.42,lng:111.61,type:"nation",note:"微电机/伺服，深交所",founded:"1990年",capacity:"电机年产能超1亿台",customers:"智能家电/安防",price:"200-800元/台"},
+    {rank:15,name:"桢正运动控制",listed:"非上市",marketCap:"本地企业",loc:"某某区本地",lat:31.08,lng:119.91,type:"local",note:"某某区本地伺服电机，专注机器人关节",founded:"2018年",capacity:"伺服电机产能",customers:"本地机器人配套",price:"面议"},
   ]},
   robot:{name:"工业机器人",icon:"&#129302;",intro:"工业机器人是智能制造核心设备，国产替代加速。某某区本地有云动机器人等本体企业，200km内有节卡、遨博等协作机器人企业。200km范围内有埃斯顿（南京）、拓斯达（东莞）等上市公司。",suppliers:[
-    {rank:1,name:"埃斯顿",listed:"深交所",marketCap:"市值~150亿",loc:"江苏南京",lat:32.06,lng:118.79,type:"200km",note:"国产机器人第二，焊接/搬运/折弯机器人，深交所，南京150km",price:"5-18万元/台"},
-    {rank:2,name:"拓斯达",listed:"创业板",marketCap:"市值~60亿",loc:"广东东莞",lat:23.04,lng:113.75,type:"nation",note:"国产机器人+注塑机+数控机床，创业板",price:"4-15万元/台"},
-    {rank:3,name:"新松机器人",listed:"深交所",marketCap:"市值~120亿",loc:"辽宁沈阳",lat:41.80,lng:123.43,type:"nation",note:"国产机器人第一，AGV/协作机器人/半导体，深交所",price:"6-20万元/台"},
-    {rank:4,name:"ABB",listed:"瑞士上市",marketCap:"全球龙头",loc:"上海",lat:31.23,lng:121.47,type:"200km",note:"全球工业机器人龙头，汽车焊装线，上海150km",price:"10-30万元/台"},
-    {rank:5,name:"库卡",listed:"美的集团",marketCap:"美的控股",loc:"上海",lat:31.23,lng:121.47,type:"200km",note:"美的旗下，汽车行业强，大众/BMW主供，上海150km",price:"12-35万元/台"},
-    {rank:6,name:"发那科",listed:"日交所",marketCap:"全球最大",loc:"上海",lat:31.23,lng:121.47,type:"200km",note:"全球最大机器人，精度最高，上海150km",price:"10-28万元/台"},
-    {rank:7,name:"安川电机",listed:"日交所",marketCap:"千亿级",loc:"上海",lat:31.23,lng:121.47,type:"200km",note:"日本三大家，弧焊/点焊机器人，上海150km",price:"8-25万元/台"},
-    {rank:8,name:"节卡机器人",listed:"拟上市",marketCap:"协作机器人龙头",loc:"上海",lat:31.23,lng:121.47,type:"200km",note:"协作机器人国产第一，丰田/三星主供，上海120km",price:"8-20万元/台"},
-    {rank:9,name:"遨博智能",listed:"非上市",marketCap:"协作机器人",loc:"上海",lat:31.23,lng:121.47,type:"200km",note:"协作机器人，欧盟CE/美国UL认证，上海120km",price:"7-18万元/台"},
-    {rank:10,name:"越疆科技",listed:"港股",marketCap:"协作机器人出口",loc:"广东深圳",lat:22.54,lng:114.06,type:"nation",note:"协作机器人出口，多功能桌面型，港股",price:"5-15万元/台"},
-    {rank:11,name:"汇川技术",listed:"深交所",marketCap:"市值~1800亿",loc:"江苏苏州",lat:31.30,lng:120.62,type:"200km",note:"伺服+机器人全栈，切入机器人本体，深交所，苏州80km",price:"5-20万元/台"},
-    {rank:12,name:"埃夫特",listed:"科创板",marketCap:"市值~60亿",loc:"安徽芜湖",lat:31.33,lng:118.37,type:"200km",note:"国产机器人第三，喷涂/焊接机器人，科创板，芜湖150km",price:"5-16万元/台"},
-    {rank:13,name:"科沃斯",listed:"上交所",marketCap:"市值~200亿",loc:"江苏苏州",lat:31.30,lng:120.62,type:"200km",note:"服务机器人龙头，切入工业自动化，上交所，苏州80km",price:"8-25万元/台"},
-    {rank:14,name:"云动机器人",listed:"非上市",marketCap:"本地企业",loc:"某某区本地",lat:31.08,lng:119.91,type:"local",note:"某某区本地，视觉引导机器人",price:"面议"},
-    {rank:15,name:"鑫拓智能",listed:"非上市",marketCap:"本地企业",loc:"某某区本地",lat:31.08,lng:119.91,type:"local",note:"某某区本地，工业机器人集成",price:"面议"},
+    {rank:1,name:"埃斯顿",listed:"深交所",marketCap:"市值~150亿",loc:"江苏南京",lat:32.06,lng:118.79,type:"200km",note:"国产机器人第二，焊接/搬运/折弯机器人，深交所，南京150km",founded:"1993年",capacity:"机器人年产能超5万台",customers:"汽车/工程机械/金属加工",price:"5-18万元/台"},
+    {rank:2,name:"拓斯达",listed:"创业板",marketCap:"市值~60亿",loc:"广东东莞",lat:23.04,lng:113.75,type:"nation",note:"国产机器人+注塑机+数控机床，创业板",founded:"2007年",capacity:"机器人年产能超3万台",customers:"3C/汽车/家电",price:"4-15万元/台"},
+    {rank:3,name:"新松机器人",listed:"深交所",marketCap:"市值~120亿",loc:"辽宁沈阳",lat:41.80,lng:123.43,type:"nation",note:"国产机器人第一，AGV/协作机器人/半导体，深交所",founded:"2000年",capacity:"机器人年产能超2万台",customers:"汽车/半导体/医疗",price:"6-20万元/台"},
+    {rank:4,name:"ABB",listed:"瑞士上市",marketCap:"全球龙头",loc:"上海",lat:31.23,lng:121.47,type:"200km",note:"全球工业机器人龙头，汽车焊装线，上海150km",founded:"1883年",capacity:"机器人产能全球领先",customers:"全球主流车企",price:"10-30万元/台"},
+    {rank:5,name:"库卡",listed:"美的集团",marketCap:"美的控股",loc:"上海",lat:31.23,lng:121.47,type:"200km",note:"美的旗下，汽车行业强，大众/BMW主供，上海150km",founded:"1898年",capacity:"机器人产能全球领先",customers:"大众/宝马/奔驰",price:"12-35万元/台"},
+    {rank:6,name:"发那科",listed:"日交所",marketCap:"全球最大",loc:"上海",lat:31.23,lng:121.47,type:"200km",note:"全球最大机器人，精度最高，上海150km",founded:"1958年",capacity:"机器人产能全球领先",customers:"全球制造业龙头",price:"10-28万元/台"},
+    {rank:7,name:"安川电机",listed:"日交所",marketCap:"千亿级",loc:"上海",lat:31.23,lng:121.47,type:"200km",note:"日本三大家，弧焊/点焊机器人，上海150km",founded:"1915年",capacity:"机器人产能全球领先",customers:"全球汽车/电子厂家",price:"8-25万元/台"},
+    {rank:8,name:"节卡机器人",listed:"拟上市",marketCap:"协作机器人龙头",loc:"上海",lat:31.23,lng:121.47,type:"200km",note:"协作机器人国产第一，丰田/三星主供，上海120km",founded:"2014年",capacity:"协作机器人年产能超2万台",customers:"丰田/三星/伟创力",price:"8-20万元/台"},
+    {rank:9,name:"遨博智能",listed:"非上市",marketCap:"协作机器人",loc:"上海",lat:31.23,lng:121.47,type:"200km",note:"协作机器人，欧盟CE/美国UL认证，上海120km",founded:"2015年",capacity:"协作机器人年产能超1万台",customers:"3C/汽车/医药",price:"7-18万元/台"},
+    {rank:10,name:"越疆科技",listed:"港股",marketCap:"协作机器人出口",loc:"广东深圳",lat:22.54,lng:114.06,type:"nation",note:"协作机器人出口，多功能桌面型，港股",founded:"2015年",capacity:"协作机器人年产能超3万台",customers:"教育/3C/医疗",price:"5-15万元/台"},
+    {rank:11,name:"汇川技术",listed:"深交所",marketCap:"市值~1800亿",loc:"江苏苏州",lat:31.30,lng:120.62,type:"200km",note:"伺服+机器人全栈，切入机器人本体，深交所，苏州80km",founded:"2003年",capacity:"机器人年产能超5万台",customers:"3C/锂电/汽车",price:"5-20万元/台"},
+    {rank:12,name:"埃夫特",listed:"科创板",marketCap:"市值~60亿",loc:"安徽芜湖",lat:31.33,lng:118.37,type:"200km",note:"国产机器人第三，喷涂/焊接机器人，科创板，芜湖150km",founded:"2007年",capacity:"机器人年产能超2万台",customers:"汽车/金属加工/家具",price:"5-16万元/台"},
+    {rank:13,name:"科沃斯",listed:"上交所",marketCap:"市值~200亿",loc:"江苏苏州",lat:31.30,lng:120.62,type:"200km",note:"服务机器人龙头，切入工业自动化，上交所，苏州80km",founded:"1998年",capacity:"服务机器人年产能超500万台",customers:"家庭/商业/工业",price:"8-25万元/台"},
+    {rank:14,name:"云动机器人",listed:"非上市",marketCap:"本地企业",loc:"某某区本地",lat:31.08,lng:119.91,type:"local",note:"某某区本地，视觉引导机器人",founded:"2020年",capacity:"机器人产能",customers:"本地制造业配套",price:"面议"},
+    {rank:15,name:"鑫拓智能",listed:"非上市",marketCap:"本地企业",loc:"某某区本地",lat:31.08,lng:119.91,type:"local",note:"某某区本地，工业机器人集成",founded:"2018年",capacity:"机器人集成产能",customers:"本地企业配套",price:"面议"},
   ]},
   cnc:{name:"数控系统/丝杠",icon:"&#128260;",intro:"高端数控机床是精密制造基础，丝杠是直线运动核心部件。某某区周边200km内有多家数控系统和丝杠企业。200km范围内有华锐精密（惠州）、欧科亿（株洲）等上市公司。",suppliers:[
     {rank:1,name:"华中数控",listed:"深交所",marketCap:"市值~60亿",loc:"湖北武汉",lat:30.58,lng:114.31,type:"nation",note:"国产数控系统第一，HNC-8系列，深交所",price:"3-10万元/套"},
@@ -958,24 +958,54 @@ function renderSupplierCard(s, rank, type){
   var badgeBg=type==="local"?"#238636":(type==="200km"?"#1f6feb":"#bc8cff");
   var listedBg=s.listed&&s.listed!=="非上市"?"#3fb950":"#6e7681";
   var html="<div style='background:#161b22;border:1px solid #30363d;border-radius:8px;padding:14px;margin-bottom:12px;position:relative'>";
-  html+="<div style='position:absolute;top:10px;right:10px;background:"+badgeBg+";color:#fff;font-size:11px;padding:2px 8px;border-radius:10px;font-weight:600'>"+rank+"</div>";
-  html+="<div style='font-size:15px;font-weight:600;color:#e6edf3;margin-bottom:8px;padding-right:50px'>"+s.name+"</div>";
-  html+="<div style='display:flex;gap:8px;margin-bottom:10px'>";
-  html+="<span style='background:"+listedBg+";color:#fff;font-size:10px;padding:2px 6px;border-radius:4px'>"+(s.listed||"非上市")+"</span>";
+  // 顶部：排名徽章 + 企业名称
+  html+="<div style='display:flex;align-items:center;gap:10px;margin-bottom:10px'>";
+  html+="<div style='background:"+badgeBg+";color:#fff;font-size:12px;padding:3px 10px;border-radius:10px;font-weight:600;min-width:28px;text-align:center'>"+rank+"</div>";
+  html+="<div style='font-size:15px;font-weight:600;color:#e6edf3'>"+s.name+"</div>";
+  html+="</div>";
+  
+  // 第二行：上市状态 + 市值
+  html+="<div style='display:flex;gap:8px;margin-bottom:12px'>";
+  html+="<span style='background:"+listedBg+";color:#fff;font-size:11px;padding:2px 8px;border-radius:4px;font-weight:500'>"+(s.listed||"非上市")+"</span>";
   if(s.marketCap){
-    html+="<span style='background:#21262d;color:#8b949e;font-size:10px;padding:2px 6px;border-radius:4px'>"+s.marketCap+"</span>";
+    html+="<span style='background:#2d333b;color:#8b949e;font-size:11px;padding:2px 8px;border-radius:4px'>"+s.marketCap+"</span>";
   }
   html+="</div>";
-  html+="<div style='font-size:12px;color:#8b949e;margin-bottom:6px'>";
-  html+="<div style='display:flex;align-items:flex-start;margin-bottom:4px'><span style='color:#58a6ff;width:50px;flex-shrink:0'>地址:</span><span>"+s.loc+"</span></div>";
+  
+  // 信息列表：每项一行
+  html+="<div style='font-size:12px;color:#8b949e;border-top:1px solid #21262d;padding-top:10px'>";
+  
+  // 简介
   if(s.note){
-    html+="<div style='display:flex;align-items:flex-start'><span style='color:#58a6ff;width:50px;flex-shrink:0'>简介:</span><span style='color:#c9d1d9'>"+s.note+"</span></div>";
+    html+="<div style='margin-bottom:8px'><span style='color:#58a6ff;min-width:56px;display:inline-block'>简介</span><span style='color:#c9d1d9'>"+s.note+"</span></div>";
   }
-  html+="</div>";
+  
+  // 产能
+  if(s.capacity){
+    html+="<div style='margin-bottom:8px'><span style='color:#58a6ff;min-width:56px;display:inline-block'>产能</span><span style='color:#c9d1d9'>"+s.capacity+"</span></div>";
+  }
+  
+  // 成立时间
+  if(s.founded){
+    html+="<div style='margin-bottom:8px'><span style='color:#58a6ff;min-width:56px;display:inline-block'>成立</span><span style='color:#c9d1d9'>"+s.founded+"</span></div>";
+  }
+  
+  // 地址
+  if(s.loc){
+    html+="<div style='margin-bottom:8px'><span style='color:#58a6ff;min-width:56px;display:inline-block'>地址</span><span style='color:#c9d1d9'>"+s.loc+"</span></div>";
+  }
+  
+  // 核心客户
+  if(s.customers){
+    html+="<div style='margin-bottom:8px'><span style='color:#58a6ff;min-width:56px;display:inline-block'>客户</span><span style='color:#c9d1d9'>"+s.customers+"</span></div>";
+  }
+  
+  // 参考价格
   if(s.price){
-    html+="<div style='margin-top:8px;padding-top:8px;border-top:1px dashed #30363d;font-size:12px'><span style='color:#3fb950'>参考价格: </span><span style='color:#58a6ff'>"+s.price+"</span></div>";
+    html+="<div style='margin-top:8px;padding-top:8px;border-top:1px dashed #30363d'><span style='color:#3fb950;min-width:56px;display:inline-block'>参考价</span><span style='color:#58a6ff'>"+s.price+"</span></div>";
   }
-  html+="</div>";
+  
+  html+="</div></div>";
   return html;
 }
 
