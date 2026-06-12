@@ -99,8 +99,6 @@ body{font-family:"PingFang SC","Microsoft YaHei",sans-serif;background:#0d1117;c
 }
 </style>
 
-<script src="https://webapi.amap.com/maps?v=2.0&key=1d19f5d7f8085dfc6d592c7b5e6dc6db&plugin=AMap.Scale,AMap.InfoWindow"></script>
-<script src="https://webapi.amap.com/lmap"></script>
 
 </head>
 <body>
@@ -795,7 +793,7 @@ function closeModal(){
 function initMainMap(){
   if(typeof L==="undefined") return;
   mainMap=L.map("mainMap").setView([31.08,119.91],7);
-  L.tileLayer("https://wprd0.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z}&key=1d19f5d7f8085dfc6d592c7b5e6dc6db",{attribution:"&copy; 高德地图"}).addTo(mainMap);
+  L.tileLayer("https://wprd{s}.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z}&key=1d19f5d7f8085dfc6d592c7b5e6dc6db",{attribution:"&copy; 高德地图", subdomains:["01","02"]}).addTo(mainMap);
   var circle=L.circle([31.08,119.91],{color:"#1f6feb",fillColor:"#1f6feb",fillOpacity:0.15,radius:200000}).addTo(mainMap);
   L.marker([31.08,119.91],{icon:L.divIcon({className:"",html:"<div style='background:#1f6feb;color:#fff;padding:4px 8px;border-radius:12px;font-size:12px;font-weight:600;border:2px solid #fff'>某某区</div>",iconSize:[60,24],iconAnchor:[30,12]})}).addTo(mainMap).bindPopup("某某区（位于湖州长兴）");
   var hotspots=[
@@ -816,7 +814,7 @@ function initLocalMap(){
   if(typeof L==="undefined") return;
   if(localMap) localMap.remove();
   localMap=L.map("localMap").setView([31.08,119.91],8);
-  L.tileLayer("https://wprd0.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z}&key=1d19f5d7f8085dfc6d592c7b5e6dc6db",{attribution:"&copy; 高德地图"}).addTo(localMap);
+  L.tileLayer("https://wprd{s}.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z}&key=1d19f5d7f8085dfc6d592c7b5e6dc6db",{attribution:"&copy; 高德地图", subdomains:["01","02"]}).addTo(localMap);
   L.circle([31.08,119.91],{color:"#1f6feb",fillColor:"#1f6feb",fillOpacity:0.15,radius:80000}).addTo(localMap);
   L.circle([31.08,119.91],{color:"#1f6feb",fillColor:"none",fillOpacity:0,radius:80000,weight:1,dashArray:"5,5"}).addTo(localMap);
   L.marker([31.08,119.91],{icon:L.divIcon({className:"",html:"<div style='background:#1f6feb;color:#fff;padding:4px 8px;border-radius:12px;font-size:12px;font-weight:600;border:2px solid #fff'>某某区</div>",iconSize:[60,24],iconAnchor:[30,12]})}).addTo(localMap).bindPopup("某某区（天子湖片区，位于湖州长兴）");
@@ -845,7 +843,7 @@ function initDetailMap(key){
   if(typeof L==="undefined"||!supplyData[key]) return;
   if(detailMap) detailMap.remove();
   detailMap=L.map("detailMap").setView([31.08,119.91],5);
-  L.tileLayer("https://wprd0.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z}&key=1d19f5d7f8085dfc6d592c7b5e6dc6db",{attribution:"&copy; 高德地图"}).addTo(detailMap);
+  L.tileLayer("https://wprd{s}.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z}&key=1d19f5d7f8085dfc6d592c7b5e6dc6db",{attribution:"&copy; 高德地图", subdomains:["01","02"]}).addTo(detailMap);
   L.circle([31.08,119.91],{color:"#1f6feb",fillColor:"#1f6feb",fillOpacity:0.1,radius:200000}).addTo(detailMap);
   L.marker([31.08,119.91],{icon:L.divIcon({className:"",html:"<div style='background:#1f6feb;color:#fff;padding:3px 6px;border-radius:10px;font-size:11px;font-weight:600;border:2px solid #fff'>某某区</div>",iconSize:[50,20],iconAnchor:[25,10]})}).addTo(detailMap);
   var d=supplyData[key];
