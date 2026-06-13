@@ -426,6 +426,9 @@ body{font-family:"PingFang SC","Microsoft YaHei",sans-serif;background:#0d1117;c
 <div class="modal-body" id="modalBody"></div>
 </div>
 </div>
+
+<script type="text/javascript" src="https://webapi.amap.com/maps?v=2.0&key=0b3c7e9e88c9f8e4f2c1a8b5d6e9f3c2"></script>
+<link rel="stylesheet" href="https://a.amap.com/jsapi_demos/static/demo-center/css/demo-center.css" />
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="local_enterprise_data.js"></script>
 <script>
@@ -437,7 +440,41 @@ function showTab(id){document.querySelectorAll('.tab-btn').forEach(b=>b.classLis
 function initChainGrid(){var grid=document.getElementById('chainGrid');var tags=document.getElementById('filterType');if(!grid)return;tags.innerHTML='';Object.keys(chainData).forEach(function(k){var tag=document.createElement('span');tag.className='filter-tag';tag.textContent=chainData[k].name;tag.onclick=function(){tag.classList.toggle('active');renderChainGrid()};tags.appendChild(tag)});renderChainGrid()}
 function renderChainGrid(){var selected=Array.from(document.querySelectorAll('#filterType .filter-tag.active')).map(t=>t.textContent);var grid=document.getElementById('chainGrid');if(!grid)return;grid.innerHTML='';Object.keys(chainData).forEach(function(k,d){var c=chainData[k];if(selected.length>0&&!selected.includes(c.name))return;var card=document.createElement('div');card.className='chain-card';card.style.animationDelay=d*0.05+'s';card.innerHTML=`<span class="card-icon">${c.icon}</span><h3>${c.name}</h3><p class="desc">${c.desc}</p><div class="meta"><span><strong>${c.local}</strong>家本地</span><span><strong>${c.region}</strong>家周边</span><span><strong>${c.nation}</strong>家全国</span></div>`;card.onclick=function(){showChainDetail(k)};grid.appendChild(card)})}
 function showChainDetail(key){var c=chainData[key];document.getElementById('modalTitle').textContent=c.name;document.getElementById('modalBody').innerHTML=`<p style="margin-bottom:16px;color:#8b949e">${c.desc}</p><div class="supply-grid"><div class="supply-col"><div class="supply-col-header local">本地企业（${c.local}家）</div></div><div class="supply-col"><div class="supply-col-header region">周边200km（${c.region}家）</div></div><div class="supply-col"><div class="supply-col-header nation">全国头部（${c.nation}家）</div></div></div><div id="detailMap"></div><div class="legend"><span><span class="dot dot-local"></span>本地企业</span><span><span class="dot dot-region"></span>周边200km</span><span><span class="dot dot-nation"></span>全国头部</span></div>`;document.getElementById('detailModal').classList.add('show');setTimeout(initDetailMap,100)}
-function initDetailMap(){var map=L.map('detailMap').setView([31.1,119.7],9);L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);[[31.05,119.45,'天子湖镇','#238636'],[31.15,119.55,'长兴县','#238636'],[30.9,119.9,'德清县','#1f6feb'],[31.2,119.6,'宜兴市','#1f6feb'],[30.85,120.15,'杭州市','#8957e5'],[31.3,120.6,'苏州市','#8957e5'],[31.2,121.4,'上海市','#8957e5'],[31.9,119.9,'常州市','#8957e5'],[30.6,120.9,'宁波市','#8957e5']].forEach(function(l){L.circleMarker([l[0],l[1]],{radius:10,fillColor:l[2],color:'#fff',weight:2,fillOpacity:0.8}).bindPopup(l[2]).addTo(map)})}
+function initDetailMap(){
+  var map = new AMap.Map('detailMap', {
+    zoom: 9,
+    center: [119.7, 31.1],
+    viewMode: '3D'
+  });
+  
+  var markers = [
+    {pos: [119.45, 31.05], title: '天子湖镇', color: '#238636'},
+    {pos: [119.55, 31.15], title: '长兴县', color: '#238636'},
+    {pos: [119.9, 30.9], title: '德清县', color: '#1f6feb'},
+    {pos: [119.6, 31.2], title: '宜兴市', color: '#1f6feb'},
+    {pos: [120.15, 30.85], title: '杭州市', color: '#8957e5'},
+    {pos: [120.6, 31.3], title: '苏州市', color: '#8957e5'},
+    {pos: [121.4, 31.2], title: '上海市', color: '#8957e5'},
+    {pos: [119.9, 31.9], title: '常州市', color: '#8957e5'},
+    {pos: [120.9, 30.6], title: '宁波市', color: '#8957e5'}
+  ];
+  
+  markers.forEach(function(m) {
+    var marker = new AMap.Marker({
+      position: m.pos,
+      title: m.title,
+      icon: new AMap.Icon({
+        size: new AMap.Size(24, 24),
+        imageSize: new AMap.Size(24, 24)
+      })
+    });
+    marker.setLabel({
+      offset: new AMap.Pixel(0, -5),
+      content: '<div style="background:#161b22;color:#fff;padding:2px 6px;border-radius:4px;font-size:11px">' + m.title + '</div>'
+    });
+    map.add(marker);
+  });
+}
 function closeModal(){document.getElementById('detailModal').classList.remove('show')}
 function initFilterPanel(){function build(id,opts){var el=document.getElementById(id);if(!el)return;el.innerHTML='';opts.forEach(function(o){var tag=document.createElement('span');tag.className='filter-tag';tag.textContent=o;tag.onclick=function(){tag.classList.toggle('active');runFilter()};el.appendChild(tag)})}build('filterType2',filterOptions.type);build('filterFinance',filterOptions.finance);build('filterTrend',filterOptions.trend);runFilter()}
 function runFilter(){var types=Array.from(document.querySelectorAll('#filterType2 .filter-tag.active')).map(t=>t.textContent);var finances=Array.from(document.querySelectorAll('#filterFinance .filter-tag.active')).map(t=>t.textContent);var trends=Array.from(document.querySelectorAll('#filterTrend .filter-tag.active')).map(t=>t.textContent);var el=document.getElementById('filterResults');if(!el)return;if(types.length===0&&finances.length===0&&trends.length===0){el.innerHTML='<p style="text-align:center;color:#6e7681;padding:40px">请选择筛选条件查看匹配企业</p>';return}var results=[];Object.keys(chainData).forEach(function(k){if(types.length===0||types.includes(chainData[k].name)){results.push({name:chainData[k].name,icon:chainData[k].icon,score:Math.floor(Math.random()*30+70),tags:['融资扩产','技术领先'].slice(0,Math.floor(Math.random()*2+1))})}});if(results.length===0){el.innerHTML='<p style="text-align:center;color:#6e7681;padding:40px">未找到匹配企业，请调整筛选条件</p>';return}el.innerHTML=results.map(function(r){return`<div class="match-result"><div class="match-header"><span class="match-name">${r.icon} ${r.name}</span><span class="match-score">${r.score}分</span></div><div class="match-tags">${r.tags.map(t=>`<span class="match-tag">${t}</span>`).join('')}</div></div>`}).join('')}
@@ -445,8 +482,121 @@ function toggleExplode(){isExploded=!isExploded;document.querySelectorAll('.car-
 function resetExplode(){isExploded=false;document.querySelectorAll('.car-part').forEach(function(p){p.classList.remove('exploded')});document.querySelector('.explode-btn').textContent='▶ 拆解动画'}
 function showPartDetail(el){var part=el.dataset.part;var info={body:{name:'车身',details:['冲压工艺','铝合金/高强度钢','轻量化设计','碰撞安全']},roof:{name:'车顶',details:['全景天窗','铝合金结构','隔热玻璃','顶置传感器']},wheel:{name:'车轮',details:['铝合金轮毂','制动卡钳','轮速传感器','低滚阻轮胎']},battery:{name:'电池系统',details:['电芯(Cell)','模组(Module)','电池包(Pack)','热管理系统','BMS控制']},motor:{name:'驱动电机',details:['永磁同步电机','扁线绕组','油冷技术','最高效率97%']},chassis:{name:'底盘系统',details:['前双叉臂悬架','后多连杆悬架','空气弹簧','CDC减震器']},sensor:{name:'传感器',details:['前向毫米波雷达','前向摄像头','超声波雷达','高精地图']},screen:{name:'智能座舱',details:['中控大屏','仪表盘','HUD抬头显示','语音交互']}};var data=info[part];if(!data)return;var popup=document.getElementById('partPopup');document.getElementById('partName').textContent=data.name;document.getElementById('partDetails').innerHTML=data.details.map(function(d){return`<li>${d}</li>`}).join('');var rect=el.getBoundingClientRect();popup.style.left=rect.left+'px';popup.style.top=(rect.bottom+10)+'px';popup.classList.add('show');setTimeout(function(){popup.classList.remove('show')},3000)}
 function showPartCategory(key){showChainDetail(key)}
-function initMainMap(){mainMap=L.map('mainMap').setView([31.1,119.8],8);L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(mainMap);[[31.05,119.45,'天子湖镇<br>园区位置',true],[30.85,120.15,'杭州市 80km',false],[31.3,120.6,'苏州市 80km',false],[31.2,121.4,'上海市 150km',false],[31.9,119.9,'常州市 150km',false],[30.6,120.9,'宁波市 150km',false],[31.8,119.5,'无锡市 100km',false],[31.0,119.0,'宣城市 50km',false]].forEach(function(l){var color=l[3]?'#238636':'#1f6feb';L.circleMarker([l[0],l[1]],{radius:l[3]?12:8,fillColor:color,color:'#fff',weight:2,fillOpacity:0.8}).bindPopup(l[2]).addTo(mainMap)})}
-function initFactoryMap(){factoryMap=L.map('factoryMap').setView([31.1,119.5],10);L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(factoryMap);var tzh=[[31.08,119.42],[31.05,119.45],[31.02,119.48],[31.1,119.4],[31.06,119.44]];var sa=[[31.22,119.62],[31.2,119.65],[31.18,119.6]];tzh.forEach(function(l){L.circleMarker(l,{radius:8,fillColor:'#238636',color:'#fff',weight:2,fillOpacity:0.8}).bindPopup('天子湖镇厂房').addTo(factoryMap)});sa.forEach(function(l){L.circleMarker(l,{radius:8,fillColor:'#1f6feb',color:'#fff',weight:2,fillOpacity:0.8}).bindPopup('泗安镇厂房').addTo(factoryMap)})}
+function initMainMap(){
+  var map = new AMap.Map('mainMap', {
+    zoom: 8,
+    center: [119.8, 31.1],
+    viewMode: '3D'
+  });
+  
+  var locations = [
+    {pos: [119.45, 31.05], title: '天子湖镇 - 园区位置', isMain: true},
+    {pos: [120.15, 30.85], title: '杭州市 80km', isMain: false},
+    {pos: [120.6, 31.3], title: '苏州市 80km', isMain: false},
+    {pos: [121.4, 31.2], title: '上海市 150km', isMain: false},
+    {pos: [119.9, 31.9], title: '常州市 150km', isMain: false},
+    {pos: [120.9, 30.6], title: '宁波市 150km', isMain: false},
+    {pos: [119.5, 31.8], title: '无锡市 100km', isMain: false},
+    {pos: [119.0, 31.0], title: '宣城市 50km', isMain: false}
+  ];
+  
+  // 绘制辐射圈
+  var circle = new AMap.Circle({
+    center: [119.45, 31.05],
+    radius: 50000,
+    strokeColor: '#58a6ff',
+    strokeOpacity: 0.3,
+    fillColor: '#58a6ff',
+    fillOpacity: 0.1
+  });
+  map.add(circle);
+  
+  var circle2 = new AMap.Circle({
+    center: [119.45, 31.05],
+    radius: 100000,
+    strokeColor: '#1f6feb',
+    strokeOpacity: 0.2,
+    fillColor: '#1f6feb',
+    fillOpacity: 0.05
+  });
+  map.add(circle2);
+  
+  locations.forEach(function(l) {
+    var size = l.isMain ? 32 : 24;
+    var marker = new AMap.Marker({
+      position: l.pos,
+      title: l.title,
+      content: '<div style="background:' + (l.isMain ? '#238636' : '#1f6feb') + ';width:' + size + 'px;height:' + size + 'px;border-radius:50%;border:3px solid #fff;box-shadow:0 2px 10px rgba(0,0,0,0.3)"></div>'
+    });
+    marker.setLabel({
+      offset: new AMap.Pixel(0, -10),
+      content: '<div style="background:#161b22;color:#fff;padding:4px 8px;border-radius:4px;font-size:12px;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,0.2)">' + l.title + '</div>'
+    });
+    map.add(marker);
+  });
+}
+function initFactoryMap(){
+  var map = new AMap.Map('factoryMap', {
+    zoom: 11,
+    center: [119.5, 31.1],
+    viewMode: '3D'
+  });
+  
+  // 天子湖镇厂房
+  var tzhLocations = [
+    {pos: [119.42, 31.08], name: '天子湖工业园A区'},
+    {pos: [119.45, 31.05], name: '天子湖工业园B区'},
+    {pos: [119.48, 31.02], name: '天子湖工业园C区'},
+    {pos: [119.4, 31.1], name: '天子湖工业园D区'},
+    {pos: [119.44, 31.06], name: '天子湖工业园E区'}
+  ];
+  
+  tzhLocations.forEach(function(l) {
+    var marker = new AMap.Marker({
+      position: l.pos,
+      title: l.name,
+      icon: new AMap.Icon({
+        size: new AMap.Size(32, 32),
+        image: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj48Y2lyY2xlIGN4PSIxNiIgY3k9IjE2IiByPSIxNCIgZmlsbD0iIzIzODYzNiIvPjx0ZXh0IHg9IjE2IiB5PSIyMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjEyIiBmaWxsPSJ3aGl0ZSIgdGV4dD0iVCIvPjwvc3ZnPg=='
+      })
+    });
+    marker.setLabel({
+      offset: new AMap.Pixel(0, -5),
+      content: '<div style="background:#238636;color:#fff;padding:2px 6px;border-radius:4px;font-size:11px">' + l.name + '</div>'
+    });
+    map.add(marker);
+  });
+  
+  // 泗安镇厂房
+  var saLocations = [
+    {pos: [119.62, 31.22], name: '泗安工业园A区'},
+    {pos: [119.65, 31.2], name: '泗安工业园B区'},
+    {pos: [119.6, 31.18], name: '泗安工业园C区'}
+  ];
+  
+  saLocations.forEach(function(l) {
+    var marker = new AMap.Marker({
+      position: l.pos,
+      title: l.name,
+      icon: new AMap.Icon({
+        size: new AMap.Size(32, 32),
+        image: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj48Y2lyY2xlIGN4PSIxNiIgY3k9IjE2IiByPSIxNCIgZmlsbD0iIzFmNmY1YiIvPjx0ZXh0IHg9IjE2IiB5PSIyMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjEyIiBmaWxsPSJ3aGl0ZSIgdGV4dD0iUyIvPjwvc3ZnPg=='
+      })
+    });
+    marker.setLabel({
+      offset: new AMap.Pixel(0, -5),
+      content: '<div style="background:#1f6feb;color:#fff;padding:2px 6px;border-radius:4px;font-size:11px">' + l.name + '</div>'
+    });
+    map.add(marker);
+  });
+  
+  // 图例
+  var legend = '<div style="background:#161b22;padding:8px 12px;border-radius:8px;font-size:11px;color:#fff">' +
+    '<div style="margin-bottom:4px"><span style="display:inline-block;width:12px;height:12px;background:#238636;border-radius:50%;margin-right:6px"></span>天子湖镇</div>' +
+    '<div><span style="display:inline-block;width:12px;height:12px;background:#1f6feb;border-radius:50%;margin-right:6px"></span>泗安镇</div>' +
+    '</div>';
+  map.setFitView();
+}
 function renderFactoryList(){var areaFilter=document.getElementById('factoryAreaFilter')?.value||'all';var el=document.getElementById('factoryList');if(!el)return;var html='';var factories=[{name:'天子湖工业园A区',area:'天子湖镇',sqm:15000,price:'12元/㎡/月',height:'9m',power:'2000KVA',contact:'张经理',phone:'13800001111'},{name:'天子湖工业园B区',area:'天子湖镇',sqm:20000,price:'面议',height:'12m',power:'3150KVA',contact:'李经理',phone:'13800002222'},{name:'天子湖小微园',area:'天子湖镇',sqm:5000,price:'15元/㎡/月',height:'6m',power:'1000KVA',contact:'王经理',phone:'13800003333'},{name:'泗安工业园',area:'泗安镇',sqm:18000,price:'10元/㎡/月',height:'10m',power:'2500KVA',contact:'刘经理',phone:'13800004444'},{name:'泗安创业园',area:'泗安镇',sqm:8000,price:'面议',height:'8m',power:'1500KVA',contact:'陈经理',phone:'13800005555'},{name:'天子湖C区厂房',area:'天子湖镇',sqm:25000,price:'11元/㎡/月',height:'15m',power:'4000KVA',contact:'赵经理',phone:'13800006666'}];factories.forEach(function(f){if(areaFilter!=='all'&&f.area!==areaFilter)return;html+=`<div class="factory-card"><span class="area-tag ${f.area==='天子湖镇'?'area-tzh':'area-sa'}">${f.area}</span><h4>${f.name}</h4><div class="info"><p>面积：${f.sqm.toLocaleString()}㎡ | 层高：${f.height}</p><p>租金：${f.price} | 配电：${f.power}</p></div><div class="contact">联系人：${f.contact} <a href="tel:${f.phone}" style="color:#58a6ff">${f.phone}</a></div></div>`});el.innerHTML=html||'<p style="text-align:center;color:#6e7681;padding:40px">暂无符合条件的厂房</p>'}
 function initEnterpriseTab(){var tbody=document.getElementById('enterpriseTableBody');if(!tbody)return;var html='';var all=[...localEnterpriseData.guishang,...localEnterpriseData.xiaoweiyuan,...localEnterpriseData.xinshenggui];all.slice(0,50).forEach(function(e){var typeClass=e.type==='规上'?'gs':e.type==='小微园'?'xwy':'xsg';html+=`<tr><td>${e.seq}</td><td>${e.name}</td><td><span class="ent-type ${typeClass}">${e.type}</span></td><td>${e.area}</td><td>${e.contact}</td><td><a href="tel:${e.phone}" style="color:#58a6ff">${e.phone}</a></td><td>${e.agent}</td></tr>`});tbody.innerHTML=html}
 function filterEnterprise(){}
