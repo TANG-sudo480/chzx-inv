@@ -398,6 +398,214 @@ textarea.form-input{grid-column:span 2;min-height:120px;resize:vertical}
 .fbone-status{order:3;width:100%;text-align:center;margin-top:8px}
 }
 
+
+/* ========== 全新搜索/筛选器样式 ========== */
+
+/* 通用搜索输入框 */
+.search-box{flex:1;min-width:300px;position:relative}
+.search-input{
+    width:100%;
+    padding:14px 18px 14px 48px;
+    border-radius:10px;
+    border:2px solid rgba(0,212,255,0.25);
+    background:linear-gradient(135deg,rgba(0,20,40,0.95),rgba(0,30,60,0.9));
+    color:#ffffff;
+    font-size:15px;
+    transition:all 0.3s ease;
+    box-shadow:inset 0 2px 8px rgba(0,0,0,0.4),0 0 0 transparent;
+}
+.search-input::placeholder{color:rgba(255,255,255,0.45);font-size:14px}
+.search-input:hover{border-color:rgba(0,212,255,0.5);box-shadow:inset 0 2px 8px rgba(0,0,0,0.3),0 0 12px rgba(0,212,255,0.15)}
+.search-input:focus{outline:none;border-color:var(--primary);background:linear-gradient(135deg,rgba(0,30,50,0.98),rgba(0,50,80,0.95));box-shadow:inset 0 2px 8px rgba(0,0,0,0.2),0 0 20px rgba(0,212,255,0.3)}
+.search-icon{position:absolute;left:16px;top:50%;transform:translateY(-50%);color:var(--primary);font-size:18px}
+
+/* 通用下拉选择器 */
+.filter-select{
+    padding:13px 36px 13px 16px;
+    border-radius:10px;
+    border:2px solid rgba(0,212,255,0.25);
+    background:linear-gradient(135deg,rgba(0,20,40,0.95),rgba(0,30,60,0.9));
+    color:#ffffff;
+    font-size:14px;
+    min-width:160px;
+    cursor:pointer;
+    appearance:none;
+    -webkit-appearance:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%2300d4ff' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 01.753 1.659l-4.796 5.48a1 1 0 01-1.506 0z'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;
+    background-position:right 12px center;
+    transition:all 0.3s ease;
+    box-shadow:inset 0 2px 6px rgba(0,0,0,0.35);
+}
+.filter-select option{background:#0a1628;color:#fff;padding:10px}
+.filter-select:hover{border-color:rgba(0,212,255,0.55);box-shadow:0 0 12px rgba(0,212,255,0.15)}
+.filter-select:focus{outline:none;border-color:var(--primary);box-shadow:0 0 20px rgba(0,212,255,0.3)}
+
+/* 筛选标签组 */
+.clue-header{
+    display:flex;
+    gap:14px;
+    margin-bottom:28px;
+    flex-wrap:wrap;
+    padding:20px;
+    background:linear-gradient(135deg,rgba(0,20,40,0.6),rgba(0,30,60,0.4));
+    border-radius:14px;
+    border:1px solid rgba(0,212,255,0.2);
+}
+
+/* 企业库筛选区域 */
+.enterprise-filters{
+    display:flex;
+    gap:18px;
+    flex-wrap:wrap;
+    margin-bottom:24px;
+    padding:22px;
+    background:linear-gradient(135deg,rgba(0,25,50,0.85),rgba(15,35,70,0.75));
+    border-radius:16px;
+    border:1px solid rgba(0,212,255,0.28);
+    backdrop-filter:blur(15px);
+}
+
+.filter-group{display:flex;flex-direction:column;gap:8px;min-width:150px}
+.filter-group label{
+    font-size:13px;
+    color:#00d4ff;
+    font-weight:600;
+    letter-spacing:0.5px;
+    text-transform:uppercase;
+}
+.filter-group select,
+.filter-group input{
+    background:linear-gradient(135deg,rgba(0,20,40,0.95),rgba(0,30,60,0.9));
+    border:2px solid rgba(0,212,255,0.25);
+    border-radius:10px;
+    padding:12px 16px;
+    color:#ffffff;
+    font-size:14px;
+    transition:all 0.3s ease;
+    box-shadow:inset 0 2px 6px rgba(0,0,0,0.35);
+}
+.filter-group select::placeholder,
+.filter-group input::placeholder{color:rgba(255,255,255,0.45)}
+.filter-group select option{background:#0a1628;color:#fff}
+.filter-group select:focus,
+.filter-group input:focus{
+    outline:none;
+    border-color:var(--primary);
+    box-shadow:0 0 20px rgba(0,212,255,0.3);
+    transform:scale(1.02);
+}
+
+/* 厂房详情库筛选 */
+.factory-brochure-filters{
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+    margin-bottom:28px;
+    padding:20px 24px;
+    background:linear-gradient(135deg,rgba(0,25,50,0.85),rgba(15,35,70,0.75));
+    border-radius:14px;
+    border:1px solid rgba(0,212,255,0.25);
+}
+.factory-brochure-filters select,
+.factory-brochure-filters input{
+    flex:1;
+    min-width:180px;
+    padding:13px 16px;
+    background:linear-gradient(135deg,rgba(0,20,40,0.95),rgba(0,30,60,0.9));
+    border:2px solid rgba(0,212,255,0.25);
+    border-radius:10px;
+    color:#ffffff;
+    font-size:14px;
+    transition:all 0.3s ease;
+    box-shadow:inset 0 2px 6px rgba(0,0,0,0.35);
+}
+.factory-brochure-filters input::placeholder{color:rgba(255,255,255,0.45)}
+.factory-brochure-filters select option{background:#0a1628;color:#fff}
+.factory-brochure-filters select:focus,
+.factory-brochure-filters input:focus{
+    outline:none;
+    border-color:var(--primary);
+    box-shadow:0 0 20px rgba(0,212,255,0.3);
+}
+
+/* 地图侧边栏筛选器 */
+.map-sidebar{
+    background:linear-gradient(180deg,rgba(10,22,46,0.98),rgba(15,32,62,0.95));
+    border-radius:16px;
+    padding:24px;
+    border:1px solid rgba(0,212,255,0.35);
+    max-height:600px;
+    overflow-y:auto;
+}
+.sidebar-title{font-size:18px;font-weight:700;margin-bottom:20px;display:flex;align-items:center;gap:10px;color:#fff}
+.filter-group{margin-bottom:22px}
+.filter-label{
+    font-size:13px;
+    color:#00d4ff;
+    font-weight:600;
+    margin-bottom:10px;
+    letter-spacing:0.5px;
+    display:block;
+}
+.filter-tags{display:flex;flex-wrap:wrap;gap:10px}
+.filter-tag{
+    padding:9px 16px;
+    border-radius:8px;
+    font-size:13px;
+    cursor:pointer;
+    border:1px solid rgba(0,212,255,0.35);
+    transition:all 0.3s ease;
+    background:rgba(0,20,40,0.6);
+    color:#c0d8e8;
+    font-weight:500;
+}
+.filter-tag:hover{
+    background:rgba(0,212,255,0.15);
+    border-color:rgba(0,212,255,0.6);
+    color:#fff;
+    transform:translateY(-2px);
+    box-shadow:0 4px 12px rgba(0,212,255,0.2);
+}
+.filter-tag.active{
+    background:linear-gradient(135deg,var(--primary),#0099cc);
+    border-color:transparent;
+    color:#fff;
+    box-shadow:0 4px 15px rgba(0,212,255,0.4);
+}
+
+/* 视图切换按钮 */
+.view-toggle{display:flex;background:rgba(0,20,40,0.6);border-radius:10px;padding:5px;margin-bottom:24px;border:1px solid rgba(0,212,255,0.2)}
+.view-btn{
+    padding:10px 20px;
+    border-radius:8px;
+    font-size:14px;
+    cursor:pointer;
+    border:none;
+    background:transparent;
+    color:#8b949e;
+    transition:all 0.3s ease;
+    font-weight:500;
+}
+.view-btn.active,.view-btn:hover{
+    background:linear-gradient(135deg,var(--primary),#0099cc);
+    color:#fff;
+    box-shadow:0 2px 10px rgba(0,212,255,0.3);
+}
+
+/* 搜索结果计数 */
+.result-count{
+    display:inline-block;
+    padding:6px 14px;
+    background:linear-gradient(135deg,rgba(0,212,255,0.2),rgba(0,150,200,0.15));
+    border:1px solid rgba(0,212,255,0.3);
+    border-radius:20px;
+    color:#00d4ff;
+    font-size:13px;
+    font-weight:600;
+    margin-left:12px;
+}
+
 </style>
 </head>
 <body>
@@ -645,7 +853,13 @@ textarea.form-input{grid-column:span 2;min-height:120px;resize:vertical}
 </div>
 
 <div class="map-sidebar">
-<div class="sidebar-title">🎯 赛道筛选</div>
+<div class="sidebar-title">🎯 智能筛选</div>
+<div style="margin-bottom:18px;padding:12px;background:rgba(0,212,255,0.1);border-radius:10px;border:1px solid rgba(0,212,255,0.2);">
+    <input type="text" id="mapSearchInput" placeholder="🔍 搜索企业/厂房名称..." 
+           style="width:100%;padding:10px 14px;border-radius:8px;border:1px solid rgba(0,212,255,0.3);background:rgba(0,15,35,0.9);color:#fff;font-size:13px;outline:none;" 
+           onfocus="this.style.borderColor='#00d4ff'" onblur="this.style.borderColor='rgba(0,212,255,0.3)'"
+           oninput="searchMap(this.value)">
+</div>
 <div class="filter-group">
 <div class="filter-label">产业赛道</div>
 <div class="filter-tags">
@@ -754,24 +968,32 @@ textarea.form-input{grid-column:span 2;min-height:120px;resize:vertical}
 <p class="section-subtitle">天子湖片区与泗安镇空余厂房信息</p>
 
 <div class="clue-header">
+<div class="search-box">
+<span class="search-icon">🔍</span>
+<input type="text" class="search-input" id="factoryQuickSearch" placeholder="输入关键词搜索厂房（名称/片区/状态）..." oninput="quickFilterFactory(this.value)">
+<span class="result-count" id="factoryResultCount"></span>
+</div>
+</div>
+<div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:20px;">
 <select class="filter-select" id="factoryArea" onchange="filterFactories()">
-<option value="">面积区间</option>
+<option value="">📐 面积区间</option>
 <option value="small">2000㎡以下</option>
 <option value="mid">2000-5000㎡</option>
 <option value="large">5000-10000㎡</option>
 <option value="xlarge">10000㎡以上</option>
 </select>
 <select class="filter-select" id="factoryHeight" onchange="filterFactories()">
-<option value="">层高要求</option>
+<option value="">📏 层高要求</option>
 <option value="6">≥6m</option>
 <option value="8">≥8m</option>
 <option value="10">≥10m</option>
 </select>
 <select class="filter-select" id="factoryZone" onchange="filterFactories()">
-<option value="">所属片区</option>
+<option value="">📍 所属片区</option>
 <option value="tianzihun">天子湖</option>
 <option value="sian">泗安镇</option>
 </select>
+<button onclick="resetFactoryFilter()" style="padding:13px 24px;border-radius:10px;border:2px solid rgba(255,107,53,0.4);background:rgba(255,107,53,0.1);color:#ff6b35;cursor:pointer;font-size:14px;font-weight:600;transition:all .3s;" onmouseover="this.style.background='rgba(255,107,53,0.2)'" onmouseout="this.style.background='rgba(255,107,53,0.1)'">↺ 重置筛选</button>
 </div>
 
 <div class="factory-grid" id="factoryGrid">
@@ -832,8 +1054,10 @@ textarea.form-input{grid-column:span 2;min-height:120px;resize:vertical}
 <option value="">全部专员</option>
 </select>
 </div>
-<div class="filter-group" style="flex:1">
-<input type="text" id="entSearchInput" placeholder="搜索企业名称..." oninput="filterEnterprise()">
+<div class="filter-group" style="flex:1;min-width:250px;">
+<label>🔍 关键词搜索</label>
+<input type="text" id="entSearchInput" placeholder="输入企业名称、联系人..." oninput="filterEnterprise()">
+<span class="result-count" id="entResultCount" style="margin-top:6px;"></span>
 </div>
 </div>
 
@@ -1148,21 +1372,26 @@ textarea.form-input{grid-column:span 2;min-height:120px;resize:vertical}
 </div>
 
 <div class="factory-brochure-filters">
-<select id="factoryStatusFilter" onchange="filterFactory()">
-<option value="">全部状态</option>
+<div class="search-box">
+<span class="search-icon">🏭</span>
+<input type="text" id="factorySearchInput" placeholder="搜索厂房名称、片区、状态..." oninput="filterFactory()">
+<span class="result-count" id="brochureResultCount"></span>
+</div>
+<select id="factoryStatusFilter" onchange="filterFactory()" style="min-width:140px;">
+<option value="">📋 全部状态</option>
 <option value="空闲">🟢 空闲</option>
 <option value="已租">🔴 已租</option>
 <option value="预订中">🟡 预订中</option>
 <option value="建设中">🔵 建设中</option>
 </select>
-<select id="factoryAreaFilter" onchange="filterFactory()">
-<option value="">全部片区</option>
+<select id="factoryAreaFilter" onchange="filterFactory()" style="min-width:160px;">
+<option value="">📍 全部片区</option>
 <option value="天子湖镇A区">天子湖镇A区</option>
 <option value="天子湖镇B区">天子湖镇B区</option>
 <option value="泗安镇">泗安镇</option>
 <option value="长合区核心区">长合区核心区</option>
 </select>
-<input type="text" id="factorySearchInput" placeholder="搜索厂房名称..." oninput="filterFactory()">
+<button onclick="resetBrochureFilter()" style="padding:13px 20px;border-radius:10px;border:2px solid rgba(255,107,53,0.4);background:rgba(255,107,53,0.1);color:#ff6b35;cursor:pointer;font-size:14px;font-weight:600;">↺ 重置</button>
 </div>
 
 <div class="factory-brochure-grid" id="factoryBrochureGrid">
@@ -8378,6 +8607,153 @@ function showChainDetail(chainId) {
     
     html += '</div>';
     container.innerHTML = html;
+}
+
+
+
+// ========== 增强搜索功能 ==========
+
+// 空余厂房快速搜索
+function quickFilterFactory(keyword) {
+    if (typeof factoryData === 'undefined') return;
+    
+    var filtered = factoryData.filter(function(f) {
+        if (!keyword || keyword.trim() === '') return true;
+        var searchStr = [
+            f.name || '',
+            f.area || '',
+            f.status || '',
+            f.zone || '',
+            (f.totalArea || '').toString(),
+            (f.height || '').toString()
+        ].join(' ').toLowerCase();
+        
+        return searchStr.indexOf(keyword.toLowerCase()) >= 0;
+    });
+    
+    renderFactories(filtered);
+    
+    // 更新结果计数
+    var countEl = document.getElementById('factoryResultCount');
+    if (countEl) {
+        countEl.textContent = keyword ? `找到 ${filtered.length} 个结果` : '';
+    }
+}
+
+// 重置空余厂房筛选
+function resetFactoryFilter() {
+    document.getElementById('factoryArea').value = '';
+    document.getElementById('factoryHeight').value = '';
+    document.getElementById('factoryZone').value = '';
+    var searchInput = document.getElementById('factoryQuickSearch');
+    if (searchInput) searchInput.value = '';
+    
+    if (typeof factoryData !== 'undefined') {
+        renderFactories(factoryData);
+    }
+    var countEl = document.getElementById('factoryResultCount');
+    if (countEl) countEl.textContent = '';
+}
+
+// 重置厂房详情库筛选
+function resetBrochureFilter() {
+    document.getElementById('factoryStatusFilter').value = '';
+    document.getElementById('factoryAreaFilter').value = '';
+    var searchInput = document.getElementById('factorySearchInput');
+    if (searchInput) searchInput.value = '';
+    
+    // 重新加载全部厂房
+    initFactoryBrochure();
+    var countEl = document.getElementById('brochureResultCount');
+    if (countEl) countEl.textContent = '';
+}
+
+// 增强版企业搜索（支持拼音首字母）
+function enhanceEnterpriseSearch(keyword) {
+    if (typeof enterpriseFullData === 'undefined') return [];
+    
+    if (!keyword || keyword.trim() === '') {
+        return getAllEnterprises();
+    }
+    
+    keyword = keyword.toLowerCase().trim();
+    var allEnts = getAllEnterprises();
+    
+    return allEnts.filter(function(ent) {
+        // 搜索字段：名称、片区、联系人、类型、服务专员、备注
+        var searchable = [
+            ent.name || '',
+            ent.area || '',
+            ent.contact || '',
+            ent.type || '',
+            ent.servant || '',
+            ent.note || ''
+        ].join(' ').toLowerCase();
+        
+        return searchable.indexOf(keyword) >= 0;
+    });
+}
+
+// 获取所有企业（合并各分类）
+function getAllEnterprises() {
+    if (typeof enterpriseFullData === 'undefined') return [];
+    var all = ['guishang', 'xiaoweiyuan', 'xinsenggui', 'guixia'].reduce(function(acc, type) {
+        if (enterpriseFullData[type] && Array.isArray(enterpriseFullData[type])) {
+            return acc.concat(enterpriseFullData[type].map(function(e) {
+                return Object.assign({}, e, { _type: type });
+            }));
+        }
+        return acc;
+    }, []);
+    return all;
+}
+
+
+
+// 地图搜索功能
+function searchMap(keyword) {
+    if (!keyword || keyword.trim() === '') {
+        // 显示所有标记
+        showAllMapMarkers();
+        return;
+    }
+    
+    keyword = keyword.toLowerCase();
+    var matchedIds = [];
+    
+    // 搜索企业数据
+    if (typeof enterpriseFullData !== 'undefined') {
+        ['guishang', 'xiaoweiyuan', 'xinsenggui'].forEach(function(type) {
+            (enterpriseFullData[type] || []).forEach(function(ent) {
+                if ((ent.name || '').toLowerCase().indexOf(keyword) >= 0) {
+                    matchedIds.push('enterprise_' + ent.id);
+                }
+            });
+        });
+    }
+    
+    // 搜索厂房数据
+    if (typeof factoryBrochureData !== 'undefined' && Array.isArray(factoryBrochureData)) {
+        factoryBrochureData.forEach(function(f) {
+            if ((f.name || '').toLowerCase().indexOf(keyword) >= 0) {
+                matchedIds.push('factory_' + f.id);
+            }
+        });
+    }
+    
+    // 高亮匹配的标记
+    highlightMapMarkers(matchedIds);
+}
+
+function showAllMapMarkers() {
+    // 显示所有地图标记（如果有AMap实例）
+    if (typeof window.amapInstance !== 'undefined') {
+        // 重置所有标记可见性
+    }
+}
+
+function highlightMapMarkers(ids) {
+    console.log('高亮标记:', ids);
 }
 
 </script>
