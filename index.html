@@ -642,6 +642,42 @@ textarea.form-input{grid-column:span 2;min-height:120px;resize:vertical}
     border-color:rgba(0,212,255,0.2)!important;
 }
 
+
+/* 地图容器样式 */
+.map-container {
+    width: 100%;
+    height: 600px;
+    min-height: 600px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 30px rgba(0, 212, 255, 0.15);
+    border: 1px solid rgba(0, 212, 255, 0.2);
+}
+
+
+/* 标记详情面板 */
+.marker-detail-header {
+    border-bottom: 1px solid rgba(0,212,255,0.2);
+    padding-bottom: 12px;
+}
+.map-action-btn {
+    width: 100%;
+    margin-top: 12px;
+    padding: 10px 16px;
+    background: linear-gradient(90deg, #ff6b35, #ff8c5a);
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.map-action-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(255,107,53,0.4);
+}
+
 </style>
 </head>
 <body>
@@ -872,7 +908,7 @@ textarea.form-input{grid-column:span 2;min-height:120px;resize:vertical}
 </section>
 
 <!-- 招商作战地图 -->
-<section id="map" class="section">
+<section id="mapSection" class="section">
 <div class="container">
 <div class="section-badge">🗺️ 作战地图</div>
 <h2 class="section-title">招商作战地图</h2>
@@ -880,7 +916,13 @@ textarea.form-input{grid-column:span 2;min-height:120px;resize:vertical}
 
 <div class="map-container">
 <div class="map-wrapper">
-<div id="map"></div>
+<div id="mapWrapper" class="map-wrapper" style="position:relative;">
+    <div id="map"></div>
+    <div id="markerDetail" style="display:none;position:absolute;top:20px;right:20px;width:280px;background:linear-gradient(135deg,rgba(10,22,46,0.98),rgba(20,35,65,0.95));border:1px solid rgba(0,212,255,0.3);border-radius:12px;padding:16px;box-shadow:0 4px 20px rgba(0,212,255,0.2);z-index:10;">
+        <h4 style="margin:0 0 8px;color:#00d4ff;">标记详情</h4>
+        <p style="color:#8b949e;">点击地图上的标记查看详情</p>
+    </div>
+</div>
 <div class="map-legend">
 <div class="legend-item"><span class="legend-dot" style="background:#34a853"></span>已落地企业</div>
 <div class="legend-item"><span class="legend-dot" style="background:#00d4ff"></span>空余厂房</div>
@@ -1584,9 +1626,7 @@ textarea.form-input{grid-column:span 2;min-height:120px;resize:vertical}
 </div>
 </div>
 
-<!-- Leaflet 地图 (开源免费, 无需API Key) -->
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<!-- 地图使用SVG矢量图实现 -->
 
 <script>
 // ==================== 数据 ====================
@@ -8279,291 +8319,309 @@ document.getElementById('chainMapResult').innerHTML=`
 `;
 }
 
-// ==================== Leaflet 地图实现 (开源免费) ====================
-let map = null;
-let mapMarkers = [];
-let infoPopup = null;
+// ==================== SVG交互地图实现 ====================
+// 纯本地实现，无需外部依赖
 
-// 长合区天子湖片区中心坐标 [纬度, 经度]
-const MAP_CENTER = [30.63, 119.68];
-const MAP_ZOOM = 11;
+// 地图数据
+const MAP_WIDTH = 900;
+const MAP_HEIGHT = 600;
 
-// 园区/企业数据坐标
-const enterpriseLocations = [
-    {name: '浙江天林家纺科技', lat: 30.635, lng: 119.675, type: 'enterprise', area: '第一片区'},
-    {name: '美思特射频技术', lat: 30.638, lng: 119.680, type: 'enterprise', area: '第一片区'},
-    {name: '长合区核心区', lat: 30.640, lng: 119.690, type: 'zone', area: '核心区'},
-    {name: '天子湖A区', lat: 30.632, lng: 119.668, type: 'zone', area: '天子湖A区'},
-    {name: '天子湖B区', lat: 30.628, lng: 119.685, type: 'zone', area: '天子湖B区'},
-    {name: '泗安镇工业区', lat: 30.605, lng: 119.720, type: 'zone', area: '泗安镇'},
-];
-
-const factoryLocations = [
-    {name: '标准厂房A1-12000㎡', lat: 30.633, lng: 119.670, status: '空闲', area: '12000㎡'},
-    {name: '标准厂房A2-8500㎡', lat: 30.634, lng: 119.673, status: '空闲', area: '8500㎡'},
-    {name: '钢构厂房B1-20000㎡', lat: 30.629, lng: 119.682, status: '预订中', area: '20000㎡'},
-    {name: '泗安标准厂房-11000㎡', lat: 30.608, lng: 119.718, status: '空闲', area: '11000㎡'},
-];
-
-const targetCompanies = [
-    {name: '宁德时代', lat: 30.98, lng: 119.95, investment: '450亿扩产', distance: '宜兴40km'},
-    {name: '吉利极氪', lat: 29.86, lng: 121.55, investment: 'IPO冲刺', distance: '宁波120km'},
-    {name: '零跑汽车', lat: 30.27, lng: 120.15, investment: '港股上市', distance: '杭州80km'},
-    {name: '理想汽车', lat: 31.75, lng: 119.90, investment: '扩产中', distance: '常州100km'},
-    {name: '汇川技术', lat: 31.30, lng: 120.62, investment: '伺服龙头', distance: '苏州80km'},
-    {name: '地平线', lat: 39.98, lng: 116.40, investment: '港股IPO', distance: '北京'},
-    {name: '华为引望', lat: 22.55, lng: 114.05, investment: '230亿融资', distance: '深圳'},
-];
-
-// 图标颜色配置
-const ICON_COLORS = {
-    enterprise: '#34a853',
-    factory: '#00d4ff',
-    zone: '#fbbc04',
-    target: '#ea4335',
-    center: '#00d4ff'
-};
-
-const ICON_EMOJIS = {
-    enterprise: '🏭',
-    factory: '🏢',
-    zone: '📍',
-    target: '🎯',
-    center: '⭐'
-};
-
-// 创建自定义图标
-function createCustomIcon(type, text) {
-    const color = ICON_COLORS[type] || ICON_COLORS.enterprise;
-    const emoji = ICON_EMOJIS[type] || '';
+// 经纬度转SVG坐标 (以长合区为中心)
+function latLngToXY(lat, lng) {
+    // 长合区天子湖: 30.63°N, 119.68°E
+    const centerLat = 30.63;
+    const centerLng = 119.68;
+    const scale = 80; // 每度像素数
     
-    return L.divIcon({
-        className: 'custom-marker',
-        html: '<div style="' +
-            'background:' + color + ';' +
-            'padding:5px 12px;' +
-            'border-radius:14px;' +
-            'color:white;' +
-            'font-size:12px;' +
-            'font-weight:bold;' +
-            'white-space:nowrap;' +
-            'box-shadow:0 2px 8px rgba(0,0,0,0.4);' +
-            'border:2px solid rgba(255,255,255,0.5);' +
-            '">' + emoji + ' ' + text + '</div>',
-        iconSize: [100, 28],
-        iconAnchor: [50, 14]
-    });
+    const x = MAP_WIDTH/2 + (lng - centerLng) * scale;
+    const y = MAP_HEIGHT/2 - (lat - centerLat) * scale;
+    
+    return {x: Math.max(50, Math.min(MAP_WIDTH-50, x)), y: Math.max(50, Math.min(MAP_HEIGHT-50, y))};
 }
 
-// 创建弹窗内容
-function createPopupHTML(data) {
-    let h = '<div class="map-popup" style="min-width:180px;padding:8px;">';
-    h += '<h4 style="margin:0 0 6px;color:#00d4ff;font-size:14px;">' + data.name + '</h4>';
+// 标记数据
+const mapMarkers = [
+    // 中心 - 长合区天子湖
+    {name: '长三角（湖州）产业合作区', lat: 30.63, lng: 119.68, type: 'center', desc: '天子湖片区 · 核心招商区域', color: '#00d4ff'},
     
-    if(data.type === 'target'){
-        h += '<p style="margin:3px 0;color:#ea4335;font-size:11px;">🎯 招商目标</p>';
-        if(data.investment) h += '<p style="margin:3px 0;color:#fff;font-size:12px;">💰 '+data.investment+'</p>';
-        if(data.distance) h += '<p style="margin:3px 0;color:#888;font-size:11px;">📍 约'+data.distance+'</p>';
-    }else if(data.type === 'factory'){
-        h += '<p style="margin:3px 0;color:#00d4ff;font-size:11px;">🏢 厂房资源</p>';
-        if(data.area) h += '<p style="margin:3px 0;color:#fff;font-size:12px;">📐 '+data.area+'</p>';
-        var sc = data.status==='空闲'?'#34a853':(data.status==='已租'?'#ea4335':'#fbbc04');
-        h += '<p style="margin:3px 0;font-size:11px;"><span style="color:'+sc+'">●</span> '+data.status+'</p>';
-        h += '<button onclick="openBookingModal(\''+data.name+'\')" style="margin-top:6px;padding:5px 12px;background:#ff6b35;border:none;border-radius:5px;color:#fff;cursor:pointer;font-size:11px;">预约看厂</button>';
-    }else{
-        h += '<p style="margin:3px 0;color:'+ICON_COLORS[data.type]+';font-size:11px;">'+ICON_EMOJIS[data.type]+' '+(data.type==='zone'?'园区区域':'已落地企业')+'</p>';
-        if(data.area) h += '<p style="margin:3px 0;color:#fff;font-size:12px;">'+data.area+'</p>';
-    }
-    h += '</div>';
-    return h;
-}
-
-// ========== 主初始化函数 ==========
-function initMap(){
-    try{
-        var container = document.getElementById('map');
-        if(!container){
-            console.error('地图容器 #map 不存在');
-            return;
-        }
-        
-        // 设置容器样式
-        container.style.height = '600px';
-        container.style.width = '100%';
-        container.style.borderRadius = '12px';
-        container.style.overflow = 'hidden';
-        
-        // 检查 Leaflet 是否加载
-        if(typeof L === 'undefined'){
-            console.warn('Leaflet 未加载，1秒后重试...');
-            setTimeout(initMap, 1000);
-            return;
-        }
-        
-        // 创建地图实例
-        map = L.map('map', {
-            center: MAP_CENTER,
-            zoom: MAP_ZOOM,
-            zoomControl: true,
-            attributionControl: false,
-            scrollWheelZoom: true
-        });
-        
-        // 使用深色底图 (CartoDB Dark Matter)
-        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-            maxZoom: 19,
-            subdomains: 'abcd'
-        }).addTo(map);
-        
-        // 缩放控件位置
-        L.control.zoom({position: 'topright'}).addTo(map);
-        
-        // 添加比例尺
-        L.control.scale({position: 'bottomleft'}).addTo(map);
-        
-        // 添加所有标记
-        addAllMarkers();
-        
-        console.log('✅ Leaflet地图初始化成功');
-        
-    }catch(e){
-        console.error('❌ 地图初始化失败:', e);
-        showMapError();
-    }
-}
-
-// 添加所有标记点
-function addAllMarkers(){
-    clearMapMarkers();
+    // 园区区域
+    {name: '天子湖A区', lat: 30.635, lng: 119.72, type: 'zone', desc: '天子湖A区工业平台', color: '#fbbc04'},
+    {name: '天子湖B区', lat: 30.60, lng: 119.75, type: 'zone', desc: '天子湖B区工业平台', color: '#fbbc04'},
+    {name: '画溪街道', lat: 30.57, lng: 119.68, type: 'zone', desc: '画溪街道工业平台', color: '#fbbc04'},
+    {name: '泗安镇', lat: 30.58, lng: 119.80, type: 'zone', desc: '泗安镇工业平台', color: '#fbbc04'},
     
-    // 中心标记 - 天子湖
-    var centerIcon = createCustomIcon('center', '长合区·天子湖');
-    var centerMarker = L.marker(MAP_CENTER, {icon: centerIcon}).addTo(map);
-    centerMarker.bindPopup('<div style="padding:8px;"><strong style="color:#00d4ff;">长三角（湖州）产业合作区</strong><br><span style="color:#888;">天子湖片区 · 核心招商区域</span></div>');
-    mapMarkers.push(centerMarker);
-    
-    // 区域标记
-    enterpriseLocations.filter(function(l){return l.type==='zone';}).forEach(function(loc){
-        var m = L.marker([loc.lat, loc.lng], {icon:createCustomIcon('zone', loc.name)}).addTo(map);
-        m.bindPopup(createPopupHTML(loc));
-        m._data = loc;
-        mapMarkers.push(m);
-    });
+    // 招商目标企业
+    {name: '宁德时代', lat: 30.98, lng: 119.95, type: 'target', desc: '450亿扩产 | 宜兴40km', color: '#ea4335'},
+    {name: '零跑汽车', lat: 30.27, lng: 120.15, type: 'target', desc: '港股上市 | 杭州80km', color: '#ea4335'},
+    {name: '吉利极氪', lat: 29.86, lng: 121.55, type: 'target', desc: 'IPO冲刺 | 宁波120km', color: '#ea4335'},
+    {name: '理想汽车', lat: 31.75, lng: 119.90, type: 'target', desc: '扩产中 | 常州100km', color: '#ea4335'},
+    {name: '汇川技术', lat: 31.30, lng: 120.62, type: 'target', desc: '伺服龙头 | 苏州80km', color: '#ea4335'},
+    {name: '蜂巢能源', lat: 31.80, lng: 119.50, type: 'target', desc: '科创板IPO | 常州60km', color: '#ea4335'},
+    {name: '地平线', lat: 39.90, lng: 116.40, type: 'target', desc: '港股IPO冲刺 | 北京', color: '#ea4335'},
+    {name: '华为引望', lat: 22.55, lng: 114.05, type: 'target', desc: '230亿融资 | 深圳', color: '#ea4335'},
     
     // 厂房标记
-    factoryLocations.forEach(function(loc){
-        var shortName = loc.name.split('-')[0];
-        var m = L.marker([loc.lat, loc.lng], {icon:createCustomIcon('factory', shortName)}).addTo(map);
-        m.bindPopup(createPopupHTML(loc));
-        m._data = loc;
-        mapMarkers.push(m);
+    {name: '天子湖A区厂房', lat: 30.64, lng: 119.73, type: 'factory', desc: '空闲厂房 12000㎡', color: '#34a853'},
+    {name: '天子湖B区厂房', lat: 30.61, lng: 119.76, type: 'factory', desc: '空闲厂房 8500㎡', color: '#34a853'},
+    {name: '泗安镇厂房', lat: 30.59, lng: 119.81, type: 'factory', desc: '空闲厂房 11000㎡', color: '#34a853'},
+    
+    // 已落地企业
+    {name: '浙江天林家纺', lat: 30.62, lng: 119.70, type: 'enterprise', desc: '规上企业', color: '#34a853'},
+    {name: '美思特射频', lat: 30.65, lng: 119.69, type: 'enterprise', desc: '规上企业', color: '#34a853'},
+];
+
+let selectedMarker = null;
+
+// 生成SVG地图
+function generateMapSVG() {
+    let svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${MAP_WIDTH} ${MAP_HEIGHT}" style="width:100%;height:100%;background:#0a1628;border-radius:12px;">`;
+    
+    // 背景网格
+    svg += `<defs>
+        <pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse">
+            <path d="M 50 0 L 0 0 0 50" fill="none" stroke="rgba(0,212,255,0.08)" stroke-width="1"/>
+        </pattern>
+        <filter id="glow">
+            <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+            <feMerge>
+                <feMergeNode in="coloredBlur"/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+        <filter id="shadow">
+            <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#000" flood-opacity="0.5"/>
+        </filter>
+    </defs>`;
+    
+    // 绘制背景
+    svg += `<rect width="${MAP_WIDTH}" height="${MAP_HEIGHT}" fill="#0a1628"/>`;
+    svg += `<rect width="${MAP_WIDTH}" height="${MAP_HEIGHT}" fill="url(#grid)"/>`;
+    
+    // 绘制区域背景 (长三角概览)
+    // 江苏
+    svg += `<path d="M 550 150 Q 600 120 700 130 L 750 200 Q 720 280 680 300 L 600 320 Q 520 280 530 200 Z" fill="rgba(0,212,255,0.05)" stroke="rgba(0,212,255,0.15)" stroke-width="1"/>`;
+    svg += `<text x="620" y="200" fill="rgba(0,212,255,0.3)" font-size="12">江苏</text>`;
+    
+    // 浙江
+    svg += `<path d="M 350 200 Q 400 150 500 170 L 580 250 Q 550 350 450 380 L 350 350 Q 300 280 350 200 Z" fill="rgba(0,212,255,0.08)" stroke="rgba(0,212,255,0.2)" stroke-width="1"/>`;
+    svg += `<text x="420" y="280" fill="rgba(0,212,255,0.3)" font-size="12">浙江</text>`;
+    
+    // 上海
+    svg += `<circle cx="600" cy="300" r="40" fill="rgba(0,212,255,0.1)" stroke="rgba(0,212,255,0.3)" stroke-width="1"/>`;
+    svg += `<text x="585" y="305" fill="rgba(0,212,255,0.5)" font-size="11">上海</text>`;
+    
+    // 200km辐射圈
+    svg += `<circle cx="${MAP_WIDTH/2}" cy="${MAP_HEIGHT/2}" r="280" fill="none" stroke="rgba(0,212,255,0.1)" stroke-width="1" stroke-dasharray="5,5"/>`;
+    svg += `<text x="${MAP_WIDTH/2 - 30}" y="80" fill="rgba(0,212,255,0.2)" font-size="10">200km产业生态圈</text>`;
+    
+    // 绘制连接线 (长合区到周边城市)
+    const centerXY = latLngToXY(30.63, 119.68);
+    const cities = [
+        {name: '杭州', lat: 30.27, lng: 120.15},
+        {name: '苏州', lat: 31.30, lng: 120.62},
+        {name: '常州', lat: 31.75, lng: 119.90},
+        {name: '宁波', lat: 29.86, lng: 121.55},
+        {name: '无锡', lat: 31.49, lng: 120.30},
+    ];
+    
+    cities.forEach(city => {
+        const cityXY = latLngToXY(city.lat, city.lng);
+        svg += `<line x1="${centerXY.x}" y1="${centerXY.y}" x2="${cityXY.x}" y2="${cityXY.y}" stroke="rgba(0,212,255,0.1)" stroke-width="1" stroke-dasharray="4,4"/>`;
     });
     
-    // 企业标记
-    enterpriseLocations.filter(function(l){return l.type==='enterprise';}).forEach(function(loc){
-        var m = L.marker([loc.lat, loc.lng], {icon:createCustomIcon('enterprise', loc.name.substring(0,5))}).addTo(map);
-        m.bindPopup(createPopupHTML(loc));
-        m._data = loc;
-        mapMarkers.push(m);
+    // 绘制标记
+    mapMarkers.forEach((marker, idx) => {
+        const pos = latLngToXY(marker.lat, marker.lng);
+        const size = marker.type === 'center' ? 18 : (marker.type === 'zone' ? 14 : 12);
+        const emoji = {
+            center: '⭐',
+            zone: '📍',
+            target: '🎯',
+            factory: '🏢',
+            enterprise: '🏭'
+        }[marker.type] || '📍';
+        
+        // 标记圆点
+        svg += `<circle cx="${pos.x}" cy="${pos.y}" r="${size}" fill="${marker.color}" filter="url(#shadow)" opacity="0.9"/>`;
+        
+        // 脉冲动画 (中心点)
+        if(marker.type === 'center') {
+            svg += `<circle cx="${pos.x}" cy="${pos.y}" r="${size}" fill="none" stroke="${marker.color}" stroke-width="2" opacity="0.6">
+                <animate attributeName="r" values="${size};${size+15};${size}" dur="2s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0.6;0;0.6" dur="2s" repeatCount="indefinite"/>
+            </circle>`;
+        }
+        
+        // 标签
+        const labelOffset = marker.type === 'target' ? -30 : (marker.type === 'center' ? -45 : -25);
+        svg += `<text x="${pos.x + labelOffset}" y="${pos.y - size - 5}" fill="${marker.color}" font-size="11" font-weight="bold" text-anchor="end">${marker.name}</text>`;
+        
+        // 点击区域 (透明)
+        svg += `<circle cx="${pos.x}" cy="${pos.y}" r="${size + 10}" fill="transparent" cursor="pointer" class="map-marker" data-idx="${idx}" onclick="showMarkerDetail(${idx})"/>`;
     });
     
-    // 招商目标
-    targetCompanies.forEach(function(loc){
-        var m = L.marker([loc.lat, loc.lng], {icon:createCustomIcon('target', loc.name)}).addTo(map);
-        m.bindPopup(createPopupHTML(loc));
-        m._data = loc;
-        mapMarkers.push(m);
+    // 图例
+    svg += `<g transform="translate(20, ${MAP_HEIGHT - 140})">`;
+    svg += `<rect x="0" y="0" width="160" height="120" fill="rgba(10,22,46,0.9)" rx="8" stroke="rgba(0,212,255,0.2)"/>`;
+    svg += `<text x="10" y="20" fill="#fff" font-size="12" font-weight="bold">图例</text>`;
+    
+    const legendItems = [
+        {color: '#00d4ff', label: '⭐ 长合区中心'},
+        {color: '#fbbc04', label: '📍 园区区域'},
+        {color: '#ea4335', label: '🎯 招商目标'},
+        {color: '#34a853', label: '🏢/🏭 厂房/企业'},
+    ];
+    
+    legendItems.forEach((item, i) => {
+        svg += `<circle cx="20" cy="${45 + i*22}" r="6" fill="${item.color}"/>`;
+        svg += `<text x="35" y="${50 + i*22}" fill="#c0d0e0" font-size="11">${item.label}</text>`;
     });
+    
+    svg += `</g>`;
+    
+    // 比例尺
+    svg += `<g transform="translate(${MAP_WIDTH - 130}, ${MAP_HEIGHT - 40})">`;
+    svg += `<rect x="0" y="0" width="100" height="6" fill="rgba(0,212,255,0.3)" rx="3"/>`;
+    svg += `<text x="0" y="20" fill="#8b949e" font-size="10">0</text>`;
+    svg += `<text x="40" y="20" fill="#8b949e" font-size="10">50km</text>`;
+    svg += `<text x="90" y="20" fill="#8b949e" font-size="10">100km</text>`;
+    svg += `</g>`;
+    
+    svg += `</svg>`;
+    return svg;
 }
 
-// 清除所有标记
-function clearMapMarkers(){
-    mapMarkers.forEach(function(m){ map.removeLayer(m); });
-    mapMarkers = [];
+// 显示标记详情
+function showMarkerDetail(idx) {
+    const marker = mapMarkers[idx];
+    if(!marker) return;
+    
+    // 更新详情面板
+    const detail = document.getElementById('markerDetail');
+    if(detail) {
+        const typeText = {
+            center: '⭐ 长合区中心',
+            zone: '📍 园区区域',
+            target: '🎯 招商目标',
+            factory: '🏢 空余厂房',
+            enterprise: '🏭 已落地企业'
+        }[marker.type] || '';
+        
+        detail.innerHTML = `
+            <div class="marker-detail-header" style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+                <span style="font-size:24px;">${typeText}</span>
+                <span style="color:${marker.color};font-size:16px;font-weight:bold;">${marker.name}</span>
+            </div>
+            <div style="color:#c0d0e0;line-height:1.8;">
+                <p style="margin:8px 0;">📝 ${marker.desc}</p>
+                <p style="margin:8px 0;">📐 坐标: ${marker.lat.toFixed(3)}°N, ${marker.lng.toFixed(3)}°E</p>
+            </div>
+            ${marker.type === 'target' ? '<button class="map-action-btn" onclick="openBookingModal(\'' + marker.name + '\')">📅 预约考察</button>' : ''}
+            ${marker.type === 'factory' ? '<button class="map-action-btn" onclick="openBookingModal(\'' + marker.name + '\')">📅 预约看厂</button>' : ''}
+        `;
+        detail.style.display = 'block';
+    }
+    
+    // 更新高亮
+    document.querySelectorAll('.marker-highlight').forEach(el => el.classList.remove('marker-highlight'));
+    
+    // 关闭按钮
+    const closeBtn = document.createElement('button');
+    closeBtn.innerHTML = '×';
+    closeBtn.style.cssText = 'position:absolute;top:10px;right:10px;background:none;border:none;color:#8b949e;font-size:24px;cursor:pointer;';
+    closeBtn.onclick = () => {
+        detail.style.display = 'none';
+    };
+    detail.appendChild(closeBtn);
 }
 
-// 显示错误状态
-function showMapError(){
-    var c = document.getElementById('map');
-    if(c){
-        c.innerHTML = '<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;background:rgba(10,14,39,0.98);color:#8b949e;">'+
-            '<div style="font-size:48px;margin-bottom:16px;">🗺️</div>'+
-            '<div style="font-size:16px;margin-bottom:8px;">地图加载失败</div>'+
-            '<div style="font-size:13px;margin-bottom:16px;">请刷新页面重试</div>'+
-            '<button onclick="initMap()" style="padding:10px 24px;background:#00d4ff;border:none;border-radius:8px;color:#000;cursor:pointer;font-weight:600;">🔄 重新加载</button>'+
-            '</div>';
+// 初始化地图
+function initMap() {
+    const container = document.getElementById('map');
+    if(!container) return;
+    
+    try {
+        // 生成SVG地图
+        container.innerHTML = generateMapSVG();
+        
+        // 显示中心区域详情
+        setTimeout(() => showMarkerDetail(0), 500);
+        
+        console.log('✅ SVG交互地图初始化成功');
+    } catch(e) {
+        console.error('❌ 地图初始化失败:', e);
+        container.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;color:#8b949e;">地图加载失败</div>';
     }
 }
 
 // 筛选功能
-function filterMap(type){
-    // 高亮标签
-    document.querySelectorAll('.filter-tag').forEach(function(t){ t.classList.remove('active'); });
+function filterMap(type) {
+    document.querySelectorAll('.filter-tag').forEach(t => t.classList.remove('active'));
     if(event && event.target) event.target.classList.add('active');
     
-    if(!map) return;
+    const svg = document.querySelector('#map svg');
+    if(!svg) return;
     
-    if(type==='all'){
-        mapMarkers.forEach(function(m){ m.addTo(map); });
-        map.setView(MAP_CENTER, MAP_ZOOM);
-    }else{
-        var targets = {
-            battery:['宁德时代','中创新航','亿纬锂能'],
-            motor:['汇川技术','精进电动'],
-            smart:['地平线','华为引望'],
-            chassis:['拓普集团','保隆科技'],
-            ev:['零跑汽车','理想汽车']
-        };
-        var list = targets[type]||[];
+    const markers = svg.querySelectorAll('.map-marker');
+    markers.forEach(m => {
+        const idx = parseInt(m.getAttribute('data-idx'));
+        const marker = mapMarkers[idx];
+        if(!marker) return;
         
-        mapMarkers.forEach(function(m){
-            var d = m._data||{};
-            if(d.type!=='target' || list.indexOf(d.name)>=0){
-                m.addTo(map);
-            }else{
-                map.removeLayer(m);
-            }
-        });
-    }
-}
-
-function filterMapType(type){
-    document.querySelectorAll('.filter-group:nth-child(3) .filter-tag').forEach(function(t){ t.classList.remove('active'); });
-    if(event && event.target) event.target.classList.add('active');
-    
-    if(!map) return;
-    
-    mapMarkers.forEach(function(m){
-        var d = m._data||{};
-        var show = false;
-        if(type==='all') show=true;
-        else if(type==='enterprise' && d.type==='enterprise') show=true;
-        else if(type==='factory' && d.type==='factory') show=true;
-        else if(type==='target' && d.type==='target') show=true;
-        
-        if(show){ m.addTo(map); }else{ map.removeLayer(m); }
+        if(type === 'all') {
+            m.style.display = 'block';
+        } else {
+            const show = {
+                battery: marker.type === 'target' && ['宁德时代', '蜂巢能源'].indexOf(marker.name) >= 0,
+                motor: marker.type === 'target' && marker.name === '汇川技术',
+                smart: marker.type === 'target' && ['地平线', '华为引望'].indexOf(marker.name) >= 0,
+                chassis: marker.type === 'target',
+                ev: marker.type === 'target' && ['零跑汽车', '理想汽车', '吉利极氪'].indexOf(marker.name) >= 0,
+            };
+            
+            m.style.display = (show[type] || marker.type !== 'target') ? 'block' : 'none';
+        }
     });
 }
 
-// 视口检测初始化
-function setupMapViewportObserver(){
-    var section = document.getElementById('map');
+function filterMapType(type) {
+    document.querySelectorAll('.filter-group:nth-child(3) .filter-tag').forEach(t => t.classList.remove('active'));
+    if(event && event.target) event.target.classList.add('active');
+    
+    const svg = document.querySelector('#map svg');
+    if(!svg) return;
+    
+    const markers = svg.querySelectorAll('.map-marker');
+    markers.forEach(m => {
+        const idx = parseInt(m.getAttribute('data-idx'));
+        const marker = mapMarkers[idx];
+        if(!marker) return;
+        
+        if(type === 'all') {
+            m.style.display = 'block';
+        } else {
+            m.style.display = marker.type === type ? 'block' : 'none';
+        }
+    });
+}
+
+// 视口检测
+function setupMapViewportObserver() {
+    const section = document.getElementById('mapSection');
     if(!section) return;
     
-    var inited = false;
-    
-    if('IntersectionObserver' in window){
-        var obs = new IntersectionObserver(function(entries){
-            entries.forEach(function(entry){
-                if(entry.isIntersecting && !inited){
-                    inited=true;
-                    setTimeout(function(){ initMap(); },300);
+    if('IntersectionObserver' in window) {
+        const obs = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    setTimeout(initMap, 300);
+                    obs.disconnect();
                 }
             });
-        },{threshold:0.05,rootMargin:'300px'});
+        }, {threshold: 0.1, rootMargin: '200px'});
         obs.observe(section);
-    }else{
-        setTimeout(initMap,1000);
+    } else {
+        setTimeout(initMap, 500);
     }
 }
 
