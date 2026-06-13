@@ -52,9 +52,28 @@ body{font-family:"PingFang SC","Microsoft YaHei",sans-serif;background:#0a0e14;c
 .nio-parts-layer{position:absolute;top:0;left:0;right:0;bottom:0;pointer-events:none}
 .nio-part{position:absolute;cursor:pointer;transition:all .5s;border:2px solid transparent;border-radius:8px;pointer-events:all;display:flex;align-items:center;justify-content:center;background:rgba(31,111,235,0.1);overflow:hidden}
 .nio-part:hover{border-color:#58a6ff;background:rgba(88,166,255,0.3);z-index:100}
-.nio-part .part-icon{font-size:24px;opacity:0.8}
-.nio-part .part-label{position:absolute;bottom:4px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,0.9);padding:2px 8px;border-radius:4px;font-size:10px;white-space:nowrap;opacity:0;transition:opacity .3s}
+.nio-part .part-icon{font-size:24px;opacity:0.8;position:relative;z-index:2;text-shadow:0 2px 4px rgba(0,0,0,0.8)}
+.nio-part .part-label{position:absolute;bottom:4px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,0.9);padding:2px 8px;border-radius:4px;font-size:10px;white-space:nowrap;opacity:0;transition:opacity .3s;z-index:2}
 .nio-part:hover .part-label{opacity:1}
+.nio-part .part-img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;border-radius:6px}
+.editable-part{box-shadow:0 0 0 2px rgba(88,166,255,0);transition:all .3s}
+.editable-part:hover{box-shadow:0 0 0 3px rgba(88,166,255,0.6)}
+.editable-part.selected{box-shadow:0 0 0 3px #f0883e}
+/* 图片编辑器 */
+.modal{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.8);z-index:10000;align-items:center;justify-content:center}
+.modal.show{display:flex}
+.modal-content{background:#161b22;border:1px solid #30363d;border-radius:16px;padding:24px;max-width:600px;width:95%}
+.editor-preview{background:#0d1117;border-radius:12px;padding:20px;margin:16px 0;display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.editor-preview img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:8px;cursor:pointer;border:2px solid transparent;transition:all .2s}
+.editor-preview img:hover{border-color:#58a6ff}
+.editor-preview img.selected{border-color:#f0883e}
+.block-selector{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px;margin:12px 0}
+.block-item{background:#21262d;padding:12px;border-radius:8px;text-align:center;cursor:pointer;transition:all .2s;border:2px solid transparent}
+.block-item:hover{border-color:#58a6ff;background:#30363d}
+.block-item.selected{border-color:#f0883e;background:#30363d}
+.block-item img{width:60px;height:60px;object-fit:cover;border-radius:6px;margin-bottom:8px}
+.block-item .name{font-size:12px;color:#c9d1d9}
+.editor-form{display:flex;gap:10px;margin-top:16px}
 /* 零部件详情弹窗 */
 .part-popup{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.9);z-index:9999;display:none;align-items:center;justify-content:center}
 .part-popup.show{display:flex}
@@ -288,25 +307,74 @@ body{font-family:"PingFang SC","Microsoft YaHei",sans-serif;background:#0a0e14;c
 <div class="nio-hero">
 <div class="nio-car-container">
 <div class="nio-car" id="nioCar">
-<img src="https://img1.baichezhijia.com/2024/12/04/efd4f38a4f7d4b2a9c0f1e2d3b4a5c6d.jpg" alt="蔚来ES8" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/NIO_ES8_2021_front.jpg/800px-NIO_ES8_2021_front.jpg'">
+<img src="https://coze-coding-project.tos.coze.site/coze_storage_7650506824847917082/image/generate_image_9bea7970-8ff6-4326-84fe-180d478bc4c0.jpeg?sign=1812889309-664d5769d5-0-fae16b5ec9b330a18060a657bc09b21401cd33314294a1afbbd68009685a7e8a" alt="蔚来ES8" id="mainCarImg">
 </div>
 <div class="nio-parts-layer" id="nioParts">
-<div class="nio-part" id="part-roof" style="top:8%;left:30%;width:40%;height:18%" onclick="showPartDetail('roof')"><span class="part-icon">🏠</span><span class="part-label">智能座舱顶棚</span></div>
-<div class="nio-part" id="part-screen" style="top:35%;left:55%;width:18%;height:20%" onclick="showPartDetail('screen')"><span class="part-icon">📺</span><span class="part-label">中控大屏</span></div>
-<div class="nio-part" id="part-battery" style="top:70%;left:35%;width:30%;height:15%" onclick="showPartDetail('battery')"><span class="part-icon">🔋</span><span class="part-label">100kWh电池包</span></div>
-<div class="nio-part" id="part-motor" style="top:62%;left:20%;width:15%;height:15%" onclick="showPartDetail('motor')"><span class="part-icon">⚡</span><span class="part-label">前永磁电机</span></div>
-<div class="nio-part" id="part-motor2" style="top:62%;right:20%;width:15%;height:15%" onclick="showPartDetail('motor')"><span class="part-icon">⚡</span><span class="part-label">后感应电机</span></div>
-<div class="nio-part" id="part-chassis" style="top:78%;left:15%;width:70%;height:10%" onclick="showPartDetail('chassis')"><span class="part-icon">🎯</span><span class="part-label">空气悬架底盘</span></div>
-<div class="nio-part" id="part-wheel" style="top:72%;left:8%;width:12%;height:18%" onclick="showPartDetail('wheel')"><span class="part-icon">🛞</span><span class="part-label">21寸轮毂</span></div>
-<div class="nio-part" id="part-wheel2" style="top:72%;right:8%;width:12%;height:18%" onclick="showPartDetail('wheel')"><span class="part-icon">🛞</span><span class="part-label">21寸轮毂</span></div>
-<div class="nio-part" id="part-sensor" style="top:28%;left:72%;width:10%;height:10%" onclick="showPartDetail('sensor')"><span class="part-icon">👁️</span><span class="part-label">激光雷达</span></div>
-<div class="nio-part" id="part-body" style="top:25%;left:25%;width:50%;height:40%" onclick="showPartDetail('body')"><span class="part-icon">🚗</span><span class="part-label">全铝车身</span></div>
+<div class="nio-part editable-part" data-part="roof" style="top:5%;left:25%;width:50%;height:20%" onclick="showPartDetail('roof')">
+<img src="https://coze-coding-project.tos.coze.site/coze_storage_7650506824847917082/image/generate_image_ba56cdaa-f517-48d8-a48b-52cca6065cfa.jpeg?sign=1812889514-1bb3de6a80-0-cad70aebb41e8e634231eb3448a87c14ea123a44282f1fa3111ab7361efc9497" alt="智能座舱" class="part-img">
+<span class="part-icon">🏠</span><span class="part-label">智能座舱顶棚</span>
+</div>
+<div class="nio-part editable-part" data-part="battery" style="top:68%;left:30%;width:40%;height:18%" onclick="showPartDetail('battery')">
+<img src="https://coze-coding-project.tos.coze.site/coze_storage_7650506824847917082/image/generate_image_c5ed466c-5ce0-46f1-ae69-8f9279158b9c.jpeg?sign=1812889346-9739297e87-0-8865fec9dcf22df390516d15805a2db683f7ca16ffbced98c436b2364acb372d" alt="电池包" class="part-img">
+<span class="part-icon">🔋</span><span class="part-label">100kWh电池包</span>
+</div>
+<div class="nio-part editable-part" data-part="motor" style="top:58%;left:12%;width:18%;height:18%" onclick="showPartDetail('motor')">
+<img src="https://coze-coding-project.tos.coze.site/coze_storage_7650506824847917082/image/generate_image_fcb935bd-0581-4c1c-b819-1960041ce475.jpeg?sign=1812889376-2c54a30521-0-03a219a584ec67798ee6fdc9abf002b275aebb8d42c480004ecc992a5d4e218c" alt="电机" class="part-img">
+<span class="part-icon">⚡</span><span class="part-label">前永磁电机</span>
+</div>
+<div class="nio-part editable-part" data-part="inverter" style="top:58%;right:12%;width:18%;height:18%" onclick="showPartDetail('inverter')">
+<img src="https://coze-coding-project.tos.coze.site/coze_storage_7650506824847917082/image/generate_image_6845098c-384d-4aa3-8171-42df7be11b16.jpeg?sign=1812889406-4e7157802d-0-b76c66c55d2af4e1c50caf82d036e071d7d7d660ac52a9590a333ec7d2da5759" alt="电控" class="part-img">
+<span class="part-icon">💡</span><span class="part-label">SiC电控</span>
+</div>
+<div class="nio-part editable-part" data-part="chassis" style="top:75%;left:15%;width:70%;height:12%" onclick="showPartDetail('chassis')">
+<img src="https://coze-coding-project.tos.coze.site/coze_storage_7650506824847917082/image/generate_image_beee61f7-1001-487f-bdd5-c0c7af664b81.jpeg?sign=1812889462-faa44def59-0-d64fac00be4d4e20e59f43897b4c489c65f8a34edd97335ecf13eebdb7cddcda" alt="底盘" class="part-img">
+<span class="part-icon">🎯</span><span class="part-label">空气悬架底盘</span>
+</div>
+<div class="nio-part editable-part" data-part="lidar" style="top:22%;left:68%;width:12%;height:12%" onclick="showPartDetail('lidar')">
+<img src="https://coze-coding-project.tos.coze.site/coze_storage_7650506824847917082/image/generate_image_83ae8edd-11a9-4626-b157-0eab0c8767a0.jpeg?sign=1812889429-7c1fe043dd-0-dc2a567dd83aee517b614fcf6480797c819cd78df2dd760f60d43255a51df5a2" alt="激光雷达" class="part-img">
+<span class="part-icon">👁️</span><span class="part-label">激光雷达</span>
+</div>
+<div class="nio-part editable-part" data-part="thermal" style="top:48%;left:55%;width:20%;height:15%" onclick="showPartDetail('thermal')">
+<img src="https://coze-coding-project.tos.coze.site/coze_storage_7650506824847917082/image/generate_image_08acc9b6-0e92-49b6-9baf-0bdb0f4c1831.jpeg?sign=1812889486-ffb0a4493f-0-da67df5f802443ba8a4f20b494b7b629ab5887f55d8166d53f1dae0858a9fdd4" alt="热管理" class="part-img">
+<span class="part-icon">❄️</span><span class="part-label">热管理系统</span>
+</div>
+<div class="nio-part editable-part" data-part="body" style="top:25%;left:25%;width:50%;height:40%" onclick="showPartDetail('body')">
+<img src="https://coze-coding-project.tos.coze.site/coze_storage_7650506824847917082/image/generate_image_6c185b82-5ca4-47a2-a752-380b7e124fdd.jpeg?sign=1812889543-130eff1019-0-0bacb5962677ebe24cac118fb44b7670c6b29c819867cbb2bedce132d5c912d6" alt="全铝车身" class="part-img">
+<span class="part-icon">🚗</span><span class="part-label">全铝车身</span>
+</div>
+<div class="nio-part editable-part" data-part="wheel" style="top:68%;left:5%;width:14%;height:20%" onclick="showPartDetail('wheel')">
+<img src="https://coze-coding-project.tos.coze.site/coze_storage_7650506824847917082/image/generate_image_1e8c354c-8860-45ef-a969-a75790130a6c.jpeg?sign=1812889572-97a176c7db-0-60c9a438ec67f005e357fed542946a73ed3075e984727678c68ed8fce2f75440" alt="轮毂" class="part-img">
+<span class="part-icon">🛞</span><span class="part-label">21寸轮毂</span>
+</div>
+<div class="nio-part editable-part" data-part="wheel2" style="top:68%;right:5%;width:14%;height:20%" onclick="showPartDetail('wheel')">
+<img src="https://coze-coding-project.tos.coze.site/coze_storage_7650506824847917082/image/generate_image_1e8c354c-8860-45ef-a969-a75790130a6c.jpeg?sign=1812889572-97a176c7db-0-60c9a438ec67f005e357fed542946a73ed3075e984727678c68ed8fce2f75440" alt="轮毂" class="part-img">
+<span class="part-icon">🛞</span><span class="part-label">21寸轮毂</span>
+</div>
 </div>
 </div>
 <div style="text-align:center;padding:20px">
 <button class="explode-btn" onclick="toggleExplode()" id="explodeBtn">▶ 拆解动画</button>
 <button class="explode-btn" style="background:#30363d" onclick="resetExplode()">↺ 重置</button>
+<button class="explode-btn" style="background:#238636" onclick="openImageEditor()">🖼️ 编辑图片</button>
 </div>
+</div>
+</div>
+
+<!-- 图片编辑弹窗 -->
+<div id="imageEditorModal" class="modal">
+<div class="modal-content" style="max-width:800px">
+<span class="close" onclick="closeImageEditor()">&times;</span>
+<h3>图片编辑器 - 积木块编辑</h3>
+<div class="editor-preview" id="editorPreview"></div>
+<div class="editor-controls">
+<p>选择要编辑的积木块：</p>
+<div class="block-selector" id="blockSelector"></div>
+</div>
+<div class="editor-form">
+<input type="url" id="newImageUrl" placeholder="输入新图片URL..." style="width:70%;padding:10px;border-radius:6px;border:1px solid #30363d;background:#0d1117;color:#e6edf3">
+<button class="explode-btn" style="background:#238636" onclick="applyImageChange()">应用</button>
+</div>
+<p style="color:#8b949e;font-size:12px;margin-top:10px">提示：可使用网络图片URL替换积木块图片</p>
 </div>
 </div>
 
@@ -739,14 +807,16 @@ var partsShowcase = [
 
 // 零部件详情
 var partDetails = {
-roof:{name:"智能座舱顶棚",img:"",desc:"蔚来ES8采用全景天窗设计，顶棚集成氛围灯、化妆镜、遮阳帘等，顶棚模块包含顶棚内饰、NOMI助手显示屏、阅读灯等。",specs:["全景天窗面积约1㎡","三区自动空调出风口","智能语音助手NOMI","12个扬声器音响"],"suppliers":["延锋内饰","安道拓","伟世通"]},
-screen:{name:"中控大屏",img:"",desc:"蔚来ES8配备11.3英寸竖置中控大屏和9.8英寸全液晶仪表盘，采用窄边框设计，分辨率1920x720，支持OTA升级。",specs:["11.3英寸竖置中控屏","9.8英寸全液晶仪表","HUD抬头显示","NOMI Mate 2.0"],"suppliers":["京东方","天马微","伟世通"]},
-battery:{name:"100kWh电池包",img:"",desc:"蔚来ES8搭载100kWh三元锂离子电池包，采用CTP技术，支持换电，NEDC续航里程可达580km。",specs:["100kWh三元锂电","支持换电","CTP技术","液冷温控"],"suppliers":["宁德时代","蜂巢能源","远东福斯特"]},
-motor:{name:"前永磁+后感应双电机",img:"",desc:"蔚来ES8采用前160kW永磁同步电机+后240kW感应异步电机的组合，综合功率480kW，峰值扭矩840N·m。",specs:["前永磁同步160kW","后感应异步240kW","综合480kW","0-100km/h 4.9秒"],"suppliers":["蔚来XPT","汇川技术","联合电子"]},
-chassis:{name:"空气悬架底盘",img:"",desc:"蔚来ES8采用前双叉臂+后多连杆独立悬架，标配空气悬架系统，可调高度范围±50mm，提升通过性和舒适性。",specs:["前双叉臂悬架","后多连杆悬架","空气弹簧CDC减震","智能四驱"],"suppliers":["采埃孚","大陆集团","耐世特","伯特利"]},
-wheel:{name:"21寸铝合金轮毂",img:"",desc:"蔚来ES8配备21寸低风阻铝合金轮毂，搭配255/50 R21轮胎，配备Brembo四活塞刹车卡钳。",specs:["21寸铝合金轮毂","255/50 R21轮胎","Brembo四活塞卡钳","通风盘式制动"],"suppliers":["中信戴卡","今飞凯达","Brembo","大陆集团"]},
-sensor:{name:"自动驾驶传感器",img:"",desc:"蔚来ES8搭载33个高性能感知硬件，包括1个前向激光雷达、5个毫米波雷达、12个超声波雷达、8个摄像头。",specs:["图达通激光雷达","5个毫米波雷达","12个超声波雷达","8个摄像头","NIO Adam超级计算平台"],"suppliers":["图达通","博世","大陆集团","Mobileye","地平线"]},
-body:{name:"全铝车身",img:"",desc:"蔚来ES8采用全铝合金车身架构，白车身铝合金含量达96.4%，扭转刚度44140N·m/deg，轻量化系数2.02。",specs:["全铝合金车身","铝合金含量96.4%","扭转刚度44140N·m/deg","前后镁铝合金副车架"],suppliers:["诺贝丽斯","旭升集团","拓普集团","文灿股份"]}
+roof:{name:"智能座舱顶棚",img:"https://coze-coding-project.tos.coze.site/coze_storage_7650506824847917082/image/generate_image_ba56cdaa-f517-48d8-a48b-52cca6065cfa.jpeg",desc:"蔚来ES8采用全景天窗设计，顶棚集成氛围灯、化妆镜、遮阳帘等，顶棚模块包含顶棚内饰、NOMI助手显示屏、阅读灯等。",specs:["全景天窗面积约1㎡","三区自动空调出风口","智能语音助手NOMI","12个扬声器音响"],"suppliers":["延锋内饰","安道拓","伟世通"]},
+screen:{name:"中控大屏",img:"https://coze-coding-project.tos.coze.site/coze_storage_7650506824847917082/image/generate_image_ba56cdaa-f517-48d8-a48b-52cca6065cfa.jpeg",desc:"蔚来ES8配备11.3英寸竖置中控大屏和9.8英寸全液晶仪表盘，采用窄边框设计，分辨率1920x720，支持OTA升级。",specs:["11.3英寸竖置中控屏","9.8英寸全液晶仪表","HUD抬头显示","NOMI Mate 2.0"],"suppliers":["京东方","天马微","伟世通"]},
+battery:{name:"100kWh电池包",img:"https://coze-coding-project.tos.coze.site/coze_storage_7650506824847917082/image/generate_image_c5ed466c-5ce0-46f1-ae69-8f9279158b9c.jpeg",desc:"蔚来ES8搭载100kWh三元锂离子电池包，采用CTP技术，支持换电，NEDC续航里程可达580km。",specs:["100kWh三元锂电","支持换电","CTP技术","液冷温控"],"suppliers":["宁德时代","蜂巢能源","远东福斯特"]},
+motor:{name:"前永磁+后感应双电机",img:"https://coze-coding-project.tos.coze.site/coze_storage_7650506824847917082/image/generate_image_fcb935bd-0581-4c1c-b819-1960041ce475.jpeg",desc:"蔚来ES8采用前160kW永磁同步电机+后240kW感应异步电机的组合，综合功率480kW，峰值扭矩840N·m。",specs:["前永磁同步160kW","后感应异步240kW","综合480kW","0-100km/h 4.9秒"],"suppliers":["蔚来XPT","汇川技术","联合电子"]},
+inverter:{name:"SiC电机控制器",img:"https://coze-coding-project.tos.coze.site/coze_storage_7650506824847917082/image/generate_image_6845098c-384d-4aa3-8171-42df7be11b16.jpeg",desc:"蔚来ES8采用800V高压SiC碳化硅电机控制器，高效区扩大，提升续航约6%，支持V2L对外放电功能。",specs:["800V高压平台","SiC碳化硅功率模块","高效区提升6%","V2L对外放电"],"suppliers":["蔚来XPT","比亚迪半导体","斯达半导"]},
+chassis:{name:"空气悬架底盘",img:"https://coze-coding-project.tos.coze.site/coze_storage_7650506824847917082/image/generate_image_beee61f7-1001-487f-bdd5-c0c7af664b81.jpeg",desc:"蔚来ES8采用前双叉臂+后多连杆独立悬架，标配空气悬架系统，可调高度范围±50mm，提升通过性和舒适性。",specs:["前双叉臂悬架","后多连杆悬架","空气弹簧CDC减震","智能四驱"],"suppliers":["采埃孚","大陆集团","耐世特","伯特利"]},
+wheel:{name:"21寸铝合金轮毂",img:"https://coze-coding-project.tos.coze.site/coze_storage_7650506824847917082/image/generate_image_1e8c354c-8860-45ef-a969-a75790130a6c.jpeg",desc:"蔚来ES8配备21寸低风阻铝合金轮毂，搭配255/50 R21轮胎，配备Brembo四活塞刹车卡钳。",specs:["21寸铝合金轮毂","255/50 R21轮胎","Brembo四活塞卡钳","通风盘式制动"],"suppliers":["中信戴卡","今飞凯达","Brembo","大陆集团"]},
+lidar:{name:"自动驾驶激光雷达",img:"https://coze-coding-project.tos.coze.site/coze_storage_7650506824847917082/image/generate_image_83ae8edd-11a9-4626-b157-0eab0c8767a0.jpeg",desc:"蔚来ES8搭载图达通falcon激光雷达，探测距离500米，120°超广视角，支持NOP领航辅助驾驶。",specs:["图达通falcon激光雷达","探测距离500米","120°超广视角","NIO Adam超级计算平台"],"suppliers":["图达通","博世","大陆集团","Mobileye","地平线"]},
+thermal:{name:"热管理系统",img:"https://coze-coding-project.tos.coze.site/coze_storage_7650506824847917082/image/generate_image_08acc9b6-0e92-49b6-9baf-0bdb0f4c1831.jpeg",desc:"蔚来ES8采用智能热泵空调系统，支持-10℃~45℃工作，制热效率提升50%，搭配电池液冷温控系统。",specs:["热泵空调系统","-10℃~45℃工作","制热效率提升50%","电池液冷温控"],"suppliers":["三花智控","银轮股份","翰昂集团"]},
+body:{name:"全铝车身",img:"https://coze-coding-project.tos.coze.site/coze_storage_7650506824847917082/image/generate_image_6c185b82-5ca4-47a2-a752-380b7e124fdd.jpeg",desc:"蔚来ES8采用全铝合金车身架构，白车身铝合金含量达96.4%，扭转刚度44140N·m/deg，轻量化系数2.02。",specs:["全铝合金车身","铝合金含量96.4%","扭转刚度44140N·m/deg","前后镁铝合金副车架"],"suppliers":["诺贝丽斯","旭升集团","拓普集团","文灿股份"]}
 };
 
 // 鱼骨图详情
@@ -928,6 +998,69 @@ document.getElementById('partPopup').classList.add('show');
 
 function closePartPopup(){
 document.getElementById('partPopup').classList.remove('show');
+}
+
+// ========== 图片编辑器 ==========
+var selectedPart = null;
+var partImages = {
+roof: 'https://coze-coding-project.tos.coze.site/coze_storage_7650506824847917082/image/generate_image_ba56cdaa-f517-48d8-a48b-52cca6065cfa.jpeg',
+battery: 'https://coze-coding-project.tos.coze.site/coze_storage_7650506824847917082/image/generate_image_c5ed466c-5ce0-46f1-ae69-8f9279158b9c.jpeg',
+motor: 'https://coze-coding-project.tos.coze.site/coze_storage_7650506824847917082/image/generate_image_fcb935bd-0581-4c1c-b819-1960041ce475.jpeg',
+inverter: 'https://coze-coding-project.tos.coze.site/coze_storage_7650506824847917082/image/generate_image_6845098c-384d-4aa3-8171-42df7be11b16.jpeg',
+chassis: 'https://coze-coding-project.tos.coze.site/coze_storage_7650506824847917082/image/generate_image_beee61f7-1001-487f-bdd5-c0c7af664b81.jpeg',
+lidar: 'https://coze-coding-project.tos.coze.site/coze_storage_7650506824847917082/image/generate_image_83ae8edd-11a9-4626-b157-0eab0c8767a0.jpeg',
+thermal: 'https://coze-coding-project.tos.coze.site/coze_storage_7650506824847917082/image/generate_image_08acc9b6-0e92-49b6-9baf-0bdb0f4c1831.jpeg',
+body: 'https://coze-coding-project.tos.coze.site/coze_storage_7650506824847917082/image/generate_image_6c185b82-5ca4-47a2-a752-380b7e124fdd.jpeg',
+wheel: 'https://coze-coding-project.tos.coze.site/coze_storage_7650506824847917082/image/generate_image_1e8c354c-8860-45ef-a969-a75790130a6c.jpeg',
+mainCar: 'https://coze-coding-project.tos.coze.site/coze_storage_7650506824847917082/image/generate_image_9bea7970-8ff6-4326-84fe-180d478bc4c0.jpeg'
+};
+
+function openImageEditor(){
+document.getElementById('imageEditorModal').classList.add('show');
+renderBlockSelector();
+}
+
+function closeImageEditor(){
+document.getElementById('imageEditorModal').classList.remove('show');
+selectedPart = null;
+}
+
+function renderBlockSelector(){
+var selector = document.getElementById('blockSelector');
+var partNames = {roof:'智能座舱',battery:'电池包',motor:'前电机',inverter:'电控',chassis:'底盘',lidar:'激光雷达',thermal:'热管理',body:'全铝车身',wheel:'轮毂',mainCar:'整车图片'};
+selector.innerHTML = '';
+Object.keys(partNames).forEach(function(key){
+var item = document.createElement('div');
+item.className = 'block-item' + (selectedPart === key ? ' selected' : '');
+item.innerHTML = '<img src="' + partImages[key] + '" alt="' + partNames[key] + '"><div class="name">' + partNames[key] + '</div>';
+item.onclick = function(){selectBlock(key);};
+selector.appendChild(item);
+});
+}
+
+function selectBlock(key){
+selectedPart = key;
+renderBlockSelector();
+}
+
+function applyImageChange(){
+if(!selectedPart) return;
+var url = document.getElementById('newImageUrl').value.trim();
+if(!url) return;
+partImages[selectedPart] = url;
+// 更新对应积木块的图片
+if(selectedPart === 'mainCar'){
+document.getElementById('mainCarImg').src = url;
+}else{
+var partEl = document.querySelector('.editable-part[data-part="' + selectedPart + '"]');
+if(partEl){
+var imgEl = partEl.querySelector('.part-img');
+if(imgEl) imgEl.src = url;
+}
+}
+// 更新编辑器预览
+renderBlockSelector();
+document.getElementById('newImageUrl').value = '';
 }
 
 // ========== 鱼骨图 ==========
