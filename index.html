@@ -303,6 +303,44 @@ textarea.form-input{grid-column:span 2;min-height:120px;resize:vertical}
 .chain-gaps{display:flex;flex-wrap:wrap;gap:10px;margin-top:15px}
 .chain-gap{padding:6px 12px;background:rgba(234,67,53,0.1);border:1px dashed #ea4335;border-radius:6px;font-size:13px;color:#ea4335}
 
+
+/* 厂房详情库样式 */
+.factory-brochure-stats{display:grid;grid-template-columns:repeat(6,1fr);gap:15px;margin-bottom:30px}
+.factory-brochure-stats .stat-item{background:linear-gradient(135deg,var(--bg-card),rgba(0,255,136,0.1));padding:20px;border-radius:12px;text-align:center;cursor:pointer;transition:all .3s;border:1px solid rgba(0,255,136,0.2)}
+.factory-brochure-stats .stat-item:hover{transform:translateY(-3px);box-shadow:0 8px 25px rgba(0,255,136,0.2)}
+.factory-brochure-stats .stat-item.success{background:linear-gradient(135deg,var(--bg-card),rgba(52,168,83,0.2));border-color:rgba(52,168,83,0.3)}
+.factory-brochure-stats .stat-item.warning{background:linear-gradient(135deg,var(--bg-card),rgba(251,188,4,0.2));border-color:rgba(251,188,4,0.3)}
+.factory-brochure-stats .stat-num{font-size:28px;font-weight:700;color:#34a853;display:block}
+.factory-brochure-stats .stat-label{color:var(--text-dim);font-size:12px;margin-top:3px;display:block}
+.factory-brochure-stats .stat-unit{color:var(--text-dim);font-size:11px}
+.factory-brochure-filters{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:25px}
+.factory-brochure-filters select,.factory-brochure-filters input{flex:1;min-width:150px;padding:10px 15px;background:rgba(255,255,255,0.05);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:13px}
+.factory-brochure-filters select:focus,.factory-brochure-filters input:focus{outline:none;border-color:#34a853}
+.factory-brochure-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(380px,1fr));gap:20px}
+.factory-brochure-card{background:linear-gradient(135deg,var(--bg-card),rgba(52,168,83,0.05));border-radius:16px;overflow:hidden;border:1px solid var(--border);transition:all .3s}
+.factory-brochure-card:hover{border-color:#34a853;transform:translateY(-3px);box-shadow:0 10px 30px rgba(52,168,83,0.15)}
+.factory-brochure-image{width:100%;height:200px;object-fit:cover;background:rgba(0,0,0,0.3)}
+.factory-brochure-content{padding:20px}
+.factory-brochure-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px}
+.factory-brochure-title{font-size:16px;font-weight:600;color:var(--text)}
+.factory-brochure-id{font-size:11px;color:var(--text-dim);margin-top:3px}
+.factory-brochure-status{padding:5px 12px;border-radius:20px;font-size:12px;font-weight:600;white-space:nowrap}
+.factory-brochure-status.kongxian{background:rgba(52,168,83,0.2);color:#34a853}
+.factory-brochure-status.yizu{background:rgba(234,67,53,0.2);color:#ea4335}
+.factory-brochure-status.yuding{background:rgba(251,188,4,0.2);color:#fbbc04}
+.factory-brochure-status.jianshe{background:rgba(26,115,232,0.2);color:#1a73e8}
+.factory-brochure-area{font-size:24px;font-weight:700;color:#34a853;margin-bottom:8px}
+.factory-brochure-area span{font-size:14px;font-weight:400;color:var(--text-dim)}
+.factory-brochure-specs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.factory-brochure-spec{padding:4px 10px;background:rgba(255,255,255,0.05);border-radius:6px;font-size:12px;color:var(--text-dim)}
+.factory-brochure-features{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.factory-brochure-feature{padding:3px 8px;background:rgba(52,168,83,0.1);border-radius:4px;font-size:11px;color:#34a853}
+.factory-brochure-contact{display:flex;justify-content:space-between;align-items:center;padding-top:12px;border-top:1px solid var(--border)}
+.factory-brochure-contact-info{font-size:13px;color:var(--text-dim)}
+.factory-brochure-call{background:linear-gradient(135deg,#34a853,#2d8f47);color:#fff;border:none;padding:8px 16px;border-radius:8px;cursor:pointer;font-size:13px;transition:all .3s}
+.factory-brochure-call:hover{transform:scale(1.05);box-shadow:0 5px 15px rgba(52,168,83,0.3)}
+.factory-brochure-note{background:rgba(251,188,4,0.1);border-left:3px solid #fbbc04;padding:10px;margin-top:12px;border-radius:0 6px 6px 0;font-size:12px;color:var(--text-dim)}
+
 </style>
 </head>
 <body>
@@ -774,6 +812,76 @@ textarea.form-input{grid-column:span 2;min-height:120px;resize:vertical}
 <button class="page-btn" onclick="changeEnterprisePage(-1)">上一页</button>
 <span class="page-info" id="entPageInfo">1 / 1</span>
 <button class="page-btn" onclick="changeEnterprisePage(1)">下一页</button>
+</div>
+</div>
+</section>
+
+<!-- 厂房详情库 -->
+<section id="factories" class="section" style="background:linear-gradient(135deg,rgba(0,50,100,0.3),rgba(0,100,50,0.2))">
+<div class="container">
+<div class="section-badge">🏭 厂房详情</div>
+<h2 class="section-title">长合区厂房资源库</h2>
+<p class="section-subtitle">天子湖镇 · 泗安镇 · 长合区核心区 优质厂房资源</p>
+
+<div class="factory-brochure-stats">
+<div class="stat-item" onclick="filterFactoryByStatus('')">
+<span class="stat-num" id="factoryTotal">0</span>
+<span class="stat-label">厂房总数</span>
+<span class="stat-unit">间</span>
+</div>
+<div class="stat-item success" onclick="filterFactoryByStatus('空闲')">
+<span class="stat-num" id="factoryAvailable">0</span>
+<span class="stat-label">空闲厂房</span>
+<span class="stat-unit">间</span>
+</div>
+<div class="stat-item warning" onclick="filterFactoryByStatus('已租')">
+<span class="stat-num" id="factoryRented">0</span>
+<span class="stat-label">已租厂房</span>
+<span class="stat-unit">间</span>
+</div>
+<div class="stat-item" onclick="filterFactoryByStatus('预订中')">
+<span class="stat-num" id="factoryPreBook">0</span>
+<span class="stat-label">预订中</span>
+<span class="stat-unit">间</span>
+</div>
+<div class="stat-item" onclick="filterFactoryByStatus('建设中')">
+<span class="stat-num" id="factoryBuilding">0</span>
+<span class="stat-label">建设中</span>
+<span class="stat-unit">间</span>
+</div>
+<div class="stat-item" style="background:var(--primary)">
+<span class="stat-num" id="factoryArea">0</span>
+<span class="stat-label">可租面积</span>
+<span class="stat-unit">㎡</span>
+</div>
+</div>
+
+<div class="factory-brochure-filters">
+<select id="factoryStatusFilter" onchange="filterFactory()">
+<option value="">全部状态</option>
+<option value="空闲">🟢 空闲</option>
+<option value="已租">🔴 已租</option>
+<option value="预订中">🟡 预订中</option>
+<option value="建设中">🔵 建设中</option>
+</select>
+<select id="factoryAreaFilter" onchange="filterFactory()">
+<option value="">全部片区</option>
+<option value="天子湖镇A区">天子湖镇A区</option>
+<option value="天子湖镇B区">天子湖镇B区</option>
+<option value="泗安镇">泗安镇</option>
+<option value="长合区核心区">长合区核心区</option>
+</select>
+<select id="factorySizeFilter" onchange="filterFactory()">
+<option value="">全部面积</option>
+<option value="0-5000">5000㎡以下</option>
+<option value="5000-10000">5000-10000㎡</option>
+<option value="10000-20000">10000-20000㎡</option>
+<option value="20000+">20000㎡以上</option>
+</select>
+<input type="text" id="factorySearchInput" placeholder="搜索厂房名称..." oninput="filterFactory()">
+</div>
+
+<div class="factory-brochure-grid" id="factoryBrochureGrid">
 </div>
 </div>
 </section>
@@ -6760,6 +6868,449 @@ function renderChainDetail() {
 window.addEventListener('DOMContentLoaded', function(){
     initLand();
     showChainTab('ev');
+});
+
+
+// 厂房详情库数据
+const factoryBrochureData = {
+  "status_options": [
+    "空闲",
+    "已租",
+    "预订中",
+    "建设中"
+  ],
+  "areas": [
+    "天子湖镇A区",
+    "天子湖镇B区",
+    "泗安镇",
+    "长合区核心区"
+  ],
+  "buildings": [
+    {
+      "id": "TZA-001",
+      "name": "天子湖A区1号厂房",
+      "area": "天子湖镇A区",
+      "status": "空闲",
+      "totalArea": 12000,
+      "availableArea": 12000,
+      "floor": "1-3层",
+      "height": "9m",
+      "power": "800KVA",
+      "price": 15,
+      "structure": "标准厂房",
+      "loading": "5吨行车",
+      "image": "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800",
+      "contact": "章秋",
+      "phone": "1386725xxxx",
+      "features": [
+        "混凝土框架",
+        "环氧地坪",
+        "卸货平台"
+      ],
+      "note": "交通便利，距高速口5分钟"
+    },
+    {
+      "id": "TZA-002",
+      "name": "天子湖A区2号厂房",
+      "area": "天子湖镇A区",
+      "status": "空闲",
+      "totalArea": 8500,
+      "availableArea": 8500,
+      "floor": "1-2层",
+      "height": "8m",
+      "power": "630KVA",
+      "price": 14,
+      "structure": "标准厂房",
+      "loading": "3吨行车",
+      "image": "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800",
+      "contact": "章秋",
+      "phone": "1386725xxxx",
+      "features": [
+        "彩钢板墙面",
+        "通风良好"
+      ],
+      "note": "适合轻加工类企业"
+    },
+    {
+      "id": "TZA-003",
+      "name": "天子湖A区3号厂房",
+      "area": "天子湖镇A区",
+      "status": "已租",
+      "totalArea": 15000,
+      "availableArea": 0,
+      "floor": "1层",
+      "height": "12m",
+      "power": "1000KVA",
+      "price": 16,
+      "structure": "钢结构",
+      "loading": "20吨行车",
+      "image": "https://images.unsplash.com/photo-1565636142-6c9c5e3f4c44?w=800",
+      "contact": "陈佳妍",
+      "phone": "1396725xxxx",
+      "features": [
+        "大开间",
+        "牛腿8米"
+      ],
+      "note": "已出租给汽车零部件企业"
+    },
+    {
+      "id": "TZA-004",
+      "name": "天子湖A区4号厂房",
+      "area": "天子湖镇A区",
+      "status": "空闲",
+      "totalArea": 6000,
+      "availableArea": 6000,
+      "floor": "1-4层",
+      "height": "6m",
+      "power": "400KVA",
+      "price": 12,
+      "structure": "标准厂房",
+      "loading": "2吨货梯",
+      "image": "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800",
+      "contact": "章秋",
+      "phone": "1386725xxxx",
+      "features": [
+        "电梯配套",
+        "宿舍楼"
+      ],
+      "note": "适合劳动密集型企业"
+    },
+    {
+      "id": "TZA-005",
+      "name": "天子湖A区5号厂房",
+      "area": "天子湖镇A区",
+      "status": "空闲",
+      "totalArea": 10000,
+      "availableArea": 10000,
+      "floor": "1层",
+      "height": "10m",
+      "power": "800KVA",
+      "price": 15,
+      "structure": "钢结构",
+      "loading": "10吨行车",
+      "image": "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800",
+      "contact": "宁玉权",
+      "phone": "1376725xxxx",
+      "features": [
+        "10吨行车",
+        "配电充足"
+      ],
+      "note": "适合装备制造类企业"
+    },
+    {
+      "id": "TZB-001",
+      "name": "天子湖B区1号厂房",
+      "area": "天子湖镇B区",
+      "status": "空闲",
+      "totalArea": 18000,
+      "availableArea": 18000,
+      "floor": "1层",
+      "height": "15m",
+      "power": "1250KVA",
+      "price": 18,
+      "structure": "钢结构",
+      "loading": "30吨行车",
+      "image": "https://images.unsplash.com/photo-1587293852726-70cdb56c2866?w=800",
+      "contact": "陈佳妍",
+      "phone": "1396725xxxx",
+      "features": [
+        "超大跨度",
+        "50吨行车",
+        "天然气"
+      ],
+      "note": "适合大型装备制造"
+    },
+    {
+      "id": "TZB-002",
+      "name": "天子湖B区2号厂房",
+      "area": "天子湖镇B区",
+      "status": "预订中",
+      "totalArea": 20000,
+      "availableArea": 20000,
+      "floor": "1层",
+      "height": "14m",
+      "power": "1000KVA",
+      "price": 17,
+      "structure": "钢结构",
+      "loading": "25吨行车",
+      "image": "https://images.unsplash.com/photo-1565610222536-ef125e59ef4e?w=800",
+      "contact": "陈佳妍",
+      "phone": "1396725xxxx",
+      "features": [
+        "独门独院",
+        "宿舍楼配套"
+      ],
+      "note": "预订中，预计下月可用"
+    },
+    {
+      "id": "TZB-003",
+      "name": "天子湖B区3号厂房",
+      "area": "天子湖镇B区",
+      "status": "空闲",
+      "totalArea": 12000,
+      "availableArea": 12000,
+      "floor": "1-2层",
+      "height": "8m",
+      "power": "630KVA",
+      "price": 13,
+      "structure": "标准厂房",
+      "loading": "5吨行车",
+      "image": "https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=800",
+      "contact": "宁玉权",
+      "phone": "1376725xxxx",
+      "features": [
+        "标准配电",
+        "消防达标"
+      ],
+      "note": "适合精密制造"
+    },
+    {
+      "id": "SA-001",
+      "name": "泗安镇1号厂房",
+      "area": "泗安镇",
+      "status": "空闲",
+      "totalArea": 11000,
+      "availableArea": 11000,
+      "floor": "1层",
+      "height": "10m",
+      "power": "800KVA",
+      "price": 12,
+      "structure": "钢结构",
+      "loading": "15吨行车",
+      "image": "https://images.unsplash.com/photo-1565632787387-9b03f7c9e851?w=800",
+      "contact": "章秋",
+      "phone": "1386725xxxx",
+      "features": [
+        "交通便利",
+        "政策优惠"
+      ],
+      "note": "享受长合区招商政策"
+    },
+    {
+      "id": "SA-002",
+      "name": "泗安镇2号厂房",
+      "area": "泗安镇",
+      "status": "空闲",
+      "totalArea": 8000,
+      "availableArea": 8000,
+      "floor": "1-3层",
+      "height": "7m",
+      "power": "500KVA",
+      "price": 11,
+      "structure": "标准厂房",
+      "loading": "3吨货梯",
+      "image": "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800",
+      "contact": "陈佳妍",
+      "phone": "1396725xxxx",
+      "features": [
+        "多层厂房",
+        "员工宿舍"
+      ],
+      "note": "适合电子信息类企业"
+    },
+    {
+      "id": "SA-003",
+      "name": "泗安镇3号厂房",
+      "area": "泗安镇",
+      "status": "空闲",
+      "totalArea": 9500,
+      "availableArea": 9500,
+      "floor": "1层",
+      "height": "9m",
+      "power": "630KVA",
+      "price": 12,
+      "structure": "钢结构",
+      "loading": "10吨行车",
+      "image": "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800",
+      "contact": "宁玉权",
+      "phone": "1376725xxxx",
+      "features": [
+        "大开间",
+        "方便布局"
+      ],
+      "note": "适合汽车零部件"
+    },
+    {
+      "id": "SA-004",
+      "name": "泗安镇4号厂房",
+      "area": "泗安镇",
+      "status": "已租",
+      "totalArea": 16000,
+      "availableArea": 0,
+      "floor": "1层",
+      "height": "12m",
+      "power": "1000KVA",
+      "price": 14,
+      "structure": "钢结构",
+      "loading": "20吨行车",
+      "image": "https://images.unsplash.com/photo-1565610222536-ef125e59ef4e?w=800",
+      "contact": "章秋",
+      "phone": "1386725xxxx",
+      "features": [
+        "配电充足"
+      ],
+      "note": "已出租"
+    },
+    {
+      "id": "ZH-001",
+      "name": "长合区核心区1号",
+      "area": "长合区核心区",
+      "status": "空闲",
+      "totalArea": 20000,
+      "availableArea": 20000,
+      "floor": "1层",
+      "height": "16m",
+      "power": "1600KVA",
+      "price": 20,
+      "structure": "钢结构",
+      "loading": "50吨行车",
+      "image": "https://images.unsplash.com/photo-1587293852726-70cdb56c2866?w=800",
+      "contact": "陈佳妍",
+      "phone": "1396725xxxx",
+      "features": [
+        "甲类厂房",
+        "危险品库",
+        "天然气",
+        "蒸汽"
+      ],
+      "note": "适合新能源电池类项目"
+    },
+    {
+      "id": "ZH-002",
+      "name": "长合区核心区2号",
+      "area": "长合区核心区",
+      "status": "建设中",
+      "totalArea": 25000,
+      "availableArea": 0,
+      "floor": "1层",
+      "height": "18m",
+      "power": "2000KVA",
+      "price": 0,
+      "structure": "钢结构",
+      "loading": "50吨行车",
+      "image": "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800",
+      "contact": "宁玉权",
+      "phone": "1376725xxxx",
+      "features": [
+        "在建中",
+        "预计2026年Q3完工"
+      ],
+      "note": "可预订"
+    },
+    {
+      "id": "ZH-003",
+      "name": "长合区核心区3号",
+      "area": "长合区核心区",
+      "status": "空闲",
+      "totalArea": 15000,
+      "availableArea": 15000,
+      "floor": "1-2层",
+      "height": "8m",
+      "power": "630KVA",
+      "price": 16,
+      "structure": "标准厂房",
+      "loading": "5吨货梯",
+      "image": "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800",
+      "contact": "章秋",
+      "phone": "1386725xxxx",
+      "features": [
+        "研发生产两用",
+        "办公楼配套"
+      ],
+      "note": "适合高新技术项目"
+    }
+  ]
+};
+
+// 厂房详情库初始化
+function initFactoryBrochure() {
+    if(typeof factoryBrochureData === 'undefined') return;
+    var buildings = factoryBrochureData.buildings || [];
+    
+    document.getElementById('factoryTotal').textContent = buildings.length;
+    document.getElementById('factoryAvailable').textContent = buildings.filter(function(b){return b.status==='空闲'}).length;
+    document.getElementById('factoryRented').textContent = buildings.filter(function(b){return b.status==='已租'}).length;
+    document.getElementById('factoryPreBook').textContent = buildings.filter(function(b){return b.status==='预订中'}).length;
+    document.getElementById('factoryBuilding').textContent = buildings.filter(function(b){return b.status==='建设中'}).length;
+    document.getElementById('factoryArea').textContent = buildings.filter(function(b){return b.status==='空闲'}).reduce(function(s,b){return s+b.availableArea;},0).toLocaleString();
+    
+    filterFactory();
+}
+
+// 筛选厂房
+function filterFactory() {
+    var status = document.getElementById('factoryStatusFilter').value;
+    var area = document.getElementById('factoryAreaFilter').value;
+    var sizeRange = document.getElementById('factorySizeFilter').value;
+    var searchText = (document.getElementById('factorySearchInput').value || '').toLowerCase();
+    
+    var buildings = (factoryBrochureData && factoryBrochureData.buildings) || [];
+    
+    var filtered = buildings.filter(function(b) {
+        if(status && b.status !== status) return false;
+        if(area && b.area !== area) return false;
+        if(searchText && (b.name.toLowerCase().indexOf(searchText)<0 && b.id.toLowerCase().indexOf(searchText)<0)) return false;
+        if(sizeRange) {
+            var total = b.availableArea || b.totalArea;
+            if(sizeRange === '0-5000' && total > 5000) return false;
+            if(sizeRange === '5000-10000' && (total < 5000 || total > 10000)) return false;
+            if(sizeRange === '10000-20000' && (total < 10000 || total > 20000)) return false;
+            if(sizeRange === '20000+' && total < 20000) return false;
+        }
+        return true;
+    });
+    
+    renderFactoryBrochure(filtered);
+}
+
+function filterFactoryByStatus(status) {
+    document.getElementById('factoryStatusFilter').value = status;
+    filterFactory();
+}
+
+function renderFactoryBrochure(buildings) {
+    var grid = document.getElementById('factoryBrochureGrid');
+    if(!grid) return;
+    
+    var statusMap = {'空闲':'kongxian','已租':'yizu','预订中':'yuding','建设中':'jianshe'};
+    var statusTextMap = {'空闲':'🟢 空闲','已租':'🔴 已租','预订中':'🟡 预订中','建设中':'🔵 建设中'};
+    
+    grid.innerHTML = buildings.map(function(b) {
+        return '<div class="factory-brochure-card">'+
+            '<img class="factory-brochure-image" src="'+b.image+'" alt="'+b.name+'" onerror="this.src=\'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800\';">'+
+            '<div class="factory-brochure-content">'+
+                '<div class="factory-brochure-header">'+
+                    '<div>'+
+                        '<div class="factory-brochure-title">'+b.name+'</div>'+
+                        '<div class="factory-brochure-id">'+b.id+' | '+b.area+'</div>'+
+                    '</div>'+
+                    '<span class="factory-brochure-status '+statusMap[b.status]+'">'+statusTextMap[b.status]+'</span>'+
+                '</div>'+
+                '<div class="factory-brochure-area">'+b.availableArea.toLocaleString()+'<span> ㎡ 可租 / 共 '+b.totalArea.toLocaleString()+' ㎡</span></div>'+
+                '<div class="factory-brochure-specs">'+
+                    '<span class="factory-brochure-spec">🏗️ '+b.structure+'</span>'+
+                    '<span class="factory-brochure-spec">📏 '+b.height+'层高</span>'+
+                    '<span class="factory-brochure-spec">⚡ '+b.power+'</span>'+
+                    '<span class="factory-brochure-spec">🏭 '+b.floor+'</span>'+
+                    '<span class="factory-brochure-spec">💰 '+b.price+'元/㎡/月</span>'+
+                    '<span class="factory-brochure-spec">🏋️ '+b.loading+'</span>'+
+                '</div>'+
+                '<div class="factory-brochure-features">'+
+                    (b.features||[]).map(function(f){return '<span class="factory-brochure-feature">'+f+'</span>';}).join('')+
+                '</div>'+
+                '<div class="factory-brochure-contact">'+
+                    '<div class="factory-brochure-contact-info">📞 '+b.contact+' | '+b.phone+'</div>'+
+                    '<button class="factory-brochure-call" onclick="window.open(\'tel:'+b.phone+'\')">📞 立即联系</button>'+
+                '</div>'+
+                (b.note?'<div class="factory-brochure-note">💡 '+b.note+'</div>':'')+
+            '</div>'+
+        '</div>';
+    }).join('');
+}
+
+// 初始化
+window.addEventListener('DOMContentLoaded', function(){
+    initFactoryBrochure();
 });
 
 </script>
