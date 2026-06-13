@@ -6,12 +6,10 @@
   "scripts": {
     "dev": "http-server -p 5000 -a 0.0.0.0 -c-1",
     "build": "mkdir -p dist && cp -r index.html local_enterprise_data.js dist/",
-    "preview": "http-server dist -p 5000 -a 0.0.0.0 -c-1",
-    "prepare": "husky"
+    "preview": "http-server dist -p 5000 -a 0.0.0.0 -c-1"
   },
   "devDependencies": {
     "http-server": "^14.1.1",
-    "husky": "^9.1.7",
     "mammoth": "^1.12.0",
     "xlsx": "^0.18.5"
   }

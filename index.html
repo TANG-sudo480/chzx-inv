@@ -138,15 +138,15 @@ body{font-family:"PingFang SC","Microsoft YaHei",sans-serif;background:#0d1117;c
 </div>
 
 <div class="tab-bar">
-  <button class="tab-btn active" onclick="showTab('location')" data-tab="location">区位优势</button>
-  <button class="tab-btn" onclick="showTab('chain')" data-tab="chain">产业链全景</button>
-  <button class="tab-btn" onclick="showTab('detail')" data-tab="detail">零部件拆解</button>
-  <button class="tab-btn" onclick="showTab('local')" data-tab="local">本地资源</button>
-  <button class="tab-btn" onclick="showTab('enterprise')" data-tab="enterprise">全区企业</button>
-	<button class="tab-btn" onclick="showTab('factory')" data-tab="factory">空余厂房</button>
-	<button class="tab-btn" onclick="showTab('analyze')" data-tab="analyze">项目研判</button>
-  <button class="tab-btn" onclick="showTab('filter')" data-tab="filter">智能筛选</button>
-  <button class="tab-btn" onclick="showTab('fishbone')" data-tab="fishbone">鱼骨图分析</button>
+  <button class="tab-btn active" onclick="showTab('location')">区位优势</button>
+  <button class="tab-btn" onclick="showTab('chain')">产业链全景</button>
+  <button class="tab-btn" onclick="showTab('detail')">零部件拆解</button>
+  <button class="tab-btn" onclick="showTab('local')">本地资源</button>
+  <button class="tab-btn" onclick="showTab('enterprise')">全区企业</button>
+	<button class="tab-btn" onclick="showTab('factory')">空余厂房</button>
+	<button class="tab-btn" onclick="showTab('analyze')">项目研判</button>
+  <button class="tab-btn" onclick="showTab('filter')">智能筛选</button>
+  <button class="tab-btn" onclick="showTab('fishbone')">鱼骨图分析</button>
 </div>
 
 <!-- 区位优势 -->
@@ -1546,22 +1546,14 @@ window.onload=function(){
 
 // ====== Tab切换 ======
 function showTab(id){
-  // 移除所有 active
   document.querySelectorAll(".tab-btn").forEach(b=>b.classList.remove("active"));
   document.querySelectorAll(".tab-content").forEach(c=>c.classList.remove("active"));
-  // 显示目标 tab
+  event.target.classList.add("active");
   document.getElementById("tab-"+id).classList.add("active");
-  // 激活对应按钮
-  document.querySelectorAll(".tab-btn").forEach(function(b){
-    if(b.getAttribute("data-tab") === id){
-      b.classList.add("active");
-    }
-  });
-  // 地图自适应
   if(id==="location" && mainMap) setTimeout(function(){mainMap.invalidateSize()},100);
   if(id==="local" && localMap) setTimeout(function(){localMap.invalidateSize()},100);
   if(id==="enterprise") initEnterpriseTab();
-  if(id==="factory"){initFactoryMap();renderFactoryList();}
+	  if(id==="factory"){initFactoryMap();renderFactoryList();}
 }
 
 // ====== 产业链卡片 ======
