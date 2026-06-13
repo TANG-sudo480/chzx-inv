@@ -398,400 +398,9 @@ textarea.form-input{grid-column:span 2;min-height:120px;resize:vertical}
 .fbone-status{order:3;width:100%;text-align:center;margin-top:8px}
 }
 
-
-
-/* ========== 补充CSS样式 ========== */
-
-/* 移动端导航 */
-.hamburger {
-    display: none;
-    background: none;
-    border: none;
-    color: #00d4ff;
-    font-size: 24px;
-    cursor: pointer;
-    padding: 10px;
-}
-
-.nav-links.show {
-    display: flex !important;
-    flex-direction: column;
-    position: absolute;
-    top: 60px;
-    right: 0;
-    background: rgba(10, 14, 39, 0.95);
-    backdrop-filter: blur(20px);
-    padding: 20px;
-    width: 200px;
-    z-index: 9999;
-}
-
-@media (max-width: 768px) {
-    .hamburger { display: block; }
-    .nav-links { display: none; }
-}
-
-/* 招商速递滚动条 */
-#newsTicker {
-    background: linear-gradient(90deg, #0a1628, #1a2a4a);
-    border-bottom: 1px solid #00d4ff33;
-    overflow: hidden;
-    white-space: nowrap;
-    height: 40px;
-    line-height: 40px;
-}
-
-.ticker-content {
-    display: inline-block;
-    animation: scroll 30s linear infinite;
-    padding-left: 100%;
-    color: #00d4ff;
-    font-size: 14px;
-}
-
-@keyframes scroll {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-100%); }
-}
-
-/* 预约按钮 */
-.booking-btn {
-    background: #ff6b35;
-    color: white;
-    border: none;
-    padding: 8px 16px;
-    margin-top: 10px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: all 0.3s;
-}
-
-.booking-btn:hover {
-    background: #ff8c5a;
-}
-
-/* 模态框 */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 20000;
-    left: 0; top: 0; width: 100%; height: 100%;
-    background-color: rgba(0,0,0,0.7);
-    align-items: center;
-    justify-content: center;
-}
-
-.modal-content {
-    background: linear-gradient(135deg, #0a1628, #1a2a4a);
-    padding: 25px;
-    max-width: 500px;
-    width: 90%;
-    position: relative;
-    border: 1px solid #00d4ff44;
-    box-shadow: 0 0 50px rgba(0,212,255,0.3);
-}
-
-.close {
-    float: right;
-    font-size: 28px;
-    color: #ff6b35;
-    cursor: pointer;
-}
-
-/* 企业卡片 */
-.ent-card {
-    background: rgba(255,255,255,0.05);
-    border: 1px solid #00d4ff22;
-    padding: 15px;
-    margin-bottom: 12px;
-    transition: all 0.3s;
-}
-
-.ent-card:hover {
-    border-color: #00d4ff88;
-    transform: translateY(-2px);
-}
-
-/* 产业链详情 */
-.chain-detail {
-    padding: 20px;
-    text-align: left;
-}
-
-.chain-header {
-    background: rgba(0,212,255,0.15);
-    padding: 18px;
-    border-radius: 12px;
-    margin-bottom: 16px;
-}
-
-.chain-title {
-    font-size: 26px;
-    font-weight: bold;
-    color: #fff;
-    margin-bottom: 6px;
-}
-
-.chain-priority {
-    color: #ff6b35;
-    font-size: 17px;
-    margin-bottom: 5px;
-}
-
-.chain-market {
-    color: #00d4ff;
-    font-size: 15px;
-}
-
-.chain-section {
-    margin-bottom: 16px;
-    background: rgba(255,255,255,0.04);
-    padding: 13px;
-    border-radius: 9px;
-    border-left: 3px solid #00d4ff66;
-}
-
-.chain-section-title {
-    font-size: 19px;
-    font-weight: bold;
-    color: #00d4ff;
-    margin-bottom: 9px;
-}
-
-.chain-flow {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 7px;
-    margin-bottom: 9px;
-}
-
-.chain-item {
-    background: rgba(0,212,255,0.2);
-    padding: 5px 11px;
-    border-radius: 15px;
-    font-size: 13px;
-    color: #bfeeff;
-}
-
-.chain-companies {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 7px;
-}
-
-.chain-company {
-    background: rgba(107,255,107,0.12);
-    padding: 5px 11px;
-    border-radius: 15px;
-    font-size: 13px;
-    color: #c0ffc0;
-    border: 1px solid #6bff6b33;
-    transition: all 0.3s;
-}
-
-.chain-company:hover {
-    background: rgba(107,255,107,0.28);
-}
-
-.chain-company.local {
-    background: rgba(255,215,0,0.2);
-    color: #ffd700;
-    border: 1px solid #ffd70055;
-}
-
-.chain-local-title {
-    font-size: 19px;
-    font-weight: bold;
-    color: #ffd700;
-    margin-bottom: 9px;
-}
-
-
-
-/* 鱼骨图样式 */
-#fishboneContainer {
-    width: 100%;
-    padding: 20px;
-    background: linear-gradient(135deg, #0a1628, #1a2a4a);
-    border-radius: 16px;
-    margin-top: 20px;
-}
-
-.fishbone-main {
-    position: relative;
-}
-
-.fishbone-head {
-    text-align: center;
-    font-size: 28px;
-    font-weight: bold;
-    color: #fff;
-    padding: 20px;
-    background: linear-gradient(90deg, #00d4ff22, #00d4ff44, #00d4ff22);
-    margin-bottom: 30px;
-    border-radius: 12px;
-}
-
-.fishbone-spine {
-    position: absolute;
-    left: 50%;
-    top: 0; bottom: 0;
-    width: 6px;
-    background: linear-gradient(to bottom, #00d4ff, #ff6b35);
-    transform: translateX(-50%);
-}
-
-.fishbone-bones {
-    position: relative;
-    padding-left: 50%;
-}
-
-.fishbone-bone {
-    position: relative;
-    margin-bottom: 25px;
-    cursor: pointer;
-}
-
-.bone-title {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    padding: 14px 18px;
-    background: rgba(255,255,255,0.08);
-    border-radius: 10px;
-    transition: all 0.3s;
-    border-left: 5px solid #00d4ff;
-}
-
-.bone-title:hover {
-    background: rgba(255,255,255,0.13);
-}
-
-.bone-name {
-    font-size: 19px;
-    font-weight: bold;
-    color: #fff;
-}
-
-.bone-status {
-    font-size: 13px;
-    padding: 5px 11px;
-    border-radius: 15px;
-}
-
-.status-red { background: rgba(255,60,80,0.25); color: #ff3c50; }
-.status-orange { background: rgba(255,165,0,0.25); color: #ffa500; }
-.status-green { background: rgba(40,200,100,0.25); color: #28c864; }
-
-.bone-content {
-    display: none;
-    margin-top: 12px;
-    padding: 17px;
-    background: rgba(255,255,255,0.05);
-    border-radius: 9px;
-    border: 1px solid #00d4ff22;
-}
-
-.bone-content.expanded { display: block; }
-
-.bone-section {
-    margin-bottom: 11px;
-    font-size: 14px;
-    line-height: 1.7;
-    color: #c0d0e0;
-}
-
-.missing-item {
-    display: inline-block;
-    background: rgba(255,60,80,0.2);
-    color: #ff6b7a;
-    padding: 3px 9px;
-    border-radius: 10px;
-    margin-right: 6px;
-    font-size: 13px;
-}
-
-.target-cards {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin-top: 9px;
-}
-
-.target-card {
-    flex: 1 1 220px;
-    max-width: 280px;
-    background: rgba(0,212,255,0.1);
-    border: 1px solid #00d4ff33;
-    border-radius: 10px;
-    padding: 13px;
-    text-align: center;
-}
-
-.target-name {
-    font-size: 17px;
-    font-weight: bold;
-    color: #00d4ff;
-    margin-bottom: 7px;
-}
-
-.target-info {
-    font-size: 13px;
-    color: #aabbcc;
-    margin-bottom: 4px;
-}
-
-.contact-btn {
-    margin-top: 9px;
-    padding: 7px 16px;
-    background: #ff6b35;
-    color: white;
-    border: none;
-    border-radius: 18px;
-    cursor: pointer;
-    transition: all 0.3s;
-    font-size: 13px;
-}
-
-.contact-btn:hover {
-    background: #ff8555;
-}
-
 </style>
 </head>
 <body>
-<!-- 页面加载动画 -->
-<div id="loadingOverlay" style="position:fixed;top:0;left:0;width:100%;height:100%;background:#0a0e27;display:flex;align-items:center;justify-content:center;z-index:99999;">
-    <div style="text-align:center;">
-        <div style="width:60px;height:60px;border:3px solid #00d4ff33;border-top-color:#00d4ff;border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 20px;"></div>
-        <p style="color:#00d4ff;">加载中...</p>
-    </div>
-</div>
-<style>@keyframes spin{to{transform:rotate(360deg);}}</style>
-<script>
-// 页面加载完成后隐藏loading
-window.addEventListener('load', function() {
-    setTimeout(function() {
-        var overlay = document.getElementById('loadingOverlay');
-        if (overlay) overlay.style.display = 'none';
-    }, 800);
-});
-</script>
-
-
-<!-- 招商速递 -->
-<div id="newsTicker">
-    <div class="ticker-content" style="padding: 0 20px; color: #00d4ff;">
-        🎯 今日动态：某新能源电池项目考察天子湖片区 | 
-        📢 最新签约：精密零部件项目落地长合区 | 
-        💼 投资机会：智能驾驶芯片企业寻求扩产选址 | 
-        🏭 厂房动态：天子湖A区8000㎡标准厂房空出 | 
-        🤝 合作交流：长三角新能源汽车产业联盟来访 | 
-        📈 产业趋势：2025年固态电池产业化加速
-    </div>
-</div>
-
-
 
 <!-- 粒子背景 -->
 <div id="particles"></div>
@@ -7139,7 +6748,23 @@ opt.value=s;opt.textContent=s;select.appendChild(opt);
 });
 }
 
-
+function filterEnterprise(){
+const type=document.getElementById('entTypeFilter').value;
+const area=document.getElementById('entAreaFilter').value;
+const servant=document.getElementById('entServantFilter').value;
+const search=document.getElementById('entSearchInput').value.toLowerCase();
+entFiltered=[];
+if(type){
+entFiltered=enterpriseFullData[type]||[];
+}else{
+Object.values(enterpriseFullData).forEach(arr=>entFiltered.push(...arr));
+}
+if(area)entFiltered=entFiltered.filter(e=>e.area===area);
+if(servant)entFiltered=entFiltered.filter(e=>e.servant===servant);
+if(search)entFiltered=entFiltered.filter(e=>e.name.toLowerCase().includes(search));
+entPage=1;
+renderEnterprise();
+}
 
 function renderEnterprise(){
 const start=(entPage-1)*entPageSize;
@@ -7930,7 +7555,22 @@ function initFactoryBrochure() {
 }
 
 // 筛选厂房
-
+function filterFactory() {
+    var status = document.getElementById('factoryStatusFilter').value;
+    var area = document.getElementById('factoryAreaFilter').value;
+    var searchText = (document.getElementById('factorySearchInput').value || '').toLowerCase();
+    
+    var buildings = (factoryBrochureData && factoryBrochureData.buildings) || [];
+    
+    var filtered = buildings.filter(function(b) {
+        if(status && b.status !== status) return false;
+        if(area && b.area !== area) return false;
+        if(searchText && (b.name.toLowerCase().indexOf(searchText)<0 && b.id.toLowerCase().indexOf(searchText)<0)) return false;
+        return true;
+    });
+    
+    renderFactoryBrochure(filtered);
+}
 
 function filterFactoryByStatus(status) {
     document.getElementById('factoryStatusFilter').value = status;
@@ -8001,7 +7641,33 @@ function safeGetEnterpriseData() {
 }
 
 // 修复3: 土地资源面积计算 - 简化版
-
+function initLandFixed() {
+    var data = typeof landFullData !== 'undefined' ? landFullData : null;
+    if (!data) {
+        console.log('landFullData not loaded');
+        return;
+    }
+    
+    var zhuanyewengong = data.zhuanyewengong || [];
+    var shouchi = data.shouchi || [];
+    var gonghouweiyong = data.gonghouweiyong || [];
+    
+    var zhuanArea = 0;
+    zhuanyewengong.forEach(function(v) { zhuanArea += (v.area || 0); });
+    
+    var shouchiArea = 0;
+    shouchi.forEach(function(v) { shouchiArea += (v.area || 0); });
+    
+    var gongArea = 0;
+    gonghouweiyong.forEach(function(v) { gongArea += (v.area || 0); });
+    
+    var totalArea = zhuanArea + shouchiArea + gongArea;
+    
+    document.getElementById('landZhuanCount').textContent = zhuanyewengong.length + '块';
+    document.getElementById('landShouchiCount').textContent = shouchi.length + '块';
+    document.getElementById('landGongCount').textContent = gonghouweiyong.length + '块';
+    document.getElementById('landTotalCount').textContent = Math.round(totalArea) + '亩';
+}
 
 // 企业库初始化修复
 function initEnterpriseFixed() {
@@ -8130,7 +7796,68 @@ const fishboneData = {
     ]
 };
 
-
+function renderFishbone() {
+    var container = document.getElementById('fishboneContainer');
+    if (!container) return;
+    
+    var html = '<div class="fishbone-title">' + fishboneData.title + '</div>';
+    html += '<div class="fishbone-main">';
+    html += '<div class="fishbone-spine"><span>' + fishboneData.mainBone + '</span></div>';
+    html += '<div class="fishbone-bones">';
+    
+    fishboneData.bones.forEach(function(bone) {
+        var statusClass = bone.status === 'full' ? 'status-full' : (bone.status === 'partial' ? 'status-partial' : 'status-missing');
+        var statusText = bone.status === 'full' ? '✅ 完善' : (bone.status === 'partial' ? '🟡 部分缺链' : '🔴 严重缺链');
+        var statusColor = bone.status === 'full' ? '#34a853' : (bone.status === 'partial' ? '#fbbc04' : '#ea4335');
+        
+        html += '<div class="fishbone-bone ' + statusClass + '">';
+        html += '<div class="bone-header" onclick="toggleBone(\'' + bone.id + '\')">';
+        html += '<div class="bone-icon">' + bone.icon + '</div>';
+        html += '<div class="bone-name">' + bone.name + '</div>';
+        html += '<div class="bone-score" style="color:' + statusColor + '">' + bone.localScore + '%</div>';
+        html += '<div class="bone-status">' + statusText + '</div>';
+        html += '</div>';
+        
+        html += '<div class="bone-content" id="bone-' + bone.id + '" style="display:none">';
+        
+        if (bone.localCompanies.length > 0) {
+            html += '<div class="bone-section"><div class="bone-section-title">✅ 已落地长合区企业</div>';
+            html += '<div class="bone-companies local">' + bone.localCompanies.map(function(c) { return '<span class="company-tag local">' + c + '</span>'; }).join('') + '</div></div>';
+        } else {
+            html += '<div class="bone-section"><div class="bone-section-title">✅ 已落地长合区企业</div><div class="bone-empty">暂无</div></div>';
+        }
+        
+        if (bone.gaps.length > 0) {
+            html += '<div class="bone-section gap-section"><div class="bone-section-title">🔴 缺链环节</div>';
+            html += '<div class="bone-gaps">' + bone.gaps.map(function(g) { 
+                var isPriority = bone.gapPriority.indexOf(g) >= 0;
+                return '<span class="gap-tag ' + (isPriority ? 'priority' : '') + '">' + g + (isPriority ? ' ⭐' : '') + '</span>'; 
+            }).join('') + '</div></div>';
+        }
+        
+        if (bone.targets.length > 0) {
+            html += '<div class="bone-section"><div class="bone-section-title">🎯 招商目标企业</div>';
+            html += '<div class="bone-targets">' + bone.targets.map(function(t) {
+                return '<div class="target-card">' +
+                    '<div class="target-name">' + t.name + '</div>' +
+                    '<div class="target-info">投资:' + t.investment + ' | 用地:' + t.land + '</div>' +
+                    '<div class="target-status">' + (t.status || '') + (t.timeline ? ' | ' + t.timeline : '') + '</div>' +
+                    '</div>';
+            }).join('') + '</div></div>';
+        }
+        
+        html += '<div class="bone-section"><div class="bone-chain-flow">';
+        html += '<div class="chain-flow-item"><div class="flow-label">上游</div><div class="flow-items">' + bone.upstream.join(' → ') + '</div></div>';
+        html += '<div class="chain-flow-item"><div class="flow-label">中游</div><div class="flow-items">' + bone.midstream.join(' → ') + '</div></div>';
+        html += '<div class="chain-flow-item"><div class="flow-label">下游</div><div class="flow-items">' + bone.downstream.join(' → ') + '</div></div>';
+        html += '</div></div>';
+        
+        html += '</div></div>';
+    });
+    
+    html += '</div></div>';
+    container.innerHTML = html;
+}
 
 function toggleBone(boneId) {
     var content = document.getElementById('bone-' + boneId);
@@ -8149,7 +7876,67 @@ window.addEventListener('DOMContentLoaded', function() {
 
 
 // ========== 移动端汉堡菜单 ==========
-
+function initMobileNav() {
+    // 添加汉堡菜单按钮
+    var nav = document.querySelector('.hero-nav');
+    if (!nav) return;
+    
+    // 添加移动端样式
+    var style = document.createElement('style');
+    style.textContent = `
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 28px;
+            height: 20px;
+            cursor: pointer;
+            padding: 0;
+            background: none;
+            border: none;
+        }
+        .hamburger span {
+            display: block;
+            width: 100%;
+            height: 3px;
+            background: var(--text);
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
+        @media (max-width: 768px) {
+            .hamburger { display: flex; }
+            .nav-links {
+                display: none !important;
+                position: fixed;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: var(--bg-card);
+                flex-direction: column;
+                padding: 20px;
+                border-top: 1px solid var(--border);
+                box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+                z-index: 999;
+            }
+            .nav-links.show { display: flex !important; }
+            .nav-link { padding: 15px 0; border-bottom: 1px solid var(--border); width: 100%; text-align: center; }
+        }
+    `;
+    document.head.appendChild(style);
+    
+    // 创建汉堡按钮
+    var hamburger = document.createElement('button');
+    hamburger.className = 'hamburger';
+    hamburger.innerHTML = '<span></span><span></span><span></span>';
+    hamburger.onclick = function() {
+        this.classList.toggle('active');
+        document.querySelector('.nav-links').classList.toggle('show');
+    };
+    nav.insertBefore(hamburger, nav.firstChild);
+}
 
 // ========== 真实联系电话 ==========
 // 长合区招商局真实联系电话
@@ -8262,7 +8049,74 @@ function enhancedSearch(query) {
 // Formspree表单端点(需要替换为实际的Formspree表单ID)
 const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xpwzovnl';
 
-
+function initForms() {
+    // 联系我们表单
+    var contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+        contactForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            var formData = new FormData(contactForm);
+            var submitBtn = contactForm.querySelector('button[type="submit"]');
+            var originalText = submitBtn.textContent;
+            
+            submitBtn.textContent = '提交中...';
+            submitBtn.disabled = true;
+            
+            try {
+                var response = await fetch(FORMSPREE_ENDPOINT, {
+                    method: 'POST',
+                    body: formData,
+                    headers: { 'Accept': 'application/json' }
+                });
+                
+                if (response.ok) {
+                    alert('提交成功！我们将在24小时内与您联系。');
+                    contactForm.reset();
+                } else {
+                    alert('提交失败，请电话联系：0563-5680888');
+                }
+            } catch (error) {
+                alert('网络错误，请电话联系：0563-5680888');
+            }
+            
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
+        });
+    }
+    
+    // 预约看厂表单
+    var bookingForm = document.getElementById('bookingForm');
+    if (bookingForm) {
+        bookingForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            var formData = new FormData(bookingForm);
+            var submitBtn = bookingForm.querySelector('button[type="submit"]');
+            
+            submitBtn.textContent = '提交中...';
+            submitBtn.disabled = true;
+            
+            try {
+                var response = await fetch(FORMSPREE_ENDPOINT, {
+                    method: 'POST',
+                    body: formData,
+                    headers: { 'Accept': 'application/json' }
+                });
+                
+                if (response.ok) {
+                    alert('预约成功！我们将安排专员对接看厂。');
+                    bookingForm.reset();
+                } else {
+                    alert('提交失败，请电话联系：0563-5680803');
+                }
+            } catch (error) {
+                alert('网络错误，请电话联系：0563-5680803');
+            }
+            
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
+        });
+    }
+}
 
 // ========== 招商速递滚动条 ==========
 const INVESTMENT_NEWS = [
@@ -8276,10 +8130,128 @@ const INVESTMENT_NEWS = [
     { type: 'sign', text: '📝 银轮股份热管理系统项目投产', time: '6月3日' }
 ];
 
-
+function initNewsTicker() {
+    var ticker = document.getElementById('newsTicker');
+    if (!ticker) {
+        // 创建滚动条
+        var tickerHtml = '<div id="newsTicker" class="news-ticker"><div class="ticker-label">📢 招商速递</div><div class="ticker-content"><div class="ticker-scroll" id="tickerScroll"></div></div></div>';
+        var hero = document.querySelector('.hero');
+        if (hero) {
+            hero.insertAdjacentHTML('beforeend', tickerHtml);
+        }
+        ticker = document.getElementById('newsTicker');
+        
+        // 添加样式
+        var style = document.createElement('style');
+        style.textContent = `
+            .news-ticker {
+                display: flex;
+                align-items: center;
+                background: linear-gradient(90deg, rgba(255,107,53,0.2), rgba(0,212,255,0.1));
+                border-top: 1px solid rgba(255,107,53,0.3);
+                border-bottom: 1px solid rgba(255,107,53,0.3);
+                padding: 10px 20px;
+                margin-top: 30px;
+            }
+            .ticker-label {
+                background: linear-gradient(135deg,#ff6b35,#ff8c5a);
+                color: #fff;
+                padding: 6px 14px;
+                border-radius: 20px;
+                font-size: 13px;
+                font-weight: 600;
+                white-space: nowrap;
+                margin-right: 20px;
+            }
+            .ticker-content {
+                flex: 1;
+                overflow: hidden;
+                position: relative;
+            }
+            .ticker-scroll {
+                display: flex;
+                animation: ticker 30s linear infinite;
+            }
+            .ticker-item {
+                white-space: nowrap;
+                padding: 0 40px;
+                font-size: 13px;
+                color: var(--text-dim);
+            }
+            .ticker-item .time {
+                color: var(--primary);
+                margin-left: 10px;
+            }
+            @keyframes ticker {
+                0% { transform: translateX(0); }
+                100% { transform: translateX(-50%); }
+            }
+        `;
+        document.head.appendChild(style);
+    }
+    
+    var scrollContainer = document.getElementById('tickerScroll');
+    if (scrollContainer) {
+        // 复制两份实现无缝滚动
+        var items = INVESTMENT_NEWS.map(function(news) {
+            return '<span class="ticker-item">' + news.text + '<span class="time">' + news.time + '</span></span>';
+        }).join('');
+        scrollContainer.innerHTML = items + items;
+    }
+}
 
 // ========== 厂房预约看厂按钮 ==========
-
+function addBookingButton() {
+    var factoryCards = document.querySelectorAll('.factory-brochure-card');
+    factoryCards.forEach(function(card) {
+        var callBtn = card.querySelector('.factory-brochure-call');
+        if (callBtn) {
+            var bookingBtn = document.createElement('button');
+            bookingBtn.className = 'factory-booking-btn';
+            bookingBtn.textContent = '📅 预约看厂';
+            bookingBtn.onclick = function(e) {
+                e.stopPropagation();
+                var factoryName = card.querySelector('.factory-brochure-title')?.textContent || '';
+                var area = card.querySelector('.factory-brochure-id')?.textContent || '';
+                
+                // 打开预约表单
+                var modal = document.getElementById('bookingModal');
+                if (modal) {
+                    modal.style.display = 'flex';
+                    var nameInput = modal.querySelector('[name="factory"]');
+                    if (nameInput) nameInput.value = factoryName + ' ' + area;
+                }
+            };
+            
+            callBtn.insertAdjacentElement('afterend', bookingBtn);
+        }
+    });
+    
+    // 添加预约按钮样式
+    var style = document.createElement('style');
+    style.textContent = `
+        .factory-booking-btn {
+            background: linear-gradient(135deg, #ff6b35, #ff8c5a);
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 13px;
+            margin-left: 8px;
+            transition: all 0.3s;
+        }
+        .factory-booking-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(255,107,53,0.3);
+        }
+        .factory-brochure-contact {
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+    `;
+    document.head.appendChild(style);
+}
 
 // ========== 页面初始化 ==========
 window.addEventListener('DOMContentLoaded', function() {
@@ -8325,136 +8297,82 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-// ========== 全局修复补丁 ==========
-
-// Tab切换功能
-function showTab(tabId) {
-    // 隐藏所有tab-content
-    var contents = document.querySelectorAll('.tab-content');
-    contents.forEach(function(c) { c.style.display = 'none'; });
-    
-    // 显示目标tab
-    var target = document.getElementById(tabId);
-    if (target) {
-        target.style.display = 'block';
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-    
-    // 更新导航状态
-    var navLinks = document.querySelectorAll('.nav-link, .tab-btn');
-    navLinks.forEach(function(link) {
-        link.classList.remove('active');
-        if (link.getAttribute('data-tab') === tabId || 
-            link.getAttribute('onclick') && link.getAttribute('onclick').indexOf(tabId) >= 0) {
-            link.classList.add('active');
-        }
-    });
-}
-
-function openTab(sectionId) {
-    showTab(sectionId);
-}
-
-// 企业库表格渲染
-function renderEnterpriseTable() {
-    var tbody = document.getElementById('enterpriseTableBody');
-    var cardView = document.getElementById('enterpriseCardView');
-    var pageInfo = document.getElementById('entPageInfo');
-    
-    if (!tbody && !cardView) return;
-    
-    // 确保entFiltered存在
-    if (typeof entFiltered === 'undefined' || !entFiltered) {
-        entFiltered = [];
-        if (typeof enterpriseFullData !== 'undefined' && enterpriseFullData) {
-            entFiltered = (enterpriseFullData.guishang || [])
-                .concat(enterpriseFullData.xiaoweiyuan || [])
-                .concat(enterpriseFullData.xinsenggui || [])
-                .concat(enterpriseFullData.guixia || []);
-        }
-    }
-    
-    var pageSize = 20;
-    var currentPage = parseInt(document.getElementById('currentPageInput')?.value || '1') || 1;
-    var startIdx = (currentPage - 1) * pageSize;
-    var endIdx = startIdx + pageSize;
-    var pageData = entFiltered.slice(startIdx, endIdx);
-    
-    // 表格视图
-    if (tbody) {
-        tbody.innerHTML = pageData.map(function(ent, idx) {
-            return '<tr>' +
-                '<td>' + (startIdx + idx + 1) + '</td>' +
-                '<td><strong>' + (ent.name || '-') + '</strong></td>' +
-                '<td>' + (ent.area || '-') + '</td>' +
-                '<td>' + (ent.type || '-') + '</td>' +
-                '<td>' + (ent.contact || '-') + '</td>' +
-                '<td><a href="tel:' + (ent.phone || '') + '">' + (ent.phone || '-') + '</a></td>' +
-                '<td>' + (ent.servant || '-') + '</td>' +
-                '</tr>';
-        }).join('');
+// ========== 最小化补丁 ==========
+// 初始化鱼骨图
+function initFishBone() {
+    var container = document.getElementById('fishboneContainer');
+    if (container) {
+        // 鱼骨图已有静态HTML内容
+        console.log('鱼骨图已加载');
         
-        if (pageInfo) {
-            pageInfo.textContent = '显示 ' + (startIdx + 1) + '-' + Math.min(endIdx, entFiltered.length) + ' / 共 ' + entFiltered.length + ' 条';
-        }
-    }
-    
-    // 卡片视图
-    if (cardView) {
-        cardView.innerHTML = pageData.map(function(ent) {
-            return '<div class="ent-card">' +
-                '<h4>' + (ent.name || '-') + '</h4>' +
-                '<p>片区: ' + (ent.area || '-') + ' | 类型: ' + (ent.type || '-') + '</p>' +
-                '<p>联系人: ' + (ent.contact || '-') + ' | 电话: <a href="tel:' + (ent.phone || '') + '">' + (ent.phone || '-') + '</a></p>' +
-                '<p>服务专员: ' + (ent.servant || '-') + '</p>' +
-            '</div>';
-        }).join('');
+        // 添加展开/收起交互
+        container.querySelectorAll('.fishbone-bone').forEach(function(bone) {
+            bone.addEventListener('click', function() {
+                var content = this.querySelector('.bone-content');
+                if (content) {
+                    content.style.display = content.style.display === 'none' ? 'block' : 'none';
+                }
+            });
+        });
     }
 }
 
-// 产业链详情展示
+// 显示产业链详情
 function showChainDetail(chainId) {
     var container = document.getElementById('chainContent');
-    if (!container) return;
+    if (!container || typeof chainFullData === 'undefined') return;
     
-    var chainData = null;
-    if (typeof chainFullData !== 'undefined' && chainFullData.chains) {
+    var chain = null;
+    if (chainFullData.chains) {
         for (var i = 0; i < chainFullData.chains.length; i++) {
             if (chainFullData.chains[i].id === chainId) {
-                chainData = chainFullData.chains[i];
+                chain = chainFullData.chains[i];
+                break;
+            }
+            // 也检查name匹配
+            if (chainFullData.chains[i].id.replace('-', '') === chainId.replace('-', '')) {
+                chain = chainFullData.chains[i];
                 break;
             }
         }
     }
     
-    if (!chainData) return;
+    if (!chain) return;
     
+    // 渲染详情
     var html = '<div class="chain-detail">' +
         '<div class="chain-header">' +
-            '<div class="chain-title">' + (chainData.icon || '') + ' ' + (chainData.name || '') + '</div>' +
-            '<div class="chain-priority">招商优先级: ' + (chainData.investment_priority || '') + '</div>' +
-            '<div class="chain-market">📊 ' + (chainData.market_scale || '') + '</div>' +
+            '<div class="chain-title">' + (chain.icon || '') + ' ' + (chain.name || '') + '</div>' +
+            '<div class="chain-priority">招商优先级: ' + (chain.investment_priority || '') + '</div>' +
+            '<div class="chain-market">📊 市场规模: ' + (chain.market_scale || '') + '</div>' +
         '</div>';
     
     ['upstream', 'midstream', 'downstream'].forEach(function(level) {
-        var levelName = {'upstream': '上游原材料', 'midstream': '中游零部件', 'downstream': '下游应用'};
+        var levelNames = {upstream: '上游原材料', midstream: '中游零部件', downstream: '下游应用'};
         html += '<div class="chain-section">' +
-            '<div class="chain-section-title">' + levelName[level] + '</div>' +
+            '<div class="chain-section-title">' + levelNames[level] + '</div>' +
             '<div class="chain-flow">';
-        (chainData[level] || []).forEach(function(item) {
+        
+        (chain[level] || []).forEach(function(item) {
             html += '<span class="chain-item">' + item + '</span>';
         });
+        
         html += '</div><div class="chain-companies">';
-        ((chainData.companies || {})[level] || []).forEach(function(company) {
-            var isLocal = (chainData.local_companies || []).indexOf(company) >= 0;
-            html += '<span class="chain-company' + (isLocal ? ' local' : '') + '">' + (isLocal ? '✅ ' : '') + company + '</span>';
+        
+        ((chain.companies || {})[level] || []).forEach(function(company) {
+            var isLocal = (chain.local_companies || []).indexOf(company) >= 0;
+            html += '<span class="chain-company' + (isLocal ? ' local' : '') + '">' + 
+                   (isLocal ? '✅ ' : '') + company + '</span>';
         });
+        
         html += '</div></div>';
     });
     
-    if (chainData.local_companies && chainData.local_companies.length > 0) {
+    if (chain.local_companies && chain.local_companies.length > 0) {
         html += '<div class="chain-section"><div class="chain-local-title">✅ 已落地长合区企业</div><div class="chain-companies">';
-        chainData.local_companies.forEach(function(c) { html += '<span class="chain-company local">' + c + '</span>'; });
+        chain.local_companies.forEach(function(c) { 
+            html += '<span class="chain-company local">' + c + '</span>'; 
+        });
         html += '</div></div>';
     }
     
@@ -8462,533 +8380,6 @@ function showChainDetail(chainId) {
     container.innerHTML = html;
 }
 
-// 搜索防抖
-var searchTimer = null;
-function debounceSearch(callback, delay) {
-    clearTimeout(searchTimer);
-    searchTimer = setTimeout(callback, delay);
-}
-
-// 数字滚动动画
-function animateNumber(element, target) {
-    if (!element) return;
-    var current = 0;
-    var step = Math.ceil(target / 50);
-    var timer = setInterval(function() {
-        current += step;
-        if (current >= target) {
-            current = target;
-            clearInterval(timer);
-        }
-        element.textContent = current.toLocaleString();
-    }, 30);
-}
-
-// 页面滚动时触发数字动画
-function initScrollAnimations() {
-    var observer = new IntersectionObserver(function(entries) {
-        entries.forEach(function(entry) {
-            if (entry.isIntersecting) {
-                var numEl = entry.target.querySelector('[data-target]');
-                if (numEl) {
-                    animateNumber(numEl, parseInt(numEl.dataset.target));
-                    observer.unobserve(entry.target);
-                }
-            }
-        });
-    }, { threshold: 0.5 });
-    
-    document.querySelectorAll('.stat-item').forEach(function(item) {
-        observer.observe(item);
-    });
-}
-
-// 初始化所有功能
-window.addEventListener('DOMContentLoaded', function() {
-    // 初始化各模块
-    try { initLandFixed(); } catch(e) { console.log('Land init error:', e); }
-    try { initEnterpriseFixed(); } catch(e) { console.log('Enterprise init error:', e); }
-    try { initFactoryBrochure(); } catch(e) { console.log('Factory init error:', e); }
-    try { renderFishbone(); } catch(e) { console.log('Fishbone error:', e); }
-    try { initForms(); } catch(e) { console.log('Form init error:', e); }
-    try { initNewsTicker(); } catch(e) { console.log('Ticker error:', e); }
-    try { initMobileNav(); } catch(e) { console.log('Mobile nav error:', e); }
-    try { initScrollAnimations(); } catch(e) { console.log('Scroll anim error:', e); }
-    try { addBookingButton(); } catch(e) { console.log('Booking button error:', e); }
-    
-    console.log('All modules initialized');
-});
-
-
-
-
-// 表单初始化
-function initForms() {
-    // 联系我们表单
-    var contactForm = document.getElementById('contactForm');
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            var formData = new FormData(contactForm);
-            var data = {};
-            formData.forEach(function(value, key) { data[key] = value; });
-            
-            // 显示提交中状态
-            var btn = contactForm.querySelector('button[type="submit"]');
-            if (btn) {
-                btn.textContent = '提交中...';
-                btn.disabled = true;
-            }
-            
-            // Formspree提交
-            fetch('https://formspree.io/f/xpwzovnl', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(data)
-            })
-            .then(function(r) { return r.json(); })
-            .then(function(result) {
-                alert('提交成功！我们会尽快联系您。');
-                contactForm.reset();
-                if (btn) { btn.textContent = '提交'; btn.disabled = false; }
-            })
-            .catch(function(err) {
-                alert('提交失败，请直接拨打电话：0563-5680808');
-                console.error(err);
-                if (btn) { btn.textContent = '提交'; btn.disabled = false; }
-            });
-        });
-    }
-    
-    // 预约看厂表单
-    var bookingForm = document.getElementById('bookingForm');
-    if (bookingForm) {
-        bookingForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            var formData = new FormData(bookingForm);
-            var data = {};
-            formData.forEach(function(value, key) { data[key] = value; });
-            
-            fetch('https://formspree.io/f/xpwzovnl', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(data)
-            }).then(function() {
-                alert('预约成功！我们会安排专人与您对接。');
-                bookingForm.reset();
-                closeModal('bookingModal');
-            }).catch(function(err) {
-                alert('预约失败，请电话联系：0563-5680808');
-            });
-        });
-    }
-}
-
-// 移动端导航
-function initMobileNav() {
-    // 创建汉堡菜单（如果不存在）
-    if (!document.getElementById('mobileMenuBtn')) {
-        var nav = document.querySelector('nav') || document.querySelector('.main-nav');
-        if (nav) {
-            var btn = document.createElement('button');
-            btn.id = 'mobileMenuBtn';
-            btn.className = 'hamburger';
-            btn.innerHTML = '☰';
-            btn.onclick = toggleMobileMenu;
-            nav.appendChild(btn);
-        }
-    }
-}
-
-function toggleMobileMenu() {
-    var navLinks = document.querySelector('.nav-links');
-    if (navLinks) {
-        navLinks.classList.toggle('show');
-    }
-}
-
-// 招商速递滚动条
-function initNewsTicker() {
-    var ticker = document.getElementById('newsTicker');
-    if (!ticker) return;
-    
-    var newsItems = [
-        '🎯 今日动态：某新能源电池项目考察天子湖片区',
-        '📢 最新签约：精密零部件项目落地长合区',
-        '💼 投资机会：智能驾驶芯片企业寻求扩产选址',
-        '🏭 厂房动态：天子湖A区8000㎡标准厂房空出',
-        '🤝 合作交流：长三角新能源汽车产业联盟来访',
-        '📈 产业趋势：2025年固态电池产业化加速'
-    ];
-    
-    ticker.innerHTML = '<div class="ticker-content">' + newsItems.join(' | ') + '</div>';
-    
-    // 自动滚动
-    var content = ticker.querySelector('.ticker-content');
-    if (content) {
-        var scrollAmount = 1;
-        setInterval(function() {
-            if (content.scrollLeft < content.scrollWidth - content.clientWidth) {
-                content.scrollLeft += scrollAmount;
-            } else {
-                content.scrollLeft = 0;
-            }
-        }, 50);
-    }
-}
-
-// 预约看厂按钮
-function addBookingButton() {
-    // 为每个厂房卡片添加"预约看厂"按钮
-    var factoryCards = document.querySelectorAll('.factory-card, .factory-item');
-    factoryCards.forEach(function(card) {
-        if (!card.querySelector('.booking-btn')) {
-            var nameEl = card.querySelector('.factory-name, h3, h4');
-            var factoryName = nameEl ? nameEl.textContent : '厂房';
-            
-            var btn = document.createElement('button');
-            btn.className = 'booking-btn';
-            btn.textContent = '📅 预约看厂';
-            btn.onclick = function() { openBookingModal(factoryName); };
-            card.appendChild(btn);
-        }
-    });
-}
-
-// 打开预约模态框
-function openBookingModal(factoryName) {
-    var modal = document.getElementById('bookingModal');
-    if (!modal) {
-        // 创建模态框
-        modal = document.createElement('div');
-        modal.id = 'bookingModal';
-        modal.className = 'modal';
-        modal.innerHTML = 
-            '<div class="modal-content">' +
-                '<span class="close" onclick="closeModal('bookingModal')">×</span>' +
-                '<h2>预约看厂</h2>' +
-                '<p>意向厂房：<strong id="targetFactory">' + factoryName + '</strong></p>' +
-                '<form id="bookingForm">' +
-                    '<input type="text" name="name" placeholder="您的姓名" required />' +
-                    '<input type="text" name="company" placeholder="公司名称" required />' +
-                    '<input type="tel" name="phone" placeholder="联系电话" required />' +
-                    '<textarea name="message" rows="3" placeholder="投资意向/需求说明"></textarea>' +
-                    '<select name="time">' +
-                        '<option>请选择预约时间</option>' +
-                        '<option>本周内</option>' +
-                        '<option>下周</option>' +
-                        '<option>本月内</option>' +
-                        '<option>具体时间另行协商</option>' +
-                    '</select>' +
-                    '<button type="submit">提交预约</button>' +
-                '</form>' +
-            '</div>';
-        document.body.appendChild(modal);
-    } else {
-        var targetFactory = document.getElementById('targetFactory');
-        if (targetFactory) targetFactory.textContent = factoryName;
-    }
-    
-    modal.style.display = 'block';
-}
-
-function closeAllModals() {
-    document.querySelectorAll('.modal').forEach(function(m) {
-        m.style.display = 'none';
-    });
-}
-
-
-
-// 鱼骨图渲染
-function renderFishbone() {
-    var container = document.getElementById('fishboneContainer');
-    if (!container) return;
-    
-    // 鱼骨图数据
-    var bones = [
-        {
-            id: 'battery',
-            name: '🔋 电池系统',
-            status: '紧急缺链',
-            existing: ['利羿精密（汽车结构件）', '浙江丰帆（数控机械）'],
-            missing: ['正极材料制造', '电芯生产', 'BMS电池管理系统', 'PACK总成集成'],
-            targets: [
-                { name: '宁德时代', investment: '450亿扩产', area: '50000-80000㎡' },
-                { name: '中创新航', status: '港股上市', area: '30000-50000㎡' },
-                { name: '亿纬锂能', trend: '大圆柱电池', area: '20000-40000㎡' }
-            ]
-        },
-        {
-            id: 'motor',
-            name: '⚡ 电驱总成',
-            status: '关注补链',
-            existing: ['长合区多家精密加工企业'],
-            missing: ['扁线电机', 'SiC功率模块', '电机控制器', '减速器总成'],
-            targets: [
-                { name: '汇川技术', loc: '苏州80km', area: '20000-30000㎡' },
-                { name: '精进电动', trend: '扁线油冷', area: '15000-25000㎡' }
-            ]
-        },
-        {
-            id: 'smartdrive',
-            name: '🧠 智能驾驶',
-            status: '空白待招商',
-            existing: ['暂无'],
-            missing: ['激光雷达', '车载摄像头', '智驾域控制器', 'AI算法芯片'],
-            targets: [
-                { name: '华为引望', investment: '230亿战略融资', area: '10000-20000㎡' },
-                { name: '地平线', status: '港股IPO冲刺', area: '8000-15000㎡' }
-            ]
-        },
-        {
-            id: 'chassis',
-            name: '🔩 底盘传动',
-            status: '基础良好',
-            existing: ['多家压铸/锻造企业', '铝合金供应商', '紧固件配套'],
-            missing: ['一体化压铸', '空气悬架', '线控转向'],
-            targets: [
-                { name: '拓普集团', loc: '宁波120km', area: '30000-50000㎡' },
-                { name: '保隆科技', trend: '空悬+传感器', area: '15000-25000㎡' }
-            ]
-        },
-        {
-            id: 'thermal',
-            name: '❄️ 热管理',
-            status: '有基础需壮大',
-            existing: ['银轮股份（散热器）', '三花智控（热交换器）'],
-            missing: ['电池热管理', '热泵空调系统', '液冷板制造'],
-            targets: [
-                { name: '银轮股份', loc: '台州', area: '20000-40000㎡' },
-                { name: '三花智控', loc: '绍兴', area: '15000-30000㎡' }
-            ]
-        },
-        {
-            id: 'lightweight',
-            name: '🪶 车身轻量化',
-            status: '有基础需壮大',
-            existing: ['铝合金铸造企业', '碳纤维复合材料'],
-            missing: ['一体化压铸件', '镁合金部件', '高强度钢冲压'],
-            targets: [
-                { name: '旭升集团', trend: '一体化压铸', area: '25000-40000㎡' },
-                { name: '文灿股份', loc: '佛山/南通', area: '15000-25000㎡' }
-            ]
-        }
-    ];
-    
-    var html = '<div class="fishbone-main">';
-    html += '<div class="fishbone-head">新能源汽车产业链</div>';
-    html += '<div class="fishbone-spine"></div>';
-    html += '<div class="fishbone-bones">';
-    
-    bones.forEach(function(bone, index) {
-        html += '<div class="fishbone-bone" id="fishbone-' + bone.id + '" onclick="toggleFishbone('' + bone.id + '')">';
-        
-        // 大骨标题
-        html += '<div class="bone-title">';
-        html += '<span class="bone-name">' + bone.name + '</span>';
-        html += '<span class="bone-status status-' + (index < 3 ? 'red' : (index < 5 ? 'orange' : 'green')) + '">' + bone.status + '</span>';
-        html += '</div>';
-        
-        // 小骨内容
-        html += '<div class="bone-content" id="bone-' + bone.id + '">';
-        
-        // 已有企业
-        if (bone.existing.length > 0) {
-            html += '<div class="bone-section existing"><strong>✅ 已落地：</strong> ' + bone.existing.join(' / ') + '</div>';
-        }
-        
-        // 缺链环节
-        if (bone.missing.length > 0) {
-            html += '<div class="bone-section missing"><strong>🔴 缺链：</strong> ';
-            bone.missing.forEach(function(m) {
-                html += '<span class="missing-item">' + m + '</span>';
-            });
-            html += '</div>';
-        }
-        
-        // 招商目标
-        if (bone.targets && bone.targets.length > 0) {
-            html += '<div class="bone-section targets"><strong>🎯 目标企业：</strong><div class="target-cards">';
-            bone.targets.forEach(function(t) {
-                html += '<div class="target-card">' +
-                    '<div class="target-name">' + t.name + '</div>' +
-                    (t.investment ? '<div class="target-info">💰 ' + t.investment + '</div>' : '') +
-                    (t.status ? '<div class="target-info">📈 ' + t.status + '</div>' : '') +
-                    (t.trend ? '<div class="target-info">🚀 ' + t.trend + '</div>' : '') +
-                    (t.loc ? '<div class="target-info">📍 ' + t.loc + '</div>' : '') +
-                    (t.area ? '<div class="target-info">🏭 需求面积：' + t.area + '</div>' : '') +
-                    '<button class="contact-btn" onclick="alert('请联系招商专员获取联系方式')">联系对接</button>' +
-                '</div>';
-            });
-            html += '</div></div>';
-        }
-        
-        html += '</div>'; // end bone-content
-        html += '</div>'; // end fishbone-bone
-    });
-    
-    html += '</div></div>'; // end bones, main
-    
-    container.innerHTML = html;
-}
-
-function toggleFishbone(boneId) {
-    var content = document.getElementById('bone-' + boneId);
-    if (content) {
-        content.classList.toggle('expanded');
-    }
-}
-
-
-
-// 增强企业搜索
-function initEnhancedSearch() {
-    var searchInput = document.getElementById('enterpriseSearch');
-    if (!searchInput) return;
-    
-    searchInput.addEventListener('input', function(e) {
-        debounceSearch(function() { filterEnterprise(e.target.value); }, 300);
-    });
-}
-
-function filterEnterprise(keyword) {
-    if (typeof enterpriseFullData === 'undefined') return;
-    
-    var allEnterprises = [];
-    
-    ['guishang', 'xiaoweiyuan', 'xinsenggui', 'guixia'].forEach(function(type) {
-        if (enterpriseFullData[type] && Array.isArray(enterpriseFullData[type])) {
-            allEnterprises = allEnterprises.concat(
-                enterpriseFullData[type].map(function(e) {
-                    return Object.assign({}, e, { _type: type });
-                })
-            );
-        }
-    });
-    
-    // 如果没有关键词，显示全部
-    if (!keyword || keyword.trim() === '') {
-        entFiltered = allEnterprises;
-        renderEnterpriseTable();
-        return;
-    }
-    
-    keyword = keyword.toLowerCase().trim();
-    
-    entFiltered = allEnterprises.filter(function(ent) {
-        // 搜索：名称、片区、联系人
-        var searchableFields = [
-            ent.name || '',
-            ent.area || '',
-            ent.contact || '',
-            ent.type || ''
-        ].join(' ').toLowerCase();
-        
-        return searchableFields.indexOf(keyword) >= 0;
-    });
-    
-    renderEnterpriseTable();
-}
-
-// 厂房筛选增强
-function filterFactory() {
-    var areaMin = parseFloat(document.getElementById('factoryAreaMin')?.value || 0);
-    var areaMax = parseFloat(document.getElementById('factoryAreaMax')?.value || 999999);
-    var heightMin = parseFloat(document.getElementById('factoryHeightMin')?.value || 0);
-    var areaSelect = document.getElementById('factoryAreaSelect');
-    var selectedArea = areaSelect ? areaSelect.value : '';
-    
-    if (typeof factoryBrochureData === 'undefined' || !Array.isArray(factoryBrochureData)) return;
-    
-    var filtered = factoryBrochureData.filter(function(f) {
-        var totalArea = f.totalArea || 0;
-        var height = f.height || 0;
-        
-        if (totalArea < areaMin || totalArea > areaMax) return false;
-        if (height < heightMin) return false;
-        
-        if (selectedArea && selectedArea !== '' && (f.area || '').indexOf(selectedArea) < 0) {
-            return false;
-        }
-        
-        return true;
-    });
-    
-    renderFactoryTable(filtered);
-}
-
-function renderFactoryTable(data) {
-    var container = document.getElementById('factoryTableBody') || document.getElementById('factoryListContainer');
-    if (!container) return;
-    
-    if (!data || data.length === 0) {
-        container.innerHTML = '<tr><td colspan="8" style="text-align:center;padding:30px;">未找到符合条件的厂房</td></tr>';
-        return;
-    }
-    
-    container.innerHTML = data.map(function(f, idx) {
-        return '<tr class="factory-row">' +
-            '<td>' + (idx + 1) + '</td>' +
-            '<td><strong>' + (f.name || '-') + '</strong></td>' +
-            '<td>' + (f.area || '-') + '</td>' +
-            '<td>' + (f.totalArea || '-') + '</td>' +
-            '<td>' + (f.availableArea || '-') + '</td>' +
-            '<td>' + (f.height || '-') + '</td>' +
-            '<td>' + (f.power || '-') + '</td>' +
-            '<td>' + (f.price || '-') + '</td>' +
-            '<td>' + (f.contact || '-') + '</td>' +
-            '<td><a href="tel:' + (f.phone || '') + '">' + (f.phone || '-') + '</a></td>' +
-            '<td><button class="booking-btn" onclick="openBookingModal('' + (f.name || '厂房') + '')">预约看厂</button></td>' +
-        '</tr>';
-    }).join('');
-}
-
-// 土地数据初始化（修复NaN问题）
-function initLandFixed() {
-    try {
-        if (typeof landFullData === 'undefined' || !landFullData) {
-            console.log('landFullData not loaded yet');
-            return;
-        }
-        
-        var categories = [
-            { key: 'zhuangongweigong', id: 'zhuangongweigongTotal' },
-            { key: 'shouchu', id: 'shouchuTotal' },
-            { key: 'gongerweiyong', id: 'gongerweiyongTotal' }
-        ];
-        
-        var grandTotal = 0;
-        
-        categories.forEach(function(cat) {
-            var data = landFullData[cat.key];
-            var sum = 0;
-            
-            if (Array.isArray(data)) {
-                data.forEach(function(item) {
-                    var area = parseFloat(item.area) || 0;
-                    sum += area;
-                });
-            } else if (typeof data === 'number') {
-                sum = data;
-            }
-            
-            grandTotal += sum;
-            
-            var el = document.getElementById(cat.id);
-            if (el) el.textContent = sum.toFixed(1) + '亩';
-        });
-        
-        var totalEl = document.getElementById('landGrandTotal');
-        if (totalEl) totalEl.textContent = grandTotal.toFixed(1) + '亩';
-        
-    } catch(e) {
-        console.error('initLandFixed error:', e);
-    }
-}
-
-)
-)
 </script>
 
 <!-- 预约看厂模态框 -->
@@ -9008,31 +8399,6 @@ function initLandFixed() {
 </form>
 </div>
 </div>
-
-
-<!-- 返回顶部按钮 -->
-<button id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" 
-        style="position:fixed;bottom:30px;right:30px;width:50px;height:50px;border-radius:50%;background:#00d4ff;color:white;border:none;font-size:24px;cursor:pointer;z-index:9999;display:none;box-shadow:0 4px 15px rgba(0,212,255,0.4);">
-    ↑
-</button>
-<script>
-// 显示/隐藏返回顶部按钮
-window.addEventListener('scroll', function() {
-    var btn = document.getElementById('backToTop');
-    if (btn) {
-        btn.style.display = window.scrollY > 500 ? 'block' : 'none';
-    }
-});
-</script>
-
-
-<footer style="background:#0a1628;padding:30px;text-align:center;color:#666;border-top:1px solid #00d4ff22;margin-top:40px;">
-    <p>© 2025 长三角（湖州）产业合作区投资促进局 | 新能源汽车产业链招商作战图</p>
-    <p style="margin-top:10px;">
-        <a href="tel:0563-5680808" style="color:#00d4ff;margin:0 15px;">📞 招商热线: 0563-5680808</a>
-        <span style="margin:0 15px;">📍 浙江省湖州市安吉县天子湖镇</span>
-    </p>
-</footer>
 
 </body>
 </html>
