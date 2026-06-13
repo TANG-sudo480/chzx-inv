@@ -1548,11 +1548,30 @@ textarea.form-input{grid-column:span 2;min-height:120px;resize:vertical}
 </div>
 </div>
 
+<!-- 高德地图 SDK -->
 <script>
-// 高德地图
-window._AMapSecurityConfig = { securityJsCode: '1d19f5d7f8085dfc6d592c7b5e6dc6db' }
+window._AMapSecurityConfig = { 
+    securityJsCode: '1d19f5d7f8085dfc6d592c7b5e6dc6db' 
+};
+
+// 高德地图异步加载回调
+function onAMapLoaded() {
+    console.log('✅ 高德地图SDK加载完成');
+    window.AMapLoaded = true;
+    
+    // 如果地图容器已经可见，立即初始化
+    if (document.getElementById('map')) {
+        // 使用延迟确保DOM完全就绪
+        setTimeout(function() {
+            initMap();
+        }, 100);
+    }
+}
 </script>
-<script src="https://webapi.amap.com/maps?v=2.0&key=1d19f5d7f8085dfc6d592c7b5e6dc6db"></script>
+
+<script src="https://webapi.amap.com/maps?v=2.0&key=1d19f5d7f8085dfc6d592c7b5e6dc6db&callback=onAMapLoaded" async defer></script>
+
+<!-- 高德地图插件（标记点聚合等） -->
 
 <script>
 // ==================== 数据 ====================
@@ -7123,40 +7142,403 @@ document.getElementById('chainMapResult').innerHTML=`
 `;
 }
 
-// 高德地图初始化
-let map;
-function initMap(){
-map=new AMap.Map('map',{
-zoom:12,
-center:[119.42,31.03],
-mapStyle:'amap://styles/darkblue'
-});
-// 添加天子湖标记
-new AMap.Marker({position:[119.42,31.03],content:'<div style="background:#00d4ff;padding:8px 16px;border-radius:20px;color:#000;font-weight:600">天子湖片区</div>'}).setMap(map);
-// 添加厂房标记
-factoryData.slice(0,5).forEach(f=>{
-const colors={tianzihun:'#00d4ff',sian:'#fbbc04'};
-new AMap.Marker({
-position:[119.42+Math.random()*0.1-0.05,31.03+Math.random()*0.1-0.05],
-content:`<div style="background:${colors[f.zone]||'#00d4ff'};width:12px;height:12px;border-radius:50%;border:2px solid #fff"></div>`,
-title:`${f.location} ${f.area}㎡`
-}).setMap(map);
-});
-// 添加企业标记
-clueData.slice(0,5).forEach((c,i)=>{
-new AMap.Marker({
-position:[119.42+Math.random()*0.15-0.075,31.03+Math.random()*0.15-0.075],
-content:`<div style="background:#34a853;width:12px;height:12px;border-radius:50%;border:2px solid #fff"></div>`,
-title:c.name
-}).setMap(map);
-});
-// 目标企业脉冲标记
-new AMap.Marker({
-position:[119.5,31.08],
-content:'<div style="width:20px;height:20px;background:#ea4335;border-radius:50%;animation:pulse 2s infinite"></div>',
-title:'宁德时代'
-}).setMap(map);
+// ==================== 高德地图完整实现 ====================
+let map = null;
+let mapMarkers = [];
+let infoWindow = null;
+
+// 长合区天子湖片区中心坐标
+const MAP_CENTER = [119.68, 30.63]; // 更准确的长合区坐标
+
+// 企业数据坐标（基于真实地理位置估算）
+const enterpriseLocations = [
+    {name: '浙江天林家纺科技', lat: 30.635, lng: 119.675, type: 'enterprise', area: '第一片区'},
+    {name: '美思特射频技术', lat: 30.638, lng: 119.680, type: 'enterprise', area: '第一片区'},
+    {name: '长合区核心区', lat: 30.640, lng: 119.690, type: 'zone', area: '核心区'},
+    {name: '天子湖A区', lat: 30.632, lng: 119.668, type: 'zone', area: '天子湖A区'},
+    {name: '天子湖B区', lat: 30.628, lng: 119.685, type: 'zone', area: '天子湖B区'},
+    {name: '泗安镇工业区', lat: 30.605, lng: 119.720, type: 'zone', area: '泗安镇'},
+    {name: '安吉县城方向', lat: 30.650, lng: 119.700, type: 'reference', area: '参考点'},
+];
+
+// 厂房数据坐标
+const factoryLocations = [
+    {name: '标准厂房A1', lat: 30.633, lng: 119.670, status: '空闲', area: '12000㎡'},
+    {name: '标准厂房A2', lat: 30.634, lng: 119.673, status: '空闲', area: '8500㎡'},
+    {name: '钢构厂房B1', lat: 30.629, lng: 119.682, status: '预订中', area: '20000㎡'},
+    {name: '泗安标准厂房', lat: 30.608, lng: 119.718, status: '空闲', area: '11000㎡'},
+];
+
+// 招商目标企业（周边200km内）
+const targetCompanies = [
+    {name: '宁德时代', lat: 30.980, lng: 119.950, investment: '450亿扩产', distance: '宜兴40km'},
+    {name: '吉利极氪', lat: 29.860, lng: 121.550, investment: 'IPO冲刺', distance: '宁波120km'},
+    {name: '零跑汽车', lat: 30.270, lng: 120.150, investment: '港股上市', distance: '杭州80km'},
+    {name: '理想汽车', lat: 31.750, lng: 119.900, investment: '扩产中', distance: '常州100km'},
+    {name: '汇川技术', lat: 31.300, lng: 120.620, investment: '伺服龙头', distance: '苏州80km'},
+    {name: '地平线', lat: 39.980, lng: 116.400, investment: '港股IPO冲刺', distance: '北京'},
+    {name: '华为引望', lat: 22.550, lng: 114.050, investment: '230亿融资', distance: '深圳'},
+];
+
+// 创建自定义标记样式
+function createMarkerContent(type, name) {
+    const styles = {
+        enterprise: {
+            bg: '#34a853',
+            border: '#2ea043',
+            icon: '🏭'
+        },
+        factory: {
+            bg: '#00d4ff',
+            border: '#0099cc',
+            icon: '🏢'
+        },
+        zone: {
+            bg: '#fbbc04',
+            border: '#e0a800',
+            icon: '📍'
+        },
+        target: {
+            bg: '#ea4335',
+            border: '#c5221f',
+            icon: '🎯'
+        },
+        center: {
+            bg: '#00d4ff',
+            border: '#ffffff',
+            icon: '⭐'
+        }
+    };
+    
+    const style = styles[type] || styles.enterprise;
+    return `<div style="
+        background:${style.bg};
+        padding:6px 12px;
+        border-radius:16px;
+        color:#fff;
+        font-size:13px;
+        font-weight:600;
+        white-space:nowrap;
+        box-shadow:0 2px 10px rgba(0,0,0,0.3);
+        border:2px solid ${style.border};
+        display:flex;align-items:center;gap:4px;
+    ">${style.icon} ${name}</div>`;
 }
+
+// 创建信息窗口内容
+function createInfoWindowContent(data) {
+    let html = '<div style="min-width:200px;padding:10px;">';
+    html += `<h4 style="margin:0 0 8px;color:#00d4ff;font-size:15px;">${data.name}</h4>`;
+    
+    if (data.type === 'target') {
+        html += `<p style="margin:4px 0;color:#ea4335;font-size:12px;">🎯 招商目标企业</p>`;
+        if (data.investment) html += `<p style="margin:4px 0;color:#fff;font-size:13px;">💰 ${data.investment}</p>`;
+        if (data.distance) html += `<p style="margin:4px 0;color:#8b949e;font-size:12px;">📍 距离长合区约 ${data.distance}</p>`;
+    } else if (data.type === 'factory') {
+        html += `<p style="margin:4px 0;color:#00d4ff;font-size:12px;">🏢 厂房资源</p>`;
+        if (data.area) html += `<p style="margin:4px 0;color:#fff;font-size:13px;">📐 面积: ${data.area}</p>`;
+        if (data.status) {
+            const statusColor = data.status === '空闲' ? '#34a853' : (data.status === '已租' ? '#ea4335' : '#fbbc04');
+            html += `<p style="margin:4px 0;font-size:12px;"><span style="color:${statusColor};">●</span> ${data.status}</p>`;
+        }
+        html += `<button onclick="openBookingModal('${data.name}')" style="margin-top:8px;padding:6px 14px;background:#ff6b35;border:none;border-radius:6px;color:#fff;cursor:pointer;font-size:12px;">预约看厂</button>`;
+    } else if (data.type === 'zone') {
+        html += `<p style="margin:4px 0;color:#fbbc04;font-size:12px;">📍 园区区域</p>`;
+        html += `<p style="margin:4px 0;color:#fff;font-size:13px;">${data.area}</p>`;
+    } else {
+        html += `<p style="margin:4px 0;color:#34a853;font-size:12px;">🏭 已落地企业</p>`;
+        html += `<p style="margin:4px 0;color:#fff;font-size:13px;">${data.area || ''}</p>`;
+    }
+    
+    html += '</div>';
+    return html;
+}
+
+// 初始化地图主函数
+function initMap() {
+    try {
+        // 检查AMap是否加载
+        if (typeof AMap === 'undefined') {
+            console.warn('高德地图SDK未加载，延迟重试...');
+            setTimeout(initMap, 1000);
+            return;
+        }
+        
+        const mapContainer = document.getElementById('map');
+        if (!mapContainer) {
+            console.error('地图容器 #map 不存在');
+            return;
+        }
+        
+        // 确保容器可见且有高度
+        mapContainer.style.display = 'block';
+        mapContainer.style.height = '600px';
+        
+        // 创建地图实例
+        map = new AMap.Map('map', {
+            zoom: 11,
+            center: MAP_CENTER,
+            mapStyle: 'amap://styles/darkblue',
+            viewMode: '2D',
+            zoomEnable: true,
+            dragEnable: true,
+            showLabel: true
+        });
+        
+        // 添加控件
+        map.addControl(new AMap.Scale());
+        map.addControl(new AMap.ToolBar({ position: 'RT' }));
+        
+        // 创建信息窗口
+        infoWindow = new AMap.InfoWindow({
+            offset: new AMap.Pixel(0, -30),
+            closeWhenClickMap: true
+        });
+        
+        // 添加所有标记
+        addAllMarkers();
+        
+        // 绑定事件
+        bindMapEvents();
+        
+        console.log('✅ 地图初始化成功');
+        
+    } catch (error) {
+        console.error('❌ 地图初始化失败:', error);
+        showErrorState();
+    }
+}
+
+// 添加所有标记
+function addAllMarkers() {
+    clearMarkers();
+    
+    // 1. 中心点标记（天子湖）
+    const centerMarker = new AMap.Marker({
+        position: MAP_CENTER,
+        content: createMarkerContent('center', '长合区·天子湖'),
+        offset: new AMap.Pixel(-60, -20),
+        zIndex: 100
+    });
+    centerMarker.setMap(map);
+    mapMarkers.push(centerMarker);
+    
+    // 2. 区域标记
+    enterpriseLocations.filter(l => l.type === 'zone').forEach(loc => {
+        const marker = new AMap.Marker({
+            position: [loc.lng, loc.lat],
+            content: createMarkerContent('zone', loc.name),
+            offset: new AMap.Pixel(-50, -20),
+            extData: loc
+        });
+        marker.setMap(map);
+        marker.on('click', () => {
+            infoWindow.setContent(createInfoWindowContent(loc));
+            infoWindow.open(map, marker.getPosition());
+        });
+        mapMarkers.push(marker);
+    });
+    
+    // 3. 厂房标记
+    factoryLocations.forEach(loc => {
+        const marker = new AMap.Marker({
+            position: [loc.lng, loc.lat],
+            content: createMarkerContent('factory', loc.name.split('厂')[0]),
+            offset: new AMap.Pixel(-45, -18),
+            extData: loc
+        });
+        marker.setMap(map);
+        marker.on('click', () => {
+            infoWindow.setContent(createInfoWindowContent(loc));
+            infoWindow.open(map, marker.getPosition());
+        });
+        mapMarkers.push(marker);
+    });
+    
+    // 4. 已落地企业标记（示例）
+    enterpriseLocations.filter(l => l.type === 'enterprise').slice(0, 3).forEach(loc => {
+        const marker = new AMap.Marker({
+            position: [loc.lng, loc.lat],
+            content: createMarkerContent('enterprise', loc.name.substring(0, 6)),
+            offset: new AMap.Pixel(-50, -18),
+            extData: loc
+        });
+        marker.setMap(map);
+        marker.on('click', () => {
+            infoWindow.setContent(createInfoWindowContent(loc));
+            infoWindow.open(map, marker.getPosition());
+        });
+        mapMarkers.push(marker);
+    });
+    
+    // 5. 招商目标企业标记
+    targetCompanies.forEach(loc => {
+        const marker = new AMap.Marker({
+            position: [loc.lng, loc.lat],
+            content: createMarkerContent('target', loc.name),
+            offset: new AMap.Pixel(-50, -20),
+            extData: loc
+        });
+        marker.setMap(map);
+        marker.on('click', () => {
+            infoWindow.setContent(createInfoWindowContent(loc));
+            infoWindow.open(map, marker.getPosition());
+        });
+        mapMarkers.push(marker);
+    });
+}
+
+// 清除所有标记
+function clearMarkers() {
+    mapMarkers.forEach(m => m.setMap(null));
+    mapMarkers = [];
+}
+
+// 绑定地图事件
+function bindMapEvents() {
+    // 地图点击关闭信息窗
+    map.on('click', () => {
+        infoWindow.close();
+    });
+}
+
+// 显示错误状态
+function showErrorState() {
+    const container = document.getElementById('map');
+    if (container) {
+        container.innerHTML = `
+            <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;background:rgba(10,14,39,0.95);color:#8b949e;">
+                <div style="font-size:48px;margin-bottom:16px;">🗺️</div>
+                <div style="font-size:16px;margin-bottom:8px;">地图加载失败</div>
+                <div style="font-size:13px;">请检查网络连接后刷新页面</div>
+                <button onclick="initMap()" style="margin-top:16px;padding:10px 24px;background:#00d4ff;border:none;border-radius:8px;color:#000;cursor:pointer;font-weight:600;">
+                    🔄 重新加载
+                </button>
+            </div>
+        `;
+    }
+}
+
+// 地图筛选功能
+function filterMap(type) {
+    if (!map) return;
+    
+    // 高亮选中的筛选标签
+    document.querySelectorAll('.filter-tag').forEach(tag => tag.classList.remove('active'));
+    event.target.classList.add('active');
+    
+    if (type === 'all') {
+        // 显示所有标记
+        mapMarkers.forEach(m => m.show());
+        map.setZoomAndCenter(11, MAP_CENTER);
+    } else {
+        // 根据类型显示/隐藏标记
+        const typeMap = {
+            battery: ['宁德时代', '中创新航', '亿纬锂能'],
+            motor: ['汇川技术', '精进电动'],
+            smart: ['地平线', '华为引望'],
+            chassis: ['拓普集团', '保隆科技'],
+            ev: ['零跑汽车', '理想汽车', '特斯拉']
+        };
+        
+        const targets = typeMap[type] || [];
+        
+        mapMarkers.forEach(marker => {
+            const data = marker.getExtData();
+            if (!data || !data.name) {
+                marker.show();
+                return;
+            }
+            
+            const shouldShow = targets.some(t => data.name.includes(t)) || 
+                              data.type !== 'target';
+            shouldShow ? marker.show() : marker.hide();
+        });
+    }
+}
+
+function filterMapType(type) {
+    if (!map) return;
+    
+    document.querySelectorAll('.filter-group:nth-child(3) .filter-tag').forEach(tag => {
+        tag.classList.remove('active');
+    });
+    event.target.classList.add('active');
+    
+    mapMarkers.forEach(marker => {
+        const data = marker.getExtData();
+        if (!data || !data.type) {
+            marker.show();
+            return;
+        }
+        
+        if (type === 'all') {
+            marker.show();
+        } else if (type === 'enterprise' && data.type === 'enterprise') {
+            marker.show();
+        } else if (type === 'factory' && data.type === 'factory') {
+            marker.show();
+        } else if (type === 'target' && data.type === 'target') {
+            marker.show();
+        } else {
+            marker.hide();
+        }
+    });
+}
+
+// 视口检测 - 当地图进入视口时初始化（性能优化）
+function setupMapViewportObserver() {
+    const mapSection = document.getElementById('map');
+    if (!mapSection) {
+        console.warn('地图区域 #map 不存在');
+        return;
+    }
+    
+    let mapInitialized = false;
+    
+    // 方法1: 使用 IntersectionObserver（现代浏览器）
+    if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !mapInitialized) {
+                    mapInitialized = true;
+                    console.log('📍 地图区域进入视口，开始加载...');
+                    
+                    // 确保AMap已加载
+                    if (typeof AMap !== 'undefined' || window.AMapLoaded) {
+                        setTimeout(() => initMap(), 200);
+                    } else {
+                        // AMAP还没加载完成，等待
+                        const waitForAMap = setInterval(() => {
+                            if (typeof AMap !== 'undefined' || window.AMapLoaded) {
+                                clearInterval(waitForAMap);
+                                initMap();
+                            }
+                        }, 300);
+                        
+                        // 超时保护：5秒后强制尝试
+                        setTimeout(() => {
+                            clearInterval(waitForAMap);
+                            if (!mapInitialized) initMap();
+                        }, 5000);
+                    }
+                }
+            });
+        }, { 
+            threshold: 0.1,
+            rootMargin: '200px' // 提前200px开始加载
+        });
+        
+        observer.observe(mapSection);
+        console.log('✅ 地图视口观察器已设置');
+        
+    } else {
+        // 方法2: 降级方案 - 直接延迟加载
+        console.log('⚠️ 浏览器不支持IntersectionObserver，使用降级方案');
+        setTimeout(() => initMap(), 1500);
+    }
+}
+
 
 // 初始化
 document.addEventListener('DOMContentLoaded',()=>{
@@ -7166,7 +7548,8 @@ renderClues(clueData);
 renderFactories(factoryData);
 initEnterprise(); // 初始化企业库
 renderMatrix();
-if(window.AMap)initMap();
+// 地图使用视口检测延迟加载，提升首屏性能
+setupMapViewportObserver();
 
 // 滚动动画
 const observer=new IntersectionObserver(entries=>{
