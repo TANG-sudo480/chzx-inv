@@ -138,15 +138,15 @@ body{font-family:"PingFang SC","Microsoft YaHei",sans-serif;background:#0d1117;c
 </div>
 
 <div class="tab-bar">
-  <button class="tab-btn active" onclick="showTab('location')">区位优势</button>
-  <button class="tab-btn" onclick="showTab('chain')">产业链全景</button>
-  <button class="tab-btn" onclick="showTab('detail')">零部件拆解</button>
-  <button class="tab-btn" onclick="showTab('local')">本地资源</button>
-  <button class="tab-btn" onclick="showTab('enterprise')">全区企业</button>
-	<button class="tab-btn" onclick="showTab('factory')">空余厂房</button>
-	<button class="tab-btn" onclick="showTab('analyze')">项目研判</button>
-  <button class="tab-btn" onclick="showTab('filter')">智能筛选</button>
-  <button class="tab-btn" onclick="showTab('fishbone')">鱼骨图分析</button>
+  <button class="tab-btn active" onclick="showTab('location')" data-tab="location">区位优势</button>
+  <button class="tab-btn" onclick="showTab('chain')" data-tab="chain">产业链全景</button>
+  <button class="tab-btn" onclick="showTab('detail')" data-tab="detail">零部件拆解</button>
+  <button class="tab-btn" onclick="showTab('local')" data-tab="local">本地资源</button>
+  <button class="tab-btn" onclick="showTab('enterprise')" data-tab="enterprise">全区企业</button>
+	<button class="tab-btn" onclick="showTab('factory')" data-tab="factory">空余厂房</button>
+	<button class="tab-btn" onclick="showTab('analyze')" data-tab="analyze">项目研判</button>
+  <button class="tab-btn" onclick="showTab('filter')" data-tab="filter">智能筛选</button>
+  <button class="tab-btn" onclick="showTab('fishbone')" data-tab="fishbone">鱼骨图分析</button>
 </div>
 
 <!-- 区位优势 -->
@@ -1546,22 +1546,31 @@ window.onload=function(){
 
 // ====== Tab切换 ======
 function showTab(id){
-  var btns = document.querySelectorAll(".tab-btn");
-  for(var i=0;i<btns.length;i++){btns[i].classList.remove("active");}
+  // 隐藏所有 tab 内容
   var contents = document.querySelectorAll(".tab-content");
-  for(var i=0;i<contents.length;i++){contents[i].classList.remove("active");}
-  // 找到并激活对应按钮
-  for(var i=0;i<btns.length;i++){
-    if(btns[i].getAttribute("onclick") && btns[i].getAttribute("onclick").indexOf(id)!=-1){
-      btns[i].classList.add("active");
-      break;
-    }
+  for(var i=0;i<contents.length;i++){
+    contents[i].style.display = "none";
   }
+  // 移除所有按钮的 active
+  var btns = document.querySelectorAll(".tab-btn");
+  for(var i=0;i<btns.length;i++){
+    btns[i].classList.remove("active");
+  }
+  // 显示目标 tab
   var target = document.getElementById("tab-"+id);
-  if(target){target.classList.add("active");}
-  if(id==="location" && mainMap) setTimeout(function(){mainMap.invalidateSize()},100);
-  if(id==="local" && localMap) setTimeout(function(){localMap.invalidateSize()},100);
-  if(id==="enterprise") initEnterpriseTab();
+  if(target){
+    target.style.display = "block";
+  }
+  // 激活对应按钮
+  btns.forEach(function(btn){
+    if(btn.getAttribute("data-tab") === id){
+      btn.classList.add("active");
+    }
+  });
+  // 地图自适应
+  if(id==="location" && mainMap){setTimeout(function(){mainMap.invalidateSize()},100);}
+  if(id==="local" && localMap){setTimeout(function(){localMap.invalidateSize()},100);}
+  if(id==="enterprise"){initEnterpriseTab();}
   if(id==="factory"){initFactoryMap();renderFactoryList();}
 }
 
