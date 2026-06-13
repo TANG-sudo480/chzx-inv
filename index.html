@@ -880,9 +880,161 @@ textarea.form-input{grid-column:span 2;min-height:120px;resize:vertical}
 <div class="section-badge">🎣 鱼骨图分析</div>
 <h2 class="section-title">新能源汽车产业链招商作战鱼骨图</h2>
 <p class="section-subtitle">点击各产业大骨展开查看缺链环节、已落地企业、招商目标企业</p>
-<div id="fishboneContainer"></div>
+<div id="fishboneContainer" style="min-height:400px;">
+<div class="fishbone-title">新能源汽车产业链招商作战鱼骨图</div>
+<div class="fishbone-main">
+<div class="fishbone-spine"><span>新能源汽车产业链</span></div>
+<div class="fishbone-bones">
+<div class="fishbone-bone status-partial">
+<div class="bone-header" onclick="toggleBone('battery')">
+<div class="bone-icon">🔋</div>
+<div class="bone-name">电池系统</div>
+<div class="bone-score" style="color:#fbbc04">40%</div>
+<div class="bone-status">🟡 部分缺链</div>
+</div>
+<div class="bone-content" id="bone-battery" style="display:block">
+<div class="bone-section"><div class="bone-section-title">✅ 已落地长合区企业</div>
+<div class="bone-companies"><span class="company-tag local">利羿能源(电池PACK)</span><span class="company-tag local">永兴材料(碳酸锂)</span></div></div>
+<div class="bone-section gap-section"><div class="bone-section-title">🔴 缺链环节</div>
+<div class="bone-gaps"><span class="gap-tag priority">电芯制造 ⭐</span><span class="gap-tag priority">正极材料 ⭐</span><span class="gap-tag priority">BMS ⭐</span><span class="gap-tag">负极材料</span></div></div>
+<div class="bone-section"><div class="bone-section-title">🎯 招商目标企业</div>
+<div class="bone-targets">
+<div class="target-card"><div class="target-name">宁德时代</div><div class="target-info">投资:50亿 | 用地:150亩</div><div class="target-status">扩产选址中 | 2026Q2</div></div>
+<div class="target-card"><div class="target-name">弗迪电池</div><div class="target-info">投资:60亿 | 用地:200亩</div><div class="target-status">持续扩产</div></div>
+<div class="target-card"><div class="target-name">中创新航</div><div class="target-info">投资:30亿 | 用地:100亩</div><div class="target-status">IPO冲刺 | 2026Q1</div></div>
+</div></div>
+<div class="bone-section"><div class="bone-chain-flow">
+<div class="chain-flow-item"><div class="flow-label">上游</div><div class="flow-items">锂矿 → 钴矿 → 正极材料 → 负极材料 → 电解液 → 隔膜</div></div>
+<div class="chain-flow-item"><div class="flow-label">中游</div><div class="flow-items">电芯 → 模组 → PACK → BMS → 热管理</div></div>
+<div class="chain-flow-item"><div class="flow-label">下游</div><div class="flow-items">整车 → 储能 → 换电站</div></div>
+</div></div>
+</div>
+</div>
+
+<div class="fishbone-bone status-partial">
+<div class="bone-header" onclick="toggleBone('motor')">
+<div class="bone-icon">⚡</div>
+<div class="bone-name">电驱总成</div>
+<div class="bone-score" style="color:#fbbc04">50%</div>
+<div class="bone-status">🟡 部分缺链</div>
+</div>
+<div class="bone-content" id="bone-motor" style="display:none">
+<div class="bone-section"><div class="bone-section-title">✅ 已落地长合区企业</div>
+<div class="bone-companies"><span class="company-tag local">汇川联合(苏州80km)</span><span class="company-tag local">方正电机(配套)</span></div></div>
+<div class="bone-section gap-section"><div class="bone-section-title">🔴 缺链环节</div>
+<div class="bone-gaps"><span class="gap-tag priority">电机控制器 ⭐</span><span class="gap-tag priority">扁线电机 ⭐</span><span class="gap-tag">减速器</span></div></div>
+<div class="bone-section"><div class="bone-section-title">🎯 招商目标企业</div>
+<div class="bone-targets">
+<div class="target-card"><div class="target-name">华为数字能源</div><div class="target-info">投资:25亿 | 用地:80亩</div><div class="target-status">战略布局 | 2026Q1</div></div>
+<div class="target-card"><div class="target-name">汇川联合</div><div class="target-info">投资:20亿 | 用地:60亩</div><div class="target-status">扩产选址 | 2025Q4</div></div>
+</div></div>
+<div class="bone-section"><div class="bone-chain-flow">
+<div class="chain-flow-item"><div class="flow-label">上游</div><div class="flow-items">稀土 → 硅钢 → 铜线 → 轴承</div></div>
+<div class="chain-flow-item"><div class="flow-label">中游</div><div class="flow-items">电机 → 减速器 → 控制器 → 总成</div></div>
+<div class="chain-flow-item"><div class="flow-label">下游</div><div class="flow-items">整车 → 新能源商用车</div></div>
+</div></div>
+</div>
+</div>
+
+<div class="fishbone-bone status-missing">
+<div class="bone-header" onclick="toggleBone('smart')">
+<div class="bone-icon">🧠</div>
+<div class="bone-name">智能驾驶</div>
+<div class="bone-score" style="color:#ea4335">10%</div>
+<div class="bone-status">🔴 严重缺链</div>
+</div>
+<div class="bone-content" id="bone-smart" style="display:none">
+<div class="bone-section"><div class="bone-section-title">✅ 已落地长合区企业</div>
+<div class="bone-empty">暂无</div></div>
+<div class="bone-section gap-section"><div class="bone-section-title">🔴 缺链环节</div>
+<div class="bone-gaps"><span class="gap-tag priority">芯片 ⭐</span><span class="gap-tag priority">域控制器 ⭐</span><span class="gap-tag priority">感知硬件 ⭐</span><span class="gap-tag">算法</span></div></div>
+<div class="bone-section"><div class="bone-section-title">🎯 招商目标企业</div>
+<div class="bone-targets">
+<div class="target-card"><div class="target-name">地平线</div><div class="target-info">投资:15亿 | 用地:40亩</div><div class="target-status">IPO冲刺 | 2026Q1</div></div>
+<div class="target-card"><div class="target-name">速腾聚创</div><div class="target-info">投资:10亿 | 用地:45亩</div><div class="target-status">扩产中 | 2025Q4</div></div>
+<div class="target-card"><div class="target-name">图达通</div><div class="target-info">投资:8亿 | 用地:30亩</div><div class="target-status">选址中 | 2026Q1</div></div>
+</div></div>
+<div class="bone-section"><div class="bone-chain-flow">
+<div class="chain-flow-item"><div class="flow-label">上游</div><div class="flow-items">芯片设计 → 传感器 → 算法</div></div>
+<div class="chain-flow-item"><div class="flow-label">中游</div><div class="flow-items">域控制器 → 智驾系统 → 车联网</div></div>
+<div class="chain-flow-item"><div class="flow-label">下游</div><div class="flow-items">整车 → Robotaxi</div></div>
+</div></div>
+</div>
+</div>
+
+<div class="fishbone-bone status-full">
+<div class="bone-header" onclick="toggleBone('chassis')">
+<div class="bone-icon">🔩</div>
+<div class="bone-name">底盘传动</div>
+<div class="bone-score" style="color:#34a853">75%</div>
+<div class="bone-status">✅ 完善</div>
+</div>
+<div class="bone-content" id="bone-chassis" style="display:none">
+<div class="bone-section"><div class="bone-section-title">✅ 已落地长合区企业</div>
+<div class="bone-companies"><span class="company-tag local">利羿精密(结构件)</span><span class="company-tag local">拓普集团(配套)</span></div></div>
+<div class="bone-section gap-section"><div class="bone-section-title">🔴 缺链环节</div>
+<div class="bone-gaps"><span class="gap-tag priority">一体化压铸 ⭐</span><span class="gap-tag">线控底盘</span></div></div>
+<div class="bone-section"><div class="bone-section-title">🎯 招商目标企业</div>
+<div class="bone-targets">
+<div class="target-card"><div class="target-name">拓普集团</div><div class="target-info">投资:12亿 | 用地:50亩</div><div class="target-status">扩建中</div></div>
+</div></div>
+<div class="bone-section"><div class="bone-chain-flow">
+<div class="chain-flow-item"><div class="flow-label">上游</div><div class="flow-items">铝合金 → 钢铁 → 橡胶</div></div>
+<div class="chain-flow-item"><div class="flow-label">中游</div><div class="flow-items">悬架 → 制动 → 转向 → 一体化压铸</div></div>
+<div class="chain-flow-item"><div class="flow-label">下游</div><div class="flow-items">整车 → Tier1</div></div>
+</div></div>
+</div>
+</div>
+
+<div class="fishbone-bone status-full">
+<div class="bone-header" onclick="toggleBone('thermal')">
+<div class="bone-icon">❄️</div>
+<div class="bone-name">热管理系统</div>
+<div class="bone-score" style="color:#34a853">85%</div>
+<div class="bone-status">✅ 完善</div>
+</div>
+<div class="bone-content" id="bone-thermal" style="display:none">
+<div class="bone-section"><div class="bone-section-title">✅ 已落地长合区企业</div>
+<div class="bone-companies"><span class="company-tag local">银轮股份(热交换)</span><span class="company-tag local">三花智控(热管理)</span></div></div>
+<div class="bone-section"><div class="bone-empty">产业链完善，暂无缺链环节</div></div>
+<div class="bone-section"><div class="bone-chain-flow">
+<div class="chain-flow-item"><div class="flow-label">上游</div><div class="flow-items">压缩机 → 冷凝器 → 蒸发器</div></div>
+<div class="chain-flow-item"><div class="flow-label">中游</div><div class="flow-items">热泵 → 电池热管理 → 空调系统</div></div>
+<div class="chain-flow-item"><div class="flow-label">下游</div><div class="flow-items">整车 → 储能</div></div>
+</div></div>
+</div>
+</div>
+
+<div class="fishbone-bone status-partial">
+<div class="bone-header" onclick="toggleBone('body')">
+<div class="bone-icon">🏗️</div>
+<div class="bone-name">车身轻量化</div>
+<div class="bone-score" style="color:#fbbc04">65%</div>
+<div class="bone-status">🟡 部分缺链</div>
+</div>
+<div class="bone-content" id="bone-body" style="display:none">
+<div class="bone-section"><div class="bone-section-title">✅ 已落地长合区企业</div>
+<div class="bone-companies"><span class="company-tag local">诺贝丽斯(铝合金)</span><span class="company-tag local">旭升集团(配套)</span></div></div>
+<div class="bone-section gap-section"><div class="bone-section-title">🔴 缺链环节</div>
+<div class="bone-gaps"><span class="gap-tag priority">碳纤维 ⭐</span><span class="gap-tag">一体化压铸</span></div></div>
+<div class="bone-section"><div class="bone-section-title">🎯 招商目标企业</div>
+<div class="bone-targets">
+<div class="target-card"><div class="target-name">中国铝业</div><div class="target-info">投资:8亿 | 用地:35亩</div><div class="target-status">选址中</div></div>
+</div></div>
+<div class="bone-section"><div class="bone-chain-flow">
+<div class="chain-flow-item"><div class="flow-label">上游</div><div class="flow-items">铝土矿 → 碳纤维 → 复合材料</div></div>
+<div class="chain-flow-item"><div class="flow-label">中游</div><div class="flow-items">冲压 → 铸造 → 挤压 → 一体化压铸</div></div>
+<div class="chain-flow-item"><div class="flow-label">下游</div><div class="flow-items">整车 → 轨道交通</div></div>
+</div></div>
+</div>
+</div>
+
+</div>
+</div>
+</div>
 </div>
 </section>
+
 
 <!-- 长合区土地资源库 -->
 <section id="land" class="section" style="background:rgba(0,0,0,0.3)">
