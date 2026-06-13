@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>长三角（湖州）产业合作区</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:#0d1117;color:#c9d1d9}
+.header{background:#161b22;border-bottom:1px solid #30363d;padding:16px 24px}
+.header h1{font-size:18px;color:#58a6ff}
+.tab-bar{display:flex;gap:8px;padding:16px 24px;background:#161b22;border-bottom:1px solid #30363d;flex-wrap:wrap}
+.tab-btn{padding:10px 16px;background:#21262d;border:1px solid #30363d;color:#8b949e;border-radius:6px;cursor:pointer;font-size:13px}
+.tab-btn:hover{background:#30363d;color:#c9d1d9}
+.tab-btn.active{background:#238636;border-color:#238636;color:#fff}
+.content{max-width:1200px;margin:0 auto;padding:24px}
+.tab-content{display:none;padding:20px}
+.tab-content.active{display:block}
+.card{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:20px;margin-bottom:16px}
+.card h3{color:#58a6ff;margin:0 0 12px 0}
+.card p{color:#8b949e;line-height:1.6}
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>长三角（湖州）产业合作区 - 新能源汽车产业链</h1>
+</div>
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="location" onclick="showTab('location')">区位优势</button>
+  <button class="tab-btn" data-tab="chain" onclick="showTab('chain')">产业链全景</button>
+  <button class="tab-btn" data-tab="detail" onclick="showTab('detail')">零部件拆解</button>
+  <button class="tab-btn" data-tab="local" onclick="showTab('local')">本地资源</button>
+  <button class="tab-btn" data-tab="enterprise" onclick="showTab('enterprise')">全区企业</button>
+  <button class="tab-btn" data-tab="factory" onclick="showTab('factory')">空余厂房</button>
+  <button class="tab-btn" data-tab="filter" onclick="showTab('filter')">精准招商</button>
+  <button class="tab-btn" data-tab="analyze" onclick="showTab('analyze')">项目研判</button>
+</div>
+<div class="content">
+  <div id="tab-location" class="tab-content active">
+    <div class="card"><h3>区位优势</h3><p>长三角中心腹地，86.9平方公里核心区，200km产业生态圈</p></div>
+  </div>
+  <div id="tab-chain" class="tab-content">
+    <div class="card"><h3>产业链全景</h3><p>28个产业分类，420+企业数据，覆盖电池、电机、电控、智能驾驶全产业链</p></div>
+  </div>
+  <div id="tab-detail" class="tab-content">
+    <div class="card"><h3>零部件拆解</h3><p>15个关键零部件分类详细展示</p></div>
+  </div>
+  <div id="tab-local" class="tab-content">
+    <div class="card"><h3>本地资源</h3><p>天子湖4大片区+4大小微园，75万㎡标准厂房</p></div>
+  </div>
+  <div id="tab-enterprise" class="tab-content">
+    <div class="card"><h3>全区企业</h3><p>286家企业数据（规上188+小微园45+新升规53）</p></div>
+  </div>
+  <div id="tab-factory" class="tab-content">
+    <div class="card"><h3>空余厂房</h3><p>52条厂房信息（天子湖40家+泗安12家）</p></div>
+  </div>
+  <div id="tab-filter" class="tab-content">
+    <div class="card"><h3>精准招商筛选</h3><p>基于融资扩产动态智能匹配推荐</p></div>
+  </div>
+  <div id="tab-analyze" class="tab-content">
+    <div class="card"><h3>项目研判</h3><p>AI辅助项目评估与产业匹配</p></div>
+  </div>
+</div>
+<script>
+function showTab(id){
+  // 隐藏所有 tab
+  var contents = document.querySelectorAll(".tab-content");
+  for(var i=0;i<contents.length;i++){
+    contents[i].classList.remove("active");
+  }
+  // 取消所有按钮激活
+  var btns = document.querySelectorAll(".tab-btn");
+  for(var i=0;i<btns.length;i++){
+    btns[i].classList.remove("active");
+  }
+  // 显示目标 tab
+  var target = document.getElementById("tab-"+id);
+  if(target){
+    target.classList.add("active");
+  }
+  // 激活按钮
+  for(var i=0;i<btns.length;i++){
+    if(btns[i].getAttribute("data-tab") === id){
+      btns[i].classList.add("active");
+      break;
+    }
+  }
+}
+</script>
+</body>
+</html>
