@@ -1135,8 +1135,24 @@ var areaFilter = document.getElementById('entAreaFilter').value;
 var search = document.getElementById('entSearchInput').value.toLowerCase();
 var tbody = document.getElementById('enterpriseTableBody');
 if(!tbody) return;
-var filtered = enterpriseData.filter(function(e){
-if(typeFilter !== 'all' && e.type !== typeFilter) return false;
+
+// 合并所有企业数据
+var allEnterprises = [];
+if(typeof localEnterpriseData !== 'undefined'){
+if(localEnterpriseData.guishang) allEnterprises = allEnterprises.concat(localEnterpriseData.guishang);
+if(localEnterpriseData.xiaoweiyuan) allEnterprises = allEnterprises.concat(localEnterpriseData.xiaoweiyuan);
+if(localEnterpriseData.xinsengg) allEnterprises = allEnterprises.concat(localEnterpriseData.xinsengg);
+}
+
+var filtered = allEnterprises.filter(function(e){
+if(typeFilter !== 'all'){
+// 根据类型关键词过滤
+var typeMatch = false;
+if(typeFilter === '规上' && (e.type === '规上' || e.type === '拟升规')) typeMatch = true;
+if(typeFilter === '小微园' && e.type === '小微园') typeMatch = true;
+if(typeFilter === '新升规' && (e.type === '新升规' || e.type === '拟升规')) typeMatch = true;
+if(!typeMatch) return false;
+}
 if(areaFilter !== 'all' && e.area !== areaFilter) return false;
 if(search && !e.name.toLowerCase().includes(search)) return false;
 return true;
@@ -1147,8 +1163,11 @@ var start = (entPage - 1) * entPageSize;
 var end = start + entPageSize;
 var pageData = filtered.slice(start, end);
 tbody.innerHTML = pageData.map(function(e, i){
-var typeClass = e.type === '规上' ? 'gs' : (e.type === '小微园' ? 'xwy' : 'xsg');
-return '<tr><td>' + (start + i + 1) + '</td><td>' + e.name + '</td><td><span class="ent-type ' + typeClass + '">' + e.type + '</span></td><td>' + e.area + '</td><td>' + e.contact + '</td><td><a href="tel:' + e.tel + '" class="ent-tel">' + e.tel + '</a></td><td>' + (e.staff || '-') + '</td></tr>';
+var typeText = e.type === '规上' ? '规上企业' : e.type === '小微园' ? '小微园企业' : '新升规项目';
+var typeClass = e.type === '规上' || e.type === '拟升规' ? 'gs' : (e.type === '小微园' ? 'xwy' : 'xsg');
+var phone = e.phone || e.tel || '';
+var contact = e.agent || e.contact || '';
+return '<tr><td>' + (start + i + 1) + '</td><td>' + e.name + '</td><td><span class="ent-type ' + typeClass + '">' + typeText + '</span></td><td>' + (e.area || '-') + '</td><td>' + contact + '</td><td><a href="tel:' + phone + '" class="ent-tel">' + phone + '</a></td><td>' + (e.agent || '-') + '</td></tr>';
 }).join('');
 renderPagination(totalPages);
 }
