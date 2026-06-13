@@ -14,7 +14,7 @@ const factoryBrochureData = {
   "buildings": [
     {
       "id": "TZA-001",
-      "name": "天子湖A区1号厂房",
+      "name": "天子湖创业园A1栋",
       "area": "天子湖镇A区",
       "status": "空闲",
       "totalArea": 12000,
@@ -31,13 +31,14 @@ const factoryBrochureData = {
       "features": [
         "混凝土框架",
         "环氧地坪",
-        "卸货平台"
+        "卸货平台",
+        "消防达标"
       ],
-      "note": "交通便利，距高速口5分钟"
+      "note": "交通便利，距G50高速口3公里"
     },
     {
       "id": "TZA-002",
-      "name": "天子湖A区2号厂房",
+      "name": "天子湖创业园A2栋",
       "area": "天子湖镇A区",
       "status": "空闲",
       "totalArea": 8500,
@@ -53,13 +54,14 @@ const factoryBrochureData = {
       "phone": "1386725xxxx",
       "features": [
         "彩钢板墙面",
-        "通风良好"
+        "通风良好",
+        "配电充足"
       ],
       "note": "适合轻加工类企业"
     },
     {
       "id": "TZA-003",
-      "name": "天子湖A区3号厂房",
+      "name": "天子湖创业园A3栋",
       "area": "天子湖镇A区",
       "status": "已租",
       "totalArea": 15000,
@@ -75,13 +77,14 @@ const factoryBrochureData = {
       "phone": "1396725xxxx",
       "features": [
         "大开间",
-        "牛腿8米"
+        "牛腿8米",
+        "天然气管道"
       ],
       "note": "已出租给汽车零部件企业"
     },
     {
       "id": "TZA-004",
-      "name": "天子湖A区4号厂房",
+      "name": "天子湖创业园A4栋",
       "area": "天子湖镇A区",
       "status": "空闲",
       "totalArea": 6000,
@@ -97,13 +100,14 @@ const factoryBrochureData = {
       "phone": "1386725xxxx",
       "features": [
         "电梯配套",
-        "宿舍楼"
+        "宿舍楼",
+        "食堂配套"
       ],
       "note": "适合劳动密集型企业"
     },
     {
       "id": "TZA-005",
-      "name": "天子湖A区5号厂房",
+      "name": "天子湖创业园A5栋",
       "area": "天子湖镇A区",
       "status": "空闲",
       "totalArea": 10000,
@@ -119,13 +123,36 @@ const factoryBrochureData = {
       "phone": "1376725xxxx",
       "features": [
         "10吨行车",
-        "配电充足"
+        "配电充足",
+        "蒸汽接入"
       ],
       "note": "适合装备制造类企业"
     },
     {
+      "id": "TZA-006",
+      "name": "天子湖小微园B1栋",
+      "area": "天子湖镇A区",
+      "status": "空闲",
+      "totalArea": 7500,
+      "availableArea": 7500,
+      "floor": "1-2层",
+      "height": "7m",
+      "power": "500KVA",
+      "price": 13,
+      "structure": "标准厂房",
+      "loading": "3吨行车",
+      "image": "https://images.unsplash.com/photo-1565610222536-ef125e59ef4e?w=800",
+      "contact": "章秋",
+      "phone": "1386725xxxx",
+      "features": [
+        "独门独院",
+        "办公区配套"
+      ],
+      "note": "适合小微企业入驻"
+    },
+    {
       "id": "TZB-001",
-      "name": "天子湖B区1号厂房",
+      "name": "天子湖工业园B1栋",
       "area": "天子湖镇B区",
       "status": "空闲",
       "totalArea": 18000,
@@ -142,13 +169,14 @@ const factoryBrochureData = {
       "features": [
         "超大跨度",
         "50吨行车",
-        "天然气"
+        "天然气",
+        "蒸汽管道"
       ],
-      "note": "适合大型装备制造"
+      "note": "适合大型装备制造项目"
     },
     {
       "id": "TZB-002",
-      "name": "天子湖B区2号厂房",
+      "name": "天子湖工业园B2栋",
       "area": "天子湖镇B区",
       "status": "预订中",
       "totalArea": 20000,
@@ -164,13 +192,14 @@ const factoryBrochureData = {
       "phone": "1396725xxxx",
       "features": [
         "独门独院",
-        "宿舍楼配套"
+        "宿舍楼配套",
+        "篮球场"
       ],
       "note": "预订中，预计下月可用"
     },
     {
       "id": "TZB-003",
-      "name": "天子湖B区3号厂房",
+      "name": "天子湖工业园B3栋",
       "area": "天子湖镇B区",
       "status": "空闲",
       "totalArea": 12000,
@@ -186,13 +215,36 @@ const factoryBrochureData = {
       "phone": "1376725xxxx",
       "features": [
         "标准配电",
-        "消防达标"
+        "消防达标",
+        "环评齐全"
       ],
-      "note": "适合精密制造"
+      "note": "适合精密制造企业"
+    },
+    {
+      "id": "TZB-004",
+      "name": "天子湖工业园B4栋",
+      "area": "天子湖镇B区",
+      "status": "空闲",
+      "totalArea": 9500,
+      "availableArea": 9500,
+      "floor": "1层",
+      "height": "11m",
+      "power": "800KVA",
+      "price": 15,
+      "structure": "钢结构",
+      "loading": "15吨行车",
+      "image": "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800",
+      "contact": "陈佳妍",
+      "phone": "1396725xxxx",
+      "features": [
+        "行车配套",
+        "配电充足"
+      ],
+      "note": "适合汽车零部件项目"
     },
     {
       "id": "SA-001",
-      "name": "泗安镇1号厂房",
+      "name": "泗安工业功能区1号厂房",
       "area": "泗安镇",
       "status": "空闲",
       "totalArea": 11000,
@@ -208,13 +260,14 @@ const factoryBrochureData = {
       "phone": "1386725xxxx",
       "features": [
         "交通便利",
-        "政策优惠"
+        "政策优惠",
+        "高速出口5分钟"
       ],
       "note": "享受长合区招商政策"
     },
     {
       "id": "SA-002",
-      "name": "泗安镇2号厂房",
+      "name": "泗安工业功能区2号厂房",
       "area": "泗安镇",
       "status": "空闲",
       "totalArea": 8000,
@@ -230,13 +283,14 @@ const factoryBrochureData = {
       "phone": "1396725xxxx",
       "features": [
         "多层厂房",
-        "员工宿舍"
+        "员工宿舍",
+        "食堂配套"
       ],
       "note": "适合电子信息类企业"
     },
     {
       "id": "SA-003",
-      "name": "泗安镇3号厂房",
+      "name": "泗安工业功能区3号厂房",
       "area": "泗安镇",
       "status": "空闲",
       "totalArea": 9500,
@@ -252,13 +306,14 @@ const factoryBrochureData = {
       "phone": "1376725xxxx",
       "features": [
         "大开间",
-        "方便布局"
+        "方便布局",
+        "牛腿7米"
       ],
-      "note": "适合汽车零部件"
+      "note": "适合汽车零部件配套"
     },
     {
       "id": "SA-004",
-      "name": "泗安镇4号厂房",
+      "name": "泗安工业功能区4号厂房",
       "area": "泗安镇",
       "status": "已租",
       "totalArea": 16000,
@@ -273,13 +328,36 @@ const factoryBrochureData = {
       "contact": "章秋",
       "phone": "1386725xxxx",
       "features": [
-        "配电充足"
+        "配电充足",
+        "天然气管道"
       ],
       "note": "已出租"
     },
     {
+      "id": "SA-005",
+      "name": "泗安工业功能区5号厂房",
+      "area": "泗安镇",
+      "status": "空闲",
+      "totalArea": 6500,
+      "availableArea": 6500,
+      "floor": "1-2层",
+      "height": "6m",
+      "power": "400KVA",
+      "price": 10,
+      "structure": "标准厂房",
+      "loading": "2吨货梯",
+      "image": "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800",
+      "contact": "陈佳妍",
+      "phone": "1396725xxxx",
+      "features": [
+        "多层厂房",
+        "性价比高"
+      ],
+      "note": "适合初创型企业"
+    },
+    {
       "id": "ZH-001",
-      "name": "长合区核心区1号",
+      "name": "长合区智能制造产业园1号",
       "area": "长合区核心区",
       "status": "空闲",
       "totalArea": 20000,
@@ -297,13 +375,14 @@ const factoryBrochureData = {
         "甲类厂房",
         "危险品库",
         "天然气",
-        "蒸汽"
+        "蒸汽",
+        "污水处理"
       ],
       "note": "适合新能源电池类项目"
     },
     {
       "id": "ZH-002",
-      "name": "长合区核心区2号",
+      "name": "长合区智能制造产业园2号",
       "area": "长合区核心区",
       "status": "建设中",
       "totalArea": 25000,
@@ -319,13 +398,14 @@ const factoryBrochureData = {
       "phone": "1376725xxxx",
       "features": [
         "在建中",
-        "预计2026年Q3完工"
+        "预计2026年Q3完工",
+        "光伏屋顶"
       ],
-      "note": "可预订"
+      "note": "可预订，优质项目优先"
     },
     {
       "id": "ZH-003",
-      "name": "长合区核心区3号",
+      "name": "长合区智能制造产业园3号",
       "area": "长合区核心区",
       "status": "空闲",
       "totalArea": 15000,
@@ -341,9 +421,33 @@ const factoryBrochureData = {
       "phone": "1386725xxxx",
       "features": [
         "研发生产两用",
-        "办公楼配套"
+        "办公楼配套",
+        "花园式厂区"
       ],
       "note": "适合高新技术项目"
+    },
+    {
+      "id": "ZH-004",
+      "name": "长合区智能制造产业园4号",
+      "area": "长合区核心区",
+      "status": "空闲",
+      "totalArea": 18000,
+      "availableArea": 18000,
+      "floor": "1层",
+      "height": "14m",
+      "power": "1250KVA",
+      "price": 18,
+      "structure": "钢结构",
+      "loading": "30吨行车",
+      "image": "https://images.unsplash.com/photo-1565610222536-ef125e59ef4e?w=800",
+      "contact": "陈佳妍",
+      "phone": "1396725xxxx",
+      "features": [
+        "大开间",
+        "牛腿10米",
+        "蒸汽天然气"
+      ],
+      "note": "适合高端装备制造"
     }
   ]
 };
