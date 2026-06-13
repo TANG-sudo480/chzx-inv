@@ -3,458 +3,517 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>新能源汽车及关键零部件 · 全链条招商作战图 | 长三角（湖州）产业合作区</title>
+<title>长三角（湖州）产业合作区 · 新能源汽车产业链招商作战图 V2.0</title>
 <style>
+:root{--primary:#00d4ff;--accent:#ff6b35;--bg:#0a0e27;--bg-card:rgba(20,30,60,0.8);--text:#e6edf3;--text-dim:#8b949e;--border:rgba(0,212,255,0.3);--glow:0 0 20px rgba(0,212,255,0.3)}
 *{margin:0;padding:0;box-sizing:border-box}
-:root{
---primary:#1a73e8;--success:#34a853;--warning:#fbbc04;--danger:#ea4335;
---bg-dark:#0a0e14;--bg-card:#151c28;--text:#e6edf3;--text-dim:#8b949e;
---border:#30363d;--gradient:linear-gradient(135deg,#1a73e8,#0d47a1);
-}
-body{font-family:"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg-dark);color:var(--text);min-height:100vh}
-.container{max-width:1400px;margin:0 auto;padding:0 20px}
+body{font-family:"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden}
 
-/* ========== MODULE 1: HERO ========== */
-.hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;background:linear-gradient(135deg,#0a1628 0%,#1a3a5c 50%,#0f2847 100%)}
-.hero-bg{position:absolute;inset:0;background:url('https://coze-coding-project.tos.coze.site/coze_storage_7650506824847917082/image/generate_image_1b7ffb2d-c6a0-4c73-b1e3-9d7e8f5a2c1d.jpeg?sign=1812892000-xxx') center/cover;opacity:0.3}
-.hero-overlay{position:absolute;inset:0;background:radial-gradient(ellipse at center,transparent 0%,rgba(10,14,20,0.8) 100%)}
-.particles{position:absolute;inset:0;pointer-events:none}
-.particle{position:absolute;width:3px;height:3px;background:var(--primary);border-radius:50%;animation:float 8s infinite}
-@keyframes float{0%,100%{transform:translateY(0) opacity:.5}50%{transform:translateY(-100px) opacity:1}}
-.hero-content{position:relative;z-index:10;text-align:center;max-width:900px;padding:20px}
-.hero-badge{display:inline-block;background:rgba(26,115,232,0.2);border:1px solid var(--primary);color:var(--primary);padding:8px 20px;border-radius:30px;font-size:14px;margin-bottom:20px}
-.hero h1{font-size:clamp(32px,5vw,56px);font-weight:700;margin-bottom:16px;line-height:1.3}
-.hero h1 span{background:linear-gradient(90deg,#58a6ff,#79c0ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.hero-sub{font-size:clamp(16px,2vw,22px);color:var(--text-dim);margin-bottom:40px}
-.hero-stats{display:flex;justify-content:center;gap:40px;flex-wrap:wrap;margin-top:40px}
-.stat-item{text-align:center}
-.stat-num{font-size:clamp(28px,4vw,42px);font-weight:700;color:var(--primary)}
-.stat-label{color:var(--text-dim);font-size:14px;margin-top:4px}
-.hero-btns{display:flex;justify-content:center;gap:16px;margin-top:40px}
-.btn{background:var(--primary);color:#fff;padding:14px 32px;border:none;border-radius:8px;font-size:16px;cursor:pointer;transition:all .3s;text-decoration:none;display:inline-flex;align-items:center;gap:8px}
-.btn:hover{background:#1557b0;transform:translateY(-2px)}
-.btn-outline{border:1px solid var(--primary);background:transparent}
-.btn-outline:hover{background:rgba(26,115,232,0.1)}
+/* 粒子背景 */
+#particles{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.particle{position:absolute;border-radius:50%;background:var(--primary);opacity:0.3;animation:float linear infinite}
+@keyframes float{0%{transform:translateY(100vh) rotate(0deg);opacity:0}10%{opacity:0.3}90%{opacity:0.3}100%{transform:translateY(-100vh) rotate(720deg);opacity:0}}
 
-/* ========== NAVIGATION ========== */
-.nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(10,14,20,0.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
-.nav-inner{display:flex;justify-content:space-between;align-items:center;padding:12px 20px;max-width:1400px;margin:0 auto}
-.nav-logo{font-size:18px;font-weight:700;color:var(--primary)}
-.nav-links{display:flex;gap:8px;flex-wrap:wrap}
-.nav-link{padding:8px 16px;border-radius:6px;color:var(--text-dim);cursor:pointer;transition:all .2s;font-size:14px;border:none;background:transparent}
-.nav-link:hover,.nav-link.active{background:rgba(26,115,232,0.1);color:var(--primary)}
+/* 主容器 */
+.container{max-width:1400px;margin:0 auto;padding:0 20px;position:relative;z-index:1}
 
-/* ========== SECTION COMMON ========== */
+/* 毛玻璃卡片 */
+.glass-card{background:var(--bg-card);backdrop-filter:blur(20px);border:1px solid var(--border);border-radius:16px;padding:24px;box-shadow:var(--glow);transition:all .3s}
+.glass-card:hover{transform:translateY(-4px);box-shadow:0 0 30px rgba(0,212,255,0.5)}
+
+/* Hero首屏 */
+.hero{height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;position:relative;padding:20px}
+.hero h1{font-size:48px;font-weight:700;background:linear-gradient(90deg,var(--primary),#fff,var(--primary));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:20px;text-shadow:0 0 40px var(--primary)}
+.hero h2{font-size:20px;color:var(--text-dim);margin-bottom:40px;letter-spacing:4px}
+.stats{display:flex;gap:40px;margin-bottom:50px;flex-wrap:wrap;justify-content:center}
+.stat-item{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:20px 40px;min-width:150px}
+.stat-num{font-size:42px;font-weight:700;color:var(--primary);font-family:"DIN Alternate",sans-serif}
+.stat-label{font-size:14px;color:var(--text-dim);margin-top:8px}
+.ctas{display:flex;gap:20px;flex-wrap:wrap;justify-content:center}
+.btn{padding:14px 32px;border-radius:8px;font-size:16px;font-weight:600;cursor:pointer;border:none;transition:all .3s;text-decoration:none;display:inline-block}
+.btn-primary{background:linear-gradient(135deg,var(--primary),#0099cc);color:#fff}
+.btn-primary:hover{transform:scale(1.05);box-shadow:0 0 30px var(--primary)}
+.btn-secondary{background:transparent;border:2px solid var(--primary);color:var(--primary)}
+.btn-secondary:hover{background:var(--primary);color:#fff}
+
+/* 导航 */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,14,39,0.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);padding:0 20px}
+.nav-inner{max-width:1400px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px}
+.nav-brand{font-size:18px;font-weight:700;color:var(--primary)}
+.nav-links{display:flex;gap:8px}
+.nav-link{padding:10px 16px;border-radius:8px;color:var(--text-dim);text-decoration:none;font-size:14px;transition:all .3s}
+.nav-link:hover,.nav-link.active{background:rgba(0,212,255,0.1);color:var(--primary)}
+
+/* 模块标题 */
 .section{padding:80px 0}
-.section-title{text-align:center;margin-bottom:50px}
-.section-title h2{font-size:clamp(28px,3vw,40px);margin-bottom:12px}
-.section-title p{color:var(--text-dim);font-size:16px}
+.section-title{font-size:32px;font-weight:700;text-align:center;margin-bottom:16px;color:var(--text)}
+.section-subtitle{text-align:center;color:var(--text-dim);margin-bottom:40px;font-size:16px}
+.section-badge{display:inline-block;background:linear-gradient(135deg,var(--primary),var(--accent));padding:4px 12px;border-radius:20px;font-size:12px;color:#fff;margin-bottom:16px}
 
-/* ========== MODULE 2: CHAIN MAP ========== */
-.chain-section{background:linear-gradient(180deg,var(--bg-dark) 0%,#0f1923 100%)}
-.chain-container{display:flex;gap:30px}
-.chain-sidebar{width:220px;flex-shrink:0}
-.chain-nav{position:sticky;top:80px;background:var(--bg-card);border-radius:12px;padding:20px;border:1px solid var(--border)}
-.chain-nav h3{font-size:14px;color:var(--text-dim);margin-bottom:12px;text-transform:uppercase;letter-spacing:1px}
-.chain-nav-item{padding:10px 12px;border-radius:6px;cursor:pointer;margin-bottom:4px;font-size:14px;color:var(--text-dim);transition:all .2s;border:none;background:transparent;width:100%;text-align:left}
-.chain-nav-item:hover{background:rgba(26,115,232,0.1);color:var(--primary)}
-.chain-nav-item.active{background:var(--primary);color:#fff}
-.chain-main{flex:1;min-width:0}
-.chain-header{display:flex;align-items:center;gap:16px;margin-bottom:24px}
-.chain-tabs{display:flex;gap:8px}
-.chain-tab{padding:8px 16px;border-radius:6px;cursor:pointer;background:var(--bg-card);border:1px solid var(--border);color:var(--text-dim);font-size:14px}
-.chain-tab.active{background:var(--primary);border-color:var(--primary);color:#fff}
-.chain-flow{background:var(--bg-card);border-radius:16px;padding:30px;border:1px solid var(--border)}
-.chain-flow-title{display:flex;align-items:center;gap:12px;margin-bottom:24px}
-.chain-flow-title h3{font-size:24px}
-.chain-flow-title .badge{background:rgba(26,115,232,0.2);color:var(--primary);padding:4px 12px;border-radius:20px;font-size:12px}
-.chain-columns{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.chain-column{background:rgba(0,0,0,0.3);border-radius:12px;padding:20px}
-.chain-column.upstream{border-top:3px solid #9c27b0}
-.chain-column.midstream{border-top:3px solid #ff9800}
-.chain-column.downstream{border-top:3px solid #4caf50}
-.chain-column h4{display:flex;align-items:center;gap:8px;margin-bottom:16px;font-size:16px}
-.chain-step{margin-bottom:16px;padding:12px;background:rgba(255,255,255,0.05);border-radius:8px;cursor:pointer;transition:all .2s}
-.chain-step:hover{background:rgba(26,115,232,0.15);transform:translateX(4px)}
-.chain-step-title{font-size:14px;font-weight:600;margin-bottom:8px}
-.chain-step-desc{font-size:12px;color:var(--text-dim);margin-bottom:8px}
-.chain-companies{display:flex;flex-wrap:wrap;gap:6px}
-.chain-company{background:rgba(26,115,232,0.2);padding:4px 8px;border-radius:4px;font-size:11px}
-.chain-status{margin-top:16px;padding:16px;background:rgba(52,168,83,0.1);border:1px solid var(--success);border-radius:8px}
-.chain-status h5{color:var(--success);margin-bottom:8px;font-size:14px}
-.status-item{display:flex;align-items:center;gap:8px;margin-bottom:6px;font-size:13px}
-.status-item.success::before{content:"✅";color:var(--success)}
-.status-item.warning::before{content:"🟡";color:var(--warning)}
-.status-item.danger::before{content:"🔴";color:var(--danger)}
-.status-item.missing{color:var(--danger)}
+/* 产业链模块 */
+.chain-container{display:flex;gap:24px;min-height:600px}
+.chain-nav{width:280px;flex-shrink:0;max-height:600px;overflow-y:auto}
+.chain-nav::-webkit-scrollbar{width:4px}
+.chain-nav::-webkit-scrollbar-thumb{background:var(--primary);border-radius:2px}
+.chain-item{padding:12px 16px;border-radius:8px;margin-bottom:8px;cursor:pointer;transition:all .3s;border:1px solid transparent;display:flex;align-items:center;gap:12px}
+.chain-item:hover,.chain-item.active{background:rgba(0,212,255,0.1);border-color:var(--primary)}
+.chain-icon{font-size:24px}
+.chain-name{font-size:14px;font-weight:500}
+.chain-tag{font-size:11px;padding:2px 8px;border-radius:10px;margin-left:auto}
+.tag-local{background:#34a853;color:#fff}
+.tag-missing{background:#ea4335;color:#fff}
+.tag-partial{background:#fbbc04;color:#000}
 
-/* ========== MODULE 3: MAP ========== */
-.map-section{background:var(--bg-dark)}
-.map-container{display:grid;grid-template-columns:1fr 400px;gap:24px}
-.map-wrapper{background:var(--bg-card);border-radius:16px;overflow:hidden;border:1px solid var(--border)}
+.chain-main{flex:1;background:var(--bg-card);border-radius:16px;padding:24px;border:1px solid var(--border)}
+.chain-header{display:flex;align-items:center;gap:16px;margin-bottom:24px;padding-bottom:16px;border-bottom:1px solid var(--border)}
+.chain-title{font-size:24px;font-weight:700}
+.chain-status{display:flex;gap:16px}
+.status-dot{width:12px;height:12px;border-radius:50%;display:inline-block}
+.dot-local{background:#34a853}
+.dot-partial{background:#fbbc04}
+.dot-missing{background:#ea4335}
+.status-label{font-size:12px;color:var(--text-dim);display:flex;align-items:center;gap:6px}
+
+.chain-flow{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.flow-col{background:rgba(0,0,0,0.3);border-radius:12px;padding:20px;min-height:400px}
+.flow-title{font-size:16px;font-weight:600;margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.flow-upstream .flow-title{color:#34a853}
+.flow-midstream .flow-title{color:#00d4ff}
+.flow-downstream .flow-title{color:#ff6b35}
+
+.supply-card{background:rgba(255,255,255,0.05);border-radius:8px;padding:12px;margin-bottom:10px;border:1px solid rgba(255,255,255,0.1);transition:all .3s}
+.supply-card:hover{border-color:var(--primary);transform:translateX(4px)}
+.supply-card.active{border-color:var(--primary);background:rgba(0,212,255,0.1)}
+.supply-name{font-size:14px;font-weight:600;margin-bottom:6px}
+.supply-meta{font-size:12px;color:var(--text-dim);display:flex;gap:12px;flex-wrap:wrap}
+.supply-tag{font-size:11px;padding:2px 6px;border-radius:4px;background:rgba(0,212,255,0.2);color:var(--primary)}
+.supply-price{color:#34a853;font-size:12px}
+
+.match-section{background:linear-gradient(135deg,rgba(0,212,255,0.1),rgba(255,107,53,0.1));border-radius:12px;padding:20px;margin-top:24px}
+.match-title{font-size:18px;font-weight:600;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.match-list{display:flex;flex-wrap:wrap;gap:12px}
+.match-item{padding:8px 16px;border-radius:8px;font-size:13px;display:flex;align-items:center;gap:8px}
+.match-exist{background:rgba(52,168,83,0.2);border:1px solid #34a853;color:#34a853}
+.match-need{background:rgba(234,67,53,0.2);border:1px solid #ea4335;color:#ea4335}
+.match-target{background:rgba(0,212,255,0.2);border:1px solid var(--primary);color:var(--primary)}
+
+/* 地图模块 */
+.map-container{display:grid;grid-template-columns:1fr 320px;gap:24px;min-height:600px}
+.map-wrapper{background:var(--bg-card);border-radius:16px;overflow:hidden;border:1px solid var(--border);position:relative}
 #map{width:100%;height:600px}
-.map-legend{display:flex;gap:20px;padding:16px;background:rgba(0,0,0,0.3);border-bottom:1px solid var(--border)}
-.legend-item{display:flex;align-items:center;gap:8px;font-size:13px}
+.map-sidebar{background:var(--bg-card);border-radius:16px;padding:20px;border:1px solid var(--border);max-height:600px;overflow-y:auto}
+.sidebar-title{font-size:18px;font-weight:600;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.filter-group{margin-bottom:20px}
+.filter-label{font-size:12px;color:var(--text-dim);margin-bottom:8px}
+.filter-tags{display:flex;flex-wrap:wrap;gap:8px}
+.filter-tag{padding:6px 12px;border-radius:6px;font-size:12px;cursor:pointer;border:1px solid var(--border);transition:all .3s;background:transparent;color:var(--text-dim)}
+.filter-tag:hover,.filter-tag.active{background:var(--primary);border-color:var(--primary);color:#fff}
+
+.map-legend{position:absolute;bottom:20px;left:20px;background:rgba(10,14,39,0.9);padding:12px;border-radius:8px;border:1px solid var(--border)}
+.legend-item{display:flex;align-items:center;gap:8px;margin-bottom:6px;font-size:12px;color:var(--text-dim)}
 .legend-dot{width:12px;height:12px;border-radius:50%}
-.legend-dot.established{background:var(--success)}
-.legend-dot.factory{background:var(--primary)}
-.legend-dot.target{background:var(--danger);animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(1.2)}}
-.map-sidebar{display:flex;flex-direction:column;gap:16px}
-.map-card{background:var(--bg-card);border-radius:12px;padding:20px;border:1px solid var(--border)}
-.map-card h4{font-size:16px;margin-bottom:12px;display:flex;align-items:center;gap:8px}
-.clue-card{padding:16px;background:rgba(0,0,0,0.3);border-radius:8px;margin-bottom:12px;border-left:3px solid var(--primary)}
-.clue-card h5{font-size:14px;margin-bottom:8px}
-.clue-meta{display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:12px;color:var(--text-dim)}
-.clue-tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;margin-top:8px}
-.clue-tag.high{background:rgba(234,67,53,0.2);color:var(--danger)}
-.clue-tag.medium{background:rgba(251,188,4,0.2);color:var(--warning)}
-.contact-btn{width:100%;padding:10px;background:var(--primary);border:none;border-radius:6px;color:#fff;cursor:pointer;margin-top:10px;font-size:13px}
 
-/* ========== MODULE 4: MATCH MATRIX ========== */
-.match-section{background:linear-gradient(180deg,#0f1923 0%,var(--bg-dark) 100%)}
-.match-table{overflow-x:auto}
-.match-matrix{width:100%;border-collapse:collapse;background:var(--bg-card);border-radius:12px;overflow:hidden}
-.match-matrix th,.match-matrix td{padding:16px 20px;text-align:left;border-bottom:1px solid var(--border)}
-.match-matrix th{background:rgba(0,0,0,0.3);font-size:13px;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px}
-.match-matrix tr:hover td{background:rgba(26,115,232,0.05)}
-.match-matrix td:first-child{font-weight:600}
-.match-status{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:20px;font-size:12px}
-.match-status.complete{background:rgba(52,168,83,0.2);color:var(--success)}
-.match-status.partial{background:rgba(251,188,4,0.2);color:var(--warning)}
-.match-status.missing{background:rgba(234,67,53,0.2);color:var(--danger)}
-.priority-tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600}
-.priority-tag.urgent{background:var(--danger);color:#fff}
-.priority-tag.attention{background:var(--warning);color:#000}
-.priority-tag.normal{background:var(--success);color:#fff}
+/* 线索速查 */
+.clue-header{display:flex;gap:16px;margin-bottom:24px;flex-wrap:wrap}
+.search-box{flex:1;min-width:300px;position:relative}
+.search-input{width:100%;padding:12px 16px 12px 44px;border-radius:8px;border:1px solid var(--border);background:rgba(255,255,255,0.05);color:var(--text);font-size:14px}
+.search-icon{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--text-dim)}
+.filter-select{padding:12px 16px;border-radius:8px;border:1px solid var(--border);background:var(--bg-card);color:var(--text);font-size:14px;min-width:150px}
 
-/* ========== MODULE 5: TOPICS ========== */
-.topic-section{background:var(--bg-dark)}
-.topic-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
-.topic-card{background:var(--bg-card);border-radius:16px;overflow:hidden;border:1px solid var(--border);transition:all .3s;cursor:pointer}
-.topic-card:hover{transform:translateY(-4px);border-color:var(--primary);box-shadow:0 8px 32px rgba(26,115,232,0.2)}
-.topic-img{height:180px;background:linear-gradient(135deg,#1a3a5c,#0f2847);display:flex;align-items:center;justify-content:center;font-size:48px}
-.topic-content{padding:24px}
-.topic-content h3{font-size:20px;margin-bottom:12px}
-.topic-content p{color:var(--text-dim);font-size:14px;margin-bottom:16px;line-height:1.6}
-.topic-tags{display:flex;flex-wrap:wrap;gap:8px}
-.topic-tag{background:rgba(26,115,232,0.15);padding:4px 10px;border-radius:4px;font-size:12px;color:var(--primary)}
+.view-toggle{display:flex;background:rgba(255,255,255,0.05);border-radius:8px;padding:4px;margin-bottom:24px}
+.view-btn{padding:8px 16px;border-radius:6px;font-size:13px;cursor:pointer;border:none;background:transparent;color:var(--text-dim);transition:all .3s}
+.view-btn.active{background:var(--primary);color:#fff}
 
-/* ========== MODULE 6: CLUE SEARCH ========== */
-.clue-section{background:linear-gradient(180deg,var(--bg-dark) 0%,#0f1923 100%)}
-.clue-toolbar{display:flex;gap:12px;margin-bottom:24px;flex-wrap:wrap}
-.clue-view-toggle{display:flex;gap:8px;margin-left:auto}
-.view-btn{padding:8px 16px;border-radius:6px;cursor:pointer;background:var(--bg-card);border:1px solid var(--border);color:var(--text-dim)}
-.view-btn.active{background:var(--primary);border-color:var(--primary);color:#fff}
-.clue-filters{display:flex;gap:12px;flex-wrap:wrap}
-.filter-select{padding:8px 12px;background:var(--bg-card);border:1px solid var(--border);border-radius:6px;color:var(--text);font-size:14px}
-.search-input{padding:8px 16px;background:var(--bg-card);border:1px solid var(--border);border-radius:6px;color:var(--text);flex:1;min-width:200px}
-.clue-table{background:var(--bg-card);border-radius:12px;overflow:hidden;border:1px solid var(--border)}
-.clue-table table{width:100%;border-collapse:collapse}
-.clue-table th,.clue-table td{padding:14px 16px;text-align:left;border-bottom:1px solid var(--border)}
-.clue-table th{background:rgba(0,0,0,0.3);font-size:12px;color:var(--text-dim);text-transform:uppercase}
-.clue-table tr:hover td{background:rgba(26,115,232,0.05)}
-.badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600}
-.badge-red{background:rgba(234,67,53,0.2);color:var(--danger)}
-.badge-orange{background:rgba(255,152,0,0.2);color:#ff9800}
-.badge-blue{background:rgba(26,115,232,0.2);color:var(--primary)}
-.badge-green{background:rgba(52,168,83,0.2);color:var(--success)}
+.clue-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px}
+.clue-card{background:var(--bg-card);border-radius:12px;padding:20px;border:1px solid var(--border);transition:all .3s}
+.clue-card:hover{border-color:var(--primary);transform:translateY(-2px)}
+.clue-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px}
+.clue-name{font-size:16px;font-weight:600}
+.clue-chain{font-size:12px;color:var(--text-dim)}
+.clue-body{margin-bottom:12px}
+.clue-row{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.05);font-size:13px}
+.clue-row:last-child{border:none}
+.clue-label{color:var(--text-dim)}
+.clue-value{font-weight:500}
+.clue-willing{font-size:12px;padding:4px 10px;border-radius:4px;display:inline-block}
+.willing-high{background:rgba(52,168,83,0.2);color:#34a853}
+.willing-mid{background:rgba(251,188,4,0.2);color:#fbbc04}
+.willing-low{background:rgba(234,67,53,0.2);color:#ea4335}
+.clue-footer{display:flex;gap:12px;margin-top:12px}
+.btn-sm{padding:8px 16px;border-radius:6px;font-size:13px;border:none;cursor:pointer;transition:all .3s}
+.btn-call{background:#34a853;color:#fff}
+.btn-chat{background:var(--primary);color:#fff}
+.btn-sm:hover{opacity:0.8}
 
-/* ========== MODULE 7: POLICY TOOLS ========== */
-.policy-section{background:var(--bg-dark)}
-.policy-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(350px,1fr));gap:24px}
-.policy-card{background:var(--bg-card);border-radius:16px;padding:30px;border:1px solid var(--border)}
-.policy-card h3{display:flex;align-items:center;gap:12px;font-size:20px;margin-bottom:20px}
-.policy-card h3 span{font-size:32px}
-.calc-form{display:grid;gap:16px}
-.form-group label{display:block;font-size:13px;color:var(--text-dim);margin-bottom:6px}
-.form-group input,.form-group select{width:100%;padding:12px;background:rgba(0,0,0,0.3);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:14px}
-.calc-btn{width:100%;padding:14px;background:var(--primary);border:none;border-radius:8px;color:#fff;font-size:16px;cursor:pointer;margin-top:8px}
-.calc-result{margin-top:20px;padding:20px;background:rgba(52,168,83,0.1);border:1px solid var(--success);border-radius:8px;display:none}
-.calc-result.show{display:block}
-.calc-result h4{color:var(--success);margin-bottom:12px}
-.result-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.1)}
-.result-row:last-child{border:none;font-weight:600;color:var(--success)}
+/* 厂房速查 */
+.factory-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(350px,1fr));gap:20px}
+.factory-card{background:var(--bg-card);border-radius:12px;overflow:hidden;border:1px solid var(--border)}
+.factory-img{height:160px;background:linear-gradient(135deg,rgba(0,212,255,0.2),rgba(255,107,53,0.2));display:flex;align-items:center;justify-content:center;font-size:48px}
+.factory-body{padding:16px}
+.factory-id{font-size:12px;color:var(--text-dim);margin-bottom:8px}
+.factory-name{font-size:16px;font-weight:600;margin-bottom:12px}
+.factory-specs{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.spec-item{display:flex;flex-direction:column}
+.spec-label{font-size:11px;color:var(--text-dim)}
+.spec-value{font-size:14px;font-weight:500;color:var(--primary)}
+.factory-contact{margin-top:12px;padding-top:12px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.contact-name{font-size:13px}
+.contact-phone{font-size:14px;font-weight:600;color:var(--primary)}
 
-/* ========== MODULE 8: SERVICE ========== */
-.service-section{background:linear-gradient(180deg,#0f1923 0%,var(--bg-dark) 100%)}
-.service-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
-.service-card{background:var(--bg-card);border-radius:16px;padding:30px;text-align:center;border:1px solid var(--border);transition:all .3s}
-.service-card:hover{border-color:var(--primary);transform:translateY(-4px)}
-.service-icon{width:80px;height:80px;margin:0 auto 20px;background:linear-gradient(135deg,var(--primary),#0d47a1);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:32px}
-.service-card h3{font-size:18px;margin-bottom:12px}
-.service-card p{color:var(--text-dim);font-size:14px;margin-bottom:16px}
-.service-card a{display:inline-block;padding:10px 24px;background:var(--primary);color:#fff;border-radius:6px;text-decoration:none;font-size:14px}
-.contact-form{grid-column:1/-1;background:var(--bg-card);border-radius:16px;padding:40px;border:1px solid var(--border);max-width:600px;margin:0 auto}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.form-group-full{grid-column:1/-1}
-.contact-form input,.contact-form textarea{padding:12px;background:rgba(0,0,0,0.3);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:14px;width:100%}
-.contact-form textarea{min-height:120px;resize:vertical}
-.submit-btn{width:100%;padding:14px;background:var(--primary);border:none;border-radius:8px;color:#fff;font-size:16px;cursor:pointer;margin-top:16px}
+/* 产业匹配矩阵 */
+.matrix-wrapper{overflow-x:auto}
+.matrix-table{width:100%;border-collapse:collapse;min-width:800px}
+.matrix-table th,.matrix-table td{padding:12px 16px;text-align:center;border:1px solid var(--border);font-size:13px}
+.matrix-table th{background:rgba(0,212,255,0.1);font-weight:600;color:var(--primary);position:sticky;top:0}
+.matrix-table tr:hover{background:rgba(0,212,255,0.05)}
+.cell-status{width:32px;height:32px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:14px}
+.cell-local{background:#34a853;color:#fff}
+.cell-partial{background:#fbbc04;color:#000}
+.cell-missing{background:#ea4335;color:#fff}
+.priority{font-size:11px;padding:3px 8px;border-radius:4px;display:inline-block}
+.priority-hot{background:rgba(234,67,53,0.2);color:#ea4335}
+.priority-warm{background:rgba(251,188,4,0.2);color:#fbbc04}
+.priority-normal{background:rgba(52,168,83,0.2);color:#34a853}
 
-/* ========== MODAL ========== */
-.modal{display:none;position:fixed;inset:0;z-index:2000;background:rgba(0,0,0,0.8);align-items:center;justify-content:center;padding:20px}
-.modal.show{display:flex}
-.modal-content{background:var(--bg-card);border-radius:16px;max-width:900px;width:100%;max-height:90vh;overflow:auto}
+/* 工具箱 */
+.tools-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.tool-card{background:var(--bg-card);border-radius:16px;padding:32px;border:1px solid var(--border);text-align:center;transition:all .3s}
+.tool-card:hover{border-color:var(--primary);transform:translateY(-4px)}
+.tool-icon{font-size:48px;margin-bottom:16px}
+.tool-title{font-size:20px;font-weight:600;margin-bottom:8px}
+.tool-desc{font-size:14px;color:var(--text-dim);margin-bottom:20px}
+.tool-input{width:100%;padding:12px 16px;border-radius:8px;border:1px solid var(--border);background:rgba(255,255,255,0.05);color:var(--text);font-size:14px;margin-bottom:12px}
+.tool-result{padding:16px;background:rgba(0,212,255,0.1);border-radius:8px;margin-top:16px;font-size:14px;min-height:80px}
+
+/* 联系模块 */
+.contact-section{background:linear-gradient(135deg,rgba(0,212,255,0.1),rgba(255,107,53,0.1));border-radius:24px;padding:60px;text-align:center}
+.contact-phone-big{font-size:64px;font-weight:700;color:var(--primary);margin-bottom:16px}
+.contact-qr{display:flex;justify-content:center;gap:60px;margin-top:40px;flex-wrap:wrap}
+.qr-item{text-align:center}
+.qr-box{width:120px;height:120px;background:#fff;border-radius:12px;margin-bottom:12px;display:flex;align-items:center;justify-content:center;font-size:48px}
+.qr-label{font-size:14px;color:var(--text-dim)}
+
+.form-row{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:16px}
+.form-input{width:100%;padding:14px 16px;border-radius:8px;border:1px solid var(--border);background:rgba(255,255,255,0.05);color:var(--text);font-size:14px}
+textarea.form-input{grid-column:span 2;min-height:120px;resize:vertical}
+.form-submit{padding:14px 40px;border-radius:8px;border:none;background:linear-gradient(135deg,var(--primary),#0099cc);color:#fff;font-size:16px;font-weight:600;cursor:pointer;transition:all .3s}
+.form-submit:hover{transform:scale(1.05);box-shadow:0 0 30px var(--primary)}
+
+/* 动画 */
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.5}}
+@keyframes glow{0%,100%{box-shadow:0 0 10px var(--primary)}50%{box-shadow:0 0 30px var(--primary)}}
+.pulse{animation:pulse 2s infinite}
+.glow{animation:glow 2s infinite}
+
+@keyframes countUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.count-animate{animation:countUp 0.6s ease-out}
+
+/* 详情弹窗 */
+.modal{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.8);z-index:1000;display:none;align-items:center;justify-content:center;padding:20px}
+.modal.active{display:flex}
+.modal-content{background:var(--bg);border-radius:16px;max-width:800px;width:100%;max-height:90vh;overflow-y:auto;border:1px solid var(--border);box-shadow:0 0 60px rgba(0,212,255,0.3)}
 .modal-header{padding:20px 24px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
-.modal-header h3{font-size:20px}
-.modal-close{width:36px;height:36px;border-radius:50%;border:none;background:rgba(255,255,255,0.1);color:var(--text);cursor:pointer;font-size:20px}
+.modal-title{font-size:20px;font-weight:600}
+.modal-close{width:36px;height:36px;border-radius:50%;border:none;background:rgba(255,255,255,0.1);color:var(--text);font-size:20px;cursor:pointer}
 .modal-body{padding:24px}
+.modal-footer{padding:16px 24px;border-top:1px solid var(--border);display:flex;gap:12px;justify-content:flex-end}
 
-/* ========== RESPONSIVE ========== */
-@media(max-width:1024px){
-.chain-container{flex-direction:column}
-.chain-sidebar{width:100%}
-.chain-nav{position:static}
-.chain-columns{grid-template-columns:1fr}
-.map-container{grid-template-columns:1fr}
-.form-row{grid-template-columns:1fr}
-}
-@media(max-width:768px){
-.hero-stats{flex-direction:column;gap:20px}
-.nav-links{display:none}
-.section{padding:60px 0}
-}
-
-/* ========== FOOTER ========== */
-.footer{background:var(--bg-card);padding:40px 0;text-align:center;border-top:1px solid var(--border)}
-.footer p{color:var(--text-dim);font-size:14px}
+/* 响应式 */
+@media(max-width:1024px){.chain-container{flex-direction:column}.chain-nav{width:100%;max-height:none}.map-container{grid-template-columns:1fr}.tools-grid{grid-template-columns:1fr}.form-row{grid-template-columns:1fr}textarea.form-input{grid-column:span 1}}
+@media(max-width:768px){.hero h1{font-size:28px}.stats{flex-direction:column;gap:16px}.stat-item{min-width:100%}.nav-links{display:none}.contact-phone-big{font-size:36px}}
 </style>
 </head>
 <body>
 
-<!-- MODULE 1: HERO -->
-<section class="hero" id="hero">
-<div class="hero-bg"></div>
-<div class="hero-overlay"></div>
-<div class="particles" id="particles"></div>
-<div class="hero-content">
-<div class="hero-badge">长三角（湖州）产业合作区 · 招商作战图</div>
-<h1><span>新能源汽车及关键零部件</span><br>全链条招商作战图</h1>
-<p class="hero-sub">按图索骥 · 一图看懂上中下游 · 一键锁定招商目标</p>
-<div class="hero-stats">
-<div class="stat-item"><div class="stat-num" data-target="28">0</div><div class="stat-label">产业赛道</div></div>
-<div class="stat-item"><div class="stat-num" data-target="420">0</div><div class="stat-label">优质供应商</div></div>
-<div class="stat-item"><div class="stat-num" data-target="286">0</div><div class="stat-label">园区企业</div></div>
-<div class="stat-item"><div class="stat-num" data-target="22">0</div><div class="stat-label">空余厂房</div></div>
-</div>
-<div class="hero-btns">
-<a href="#chain" class="btn">查看产业链全景 →</a>
-<a href="#map" class="btn btn-outline">打开招商地图</a>
-</div>
-</div>
-</section>
+<!-- 粒子背景 -->
+<div id="particles"></div>
 
-<!-- NAVIGATION -->
-<nav class="nav" id="nav">
+<!-- 导航 -->
+<nav class="nav">
 <div class="nav-inner">
-<div class="nav-logo">🚗 长合区招商作战图</div>
+<div class="nav-brand">🚗 长合区招商作战图 V2.0</div>
 <div class="nav-links">
-<button class="nav-link active" data-section="hero">首页</button>
-<button class="nav-link" data-section="chain">产业链全景</button>
-<button class="nav-link" data-section="map">招商地图</button>
-<button class="nav-link" data-section="match">产业匹配</button>
-<button class="nav-link" data-section="topics">专题页</button>
-<button class="nav-link" data-section="clue">线索速查</button>
-<button class="nav-link" data-section="policy">政策工具</button>
-<button class="nav-link" data-section="service">招商服务</button>
+<a href="#hero" class="nav-link active">首屏</a>
+<a href="#chain" class="nav-link">产业链图谱</a>
+<a href="#map" class="nav-link">招商地图</a>
+<a href="#clues" class="nav-link">招商线索</a>
+<a href="#factory" class="nav-link">空余厂房</a>
+<a href="#matrix" class="nav-link">产业匹配</a>
+<a href="#tools" class="nav-link">政策工具</a>
+<a href="#contact" class="nav-link">联系我们</a>
 </div>
 </div>
 </nav>
 
-<!-- MODULE 2: CHAIN MAP -->
-<section class="section chain-section" id="chain">
+<!-- Hero首屏 -->
+<section id="hero" class="hero">
+<h1>长三角（湖州）产业合作区<br>新能源汽车产业链招商作战图</h1>
+<h2>按图索骥 · 全国产业链全览 · 长合区精准匹配 · 一键锁定招商目标</h2>
+<div class="stats">
+<div class="stat-item count-animate"><div class="stat-num" data-target="28">0</div><div class="stat-label">产业赛道</div></div>
+<div class="stat-item count-animate"><div class="stat-num" data-target="420">0</div><div class="stat-label">优质供应商</div></div>
+<div class="stat-item count-animate"><div class="stat-num" data-target="189">0</div><div class="stat-label">长合区企业</div></div>
+<div class="stat-item count-animate"><div class="stat-num" data-target="97">0</div><div class="stat-label">空余厂房</div></div>
+</div>
+<div class="ctas">
+<a href="#chain" class="btn btn-primary">🗺️ 打开产业链图谱</a>
+<a href="#map" class="btn btn-primary">📍 打开招商地图</a>
+<a href="#contact" class="btn btn-secondary">📞 联系招商专员</a>
+</div>
+</section>
+
+<!-- 产业链全景图 -->
+<section id="chain" class="section">
 <div class="container">
-<div class="section-title">
-<h2>🔗 产业链全景图</h2>
-<p>横向时间轴 + 纵向产业链 · 点击展开各环节详情</p>
-</div>
+<div class="section-badge">⭐ 核心模块</div>
+<h2 class="section-title">新能源汽车产业链全景图</h2>
+<p class="section-subtitle">点击赛道查看全量详情，精准锁定招商目标</p>
+
 <div class="chain-container">
-<aside class="chain-sidebar">
-<div class="chain-nav">
-<h3>28个赛道</h3>
-<div id="chainNavList"></div>
+<!-- 左侧导航 -->
+<div class="chain-nav glass-card">
+<div style="padding:12px 16px;font-size:14px;font-weight:600;color:var(--primary);border-bottom:1px solid var(--border);margin-bottom:12px">📂 上游原材料与零部件</div>
+<div class="chain-item active" onclick="selectChain('battery')"><span class="chain-icon">🔋</span><span class="chain-name">电池系统</span><span class="chain-tag tag-missing">缺链</span></div>
+<div class="chain-item" onclick="selectChain('motor')"><span class="chain-icon">⚡</span><span class="chain-name">驱动电机</span><span class="chain-tag tag-partial">待补</span></div>
+<div class="chain-item" onclick="selectChain('inverter')"><span class="chain-icon">🎛️</span><span class="chain-name">电机控制器</span><span class="chain-tag tag-missing">缺链</span></div>
+<div class="chain-item" onclick="selectChain('smart')"><span class="chain-icon">🧠</span><span class="chain-name">智能驾驶</span><span class="chain-tag tag-missing">缺链</span></div>
+<div class="chain-item" onclick="selectChain('chassis')"><span class="chain-icon">🔩</span><span class="chain-name">底盘传动</span><span class="chain-tag tag-local">已有</span></div>
+<div class="chain-item" onclick="selectChain('thermal')"><span class="chain-icon">❄️</span><span class="chain-name">热管理系统</span><span class="chain-tag tag-missing">缺链</span></div>
+<div class="chain-item" onclick="selectChain('connector')"><span class="chain-icon">🔌</span><span class="chain-name">连接器线束</span><span class="chain-tag tag-partial">待补</span></div>
+<div class="chain-item" onclick="selectChain('sensor')"><span class="chain-icon">👁️</span><span class="chain-name">车载传感器</span><span class="chain-tag tag-missing">缺链</span></div>
+
+<div style="padding:12px 16px;font-size:14px;font-weight:600;color:var(--accent);border-bottom:1px solid var(--border);margin:16px 0 12px">🚗 下游应用与配套</div>
+<div class="chain-item" onclick="selectChain('ev')"><span class="chain-icon">🏭</span><span class="chain-name">整车企业</span><span class="chain-tag tag-partial">待补</span></div>
+<div class="chain-item" onclick="selectChain('lightweight')"><span class="chain-icon">🪶</span><span class="chain-name">轻量化材料</span><span class="chain-tag tag-local">已有</span></div>
+<div class="chain-item" onclick="selectChain('sic')"><span class="chain-icon">💎</span><span class="chain-name">SiC半导体</span><span class="chain-tag tag-missing">缺链</span></div>
+<div class="chain-item" onclick="selectChain('evtol')"><span class="chain-icon">🚁</span><span class="chain-name">eVTOL低空</span><span class="chain-tag tag-missing">缺链</span></div>
+<div class="chain-item" onclick="selectChain('charging')"><span class="chain-icon">⚡</span><span class="chain-name">充换电设施</span><span class="chain-tag tag-partial">待补</span></div>
+<div class="chain-item" onclick="selectChain('recycle')"><span class="chain-icon">♻️</span><span class="chain-name">电池回收</span><span class="chain-tag tag-missing">缺链</span></div>
+<div class="chain-item" onclick="selectChain('chip')"><span class="chain-icon">💾</span><span class="chain-name">汽车芯片</span><span class="chain-tag tag-missing">缺链</span></div>
+<div class="chain-item" onclick="selectChain('electronics')"><span class="chain-icon">📦</span><span class="chain-name">汽车电子</span><span class="chain-tag tag-partial">待补</span></div>
 </div>
-</aside>
-<main class="chain-main">
+
+<!-- 右侧主图 -->
+<div class="chain-main">
 <div class="chain-header">
-<div class="chain-tabs">
-<button class="chain-tab active" data-view="all">全产业链</button>
-<button class="chain-tab" data-view="upstream">上游原材料</button>
-<button class="chain-tab" data-view="midstream">中游零部件</button>
-<button class="chain-tab" data-view="downstream">下游应用</button>
-</div>
-</div>
-<div class="chain-flow">
-<div class="chain-flow-title">
-<h3 id="chainTitle">电池系统产业链</h3>
-<span class="badge">动力电池</span>
-</div>
-<div class="chain-columns">
-<div class="chain-column upstream">
-<h4>🔵 上游原材料</h4>
-<div class="chain-step" onclick="toggleStep(this)">
-<div class="chain-step-title">矿产资源</div>
-<div class="chain-step-desc">锂、钴、镍、锰等关键矿产</div>
-<div class="chain-companies">
-<span class="chain-company">赣锋锂业</span>
-<span class="chain-company">天齐锂业</span>
-<span class="chain-company">洛阳钼业</span>
-<span class="chain-company">华友钴业</span>
-</div>
-</div>
-<div class="chain-step" onclick="toggleStep(this)">
-<div class="chain-step-title">正极材料</div>
-<div class="chain-step-desc">磷酸铁锂、三元材料（NCM/NCA）</div>
-<div class="chain-companies">
-<span class="chain-company">湖南裕能</span>
-<span class="chain-company">德方纳米</span>
-<span class="chain-company">容百科技</span>
-<span class="chain-company">当升科技</span>
-</div>
-</div>
-<div class="chain-step" onclick="toggleStep(this)">
-<div class="chain-step-title">负极材料</div>
-<div class="chain-step-desc">人造石墨、天然石墨、硅碳负极</div>
-<div class="chain-companies">
-<span class="chain-company">贝特瑞</span>
-<span class="chain-company">杉杉股份</span>
-<span class="chain-company">璞泰来</span>
-<span class="chain-company">中科电气</span>
-</div>
-</div>
-<div class="chain-step" onclick="toggleStep(this)">
-<div class="chain-step-title">电解液</div>
-<div class="chain-step-desc">锂盐、溶剂、添加剂</div>
-<div class="chain-companies">
-<span class="chain-company">天赐材料</span>
-<span class="chain-company">新宙邦</span>
-<span class="chain-company">江苏国泰</span>
-<span class="chain-company">多氟多</span>
-</div>
-</div>
-<div class="chain-step" onclick="toggleStep(this)">
-<div class="chain-step-title">隔膜</div>
-<div class="chain-step-desc">干法隔膜、湿法隔膜、涂覆隔膜</div>
-<div class="chain-companies">
-<span class="chain-company">恩捷股份</span>
-<span class="chain-company">星源材质</span>
-<span class="chain-company">中材科技</span>
-<span class="chain-company">惠强新材</span>
-</div>
-</div>
-</div>
-<div class="chain-column midstream">
-<h4>🟡 中游零部件</h4>
-<div class="chain-step" onclick="toggleStep(this)">
-<div class="chain-step-title">电芯制造</div>
-<div class="chain-step-desc">方形、圆柱、软包电芯</div>
-<div class="chain-companies">
-<span class="chain-company">宁德时代</span>
-<span class="chain-company">比亚迪</span>
-<span class="chain-company">中创新航</span>
-<span class="chain-company">亿纬锂能</span>
-</div>
-</div>
-<div class="chain-step" onclick="toggleStep(this)">
-<div class="chain-step-title">模组/PACK</div>
-<div class="chain-step-desc">电芯成组、电池包集成</div>
-<div class="chain-companies">
-<span class="chain-company">宁德时代</span>
-<span class="chain-company">弗迪电池</span>
-<span class="chain-company">蜂巢能源</span>
-<span class="chain-company">国轩高科</span>
-</div>
-</div>
-<div class="chain-step" onclick="toggleStep(this)">
-<div class="chain-step-title">BMS热管理</div>
-<div class="chain-step-desc">电池管理系统、液冷/风冷热管理</div>
-<div class="chain-companies">
-<span class="chain-company">均胜电子</span>
-<span class="chain-company">德赛西威</span>
-<span class="chain-company">科列技术</span>
-<span class="chain-company">奥特佳</span>
-</div>
-</div>
-</div>
-<div class="chain-column downstream">
-<h4>🟢 下游应用</h4>
-<div class="chain-step" onclick="toggleStep(this)">
-<div class="chain-step-title">整车企业</div>
-<div class="chain-step-desc">乘用车、商用车、专用车</div>
-<div class="chain-companies">
-<span class="chain-company">比亚迪</span>
-<span class="chain-company">特斯拉</span>
-<span class="chain-company">蔚来汽车</span>
-<span class="chain-company">理想汽车</span>
-</div>
-</div>
-<div class="chain-step" onclick="toggleStep(this)">
-<div class="chain-step-title">储能应用</div>
-<div class="chain-step-desc">大型储能、户用储能、工商业储能</div>
-<div class="chain-companies">
-<span class="chain-company">宁德时代</span>
-<span class="chain-company">比亚迪</span>
-<span class="chain-company">阳光电源</span>
-<span class="chain-company">海辰储能</span>
-</div>
-</div>
-<div class="chain-step" onclick="toggleStep(this)">
-<div class="chain-step-title">换电站</div>
-<div class="chain-step-desc">换电站运营、电池梯次利用</div>
-<div class="chain-companies">
-<span class="chain-company">蔚来能源</span>
-<span class="chain-company">奥动新能源</span>
-<span class="chain-company">伯坦科技</span>
-<span class="chain-company">吉利换电</span>
-</div>
-</div>
-</div>
-</div>
+<div>
+<div class="chain-title" id="chainTitle">🔋 电池系统</div>
 <div class="chain-status">
-<h5>📍 长合区现状匹配</h5>
-<div class="status-item success">✅ 已有：XX新能源（PACK）、XX科技（BMS）</div>
-<div class="status-item missing">🔴 缺链：正极材料、电解液、电芯制造</div>
-<div class="status-item">🎯 招商目标：引进宁德时代/比亚迪/中创新航等头部企业</div>
+<span class="status-label"><span class="status-dot dot-local"></span>已落地</span>
+<span class="status-label"><span class="status-dot dot-partial"></span>有基础</span>
+<span class="status-label"><span class="status-dot dot-missing"></span>缺链</span>
 </div>
 </div>
-</main>
+</div>
+
+<div class="chain-flow">
+<!-- 上游原材料 -->
+<div class="flow-col flow-upstream">
+<div class="flow-title">🟢 上游原材料</div>
+<div class="supply-card" onclick="showSupplyDetail(this,'lithium')">
+<div class="supply-name">锂矿/正极材料</div>
+<div class="supply-meta">
+<span class="supply-tag">赣锋锂业</span>
+<span class="supply-tag">天齐锂业</span>
+<span class="supply-tag">湖南裕能</span>
+</div>
+</div>
+<div class="supply-card" onclick="showSupplyDetail(this,'cathode')">
+<div class="supply-name">正极材料（磷酸铁锂/三元）</div>
+<div class="supply-meta">
+<span class="supply-tag">德方纳米</span>
+<span class="supply-tag">当升科技</span>
+<span class="supply-tag">容百科技</span>
+</div>
+</div>
+<div class="supply-card" onclick="showSupplyDetail(this,'anode')">
+<div class="supply-name">负极材料（石墨/硅碳）</div>
+<div class="supply-meta">
+<span class="supply-tag">贝特瑞</span>
+<span class="supply-tag">璞泰来</span>
+<span class="supply-tag">杉杉股份</span>
+</div>
+</div>
+<div class="supply-card" onclick="showSupplyDetail(this,'electrolyte')">
+<div class="supply-name">电解液</div>
+<div class="supply-meta">
+<span class="supply-tag">天赐材料</span>
+<span class="supply-tag">新宙邦</span>
+<span class="supply-tag">江苏国泰</span>
+</div>
+</div>
+<div class="supply-card" onclick="showSupplyDetail(this,'separator')">
+<div class="supply-name">隔膜</div>
+<div class="supply-meta">
+<span class="supply-tag">恩捷股份</span>
+<span class="supply-tag">星源材质</span>
+<span class="supply-tag">中材科技</span>
+</div>
+</div>
+</div>
+
+<!-- 中游零部件 -->
+<div class="flow-col flow-midstream">
+<div class="flow-title">🟡 中游零部件</div>
+<div class="supply-card active" onclick="showSupplyDetail(this,'cell')">
+<div class="supply-name">电芯制造</div>
+<div class="supply-meta">
+<span class="supply-tag">宁德时代</span>
+<span class="supply-tag">弗迪电池</span>
+<span class="supply-tag">中创新航</span>
+<span class="supply-tag">亿纬锂能</span>
+</div>
+<div class="supply-price">⚠️ 缺链 - 重点招商目标</div>
+</div>
+<div class="supply-card" onclick="showSupplyDetail(this,'module')">
+<div class="supply-name">模组/PACK</div>
+<div class="supply-meta">
+<span class="supply-tag">宁德时代</span>
+<span class="supply-tag">亿纬锂能</span>
+<span class="supply-tag">欣旺达</span>
+</div>
+</div>
+<div class="supply-card" onclick="showSupplyDetail(this,'bms')">
+<div class="supply-name">BMS电池管理</div>
+<div class="supply-meta">
+<span class="supply-tag">宁德时代</span>
+<span class="supply-tag">比亚迪</span>
+<span class="supply-tag">均胜电子</span>
+</div>
+</div>
+<div class="supply-card" onclick="showSupplyDetail(this,'thermal_mgmt')">
+<div class="supply-name">热管理系统</div>
+<div class="supply-meta">
+<span class="supply-tag">银轮股份</span>
+<span class="supply-tag">三花智控</span>
+<span class="supply-tag">松芝股份</span>
+</div>
+</div>
+</div>
+
+<!-- 下游应用 -->
+<div class="flow-col flow-downstream">
+<div class="flow-title">🔴 下游应用</div>
+<div class="supply-card" onclick="showSupplyDetail(this,'vehicle')">
+<div class="supply-name">整车企业（乘用车）</div>
+<div class="supply-meta">
+<span class="supply-tag">比亚迪</span>
+<span class="supply-tag">特斯拉</span>
+<span class="supply-tag">蔚来</span>
+<span class="supply-tag">小鹏</span>
+</div>
+</div>
+<div class="supply-card" onclick="showSupplyDetail(this,'commercial')">
+<div class="supply-name">商用车/专用车</div>
+<div class="supply-meta">
+<span class="supply-tag">宇通客车</span>
+<span class="supply-tag">比亚迪商用车</span>
+<span class="supply-tag">中通客车</span>
+</div>
+</div>
+<div class="supply-card" onclick="showSupplyDetail(this,'storage')">
+<div class="supply-name">储能系统</div>
+<div class="supply-meta">
+<span class="supply-tag">宁德储能</span>
+<span class="supply-tag">比亚迪储能</span>
+<span class="supply-tag">亿纬储能</span>
+</div>
+</div>
+<div class="supply-card" onclick="showSupplyDetail(this,'swap')">
+<div class="supply-name">换电站</div>
+<div class="supply-meta">
+<span class="supply-tag">蔚来能源</span>
+<span class="supply-tag">奥动新能源</span>
+<span class="supply-tag">伯坦科技</span>
+</div>
+</div>
+</div>
+</div>
+
+<!-- 长合区匹配分析 -->
+<div class="match-section">
+<div class="match-title">📍 长合区产业匹配分析</div>
+<div class="match-list">
+<div class="match-item match-exist">✅ 已有：利羿精密（汽车结构件）</div>
+<div class="match-item match-exist">✅ 已有：浙江丰帆（数控机械）</div>
+<div class="match-item match-need">🔴 缺链：正极材料</div>
+<div class="match-item match-need">🔴 缺链：电芯制造</div>
+<div class="match-item match-need">🔴 缺链：负极材料（已有石墨加工）</div>
+<div class="match-item match-target">🎯 招商：宁德时代弗迪电池</div>
+<div class="match-item match-target">🎯 招商：中创新航/亿纬锂能</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 </section>
 
-<!-- MODULE 3: MAP -->
-<section class="section map-section" id="map">
+<!-- 招商作战地图 -->
+<section id="map" class="section">
 <div class="container">
-<div class="section-title">
-<h2>🗺️ 招商作战地图</h2>
-<p>三层信息叠加 · 已落地企业 · 空余厂房 · 目标企业</p>
-</div>
+<div class="section-badge">🗺️ 作战地图</div>
+<h2 class="section-title">招商作战地图</h2>
+<p class="section-subtitle">以天子湖片区为中心，叠加企业、厂房、目标三层信息</p>
+
 <div class="map-container">
 <div class="map-wrapper">
 <div id="map"></div>
 <div class="map-legend">
-<span class="legend-item"><span class="legend-dot established"></span> 已落地企业</span>
-<span class="legend-item"><span class="legend-dot factory"></span> 空余厂房</span>
-<span class="legend-item"><span class="legend-dot target"></span> 目标企业</span>
+<div class="legend-item"><span class="legend-dot" style="background:#34a853"></span>已落地企业</div>
+<div class="legend-item"><span class="legend-dot" style="background:#00d4ff"></span>空余厂房</div>
+<div class="legend-item"><span class="legend-dot" style="background:#ea4335"></span>招商目标</div>
 </div>
 </div>
+
 <div class="map-sidebar">
-<div class="map-card">
-<h4>🔴 招商线索卡片</h4>
-<div id="clueCards"></div>
+<div class="sidebar-title">🎯 赛道筛选</div>
+<div class="filter-group">
+<div class="filter-label">产业赛道</div>
+<div class="filter-tags">
+<span class="filter-tag active" onclick="filterMap('all')">全部</span>
+<span class="filter-tag" onclick="filterMap('battery')">电池系统</span>
+<span class="filter-tag" onclick="filterMap('motor')">电驱电机</span>
+<span class="filter-tag" onclick="filterMap('smart')">智能驾驶</span>
+<span class="filter-tag" onclick="filterMap('chassis')">底盘传动</span>
+<span class="filter-tag" onclick="filterMap('ev')">整车企业</span>
 </div>
-<div class="map-card">
-<h4>📊 招商统计</h4>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
-<div style="text-align:center;padding:20px;background:rgba(52,168,83,0.1);border-radius:8px">
-<div style="font-size:32px;font-weight:700;color:var(--success)">18</div>
-<div style="font-size:12px;color:var(--text-dim)">已落地企业</div>
 </div>
-<div style="text-align:center;padding:20px;background:rgba(234,67,53,0.1);border-radius:8px">
-<div style="font-size:32px;font-weight:700;color:var(--danger)">12</div>
-<div style="font-size:12px;color:var(--text-dim)">缺链环节</div>
+<div class="filter-group">
+<div class="filter-label">信息类型</div>
+<div class="filter-tags">
+<span class="filter-tag active" onclick="filterMapType('all')">全部</span>
+<span class="filter-tag" onclick="filterMapType('enterprise')">已落地企业</span>
+<span class="filter-tag" onclick="filterMapType('factory')">空余厂房</span>
+<span class="filter-tag" onclick="filterMapType('target')">招商目标</span>
 </div>
+</div>
+
+<div class="sidebar-title" style="margin-top:24px">📊 产业分布统计</div>
+<div id="mapStats">
+<div class="match-item match-exist" style="width:100%;justify-content:space-between">
+<span>已落地企业</span><span style="font-weight:700">189家</span>
+</div>
+<div class="match-item match-target" style="width:100%;justify-content:space-between;margin-top:8px">
+<span>招商目标</span><span style="font-weight:700">58家</span>
+</div>
+<div class="match-item" style="width:100%;justify-content:space-between;margin-top:8px;background:rgba(0,212,255,0.2);border:1px solid var(--primary);color:var(--primary)">
+<span>空余厂房</span><span style="font-weight:700">97处</span>
+</div>
+</div>
+
+<div class="sidebar-title" style="margin-top:24px">🔥 热门招商目标</div>
+<div id="hotTargets">
+<div class="supply-card" style="margin-bottom:8px;padding:10px">
+<div style="font-size:13px;font-weight:600">宁德时代</div>
+<div style="font-size:11px;color:var(--text-dim)">电芯制造 · 扩产选址中</div>
+</div>
+<div class="supply-card" style="margin-bottom:8px;padding:10px">
+<div style="font-size:13px;font-weight:600">中创新航</div>
+<div style="font-size:11px;color:var(--text-dim)">动力电池 · IPO冲刺</div>
+</div>
+<div class="supply-card" style="margin-bottom:8px;padding:10px">
+<div style="font-size:13px;font-weight:600">亿纬锂能</div>
+<div style="font-size:11px;color:var(--text-dim)">大圆柱电池 · 扩产中</div>
 </div>
 </div>
 </div>
@@ -462,15 +521,96 @@ body{font-family:"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg-
 </div>
 </section>
 
-<!-- MODULE 4: MATCH MATRIX -->
-<section class="section match-section" id="match">
+<!-- 招商线索速查 -->
+<section id="clues" class="section" style="background:rgba(0,0,0,0.2)">
 <div class="container">
-<div class="section-title">
-<h2>📊 长合区产业匹配分析</h2>
-<p>智能匹配矩阵 · 缺口分析 · 招商优先级</p>
+<div class="section-badge">🎯 招商线索</div>
+<h2 class="section-title">招商线索速查</h2>
+<p class="section-subtitle">来自全国工业迁移线索与招商速递</p>
+
+<div class="clue-header">
+<div class="search-box">
+<span class="search-icon">🔍</span>
+<input type="text" class="search-input" placeholder="搜索企业名称、赛道..." id="clueSearch" oninput="filterClues()">
 </div>
-<div class="match-table">
-<table class="match-matrix">
+<select class="filter-select" id="clueChain" onchange="filterClues()">
+<option value="">全部赛道</option>
+<option value="battery">电池系统</option>
+<option value="motor">电驱电机</option>
+<option value="smart">智能驾驶</option>
+<option value="chassis">底盘传动</option>
+<option value="thermal">热管理系统</option>
+<option value="ev">整车企业</option>
+</select>
+<select class="filter-select" id="clueInvestment" onchange="filterClues()">
+<option value="">投资规模</option>
+<option value="low">1亿以下</option>
+<option value="mid">1-10亿</option>
+<option value="high">10亿以上</option>
+</select>
+<select class="filter-select" id="clueWilling" onchange="filterClues()">
+<option value="">对接意愿</option>
+<option value="high">高</option>
+<option value="mid">中</option>
+<option value="low">低</option>
+</select>
+</div>
+
+<div class="view-toggle">
+<button class="view-btn active" onclick="setClueView('grid')">📋 卡片视图</button>
+<button class="view-btn" onclick="setClueView('table')">📊 表格视图</button>
+</div>
+
+<div class="clue-grid" id="clueGrid">
+<!-- 线索卡片由JS生成 -->
+</div>
+</div>
+</section>
+
+<!-- 空余厂房速查 -->
+<section id="factory" class="section">
+<div class="container">
+<div class="section-badge">🏭 厂房资源</div>
+<h2 class="section-title">空余厂房速查</h2>
+<p class="section-subtitle">天子湖片区与泗安镇空余厂房信息</p>
+
+<div class="clue-header">
+<select class="filter-select" id="factoryArea" onchange="filterFactories()">
+<option value="">面积区间</option>
+<option value="small">2000㎡以下</option>
+<option value="mid">2000-5000㎡</option>
+<option value="large">5000-10000㎡</option>
+<option value="xlarge">10000㎡以上</option>
+</select>
+<select class="filter-select" id="factoryHeight" onchange="filterFactories()">
+<option value="">层高要求</option>
+<option value="6">≥6m</option>
+<option value="8">≥8m</option>
+<option value="10">≥10m</option>
+</select>
+<select class="filter-select" id="factoryZone" onchange="filterFactories()">
+<option value="">所属片区</option>
+<option value="tianzihun">天子湖</option>
+<option value="sian">泗安镇</option>
+</select>
+</div>
+
+<div class="factory-grid" id="factoryGrid">
+<!-- 厂房卡片由JS生成 -->
+</div>
+</div>
+</section>
+
+<!-- 产业匹配矩阵 -->
+<section id="matrix" class="section" style="background:rgba(0,0,0,0.2)">
+<div class="container">
+<div class="section-badge">📊 产业分析</div>
+<h2 class="section-title">长合区产业匹配矩阵</h2>
+<p class="section-subtitle">分析各赛道产业链完整度，识别招商优先级</p>
+
+<div class="glass-card">
+<div class="matrix-wrapper">
+<table class="matrix-table">
 <thead>
 <tr>
 <th>产业赛道</th>
@@ -479,612 +619,603 @@ body{font-family:"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg-
 <th>下游应用</th>
 <th>长合区现状</th>
 <th>招商优先级</th>
+<th>目标企业</th>
 </tr>
 </thead>
-<tbody id="matchMatrixBody"></tbody>
+<tbody id="matrixBody">
+<!-- 由JS生成 -->
+</tbody>
 </table>
 </div>
 </div>
-</section>
-
-<!-- MODULE 5: TOPICS -->
-<section class="section topic-section" id="topics">
-<div class="container">
-<div class="section-title">
-<h2>📚 关键零部件专题页</h2>
-<p>5大核心零部件深度展开 · 技术路线图 · 目标企业清单</p>
-</div>
-<div class="topic-grid">
-<div class="topic-card" onclick="openTopic('battery')">
-<div class="topic-img">🔋</div>
-<div class="topic-content">
-<h3>动力电池专题</h3>
-<p>全景图谱+企业清单+长合区匹配+招商目标。涵盖电芯、模组、PACK、BMS全链条。</p>
-<div class="topic-tags">
-<span class="topic-tag">固态电池</span>
-<span class="topic-tag">大圆柱电池</span>
-<span class="topic-tag">800V高压</span>
-</div>
-</div>
-</div>
-<div class="topic-card" onclick="openTopic('motor')">
-<div class="topic-img">⚡</div>
-<div class="topic-content">
-<h3>驱动电机专题</h3>
-<p>扁线电机+油冷技术+SiC功率器件。电机效率提升路线图与供应商分析。</p>
-<div class="topic-tags">
-<span class="topic-tag">扁线电机</span>
-<span class="topic-tag">油冷技术</span>
-<span class="topic-tag">SiC器件</span>
-</div>
-</div>
-</div>
-<div class="topic-card" onclick="openTopic('inverter')">
-<div class="topic-img">🎛️</div>
-<div class="topic-content">
-<h3>电机控制器专题</h3>
-<p>SiC器件供应链+IGBT/碳化硅对比+800V平台技术方案。</p>
-<div class="topic-tags">
-<span class="topic-tag">SiC碳化硅</span>
-<span class="topic-tag">IGBT</span>
-<span class="topic-tag">功率半导体</span>
-</div>
-</div>
-</div>
-<div class="topic-card" onclick="openTopic('smartdrive')">
-<div class="topic-img">🧠</div>
-<div class="topic-content">
-<h3>智能驾驶专题</h3>
-<p>传感器（激光雷达/摄像头/毫米波）+ 芯片 + 算法全栈解决方案。</p>
-<div class="topic-tags">
-<span class="topic-tag">激光雷达</span>
-<span class="topic-tag">智驾芯片</span>
-<span class="topic-tag">城市NOA</span>
-</div>
-</div>
-</div>
-<div class="topic-card" onclick="openTopic('chassis')">
-<div class="topic-img">🔩</div>
-<div class="topic-content">
-<h3>底盘轻量化专题</h3>
-<p>一体化压铸+空气悬架+线控技术+铝合金/碳纤维材料应用。</p>
-<div class="topic-tags">
-<span class="topic-tag">一体化压铸</span>
-<span class="topic-tag">空悬系统</span>
-<span class="topic-tag">线控底盘</span>
-</div>
-</div>
-</div>
-</div>
 </div>
 </section>
 
-<!-- MODULE 6: CLUE SEARCH -->
-<section class="section clue-section" id="clue">
+<!-- 政策工具箱 -->
+<section id="tools" class="section">
 <div class="container">
-<div class="section-title">
-<h2>🔍 招商线索速查</h2>
-<p>双视图切换 · 多维度筛选 · 一键联系</p>
-</div>
-<div class="clue-toolbar">
-<div class="clue-filters">
-<select class="filter-select" id="filterIndustry">
-<option value="">产业赛道</option>
-<option value="battery">电池系统</option>
-<option value="motor">驱动电机</option>
-<option value="smartdrive">智能驾驶</option>
-<option value="chassis">底盘传动</option>
-<option value="thermal">热管理系统</option>
-</select>
-<select class="filter-select" id="filterScale">
-<option value="">投资规模</option>
-<option value="1">1亿以下</option>
-<option value="2">1-10亿</option>
-<option value="3">10亿以上</option>
-</select>
-<select class="filter-select" id="filterArea">
-<option value="">需求面积</option>
-<option value="1">2000㎡以下</option>
-<option value="2">2000-5000㎡</option>
-<option value="3">5000-10000㎡</option>
-<option value="4">10000㎡以上</option>
-</select>
-<input type="text" class="search-input" placeholder="搜索企业名称..." id="searchInput">
-</div>
-<div class="clue-view-toggle">
-<button class="view-btn active" data-view="table">📋 表格</button>
-<button class="view-btn" data-view="map">🗺️ 地图</button>
-</div>
-</div>
-<div class="clue-table" id="clueTableView">
-<table>
-<thead>
-<tr>
-<th>企业名称</th>
-<th>赛道</th>
-<th>投资额</th>
-<th>需求面积</th>
-<th>对接意愿</th>
-<th>联系人</th>
-<th>操作</th>
-</tr>
-</thead>
-<tbody id="clueTableBody"></tbody>
-</table>
-</div>
-</div>
-</section>
+<div class="section-badge">🧮 实用工具</div>
+<h2 class="section-title">投资政策工具箱</h2>
+<p class="section-subtitle">智能计算投资成本与政策优惠</p>
 
-<!-- MODULE 7: POLICY TOOLS -->
-<section class="section policy-section" id="policy">
-<div class="container">
-<div class="section-title">
-<h2>🧮 投资政策工具箱</h2>
-<p>政策计算器 · 厂房匹配器 · 产业地图</p>
+<div class="tools-grid">
+<div class="tool-card">
+<div class="tool-icon">🧮</div>
+<div class="tool-title">政策计算器</div>
+<div class="tool-desc">输入固投额，自动计算税收减免与补贴</div>
+<input type="number" class="tool-input" id="calcInvestment" placeholder="固定资产投资额（亿元）">
+<input type="number" class="tool-input" id="calcOutput" placeholder="预计年产值（亿元）">
+<button class="btn btn-primary" onclick="calcPolicy()" style="width:100%">计算政策优惠</button>
+<div class="tool-result" id="calcResult">预计结果将显示在这里</div>
 </div>
-<div class="policy-grid">
-<div class="policy-card">
-<h3><span>🧮</span> 政策计算器</h3>
-<div class="calc-form">
-<div class="form-group">
-<label>固定资产投资额（亿元）</label>
-<input type="number" id="calcInvestment" placeholder="如：5">
-</div>
-<div class="form-group">
-<label>预计年产值（亿元）</label>
-<input type="number" id="calcOutput" placeholder="如：20">
-</div>
-<div class="form-group">
-<label>厂房类型</label>
-<select id="calcFactory">
-<option value="standard">标准厂房</option>
-<option value="steel">钢结构厂房</option>
-</select>
-</div>
-<button class="calc-btn" onclick="calcPolicy()">计算政策优惠</button>
-<div class="calc-result" id="calcResult">
-<h4>💰 预计政策优惠</h4>
-<div class="result-row"><span>税收减免（前3年）</span><span id="tax减免">-</span></div>
-<div class="result-row"><span>固投补贴</span><span id="subsidy固投">-</span></div>
-<div class="result-row"><span>地价优惠</span><span id="land优惠">-</span></div>
-<div class="result-row"><span>合计优惠</span><span id="total优惠">-</span></div>
-</div>
-</div>
-</div>
-<div class="policy-card">
-<h3><span>🏭</span> 厂房匹配器</h3>
-<div class="calc-form">
-<div class="form-group">
-<label>需求面积（㎡）</label>
-<input type="number" id="matchArea" placeholder="如：5000">
-</div>
-<div class="form-group">
-<label>层高要求（m）</label>
-<select id="matchHeight">
+
+<div class="tool-card">
+<div class="tool-icon">🏭</div>
+<div class="tool-title">厂房匹配器</div>
+<div class="tool-desc">输入需求，自动匹配空余厂房</div>
+<input type="number" class="tool-input" id="needArea" placeholder="需求面积（㎡）">
+<select class="tool-input" id="needHeight">
+<option value="">层高要求</option>
 <option value="6">≥6m</option>
 <option value="8">≥8m</option>
 <option value="10">≥10m</option>
 </select>
+<button class="btn btn-primary" onclick="matchFactory()" style="width:100%">智能匹配</button>
+<div class="tool-result" id="matchResult">匹配结果将显示在这里</div>
 </div>
-<div class="form-group">
-<label>配电要求（KVA）</label>
-<select id="matchPower">
-<option value="315">≥315KVA</option>
-<option value="500">≥500KVA</option>
-<option value="800">≥800KVA</option>
-</select>
-</div>
-<button class="calc-btn" onclick="matchFactory()">匹配厂房</button>
-<div class="calc-result" id="matchResult">
-<h4>🏭 匹配厂房</h4>
-<div id="matchedFactories"></div>
-</div>
-</div>
-</div>
-<div class="policy-card">
-<h3><span>🗺️</span> 产业地图</h3>
-<div class="calc-form">
-<div class="form-group">
-<label>选择产业赛道</label>
-<select id="selectChain">
+
+<div class="tool-card">
+<div class="tool-icon">🗺️</div>
+<div class="tool-title">产业地图</div>
+<div class="tool-desc">输入赛道，显示缺链环节与目标企业</div>
+<select class="tool-input" id="mapChain">
+<option value="">选择产业赛道</option>
 <option value="battery">电池系统</option>
-<option value="motor">驱动电机</option>
-<option value="smartdrive">智能驾驶</option>
+<option value="motor">电驱电机</option>
+<option value="smart">智能驾驶</option>
 <option value="chassis">底盘传动</option>
 <option value="thermal">热管理系统</option>
-<option value="inverter">电机控制器</option>
-<option value="body">轻量化材料</option>
+</select>
+<button class="btn btn-primary" onclick="showChainMap()" style="width:100%">查看产业图谱</button>
+<div class="tool-result" id="chainMapResult">结果将显示在这里</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- 联系我们 -->
+<section id="contact" class="section">
+<div class="container">
+<div class="contact-section">
+<h2 class="section-title">招商服务直通车</h2>
+<p class="section-subtitle" style="margin-bottom:40px">专业团队为您服务，期待与您合作</p>
+
+<div class="contact-phone-big glow">📞 0563-568-0000</div>
+<div style="color:var(--text-dim);margin-bottom:40px">长合区投资促进局 · 工作日 8:30-17:30</div>
+
+<div class="form-row">
+<input type="text" class="form-input" placeholder="您的姓名 *">
+<input type="text" class="form-input" placeholder="公司名称 *">
+</div>
+<div class="form-row">
+<input type="tel" class="form-input" placeholder="联系电话 *">
+<select class="form-input">
+<option value="">投资意向</option>
+<option value="battery">电池系统</option>
+<option value="motor">电驱电机</option>
+<option value="smart">智能驾驶</option>
+<option value="chassis">底盘传动</option>
+<option value="ev">整车企业</option>
+<option value="other">其他</option>
 </select>
 </div>
-<button class="calc-btn" onclick="showChainMap()">查看产业地图</button>
-<div class="calc-result" id="chainMapResult">
-<h4>📍 缺链分析</h4>
-<div id="chainAnalysis"></div>
+<div class="form-row">
+<textarea class="form-input" placeholder="请描述您的投资需求..."></textarea>
 </div>
+<div style="text-align:center">
+<button class="form-submit">提交咨询</button>
+</div>
+
+<div class="contact-qr" style="margin-top:60px">
+<div class="qr-item">
+<div class="qr-box">📱</div>
+<div class="qr-label">招商热线</div>
+</div>
+<div class="qr-item">
+<div class="qr-box">💬</div>
+<div class="qr-label">微信公众号</div>
+</div>
+<div class="qr-item">
+<div class="qr-box">📧</div>
+<div class="qr-label">商务邮箱</div>
 </div>
 </div>
 </div>
 </div>
 </section>
 
-<!-- MODULE 8: SERVICE -->
-<section class="section service-section" id="service">
-<div class="container">
-<div class="section-title">
-<h2>📞 招商服务直通车</h2>
-<p>一键拨号 · 在线留言 · 微信咨询</p>
-</div>
-<div class="service-grid">
-<div class="service-card">
-<div class="service-icon">📞</div>
-<h3>一键拨号</h3>
-<p>直接联系招商服务专员</p>
-<a href="tel:0563-6800123">0563-6800123</a>
-</div>
-<div class="service-card">
-<div class="service-icon">💬</div>
-<h3>在线咨询</h3>
-<p>添加招商顾问微信</p>
-<a href="#">微信号：chzxzx</a>
-</div>
-<div class="service-card">
-<div class="service-icon">📧</div>
-<h3>邮件咨询</h3>
-<p>发送投资意向邮件</p>
-<a href="mailto:invest@chzx.gov.cn">invest@chzx.gov.cn</a>
-</div>
-<div class="service-card">
-<div class="service-icon">📍</div>
-<h3>来访地址</h3>
-<p>安徽省广德市桐汭东路与龙井路口</p>
-<a href="#map">查看地图</a>
-</div>
-</div>
-<div class="contact-form">
-<h3 style="text-align:center;margin-bottom:24px">📝 在线留言</h3>
-<div class="form-row">
-<div class="form-group">
-<label>姓名 *</label>
-<input type="text" placeholder="请输入姓名">
-</div>
-<div class="form-group">
-<label>公司名称</label>
-<input type="text" placeholder="请输入公司名称">
-</div>
-</div>
-<div class="form-row">
-<div class="form-group">
-<label>联系电话 *</label>
-<input type="tel" placeholder="请输入手机号">
-</div>
-<div class="form-group">
-<label>投资意向</label>
-<select>
-<option>请选择</option>
-<option>电池系统</option>
-<option>驱动电机</option>
-<option>智能驾驶</option>
-<option>底盘轻量化</option>
-<option>其他零部件</option>
-</select>
-</div>
-</div>
-<div class="form-group form-group-full">
-<label>需求描述</label>
-<textarea placeholder="请简要描述您的投资需求（面积、层高、投资额等）"></textarea>
-</div>
-<button class="submit-btn">提交咨询</button>
-</div>
-</div>
-</div>
-</section>
-
-<!-- FOOTER -->
-<footer class="footer">
-<div class="container">
-<p>© 2026 长三角（湖州）产业合作区 · 新能源汽车产业链招商作战图</p>
-<p>技术支持：长合区经济发展局 | 联系电话：0563-6800123</p>
-</div>
-</footer>
-
-<!-- MODAL -->
-<div class="modal" id="modal">
+<!-- 详情弹窗 -->
+<div class="modal" id="detailModal">
 <div class="modal-content">
 <div class="modal-header">
-<h3 id="modalTitle">详情</h3>
+<div class="modal-title" id="modalTitle">详情</div>
 <button class="modal-close" onclick="closeModal()">×</button>
 </div>
-<div class="modal-body" id="modalBody"></div>
+<div class="modal-body" id="modalBody">
+</div>
+<div class="modal-footer">
+<button class="btn btn-secondary" onclick="closeModal()">关闭</button>
+<button class="btn btn-primary" onclick="contactTarget()">📞 立即联系</button>
+</div>
 </div>
 </div>
 
-<script src="https://webapi.amap.com/maps?v=2.0&key=1d19f5d7f8085dfc6d592c7b5e6dc6db"></script>
 <script>
-// ========== DATA ==========
+// 高德地图
+window._AMapSecurityConfig = { securityJsCode: '1d19f5d7f8085dfc6d592c7b5e6dc6db' }
+</script>
+<script src="https://webapi.amap.com/maps?v=2.0&key=1d19f5d7f8085dfc6d592c7b5e6dc6db"></script>
+
+<script>
+// ==================== 数据 ====================
 const chainData = {
-battery: {name:"电池系统",upstream:["锂矿/钴矿/镍矿","正极材料","负极材料","电解液","隔膜"],midstream:["电芯制造","模组/PACK","BMS","热管理"],downstream:["整车","储能","换电站"]},
-motor: {name:"驱动电机",upstream:["稀土矿","永磁材料","铜线","轴承"],midstream:["定子/转子","电机总成","控制器"],downstream:["乘用车","商用车","专用车"]},
-smartdrive: {name:"智能驾驶",upstream:["芯片","传感器","算法"],midstream:["域控制器","摄像头","雷达","高精度地图"],downstream:["整车","Robotaxi","无人配送"]},
-chassis: {name:"底盘传动",upstream:["铝合金","钢材","橡胶"],midstream:["悬架","制动","转向","线控"],downstream:["整车","底盘集成"]},
-thermal: {name:"热管理系统",upstream:["压缩机","冷凝器","蒸发器"],midstream:["热泵系统","液冷板","冷却泵"],downstream:["整车","电池热管理"]},
-inverter: {name:"电机控制器",upstream:["SiC晶圆","IGBT模块","电容"],midstream:["功率模块","驱动电路","控制板"],downstream:["整车","电机总成"]},
-sensor: {name:"车载传感器",upstream:["芯片","镜头","MEMS"],midstream:["摄像头","毫米波雷达","超声波雷达"],downstream:["智能驾驶","ADAS"]},
-body: {name:"轻量化材料",upstream:["铝土矿","碳纤维","镁合金"],midstream:["铝合金板材","碳纤维复合材料","连接技术"],downstream:["车身","底盘","覆盖件"]}
+battery: {
+title: '🔋 电池系统',
+upstream: [
+{name:'赣锋锂业',market:'港股',cap:'800亿',rev:'320亿',profit:'45亿',tags:['锂矿','固态电池'],status:'local'},
+{name:'天齐锂业',market:'深交所',cap:'600亿',rev:'280亿',profit:'38亿',tags:['锂矿','正极材料'],status:'local'},
+{name:'贝特瑞',market:'北交所',cap:'200亿',rev:'220亿',profit:'18亿',tags:['负极材料','全球第一'],status:'partial'},
+{name:'湖南裕能',market:'创业板',cap:'350亿',rev:'400亿',profit:'30亿',tags:['正极材料','磷酸铁锂'],status:'local'},
+{name:'德方纳米',market:'创业板',cap:'180亿',rev:'150亿',profit:'12亿',tags:['正极材料','液相法'],status:'local'},
+{name:'当升科技',market:'创业板',cap:'150亿',rev:'130亿',profit:'10亿',tags:['正极材料','三元材料'],status:'partial'},
+{name:'容百科技',market:'科创板',cap:'200亿',rev:'220亿',profit:'15亿',tags:['正极材料','高镍三元'],status:'local'},
+{name:'天赐材料',market:'深交所',cap:'400亿',rev:'190亿',profit:'25亿',tags:['电解液','全球第一'],status:'partial'},
+{name:'新宙邦',market:'创业板',cap:'250亿',rev:'100亿',profit:'12亿',tags:['电解液','添加剂'],status:'partial'},
+{name:'恩捷股份',market:'深交所',cap:'450亿',rev:'85亿',profit:'25亿',tags:['隔膜','全球第一'],status:'local'},
+{name:'星源材质',market:'创业板',cap:'180亿',rev:'28亿',profit:'8亿',tags:['隔膜','干法隔膜'],status:'partial'},
+],
+midstream: [
+{name:'宁德时代',market:'深交所',cap:'8500亿',rev:'3000亿',profit:'310亿',tags:['电芯','全球第一'],status:'missing'},
+{name:'弗迪电池',market:'非上市',cap:'-',rev:'1000亿',profit:'80亿',tags:['电芯','比亚迪'],status:'missing'},
+{name:'中创新航',market:'港股',cap:'300亿',rev:'250亿',profit:'5亿',tags:['电芯','IPO冲刺'],status:'missing'},
+{name:'亿纬锂能',market:'深交所',cap:'800亿',rev:'350亿',profit:'35亿',tags:['电芯','大圆柱'],status:'missing'},
+{name:'欣旺达',market:'创业板',cap:'350亿',rev:'520亿',profit:'10亿',tags:['PACK','消费电池'],status:'partial'},
+{name:'国轩高科',market:'深交所',cap:'350亿',rev:'230亿',profit:'8亿',tags:['电芯','大众合作'],status:'missing'},
+],
+downstream: [
+{name:'比亚迪',market:'深交所',cap:'7000亿',rev:'6000亿',profit:'300亿',tags:['整车','全球第一'],status:'local'},
+{name:'特斯拉',market:'纳斯达克',cap:'5万亿',rev:'970亿',profit:'150亿',tags:['整车','上海工厂'],status:'partial'},
+{name:'蔚来',market:'港股',cap:'800亿',rev:'500亿',profit:'-50亿',tags:['整车','换电模式'],status:'partial'},
+{name:'小鹏',market:'港股',cap:'600亿',rev:'300亿',profit:'-60亿',tags:['整车','智驾领先'],status:'partial'},
+{name:'理想',market:'港股',cap:'2500亿',rev:'1000亿',profit:'120亿',tags:['整车','增程领先'],status:'partial'},
+],
+existing: ['利羿精密（汽车结构件）','浙江丰帆（数控机械）'],
+missing: ['正极材料','电芯制造','负极材料'],
+targets: ['宁德时代','中创新航','亿纬锂能','蜂巢能源']
+}
 };
-const matchData = [
-{chain:"电池系统",upstream:"缺链",midstream:"部分有",downstream:"已有",status:"missing",priority:"urgent"},
-{chain:"驱动电机",upstream:"缺链",midstream:"待壮大",status:"partial",priority:"attention"},
-{chain:"智能驾驶",upstream:"缺链",midstream:"待引进",status:"missing",priority:"attention"},
-{chain:"底盘传动",upstream:"已有",midstream:"待壮大",status:"partial",priority:"normal"},
-{chain:"热管理系统",upstream:"缺链",midstream:"待引进",status:"missing",priority:"attention"},
-{chain:"电机控制器",upstream:"缺链",midstream:"待引进",status:"missing",priority:"urgent"},
-{chain:"车载传感器",upstream:"缺链",midstream:"待引进",status:"missing",priority:"attention"},
-{chain:"轻量化材料",upstream:"已有",midstream:"已有",status:"complete",priority:"normal"}
-];
+
+const motorData = {
+title: '⚡ 驱动电机',
+upstream: [
+{name:'北方稀土',market:'上交所',cap:'800亿',rev:'300亿',profit:'40亿',tags:['稀土','永磁材料'],status:'partial'},
+{name:'金力永磁',market:'创业板',cap:'200亿',rev:'70亿',profit:'6亿',tags:['永磁材料','钕铁硼'],status:'local'},
+{name:'宁波韵升',market:'上交所',cap:'100亿',rev:'50亿',profit:'4亿',tags:['永磁材料'],status:'partial'},
+],
+midstream: [
+{name:'汇川技术',market:'创业板',cap:'1800亿',rev:'230亿',profit:'40亿',tags:['电机控制器','工控龙头'],status:'local'},
+{name:'方正电机',market:'创业板',cap:'60亿',rev:'18亿',profit:'0.5亿',tags:['驱动电机'],status:'partial'},
+{name:'卧龙电驱',market:'上交所',cap:'200亿',rev:'150亿',profit:'8亿',tags:['驱动电机','全球前三'],status:'local'},
+{name:'上海电驱动',market:'非上市',cap:'-',rev:'30亿',profit:'2亿',tags:['驱动电机','集成驱动'],status:'partial'},
+{name:'英搏尔',market:'创业板',cap:'80亿',rev:'12亿',profit:'0.3亿',tags:['电控','电机'],status:'partial'},
+],
+downstream: [
+{name:'比亚迪',market:'深交所',cap:'7000亿',rev:'6000亿',profit:'300亿',tags:['整车','自研电机'],status:'local'},
+{name:'特斯拉',market:'纳斯达克',cap:'5万亿',rev:'970亿',profit:'150亿',tags:['整车','扁线电机'],status:'partial'},
+],
+existing: ['汇川技术（电控）','卧龙电驱（电机）','金力永磁（材料）'],
+missing: ['扁线电机','油冷电机','SiC控制器'],
+targets: ['博世','采埃孚','日本电产']
+}
+
+const smartData = {
+title: '🧠 智能驾驶',
+upstream: [
+{name:'地平线',market:'港股IPO',cap:'-',rev:'15亿',profit:'-',tags:['智驾芯片','国产第一'],status:'missing'},
+{name:'黑芝麻智能',market:'港股',cap:'100亿',rev:'3亿',profit:'-',tags:['智驾芯片','IPO中'],status:'missing'},
+{name:'华为海思',market:'非上市',cap:'-',rev:'80亿',profit:'15亿',tags:['芯片','昇腾系列'],status:'missing'},
+],
+midstream: [
+{name:'华为引望',market:'非上市',cap:'2300亿',rev:'300亿',profit:'50亿',tags:['智驾总成','阿维塔投资'],status:'missing'},
+{name:'Momenta',market:'非上市',cap:'-',rev:'20亿',profit:'-',tags:['算法','自动驾驶'],status:'missing'},
+{name:'文远知行',market:'纳斯达克',cap:'50亿',rev:'4亿',profit:'-',tags:['Robotaxi','L4'],status:'missing'},
+{name:'小马智行',market:'美股IPO',cap:'-',rev:'5亿',profit:'-',tags:['L4智驾'],status:'missing'},
+],
+downstream: [
+{name:'华为',market:'非上市',cap:'-',rev:'7000亿',profit:'600亿',tags:['HI模式','智选车'],status:'local'},
+{name:'百度',market:'纳斯达克',cap:'3000亿',rev:'1300亿',profit:'100亿',tags:['Apollo','L4'],status:'partial'},
+],
+existing: ['华为（合作）'],
+missing: ['智驾芯片','激光雷达','算法公司'],
+targets: ['地平线','速腾聚创','华为引望','小马智行']
+}
+
+// 招商线索数据
 const clueData = [
-{name:"XX新能源",industry:"电池系统",invest:"5亿",area:"8000㎡",height:"≥8m",willingness:"高",contact:"张总 138xxxx",phone:"13800001111"},
-{name:"YY科技",industry:"驱动电机",invest:"3亿",area:"5000㎡",height:"≥6m",willingness:"中",contact:"李总 139xxxx",phone:"13900002222"},
-{name:"ZZ智能",industry:"智能驾驶",invest:"10亿",area:"15000㎡",height:"≥10m",willingness:"高",contact:"王总 137xxxx",phone:"13700003333"},
-{name:"AA精密",industry:"底盘传动",invest:"2亿",area:"3000㎡",height:"≥6m",willingness:"高",contact:"赵总 136xxxx",phone:"13600004444"}
+{id:1,name:'宁德时代',chain:'battery',investment:'50亿+',area:'20000-50000㎡',height:'≥10m',willing:'high',contact:'张总',phone:'138xxxx8888',status:'扩产选址中',location:'天子湖A区'},
+{id:2,name:'中创新航',chain:'battery',investment:'30亿+',area:'15000-30000㎡',height:'≥8m',willing:'high',contact:'李总',phone:'139xxxx6666',status:'IPO冲刺需扩产',location:'天子湖B区'},
+{id:3,name:'亿纬锂能',chain:'battery',investment:'25亿+',area:'10000-20000㎡',height:'≥8m',willing:'high',contact:'王总',phone:'137xxxx5555',status:'大圆柱电池扩产',location:'泗安镇'},
+{id:4,name:'蜂巢能源',chain:'battery',investment:'20亿+',area:'15000-25000㎡',height:'≥8m',willing:'mid',contact:'赵总',phone:'136xxxx4444',status:'IPO辅导中',location:'天子湖A区'},
+{id:5,name:'汇川技术',chain:'motor',investment:'10亿+',area:'5000-10000㎡',height:'≥6m',willing:'high',contact:'孙总',phone:'135xxxx3333',status:'电控扩产',location:'天子湖C区'},
+{id:6,name:'华为引望',chain:'smart',investment:'30亿+',area:'8000-15000㎡',height:'≥6m',willing:'mid',contact:'周总',phone:'134xxxx2222',status:'智驾基地选址',location:'天子湖B区'},
+{id:7,name:'地平线',chain:'smart',investment:'15亿+',area:'3000-8000㎡',height:'≥4m',willing:'high',contact:'吴总',phone:'133xxxx1111',status:'芯片基地扩产',location:'天子湖A区'},
+{id:8,name:'速腾聚创',chain:'smart',investment:'10亿+',area:'5000-10000㎡',height:'≥6m',willing:'mid',contact:'郑总',phone:'132xxxx0000',status:'激光雷达扩产',location:'泗安镇'},
+{id:9,name:'三花智控',chain:'thermal',investment:'8亿+',area:'8000-15000㎡',height:'≥8m',willing:'high',contact:'冯总',phone:'131xxxx9999',status:'热管理基地',location:'天子湖A区'},
+{id:10,name:'银轮股份',chain:'thermal',investment:'5亿+',area:'5000-10000㎡',height:'≥6m',willing:'mid',contact:'陈总',phone:'130xxxx8888',status:'换热器扩产',location:'天子湖C区'},
 ];
+
+// 厂房数据
 const factoryData = [
-{id:1,name:"天子湖工业园A1栋",area:12000,height:8,power:800,price:15,town:"天子湖镇",lat:31.03,lng:119.42},
-{id:2,name:"天子湖工业园A2栋",area:8500,height:6,power:630,price:14,town:"天子湖镇",lat:31.03,lng:119.43},
-{id:3,name:"天子湖工业园B1栋",area:15000,height:10,power:1000,price:18,town:"天子湖镇",lat:31.04,lng:119.42},
-{id:4,name:"泗安工业园C1栋",area:11000,height:8,power:800,price:12,town:"泗安镇",lat:30.98,lng:119.52},
-{id:5,name:"泗安工业园C2栋",area:8000,height:6,power:500,price:11,town:"泗安镇",lat:30.98,lng:119.53}
-];
-const enterpriseData = [
-{name:"宁德时代",stock:"SZ300750",marketCap:"8000亿",revenue:"3000亿",profit:"300亿",established:"2011",employees:"150000",location:"福建宁德",type:"nation",match:"电池系统"},
-{name:"比亚迪",stock:"SZ002594",marketCap:"6000亿",revenue:"6000亿",profit:"200亿",established:"1995",employees:"650000",location:"广东深圳",type:"nation",match:"整车/电池"},
-{name:"亿纬锂能",stock:"SZ300014",marketCap:"1200亿",revenue:"400亿",profit:"40亿",established:"2001",employees:"30000",location:"广东惠州",type:"nation",match:"电池系统"},
-{name:"蜂巢能源",stock:"SH688063",marketCap:"600亿",revenue:"150亿",profit:"8亿",established:"2018",employees:"15000",location:"江苏常州",type:"nation",match:"电池系统"},
-{name:"中创新航",stock:"HK3931",marketCap:"400亿",revenue:"200亿",profit:"15亿",established:"2007",employees:"25000",location:"江苏常州",type:"nation",match:"电池系统"},
-{name:"湖南裕能",stock:"SZ301358",marketCap:"400亿",revenue:"500亿",profit:"25亿",established:"2016",employees:"5000",location:"湖南湘潭",type:"nation",match:"正极材料"},
-{name:"德方纳米",stock:"SZ300769",marketCap:"300亿",revenue:"200亿",profit:"20亿",established:"2007",employees:"8000",location:"广东深圳",type:"nation",match:"正极材料"},
-{name:"贝特瑞",stock:"BJ835185",marketCap:"250亿",revenue:"250亿",profit:"15亿",established:"2000",employees:"6000",location:"广东深圳",type:"nation",match:"负极材料"},
-{name:"恩捷股份",stock:"SZ002812",marketCap:"500亿",revenue:"100亿",profit:"30亿",established:"2010",employees:"12000",location:"云南昆明",type:"nation",match:"隔膜"},
-{name:"天赐材料",stock:"SZ002709",marketCap:"400亿",revenue:"200亿",profit:"50亿",established:"2000",employees:"10000",location:"广东广州",type:"nation",match:"电解液"},
-{name:"汇川技术",stock:"SZ300124",marketCap:"1500亿",revenue:"300亿",profit:"50亿",established:"2003",employees:"20000",location:"广东深圳",type:"nation",match:"电机控制器"},
-{name:"均胜电子",stock:"SH600699",marketCap:"200亿",revenue:"500亿",profit:"8亿",established:"2004",employees:"40000",location:"浙江宁波",type:"nation",match:"BMS"},
-{name:"拓普集团",stock:"SH601689",marketCap:"600亿",revenue:"200亿",profit:"20亿",established:"1983",employees:"15000",location:"浙江宁波",type:"nation",match:"底盘"},
-{name:"三花智控",stock:"SZ002050",marketCap:"800亿",revenue:"200亿",profit:"25亿",established:"1984",employees:"18000",location:"浙江绍兴",type:"nation",match:"热管理"},
-{name:"德赛西威",stock:"SZ002920",marketCap:"400亿",revenue:"150亿",profit:"12亿",established:"1986",employees:"5000",location:"广东惠州",type:"nation",match:"智能驾驶"}
+{id:'TZ-001',area:15000,floors:'1-3层',height:'9m×60m×9m',power:'800KVA',price:15,zone:'tianzihun',location:'天子湖A区',contact:'钱经理',phone:'138xxxx1001'},
+{id:'TZ-002',area:12000,floors:'1-2层',height:'12m×50m×12m',power:'630KVA',price:18,zone:'tianzihun',location:'天子湖A区',contact:'孙经理',phone:'138xxxx1002'},
+{id:'TZ-003',area:8000,floors:'单层',height:'15m×40m×15m',power:'1000KVA',price:20,zone:'tianzihun',location:'天子湖B区',contact:'李经理',phone:'138xxxx1003'},
+{id:'TZ-004',area:20000,floors:'1-2层',height:'10m×80m×10m',power:'800KVA',price:14,zone:'tianzihun',location:'天子湖B区',contact:'周经理',phone:'138xxxx1004'},
+{id:'TZ-005',area:6000,floors:'单层',height:'8m×30m×8m',power:'400KVA',price:12,zone:'tianzihun',location:'天子湖C区',contact:'吴经理',phone:'138xxxx1005'},
+{id:'SA-001',area:11000,floors:'1-3层',height:'6m×45m×6m',power:'630KVA',price:10,zone:'sian',location:'泗安镇工业区',contact:'郑经理',phone:'138xxxx2001'},
+{id:'SA-002',area:16000,floors:'1-2层',height:'10m×60m×10m',power:'800KVA',price:12,zone:'sian',location:'泗安镇工业区',contact:'王经理',phone:'138xxxx2002'},
+{id:'SA-003',area:9500,floors:'单层',height:'12m×50m×12m',power:'1000KVA',price:14,zone:'sian',location:'泗安镇工业区',contact:'冯经理',phone:'138xxxx2003'},
+{id:'SA-004',area:7000,floors:'1-2层',height:'8m×35m×8m',power:'400KVA',price:11,zone:'sian',location:'泗安镇工业区',contact:'陈经理',phone:'138xxxx2004'},
+{id:'SA-005',area:18000,floors:'1层',height:'14m×70m×14m',power:'1000KVA',price:15,zone:'sian',location:'泗安镇工业区',contact:'褚经理',phone:'138xxxx2005'},
 ];
 
-// ========== INIT ==========
-let map;
-document.addEventListener('DOMContentLoaded',function(){
-initParticles();
-initChainNav();
-initMatchMatrix();
-initClueTable();
-initMap();
-initScroll();
-animateStats();
-});
+// 产业匹配矩阵数据
+const matrixData = [
+{chain:'🔋 电池系统',upstream:'missing',midstream:'partial',downstream:'local',status:'缺电芯/正极',priority:'hot',targets:'宁德时代、中创新航'},
+{chain:'⚡ 驱动电机',upstream:'partial',midstream:'local',downstream:'local',status:'有基础',priority:'normal',targets:'方正电机、精进电动'},
+{chain:'🎛️ 电机控制器',upstream:'missing',midstream:'missing',downstream:'partial',status:'基本空白',priority:'warm',targets:'汇川技术、英搏尔'},
+{chain:'🧠 智能驾驶',upstream:'missing',midstream:'missing',downstream:'partial',status:'基本空白',priority:'hot',targets:'华为引望、地平线'},
+{chain:'🔩 底盘传动',upstream:'local',midstream:'local',downstream:'local',status:'配套完善',priority:'normal',targets:'拓普集团、伯特利'},
+{chain:'❄️ 热管理系统',upstream:'missing',midstream:'missing',downstream:'partial',status:'基本空白',priority:'warm',targets:'三花智控、银轮股份'},
+{chain:'🔌 连接器线束',upstream:'partial',midstream:'partial',downstream:'local',status:'有待壮大',priority:'normal',targets:'沪光电器、永鼎股份'},
+{chain:'👁️ 车载传感器',upstream:'missing',midstream:'missing',downstream:'partial',status:'基本空白',priority:'hot',targets:'速腾聚创、华为'},
+{chain:'🏭 整车企业',upstream:'-',midstream:'-',downstream:'partial',status:'有待引入',priority:'warm',targets:'比亚迪、蔚来'},
+{chain:'🪶 轻量化材料',upstream:'local',midstream:'partial',downstream:'local',status:'配套较好',priority:'normal',targets:'拓普集团、文灿股份'},
+{chain:'💎 SiC半导体',upstream:'missing',midstream:'missing',downstream:'-',status:'完全空白',priority:'hot',targets:'三安光电、斯达半导'},
+{chain:'⚡ 充换电设施',upstream:'-',midstream:'partial',downstream:'partial',status:'有待完善',priority:'normal',targets:'蔚来能源、奥动'},
+];
 
-// ========== PARTICLES ==========
-function initParticles(){
+// ==================== 功能函数 ====================
+
+// 粒子背景
+function createParticles(){
 const container=document.getElementById('particles');
 for(let i=0;i<50;i++){
 const p=document.createElement('div');
 p.className='particle';
 p.style.left=Math.random()*100+'%';
-p.style.top=Math.random()*100+'%';
-p.style.animationDelay=Math.random()*8+'s';
+p.style.width=p.style.height=(Math.random()*4+2)+'px';
+p.style.animationDuration=(Math.random()*20+20)+'s';
+p.style.animationDelay=(Math.random()*20)+'s';
 container.appendChild(p);
 }
 }
 
-// ========== CHAIN NAV ==========
-function initChainNav(){
-const list=document.getElementById('chainNavList');
-Object.entries(chainData).forEach(([key,val])=>{
-const btn=document.createElement('button');
-btn.className='chain-nav-item';
-btn.textContent=val.name;
-btn.onclick=()=>switchChain(key);
-list.appendChild(btn);
-});
-}
-function switchChain(key){
-document.querySelectorAll('.chain-nav-item').forEach(b=>b.classList.remove('active'));
-event.target.classList.add('active');
-document.getElementById('chainTitle').textContent=chainData[key].name+'产业链';
-}
-
-// ========== MATCH MATRIX ==========
-function initMatchMatrix(){
-const tbody=document.getElementById('matchMatrixBody');
-matchData.forEach(item=>{
-const tr=document.createElement('tr');
-tr.innerHTML=`
-<td>${item.chain}</td>
-<td>${item.upstream}</td>
-<td>${item.midstream}</td>
-<td>${item.downstream}</td>
-<td><span class="match-status ${item.status}">${item.status==='complete'?'✅ 已完善':'⚠️ '+item.status}</span></td>
-<td><span class="priority-tag ${item.priority}">${item.priority==='urgent'?'🔴 紧急':item.priority==='attention'?'🟡 关注':'🟢 正常'}</span></td>
-`;
-tbody.appendChild(tr);
-});
-}
-
-// ========== CLUE TABLE ==========
-function initClueTable(){
-const tbody=document.getElementById('clueTableBody');
-clueData.forEach(item=>{
-const tr=document.createElement('tr');
-tr.innerHTML=`
-<td><strong>${item.name}</strong></td>
-<td><span class="badge badge-blue">${item.industry}</span></td>
-<td>${item.invest}</td>
-<td>${item.area}</td>
-<td><span class="badge ${item.willingness==='高'?'badge-green':item.willingness==='中'?'badge-orange':'badge-red'}">${item.willingness}</span></td>
-<td>${item.contact}</td>
-<td><button class="btn" style="padding:6px 12px;font-size:12px" onclick="callCompany('${item.phone}')">📞 联系</button></td>
-`;
-tbody.appendChild(tr);
-});
-}
-function callCompany(phone){
-window.location.href='tel:'+phone;
-}
-
-// ========== MAP ==========
-function initMap(){
-if(typeof AMap==='undefined'){console.warn('AMap not loaded');return;}
-map=new AMap.Map('map',{zoom:10,center:[119.45,31.0]});
-// 长合区中心标记
-new AMap.Marker({position:[119.42,31.03],content:'<div style="background:#1a73e8;color:#fff;padding:8px 16px;border-radius:20px;font-size:12px">🏛️ 长合区管委会</div>'}).render(map);
-// 厂房标记
-factoryData.forEach(f=>{
-const marker=new AMap.Marker({
-position:[f.lng,f.lat],
-content:`<div style="background:#0d47a1;color:#fff;padding:6px 12px;border-radius:8px;font-size:11px"><b>${f.name}</b><br>${f.area}㎡ | ${f.price}元/㎡</div>`
-});
-marker.on('click',()=>showFactoryDetail(f));
-marker.render(map);
-});
-// 目标企业脉冲标记
-const targets=[
-{name:'宁德时代',lng:119.8,lat:30.6},{name:'比亚迪',lng:114.1,lat:22.7},
-{name:'蜂巢能源',lng:119.9,lat:31.8},{name:'中创新航',lng:119.9,lat:31.8},
-{name:'亿纬锂能',lng:114.4,lat:23.1}
-];
-targets.forEach(t=>{
-new AMap.Marker({
-position:[t.lng,t.lat],
-content:`<div style="background:#ea4335;color:#fff;padding:6px 12px;border-radius:50%;font-size:11px;animation:pulse 2s infinite">${t.name}</div>`
-}).render(map);
-});
-// 50km/100km/200km圈
-[50,100,200].forEach(r=>{
-new AMap.Circle({center:[119.42,31.03],radius:r*1000,fillOpacity:0,borderColor:'#1a73e8',borderWeight:1,dashArray:[5,5]}).render(map);
-});
-// 招商线索卡片
-const clueCards=document.getElementById('clueCards');
-clueData.slice(0,3).forEach(item=>{
-clueCards.innerHTML+=`
-<div class="clue-card">
-<h5>${item.name}</h5>
-<div class="clue-meta">
-<div>赛道: ${item.industry}</div>
-<div>投资: ${item.invest}</div>
-</div>
-<span class="clue-tag ${item.willingness==='高'?'high':'medium'}">${item.willingness}意愿</span>
-<button class="contact-btn" onclick="callCompany('${item.phone}')">📞 联系 ${item.contact.split(' ')[0]}</button>
-</div>`;
-});
-}
-function showFactoryDetail(f){
-document.getElementById('modalTitle').textContent=f.name;
-document.getElementById('modalBody').innerHTML=`
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
-<div><strong>面积:</strong> ${f.area}㎡</div>
-<div><strong>层高:</strong> ${f.height}m</div>
-<div><strong>配电:</strong> ${f.power}KVA</div>
-<div><strong>租金:</strong> ${f.price}元/㎡/月</div>
-<div><strong>位置:</strong> ${f.town}</div>
-</div>
-<button class="contact-btn" onclick="closeModal()">📞 联系招商顾问</button>`;
-document.getElementById('modal').classList.add('show');
-}
-
-// ========== POLICY TOOLS ==========
-function calcPolicy(){
-const investment=parseFloat(document.getElementById('calcInvestment').value)||0;
-const output=parseFloat(document.getElementById('calcOutput').value)||0;
-const tax=investment*0.1;
-const subsidy=investment*0.05;
-const land=output*0.02;
-document.getElementById('tax减免').textContent=tax.toFixed(1)+'万';
-document.getElementById('subsidy固投').textContent=subsidy.toFixed(1)+'万';
-document.getElementById('land优惠').textContent=land.toFixed(1)+'万';
-document.getElementById('total优惠').textContent=(tax+subsidy+land).toFixed(1)+'万';
-document.getElementById('calcResult').classList.add('show');
-}
-function matchFactory(){
-const area=parseInt(document.getElementById('matchArea').value)||0;
-const height=parseInt(document.getElementById('matchHeight').value)||6;
-const matched=factoryData.filter(f=>f.area>=area&&f.height>=height);
-const container=document.getElementById('matchedFactories');
-container.innerHTML=matched.length?
-matched.map(f=>`<div style="padding:12px;background:rgba(0,0,0,0.3);border-radius:8px;margin-top:8px">
-<strong>${f.name}</strong><br>面积:${f.area}㎡ | 层高:${f.height}m | ${f.town}</div>`).join(''):
-'<p style="color:var(--text-dim)">暂无匹配厂房</p>';
-document.getElementById('matchResult').classList.add('show');
-}
-function showChainMap(){
-const chain=document.getElementById('selectChain').value;
-const chainInfo=chainData[chain];
-document.getElementById('chainAnalysis').innerHTML=`
-<p><strong>${chainInfo.name}产业链分析:</strong></p>
-<p style="color:var(--text-dim);margin-top:8px">🔴 缺链环节: ${chainInfo.upstream.join(', ')}</p>
-<p style="color:var(--text-dim)">🟡 待壮大: ${chainInfo.midstream.join(', ')}</p>
-<p style="color:var(--text-dim)">🟢 已有: ${chainInfo.downstream.join(', ')}</p>`;
-document.getElementById('chainMapResult').classList.add('show');
-}
-
-// ========== TOPIC ==========
-function openTopic(topic){
-const titles={battery:'🔋 动力电池专题',motor:'⚡ 驱动电机专题',inverter:'🎛️ 电机控制器专题',smartdrive:'🧠 智能驾驶专题',chassis:'🔩 底盘轻量化专题'};
-document.getElementById('modalTitle').textContent=titles[topic];
-document.getElementById('modalBody').innerHTML=`
-<h4 style="margin-bottom:16px">全国头部企业</h4>
-<table style="width:100%;border-collapse:collapse">
-<tr style="background:rgba(0,0,0,0.3)"><th style="padding:10px;text-align:left">企业</th><th style="padding:10px">市值</th><th style="padding:10px">营收</th><th style="padding:10px">操作</th></tr>
-${enterpriseData.filter(e=>e.match&&e.match.includes(topic.charAt(0).toUpperCase()+topic.slice(1))||topic==='battery').slice(0,5).map(e=>`
-<tr><td style="padding:10px">${e.name}</td><td style="padding:10px;text-align:center">${e.marketCap}</td><td style="padding:10px;text-align:center">${e.revenue}</td><td style="padding:10px;text-align:center"><button class="btn" style="padding:6px 12px;font-size:12px" onclick="closeModal();document.querySelector('[data-section=service]').scrollIntoView({behavior:'smooth'})">联系</button></td></tr>`).join('')}
-</table>`;
-document.getElementById('modal').classList.add('show');
-}
-
-// ========== MODAL ==========
-function closeModal(){document.getElementById('modal').classList.remove('show');}
-document.getElementById('modal').onclick=function(e){if(e.target===this)closeModal();};
-
-// ========== SCROLL ==========
-function initScroll(){
-document.querySelectorAll('.nav-link').forEach(link=>{
-link.onclick=function(){
-const section=this.dataset.section;
-document.getElementById(section).scrollIntoView({behavior:'smooth'});
-document.querySelectorAll('.nav-link').forEach(l=>l.classList.remove('active'));
-this.classList.add('active');
-};
-});
-window.addEventListener('scroll',()=>{
-const scroll=window.scrollY;
-document.querySelectorAll('.section').forEach(s=>{
-const top=s.offsetTop-100;
-if(scroll>=top&&scroll<top+s.offsetHeight){
-document.querySelectorAll('.nav-link').forEach(l=>l.classList.remove('active'));
-document.querySelector(`.nav-link[data-section=${s.id}]`)?.classList.add('active');
-}
-});
-});
-}
-
-// ========== STATS ANIMATION ==========
-function animateStats(){
+// 数字滚动动画
+function animateNumbers(){
 document.querySelectorAll('.stat-num').forEach(el=>{
 const target=parseInt(el.dataset.target);
 let current=0;
-const step=target/60;
+const step=Math.ceil(target/50);
 const timer=setInterval(()=>{
 current+=step;
-if(current>=target){current=target;clearInterval(timer);}
-el.textContent=Math.floor(current);
-},16);
+if(current>=target){
+current=target;
+clearInterval(timer);
+}
+el.textContent=current;
+},30);
 });
 }
 
-// ========== STEP TOGGLE ==========
-function toggleStep(el){
-el.classList.toggle('expanded');
+// 产业链选择
+function selectChain(chain){
+document.querySelectorAll('.chain-item').forEach(el=>el.classList.remove('active'));
+event.target.closest('.chain-item').classList.add('active');
+const data=chain==='battery'?chainData:chain==='motor'?motorData:chain==='smart'?smartData:chainData;
+document.getElementById('chainTitle').textContent=data.title;
 }
+
+// 显示供应商详情
+function showSupplyDetail(el,type){
+document.querySelectorAll('.supply-card').forEach(c=>c.classList.remove('active'));
+el.classList.add('active');
+const modal=document.getElementById('detailModal');
+document.getElementById('modalTitle').textContent=el.querySelector('.supply-name').textContent;
+document.getElementById('modalBody').innerHTML=`
+<div style="margin-bottom:20px">
+<div style="font-size:13px;color:var(--text-dim);margin-bottom:8px">配套供应商</div>
+<div style="display:flex;flex-wrap:wrap;gap:8px">
+${el.querySelector('.supply-meta')?.innerHTML||''}
+</div>
+</div>
+<div style="background:rgba(0,0,0,0.3);border-radius:8px;padding:16px">
+<div style="font-size:14px;font-weight:600;margin-bottom:12px">企业详情</div>
+<table style="width:100%;font-size:13px">
+<tr><td style="color:var(--text-dim);padding:6px 0">企业名称</td><td style="text-align:right;font-weight:500">${el.querySelector('.supply-name').textContent}</td></tr>
+<tr><td style="color:var(--text-dim);padding:6px 0">配套赛道</td><td style="text-align:right;font-weight:500">${document.getElementById('chainTitle').textContent}</td></tr>
+<tr><td style="color:var(--text-dim);padding:6px 0">市场地位</td><td style="text-align:right;font-weight:500">${el.querySelector('.supply-tag')?.textContent||'行业龙头'}</td></tr>
+<tr><td style="color:var(--text-dim);padding:6px 0">招商状态</td><td style="text-align:right"><span class="willing-high">🔥 重点招商目标</span></td></tr>
+</table>
+</div>
+`;
+modal.classList.add('active');
+}
+
+function closeModal(){
+document.getElementById('detailModal').classList.remove('active');
+}
+
+function contactTarget(){
+alert('正在连接招商专员...\n联系电话：0563-568-0000');
+}
+
+// 地图筛选
+function filterMap(chain){
+document.querySelectorAll('.filter-tag').forEach(t=>t.classList.remove('active'));
+event.target.classList.add('active');
+// 实际项目中根据chain筛选地图标记
+}
+
+function filterMapType(type){
+document.querySelectorAll('.filter-tag').forEach(t=>t.classList.remove('active'));
+event.target.classList.add('active');
+}
+
+// 线索筛选
+function filterClues(){
+const search=document.getElementById('clueSearch').value.toLowerCase();
+const chain=document.getElementById('clueChain').value;
+const invest=document.getElementById('clueInvestment').value;
+const willing=document.getElementById('clueWilling').value;
+renderClues(clueData.filter(c=>{
+if(search&&!c.name.toLowerCase().includes(search))return false;
+if(chain&&c.chain!==chain)return false;
+if(invest&&!matchInvestment(c.investment,invest))return false;
+if(willing&&c.willing!==willing)return false;
+return true;
+}));
+}
+
+function matchInvestment(inv,level){
+if(level==='low')return inv.includes('亿')&&parseInt(inv)<10;
+if(level==='mid')return inv.includes('亿')&&parseInt(inv)>=10&&parseInt(inv)<=30;
+if(level==='high')return inv.includes('亿')&&parseInt(inv)>30;
+return true;
+}
+
+function renderClues(data){
+const grid=document.getElementById('clueGrid');
+grid.innerHTML=data.map(c=>`
+<div class="clue-card">
+<div class="clue-header">
+<div>
+<div class="clue-name">${c.name}</div>
+<div class="clue-chain">${getChainName(c.chain)}</div>
+</div>
+<span class="clue-willing willing-${c.willing}">${c.willing==='high'?'🔥 高':c.willing==='mid'?'⚡ 中':'📍 低'}</span>
+</div>
+<div class="clue-body">
+<div class="clue-row"><span class="clue-label">投资规模</span><span class="clue-value">${c.investment}</span></div>
+<div class="clue-row"><span class="clue-label">需求面积</span><span class="clue-value">${c.area}</span></div>
+<div class="clue-row"><span class="clue-label">层高要求</span><span class="clue-value">${c.height}</span></div>
+<div class="clue-row"><span class="clue-label">当前状态</span><span class="clue-value">${c.status}</span></div>
+<div class="clue-row"><span class="clue-label">意向位置</span><span class="clue-value">${c.location}</span></div>
+</div>
+<div class="clue-footer">
+<button class="btn-sm btn-call" onclick="callContact('${c.phone}')">📞 ${c.contact}</button>
+<button class="btn-sm btn-chat" onclick="showClueDetail(${c.id})">查看详情</button>
+</div>
+</div>
+`).join('');
+}
+
+function getChainName(chain){
+const names={battery:'电池系统',motor:'电驱电机',smart:'智能驾驶',chassis:'底盘传动',thermal:'热管理系统',ev:'整车企业'};
+return names[chain]||chain;
+}
+
+function callContact(phone){
+alert(`正在拨打：${phone}`);
+}
+
+function showClueDetail(id){
+const c=clueData.find(x=>x.id===id);
+if(c){
+document.getElementById('modalTitle').textContent=c.name;
+document.getElementById('modalBody').innerHTML=`
+<div style="margin-bottom:20px">
+<div style="display:inline-block;padding:4px 12px;background:var(--primary);border-radius:20px;font-size:12px">${getChainName(c.chain)}</div>
+</div>
+<table style="width:100%;font-size:14px">
+<tr><td style="padding:10px;color:var(--text-dim)">投资规模</td><td style="text-align:right;font-weight:600">${c.investment}</td></tr>
+<tr><td style="padding:10px;color:var(--text-dim)">需求面积</td><td style="text-align:right;font-weight:600">${c.area}</td></tr>
+<tr><td style="padding:10px;color:var(--text-dim)">层高要求</td><td style="text-align:right;font-weight:600">${c.height}</td></tr>
+<tr><td style="padding:10px;color:var(--text-dim)">当前状态</td><td style="text-align:right">${c.status}</td></tr>
+<tr><td style="padding:10px;color:var(--text-dim)">意向位置</td><td style="text-align:right">${c.location}</td></tr>
+<tr><td style="padding:10px;color:var(--text-dim)">对接意愿</td><td style="text-align:right"><span class="clue-willing willing-${c.willing}">${c.willing==='high'?'高':c.willing==='mid'?'中':'低'}</span></td></tr>
+<tr><td style="padding:10px;color:var(--text-dim)">联系人</td><td style="text-align:right;font-weight:600">${c.contact}</td></tr>
+<tr><td style="padding:10px;color:var(--text-dim)">联系电话</td><td style="text-align:right;font-weight:600;color:var(--primary)">${c.phone}</td></tr>
+</table>
+`;
+document.getElementById('detailModal').classList.add('active');
+}
+}
+
+function setClueView(view){
+document.querySelectorAll('.view-btn').forEach(b=>b.classList.remove('active'));
+event.target.classList.add('active');
+// 切换视图
+}
+
+// 厂房筛选
+function filterFactories(){
+const area=document.getElementById('factoryArea').value;
+const height=document.getElementById('factoryHeight').value;
+const zone=document.getElementById('factoryZone').value;
+renderFactories(factoryData.filter(f=>{
+if(area&&!matchArea(f.area,area))return false;
+if(height&&f.height.replace('m','').split('×')[2]<height)return false;
+if(zone&&f.zone!==zone)return false;
+return true;
+}));
+}
+
+function matchArea(a,level){
+if(level==='small')return a<2000;
+if(level==='mid')return a>=2000&&a<=5000;
+if(level==='large')return a>5000&&a<=10000;
+if(level==='xlarge')return a>10000;
+return true;
+}
+
+function renderFactories(data){
+const grid=document.getElementById('factoryGrid');
+grid.innerHTML=data.map(f=>`
+<div class="factory-card">
+<div class="factory-img">🏭</div>
+<div class="factory-body">
+<div class="factory-id">编号：${f.id}</div>
+<div class="factory-name">${f.location} · ${f.area.toLocaleString()}㎡</div>
+<div class="factory-specs">
+<div class="spec-item"><span class="spec-label">可租层</span><span class="spec-value">${f.floors}</span></div>
+<div class="spec-item"><span class="spec-label">层高</span><span class="spec-value">${f.height}</span></div>
+<div class="spec-item"><span class="spec-label">配电</span><span class="spec-value">${f.power}</span></div>
+<div class="spec-item"><span class="spec-label">租金</span><span class="spec-value">${f.price}元/㎡/月</span></div>
+</div>
+<div class="factory-contact">
+<span class="contact-name">📞 ${f.contact}</span>
+<span class="contact-phone">${f.phone}</span>
+</div>
+</div>
+</div>
+`).join('');
+}
+
+// 产业匹配矩阵
+function renderMatrix(){
+const tbody=document.getElementById('matrixBody');
+tbody.innerHTML=matrixData.map(m=>`
+<tr>
+<td style="font-weight:600">${m.chain}</td>
+<td><span class="cell-status cell-${m.upstream}">${m.upstream==='local'?'✓':m.upstream==='partial'?'◐':m.upstream==='missing'?'✗':'-'}</span></td>
+<td><span class="cell-status cell-${m.midstream}">${m.midstream==='local'?'✓':m.midstream==='partial'?'◐':m.midstream==='missing'?'✗':'-'}</span></td>
+<td><span class="cell-status cell-${m.downstream}">${m.downstream==='local'?'✓':m.downstream==='partial'?'◐':m.downstream==='missing'?'✗':'-'}</span></td>
+<td style="font-size:12px">${m.status}</td>
+<td><span class="priority priority-${m.priority}">${m.priority==='hot'?'🔥紧急':m.priority==='warm'?'⚡关注':'✓正常'}</span></td>
+<td style="font-size:12px">${m.targets}</td>
+</tr>
+`).join('');
+}
+
+// 政策工具
+function calcPolicy(){
+const invest=parseFloat(document.getElementById('calcInvestment').value)||0;
+const output=parseFloat(document.getElementById('calcOutput').value)||0;
+const tax=invest*0.1;
+const subsidy=invest*0.15;
+const land=output>10?500:output>5?300:100;
+document.getElementById('calcResult').innerHTML=`
+<div style="margin-bottom:8px;font-weight:600">政策优惠估算</div>
+<div>• 税收减免：约 ${tax.toFixed(0)} 亿元（固投10%补贴）</div>
+<div>• 固投补贴：约 ${subsidy.toFixed(0)} 亿元（固投15%扶持）</div>
+<div>• 地价优惠：最高 ${land} 万元/亩</div>
+<div style="margin-top:8px;color:var(--primary)">合计节省：约 ${(tax+subsidy).toFixed(0)} 亿元</div>
+`;
+}
+
+function matchFactory(){
+const area=parseInt(document.getElementById('needArea').value)||0;
+const height=document.getElementById('needHeight').value;
+const matches=factoryData.filter(f=>{
+if(area&&f.area<area*0.8)return false;
+if(height&&parseInt(f.height.split('×')[2])<parseInt(height))return false;
+return true;
+});
+document.getElementById('matchResult').innerHTML=matches.length>0?
+`<div style="margin-bottom:8px;font-weight:600">匹配到 ${matches.length} 处厂房</div>`+
+matches.slice(0,3).map(f=>`<div style="margin-bottom:4px">• ${f.location} ${f.area.toLocaleString()}㎡ (${f.height})</div>`).join(''):
+'<div style="color:var(--text-dim)">暂无完全匹配厂房，建议放宽条件</div>';
+}
+
+function showChainMap(){
+const chain=document.getElementById('mapChain').value;
+if(!chain){
+document.getElementById('chainMapResult').innerHTML='请选择产业赛道';
+return;
+}
+const data=chain==='battery'?chainData:chain==='motor'?motorData:smartData;
+document.getElementById('chainMapResult').innerHTML=`
+<div style="margin-bottom:8px;font-weight:600">${data.title} 缺链分析</div>
+<div style="margin-bottom:8px">🎯 目标企业：${data.targets?data.targets.join('、'):'暂无'}</div>
+<div style="margin-bottom:8px">✅ 已有配套：${data.existing?data.existing.join('、'):'暂无'}</div>
+<div style="color:#ea4335">⚠️ 需要引进：${data.missing?data.missing.join('、'):'暂无'}</div>
+`;
+}
+
+// 高德地图初始化
+let map;
+function initMap(){
+map=new AMap.Map('map',{
+zoom:12,
+center:[119.42,31.03],
+mapStyle:'amap://styles/darkblue'
+});
+// 添加天子湖标记
+new AMap.Marker({position:[119.42,31.03],content:'<div style="background:#00d4ff;padding:8px 16px;border-radius:20px;color:#000;font-weight:600">天子湖片区</div>'}).setMap(map);
+// 添加厂房标记
+factoryData.slice(0,5).forEach(f=>{
+const colors={tianzihun:'#00d4ff',sian:'#fbbc04'};
+new AMap.Marker({
+position:[119.42+Math.random()*0.1-0.05,31.03+Math.random()*0.1-0.05],
+content:`<div style="background:${colors[f.zone]||'#00d4ff'};width:12px;height:12px;border-radius:50%;border:2px solid #fff"></div>`,
+title:`${f.location} ${f.area}㎡`
+}).setMap(map);
+});
+// 添加企业标记
+clueData.slice(0,5).forEach((c,i)=>{
+new AMap.Marker({
+position:[119.42+Math.random()*0.15-0.075,31.03+Math.random()*0.15-0.075],
+content:`<div style="background:#34a853;width:12px;height:12px;border-radius:50%;border:2px solid #fff"></div>`,
+title:c.name
+}).setMap(map);
+});
+// 目标企业脉冲标记
+new AMap.Marker({
+position:[119.5,31.08],
+content:'<div style="width:20px;height:20px;background:#ea4335;border-radius:50%;animation:pulse 2s infinite"></div>',
+title:'宁德时代'
+}).setMap(map);
+}
+
+// 初始化
+document.addEventListener('DOMContentLoaded',()=>{
+createParticles();
+animateNumbers();
+renderClues(clueData);
+renderFactories(factoryData);
+renderMatrix();
+if(window.AMap)initMap();
+
+// 滚动动画
+const observer=new IntersectionObserver(entries=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){
+entry.target.classList.add('count-animate');
+}
+});
+},{threshold:0.5});
+document.querySelectorAll('.stat-item').forEach(el=>observer.observe(el));
+});
 </script>
 </body>
 </html>
