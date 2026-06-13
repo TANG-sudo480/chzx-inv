@@ -256,6 +256,53 @@ textarea.form-input{grid-column:span 2;min-height:120px;resize:vertical}
 /* 响应式 */
 @media(max-width:1024px){.chain-container{flex-direction:column}.chain-nav{width:100%;max-height:none}.map-container{grid-template-columns:1fr}.tools-grid{grid-template-columns:1fr}.form-row{grid-template-columns:1fr}textarea.form-input{grid-column:span 1}}
 @media(max-width:768px){.hero h1{font-size:28px}.stats{flex-direction:column;gap:16px}.stat-item{min-width:100%}.nav-links{display:none}.contact-phone-big{font-size:36px}}
+
+/* 土地资源库样式 */
+.land-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-bottom:30px}
+.land-stats .stat-item{background:linear-gradient(135deg,var(--bg-card),rgba(0,212,255,0.1));padding:25px;border-radius:16px;text-align:center;cursor:pointer;transition:all .3s;border:1px solid rgba(0,212,255,0.2)}
+.land-stats .stat-item:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(0,212,255,0.2)}
+.land-stats .stat-num{font-size:36px;font-weight:700;color:var(--primary);display:block}
+.land-stats .stat-label{color:var(--text-dim);font-size:14px;margin-top:5px;display:block}
+.land-stats .stat-unit{color:var(--text-dim);font-size:12px}
+.land-filters{display:flex;gap:15px;margin-bottom:25px}
+.land-filters select,.land-filters input{flex:1;padding:12px 18px;background:rgba(255,255,255,0.05);border:1px solid var(--border);border-radius:10px;color:var(--text);font-size:14px}
+.land-filters select:focus,.land-filters input:focus{outline:none;border-color:var(--primary)}
+.land-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(350px,1fr));gap:20px}
+.land-card{background:linear-gradient(135deg,var(--bg-card),rgba(0,212,255,0.05));padding:20px;border-radius:12px;border:1px solid var(--border);transition:all .3s}
+.land-card:hover{border-color:var(--primary);transform:translateY(-2px)}
+.land-card-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.land-card-title{font-size:16px;font-weight:600;color:var(--text)}
+.land-card-type{padding:4px 10px;border-radius:20px;font-size:12px;font-weight:500}
+.land-card-type.zhuanyewengong{background:rgba(234,67,53,0.2);color:#ea4335}
+.land-card-type.shouchi{background:rgba(251,188,4,0.2);color:#fbbc04}
+.land-card-type.gonghouweiyong{background:rgba(52,168,83,0.2);color:#34a853}
+.land-card-location{color:var(--text-dim);font-size:13px;margin-bottom:10px}
+.land-card-area{font-size:28px;font-weight:700;color:var(--primary);margin-bottom:8px}
+.land-card-area span{font-size:14px;font-weight:400;color:var(--text-dim)}
+.land-card-note{color:var(--text-dim);font-size:12px;background:rgba(255,255,255,0.05);padding:8px;border-radius:6px}
+
+/* 产业链样式 */
+.chain-tabs{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:30px;padding:15px;background:rgba(255,255,255,0.03);border-radius:12px}
+.chain-tab{padding:12px 20px;background:rgba(255,255,255,0.05);border:1px solid var(--border);border-radius:25px;cursor:pointer;transition:all .3s;font-size:14px;white-space:nowrap}
+.chain-tab:hover{background:rgba(0,212,255,0.1);border-color:var(--primary)}
+.chain-tab.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+.chain-detail{background:linear-gradient(135deg,var(--bg-card),rgba(0,212,255,0.05));padding:30px;border-radius:16px;border:1px solid var(--border)}
+.chain-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:25px;padding-bottom:20px;border-bottom:1px solid var(--border)}
+.chain-title{font-size:24px;font-weight:700}
+.chain-priority{font-size:16px;font-weight:600}
+.chain-market{color:var(--text-dim);font-size:14px;margin-top:5px}
+.chain-section{margin-bottom:25px}
+.chain-section-title{font-size:16px;font-weight:600;margin-bottom:15px;padding-left:12px;border-left:3px solid var(--primary)}
+.chain-flow{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:15px}
+.chain-item{padding:10px 18px;background:rgba(0,212,255,0.1);border:1px solid rgba(0,212,255,0.3);border-radius:8px;font-size:14px;transition:all .3s}
+.chain-item:hover{background:rgba(0,212,255,0.2);transform:translateY(-2px)}
+.chain-companies{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:15px}
+.chain-company{padding:8px 15px;background:linear-gradient(135deg,var(--bg-card),rgba(255,107,53,0.1));border:1px solid rgba(255,107,53,0.3);border-radius:20px;font-size:13px}
+.chain-company.local{background:linear-gradient(135deg,var(--bg-card),rgba(52,168,83,0.2));border-color:rgba(52,168,83,0.5);color:#34a853}
+.chain-local-title{font-size:14px;font-weight:600;color:#34a853;margin-bottom:10px}
+.chain-gaps{display:flex;flex-wrap:wrap;gap:10px;margin-top:15px}
+.chain-gap{padding:6px 12px;background:rgba(234,67,53,0.1);border:1px dashed #ea4335;border-radius:6px;font-size:13px;color:#ea4335}
+
 </style>
 </head>
 <body>
@@ -727,6 +774,77 @@ textarea.form-input{grid-column:span 2;min-height:120px;resize:vertical}
 <button class="page-btn" onclick="changeEnterprisePage(-1)">上一页</button>
 <span class="page-info" id="entPageInfo">1 / 1</span>
 <button class="page-btn" onclick="changeEnterprisePage(1)">下一页</button>
+</div>
+</div>
+</section>
+
+<!-- 长合区土地资源库 -->
+<section id="land" class="section" style="background:rgba(0,0,0,0.3)">
+<div class="container">
+<div class="section-badge">🗺️ 土地资源</div>
+<h2 class="section-title">长合区土地资源库</h2>
+<p class="section-subtitle">转而未供 · 政府收储 · 供而未用 三大类土地资源</p>
+
+<div class="land-stats">
+<div class="stat-item" onclick="filterLand('zhuanyewengong')">
+<span class="stat-num" id="landZhuanCount">0</span>
+<span class="stat-label">转而未供</span>
+<span class="stat-unit">亩</span>
+</div>
+<div class="stat-item" onclick="filterLand('shouchi')">
+<span class="stat-num" id="landShouchiCount">0</span>
+<span class="stat-label">收储土地</span>
+<span class="stat-unit">亩</span>
+</div>
+<div class="stat-item" onclick="filterLand('gonghouweiyong')">
+<span class="stat-num" id="landGongCount">0</span>
+<span class="stat-label">供而未用</span>
+<span class="stat-unit">亩</span>
+</div>
+<div class="stat-item" style="background:var(--primary)">
+<span class="stat-num" id="landTotalCount">0</span>
+<span class="stat-label">总计面积</span>
+<span class="stat-unit">亩</span>
+</div>
+</div>
+
+<div class="land-filters">
+<select id="landTypeFilter" onchange="filterLand()">
+<option value="">全部类型</option>
+<option value="zhuanyewengong">转而未供</option>
+<option value="shouchi">收储土地</option>
+<option value="gonghouweiyong">供而未用</option>
+</select>
+<input type="text" id="landSearchInput" placeholder="搜索地块名称..." oninput="filterLand()">
+</div>
+
+<div class="land-grid" id="landGrid">
+</div>
+</div>
+</section>
+
+<!-- 十一大产业链详情 -->
+<section id="chains" class="section" style="background:rgba(0,0,0,0.2)">
+<div class="container">
+<div class="section-badge">🔗 产业链全景</div>
+<h2 class="section-title">十一大产业链招商图谱</h2>
+<p class="section-subtitle">聚焦新能源汽车零部件 · 仿生机器人 · 数控机床 · 半导体 · GPU · 光刻机 · 新材料 · 新能源 · 低空经济 · 储能电池 · 光芯片</p>
+
+<div class="chain-tabs">
+<div class="chain-tab active" onclick="showChainTab('ev')">🚗 新能源汽车</div>
+<div class="chain-tab" onclick="showChainTab('robot')">🤖 仿生机器人</div>
+<div class="chain-tab" onclick="showChainTab('cnc')">⚙️ 数控机床</div>
+<div class="chain-tab" onclick="showChainTab('semiconductor')">💎 半导体</div>
+<div class="chain-tab" onclick="showChainTab('gpu')">🎮 GPU</div>
+<div class="chain-tab" onclick="showChainTab('lithography')">🔬 光刻机</div>
+<div class="chain-tab" onclick="showChainTab('new_material')">🧪 新材料</div>
+<div class="chain-tab" onclick="showChainTab('new_energy')">⚡ 新能源</div>
+<div class="chain-tab" onclick="showChainTab('low_altitude')">🚁 低空经济</div>
+<div class="chain-tab" onclick="showChainTab('energy_storage')">🔋 储能电池</div>
+<div class="chain-tab" onclick="showChainTab('optical_chip')">💡 光芯片</div>
+</div>
+
+<div class="chain-content" id="chainContent">
 </div>
 </div>
 </section>
@@ -5164,6 +5282,877 @@ const enterpriseFullData = {
   ]
 };
 
+const landFullData = {
+  "zhuanyewengong": [
+    {
+      "id": 1,
+      "name": "长三角一体化(三）-12号-5地块",
+      "location": "泗安南华山平台—杭摩欧亿北侧",
+      "type": "转而未供",
+      "area": 75.9,
+      "note": ""
+    },
+    {
+      "id": 2,
+      "name": "泗安镇（长合区）9号-4地块",
+      "location": "235国道西平台—东升西侧",
+      "type": "转而未供",
+      "area": 31.0,
+      "note": ""
+    },
+    {
+      "id": 3,
+      "name": "泗安镇（长合区）13号-1地块",
+      "location": "235国道西平台—东创西侧",
+      "type": "转而未供",
+      "area": 30.0,
+      "note": ""
+    },
+    {
+      "id": 4,
+      "name": "泗安镇（长合区）17号、18号地块",
+      "location": "235国道西平台—鑫丰产业园西侧",
+      "type": "转而未供",
+      "area": 175.4,
+      "note": "需处置矿产资源"
+    },
+    {
+      "id": 5,
+      "name": "长合区2025-9、10、11地块",
+      "location": "天子湖北园区—杭轴北侧",
+      "type": "转而未供",
+      "area": 130.6,
+      "note": ""
+    },
+    {
+      "id": 6,
+      "name": "长合区2025-12、13地块",
+      "location": "天子湖北园区—原青钠西南侧",
+      "type": "转而未供",
+      "area": 53.7,
+      "note": ""
+    },
+    {
+      "id": 7,
+      "name": "泗安镇（长合区）21号-4地块",
+      "location": "235国道西平台—鑫丰产业园西侧",
+      "type": "转而未供",
+      "area": 57.5,
+      "note": "需考古"
+    },
+    {
+      "id": 8,
+      "name": "泗安镇（长合区）20号-3地块",
+      "location": "235国道西平台-久茂二期西侧",
+      "type": "转而未供",
+      "area": 52.3,
+      "note": ""
+    }
+  ],
+  "shouchi": [
+    {
+      "id": 9,
+      "name": "锋盛收储地块",
+      "location": "泗安绿洲大道",
+      "type": "收储土地",
+      "area": 58.4,
+      "note": ""
+    },
+    {
+      "id": 10,
+      "name": "蒲公英收储地块",
+      "location": "泗安南华山平台",
+      "type": "收储土地",
+      "area": 68.4,
+      "note": ""
+    },
+    {
+      "id": 11,
+      "name": "骏盛胶粘收储地块",
+      "location": "天子湖南园区",
+      "type": "收储土地",
+      "area": 86.0,
+      "note": "租赁铭天电子"
+    },
+    {
+      "id": 12,
+      "name": "倍豪纺织收储地块",
+      "location": "天子湖南园区",
+      "type": "收储土地",
+      "area": 95.8,
+      "note": ""
+    },
+    {
+      "id": 13,
+      "name": "禾华收储地块",
+      "location": "天子湖南园区",
+      "type": "收储土地",
+      "area": 48.1,
+      "note": ""
+    },
+    {
+      "id": 14,
+      "name": "欧科收储地块",
+      "location": "天子湖南园区",
+      "type": "收储土地",
+      "area": 37.8,
+      "note": ""
+    },
+    {
+      "id": 15,
+      "name": "泰嘉实业收储地块",
+      "location": "天子湖南园区",
+      "type": "收储土地",
+      "area": 41.7,
+      "note": ""
+    },
+    {
+      "id": 16,
+      "name": "环球合金收储地块",
+      "location": "天子湖南园区",
+      "type": "收储土地",
+      "area": 61.8,
+      "note": ""
+    },
+    {
+      "id": 17,
+      "name": "长泗收储地块",
+      "location": "泗安南华山平台-锦瑞南侧",
+      "type": "收储土地",
+      "area": 16.3,
+      "note": ""
+    }
+  ],
+  "gonghouweiyong": [
+    {
+      "id": 18,
+      "name": "上阀（浙江）流体科技有限公司（二期）",
+      "location": "235国道西平台",
+      "type": "供而未用",
+      "area": 54.3,
+      "note": ""
+    },
+    {
+      "id": 19,
+      "name": "兴发新材（浙江）有限公司",
+      "location": "泗安南华山平台",
+      "type": "供而未用",
+      "area": 88.5,
+      "note": ""
+    },
+    {
+      "id": 20,
+      "name": "雅柏特滤材科技（浙江）有限公司",
+      "location": "泗安南华山平台",
+      "type": "供而未用",
+      "area": 13.9,
+      "note": ""
+    },
+    {
+      "id": 21,
+      "name": "浙江方向电子有限公司",
+      "location": "泗安南华山平台",
+      "type": "供而未用",
+      "area": 15.0,
+      "note": ""
+    },
+    {
+      "id": 22,
+      "name": "浙江安吉建设控股集团有限公司",
+      "location": "高禹中学东侧",
+      "type": "供而未用",
+      "area": 33.7,
+      "note": "商业用地"
+    },
+    {
+      "id": 23,
+      "name": "浙江天昊建设发展有限公司",
+      "location": "高禹中学东侧",
+      "type": "供而未用",
+      "area": 92.9,
+      "note": "商业用地"
+    },
+    {
+      "id": 24,
+      "name": "中建国际投资（杭州）有限公司",
+      "location": "高铁站东侧",
+      "type": "供而未用",
+      "area": 46.8,
+      "note": "商业用地"
+    },
+    {
+      "id": 25,
+      "name": "浙江华丰龙赛尔纤维科技有限公司",
+      "location": "天子湖南园区",
+      "type": "供而未用",
+      "area": 44.8,
+      "note": ""
+    },
+    {
+      "id": 26,
+      "name": "浙江长天建设发展有限公司",
+      "location": "天子湖南园区",
+      "type": "供而未用",
+      "area": 32.2,
+      "note": ""
+    },
+    {
+      "id": 27,
+      "name": "浙江创世纪机械有限公司",
+      "location": "泗安南华山平台",
+      "type": "供而未用",
+      "area": 87.6,
+      "note": ""
+    },
+    {
+      "id": 28,
+      "name": "浙江长泗建设开发有限公司",
+      "location": "泗安镇莲花村",
+      "type": "供而未用",
+      "area": 48.7,
+      "note": "商业用地"
+    },
+    {
+      "id": 29,
+      "name": "长兴富长实业有限公司",
+      "location": "泗安镇莲花村",
+      "type": "供而未用",
+      "area": 37.7,
+      "note": "商业用地"
+    }
+  ]
+};
+
+const chainFullData = {
+  "overview": {
+    "title": "长三角（湖州）产业合作区十一大产业链图谱",
+    "subtitle": "聚焦新能源汽车零部件 | 仿生机器人 | 数控机床 | 半导体 | GPU | 光刻机 | 新材料 | 新能源 | 低空经济 | 储能电池 | 光芯片",
+    "date": "2026年5月"
+  },
+  "chains": [
+    {
+      "id": "ev",
+      "name": "新能源汽车及关键零部件",
+      "icon": "🚗",
+      "upstream": [
+        "稀土/永磁材料",
+        "硅钢片/铜线",
+        "功率半导体",
+        "铝合金材料",
+        "轴承"
+      ],
+      "midstream": [
+        "电驱总成",
+        "电机控制器MCU",
+        "减速器",
+        "热管理系统",
+        "车身结构件"
+      ],
+      "downstream": [
+        "整车厂",
+        "充电桩",
+        "换电站"
+      ],
+      "companies": {
+        "upstream": [
+          "中科三环",
+          "宁波韵升",
+          "鑫盛永磁(长合区)",
+          "金力永磁",
+          "正海磁材"
+        ],
+        "midstream": [
+          "弗迪动力",
+          "汇川联合",
+          "华为数字能源",
+          "斯达半导"
+        ],
+        "downstream": [
+          "比亚迪",
+          "特斯拉",
+          "吉利",
+          "理想"
+        ]
+      },
+      "local_companies": [
+        "鑫盛永磁",
+        "豪斯特",
+        "迅驰视觉",
+        "永兴材料",
+        "斯达半导"
+      ],
+      "investment_priority": "极高",
+      "market_scale": "2025年中国新能源车市场规模预计超1.5万亿"
+    },
+    {
+      "id": "robot",
+      "name": "仿生机器人",
+      "icon": "🤖",
+      "upstream": [
+        "稀土永磁材料",
+        "伺服电机",
+        "精密减速器",
+        "力传感器",
+        "轴承"
+      ],
+      "midstream": [
+        "减速器总成",
+        "伺服系统",
+        "控制系统",
+        "灵巧手",
+        "传感器融合"
+      ],
+      "downstream": [
+        "工业机器人",
+        "服务机器人",
+        "人形机器人",
+        "特种机器人"
+      ],
+      "companies": {
+        "upstream": [
+          "绿的谐波",
+          "来福谐波",
+          "中技克美",
+          "汇川技术",
+          "伟创电气"
+        ],
+        "midstream": [
+          "埃斯顿",
+          "埃夫特",
+          "拓斯达",
+          "新松机器人",
+          "海康机器人"
+        ],
+        "downstream": [
+          "优必选",
+          "傅利叶智能",
+          "宇树科技",
+          "小米CyberOne"
+        ]
+      },
+      "local_companies": [
+        "创世纪"
+      ],
+      "investment_priority": "高",
+      "market_scale": "2025年全球市场规模预计超500亿美元"
+    },
+    {
+      "id": "cnc",
+      "name": "数控机床",
+      "icon": "⚙️",
+      "upstream": [
+        "数控系统",
+        "伺服系统",
+        "主轴系统",
+        "丝杠导轨",
+        "刀具系统"
+      ],
+      "midstream": [
+        "加工中心",
+        "数控车床",
+        "数控铣床",
+        "复合机床",
+        "精密磨床"
+      ],
+      "downstream": [
+        "航空航天",
+        "汽车制造",
+        "模具加工",
+        "3C电子",
+        "医疗器械"
+      ],
+      "companies": {
+        "upstream": [
+          "发那科",
+          "西门子",
+          "华中数控",
+          "广州数控",
+          "科德数控"
+        ],
+        "midstream": [
+          "创世纪",
+          "海天精工",
+          "纽威数控",
+          "浙海德曼",
+          "国盛智科"
+        ],
+        "downstream": [
+          "航空航天军工",
+          "汽车整车厂",
+          "精密模具厂"
+        ]
+      },
+      "local_companies": [
+        "创世纪"
+      ],
+      "investment_priority": "高",
+      "market_scale": "2025年中国数控机床市场规模预计超5000亿元"
+    },
+    {
+      "id": "semiconductor",
+      "name": "半导体",
+      "icon": "💎",
+      "upstream": [
+        "硅片",
+        "电子特气",
+        "光刻胶",
+        "溅射靶材",
+        "抛光材料"
+      ],
+      "midstream": [
+        "芯片设计",
+        "晶圆制造",
+        "封装测试",
+        "分立器件",
+        "传感器"
+      ],
+      "downstream": [
+        "消费电子",
+        "汽车电子",
+        "工业控制",
+        "通信设备",
+        "物联网"
+      ],
+      "companies": {
+        "upstream": [
+          "沪硅产业",
+          "立昂微",
+          "金瑞泓",
+          "华特气体",
+          "南大光电"
+        ],
+        "midstream": [
+          "中芯国际",
+          "华润微",
+          "士兰微",
+          "华虹半导体",
+          "长电科技"
+        ],
+        "downstream": [
+          "华为",
+          "小米",
+          "OPPO",
+          "比亚迪半导体"
+        ]
+      },
+      "local_companies": [
+        "斯达半导"
+      ],
+      "investment_priority": "极高",
+      "market_scale": "2025年中国半导体市场规模预计超2万亿元"
+    },
+    {
+      "id": "gpu",
+      "name": "GPU",
+      "icon": "🎮",
+      "upstream": [
+        "IP核",
+        "EDA设计软件",
+        "硅片(12寸)",
+        "光刻胶",
+        "刻蚀设备"
+      ],
+      "midstream": [
+        "GPU芯片设计",
+        "晶圆制造",
+        "先进封装",
+        "HBM内存",
+        "板卡制造"
+      ],
+      "downstream": [
+        "AI训练",
+        "数据中心",
+        "自动驾驶",
+        "游戏渲染",
+        "边缘计算"
+      ],
+      "companies": {
+        "upstream": [
+          "芯动科技",
+          "芯原股份",
+          "华大九天",
+          "中芯国际",
+          "通富微电"
+        ],
+        "midstream": [
+          "景嘉微",
+          "沐曦",
+          "天数智芯",
+          "壁仞科技",
+          "摩尔线程"
+        ],
+        "downstream": [
+          "阿里云",
+          "腾讯云",
+          "百度智能云",
+          "华为云"
+        ]
+      },
+      "local_companies": [],
+      "investment_priority": "极高",
+      "market_scale": "2025年全球GPU市场规模预计超800亿美元"
+    },
+    {
+      "id": "lithography",
+      "name": "光刻机",
+      "icon": "🔬",
+      "upstream": [
+        "光源系统",
+        "投影物镜",
+        "双工件台",
+        "对准系统",
+        "浸没系统"
+      ],
+      "midstream": [
+        "整机集成",
+        "掩膜版",
+        "光刻胶",
+        "检测设备",
+        "运动控制"
+      ],
+      "downstream": [
+        "成熟制程",
+        "先进制程",
+        "封装光刻",
+        "FPD制造"
+      ],
+      "companies": {
+        "upstream": [
+          "科益虹源(光源)",
+          "国望光学(物镜)",
+          "华卓精科(工件台)",
+          "东方晶源"
+        ],
+        "midstream": [
+          "上海微电子",
+          "芯碁微装",
+          "苏大维格",
+          "华兴源创"
+        ],
+        "downstream": [
+          "中芯国际",
+          "华虹半导体",
+          "长江存储"
+        ]
+      },
+      "local_companies": [
+        "创世纪(精密零件)"
+      ],
+      "investment_priority": "极高",
+      "market_scale": "2025年全球光刻机市场规模约350亿美元"
+    },
+    {
+      "id": "new_material",
+      "name": "新材料",
+      "icon": "🧪",
+      "upstream": [
+        "稀土矿",
+        "锂矿",
+        "钴镍矿",
+        "硅料",
+        "碳纤维"
+      ],
+      "midstream": [
+        "磁性材料",
+        "电池材料",
+        "碳纤维",
+        "复合材料",
+        "电子材料"
+      ],
+      "downstream": [
+        "新能源汽车",
+        "风电光伏",
+        "航空航天",
+        "电子信息"
+      ],
+      "companies": {
+        "upstream": [
+          "北方稀土",
+          "盛和资源",
+          "赣锋锂业",
+          "华友钴业",
+          "合盛硅业"
+        ],
+        "midstream": [
+          "宁波韵升",
+          "天奈科技",
+          "中复神鹰",
+          "中简科技",
+          "鑫科材料"
+        ],
+        "downstream": [
+          "比亚迪",
+          "宁德时代",
+          "金风科技",
+          "隆基绿能"
+        ]
+      },
+      "local_companies": [
+        "鑫盛永磁",
+        "永兴材料"
+      ],
+      "investment_priority": "高",
+      "market_scale": "2025年中国新材料市场规模预计超5万亿元"
+    },
+    {
+      "id": "new_energy",
+      "name": "新能源",
+      "icon": "⚡",
+      "upstream": [
+        "硅料",
+        "银浆",
+        "ITO靶材",
+        "玻璃基板",
+        "封装胶膜"
+      ],
+      "midstream": [
+        "硅片",
+        "电池片",
+        "组件",
+        "逆变器",
+        "储能电池"
+      ],
+      "downstream": [
+        "集中式光伏",
+        "分布式光伏",
+        "风电",
+        "储能系统",
+        "氢能"
+      ],
+      "companies": {
+        "upstream": [
+          "通威股份",
+          "大全能源",
+          "福斯特",
+          "福莱特",
+          "帝科股份"
+        ],
+        "midstream": [
+          "隆基绿能",
+          "晶科能源",
+          "天合光能",
+          "晶澳科技",
+          "阿特斯"
+        ],
+        "downstream": [
+          "国家电投",
+          "华能集团",
+          "三峡集团",
+          "阳光电源"
+        ]
+      },
+      "local_companies": [
+        "永兴材料"
+      ],
+      "investment_priority": "高",
+      "market_scale": "2025年中国光伏风电市场规模预计超1万亿元"
+    },
+    {
+      "id": "low_altitude",
+      "name": "低空经济",
+      "icon": "🚁",
+      "upstream": [
+        "碳纤维复合材料",
+        "铝合金",
+        "电池系统",
+        "电机",
+        "飞控芯片"
+      ],
+      "midstream": [
+        "eVTOL整机",
+        "无人机整机",
+        "飞行汽车",
+        "新型航空器"
+      ],
+      "downstream": [
+        "低空旅游",
+        "城市空中交通",
+        "物流配送",
+        "应急救援",
+        "农业植保"
+      ],
+      "companies": {
+        "upstream": [
+          "光威复材",
+          "中复神鹰",
+          "亿纬锂能",
+          "小鹏汇天",
+          "峰飞航空"
+        ],
+        "midstream": [
+          "大疆创新",
+          "亿航智能",
+          "小鹏汇天",
+          "峰飞航空",
+          "时的科技"
+        ],
+        "downstream": [
+          "顺丰无人机",
+          "美团无人机",
+          "京东无人机"
+        ]
+      },
+      "local_companies": [],
+      "investment_priority": "高",
+      "market_scale": "2025年中国低空经济市场规模预计超1万亿元"
+    },
+    {
+      "id": "energy_storage",
+      "name": "储能电池",
+      "icon": "🔋",
+      "upstream": [
+        "锂矿",
+        "钴矿",
+        "镍矿",
+        "正极材料",
+        "负极材料"
+      ],
+      "midstream": [
+        "电芯制造",
+        "PACK集成",
+        "BMS",
+        "热管理",
+        "PCS"
+      ],
+      "downstream": [
+        "电网储能",
+        "工商业储能",
+        "家庭储能",
+        "通信储能",
+        "UPS"
+      ],
+      "companies": {
+        "upstream": [
+          "赣锋锂业",
+          "天齐锂业",
+          "湖南裕能",
+          "贝特瑞",
+          "杉杉股份"
+        ],
+        "midstream": [
+          "宁德时代",
+          "比亚迪储能",
+          "亿纬锂能",
+          "中创新航",
+          "海辰储能"
+        ],
+        "downstream": [
+          "阳光电源",
+          "华为数字能源",
+          "南都电源",
+          "科陆电子"
+        ]
+      },
+      "local_companies": [],
+      "investment_priority": "高",
+      "market_scale": "2025年全球储能市场规模预计超3000亿美元"
+    },
+    {
+      "id": "optical_chip",
+      "name": "光芯片",
+      "icon": "💡",
+      "upstream": [
+        "InP衬底",
+        "GaAs衬底",
+        "光刻设备",
+        "外延设备",
+        "解理设备"
+      ],
+      "midstream": [
+        "DFB激光器",
+        "EML激光器",
+        "VCSEL",
+        "探测器",
+        "硅光芯片"
+      ],
+      "downstream": [
+        "光模块",
+        "数据中心",
+        "5G基站",
+        "激光雷达",
+        "消费电子"
+      ],
+      "companies": {
+        "upstream": [
+          "住理工材料",
+          "有研新材",
+          "中电科13所",
+          "中科院半导体所"
+        ],
+        "midstream": [
+          "源杰科技",
+          "仕佳光子",
+          "长光华芯",
+          "纵慧芯光",
+          "武汉敏芯"
+        ],
+        "downstream": [
+          "中际旭创",
+          "光迅科技",
+          "新易盛",
+          "华为海思"
+        ]
+      },
+      "local_companies": [],
+      "investment_priority": "高",
+      "market_scale": "2025年全球光芯片市场规模预计超100亿美元"
+    }
+  ],
+  "investment_targets": {
+    "ev": {
+      "priority": "🔴 极高",
+      "targets": [
+        "宁德时代",
+        "弗迪电池",
+        "中创新航",
+        "亿纬锂能",
+        "蜂巢能源"
+      ],
+      "local_gaps": [
+        "电芯制造",
+        "正极材料",
+        "BMS"
+      ]
+    },
+    "robot": {
+      "priority": "🟡 高",
+      "targets": [
+        "绿的谐波",
+        "埃斯顿",
+        "汇川技术"
+      ],
+      "local_gaps": [
+        "精密减速器",
+        "控制系统"
+      ]
+    },
+    "cnc": {
+      "priority": "🟡 高",
+      "targets": [
+        "发那科",
+        "西门子",
+        "科德数控"
+      ],
+      "local_gaps": [
+        "数控系统",
+        "高精度主轴"
+      ]
+    },
+    "semiconductor": {
+      "priority": "🔴 极高",
+      "targets": [
+        "中芯国际",
+        "华润微",
+        "长电科技"
+      ],
+      "local_gaps": [
+        "晶圆制造",
+        "先进封装"
+      ]
+    }
+  }
+};
+
 // 产业匹配矩阵数据
 const matrixData = [
 {chain:'🔋 电池系统',upstream:'missing',midstream:'partial',downstream:'local',status:'缺电芯/正极',priority:'hot',targets:'宁德时代、中创新航'},
@@ -5639,6 +6628,140 @@ entry.target.classList.add('count-animate');
 },{threshold:0.5});
 document.querySelectorAll('.stat-item').forEach(el=>observer.observe(el));
 });
+
+// 土地资源库初始化
+function initLand() {
+    if(typeof landFullData === 'undefined') return;
+    var zhuanyewengong = landFullData.zhuanyewengong || [];
+    var shouchi = landFullData.shouchi || [];
+    var gonghouweiyong = landFullData.gonghouweiyong || [];
+    
+    document.getElementById('landZhuanCount').textContent = zhuanyewengong.length + '块';
+    document.getElementById('landZhuanCount').nextElementSibling.nextElementSibling.textContent = Math.round(zhuanyewengong.reduce(function(s, v){return s+(v.area||0)}, 0)) + '亩';
+    
+    document.getElementById('landShouchiCount').textContent = shouchi.length + '块';
+    document.getElementById('landShouchiCount').nextElementSibling.nextElementSibling.textContent = Math.round(shouchi.reduce(function(s, v){return s+(v.area||0)}, 0)) + '亩';
+    
+    document.getElementById('landGongCount').textContent = gonghouweiyong.length + '块';
+    document.getElementById('landGongCount').nextElementSibling.nextElementSibling.textContent = Math.round(gonghouweiyong.reduce(function(s, v){return s+(v.area||0)}, 0)) + '亩';
+    
+    var total = zhuanyewengong.length + shouchi.length + gonghouweiyong.length;
+    var totalArea = Math.round((zhuanyewengong.reduce(function(s, v){return s+(v.area||0)}, 0) + 
+                    shouchi.reduce(function(s, v){return s+(v.area||0)}, 0) + 
+                    gonghouweiyong.reduce(function(s, v){return s+(v.area||0)}, 0)));
+    document.getElementById('landTotalCount').textContent = totalArea + '亩';
+    
+    filterLand();
+}
+
+// 土地筛选
+var currentLandType = '';
+function filterLand(type) {
+    if(type) currentLandType = type;
+    document.getElementById('landTypeFilter').value = currentLandType;
+    
+    var searchText = (document.getElementById('landSearchInput').value || '').toLowerCase();
+    var grid = document.getElementById('landGrid');
+    if(!grid) return;
+    
+    var allItems = [];
+    if(typeof landFullData !== 'undefined') {
+        if(!currentLandType || currentLandType === 'zhuanyewengong') allItems = allItems.concat((landFullData.zhuanyewengong || []).map(function(v){v._type='zhuanyewengong';return v}));
+        if(!currentLandType || currentLandType === 'shouchi') allItems = allItems.concat((landFullData.shouchi || []).map(function(v){v._type='shouchi';return v}));
+        if(!currentLandType || currentLandType === 'gonghouweiyong') allItems = allItems.concat((landFullData.gonghouweiyong || []).map(function(v){v._type='gonghouweiyong';return v}));
+    }
+    
+    if(searchText) {
+        allItems = allItems.filter(function(v){return (v.name||'').toLowerCase().indexOf(searchText)>=0 || (v.location||'').toLowerCase().indexOf(searchText)>=0});
+    }
+    
+    var typeName = {'zhuanyewengong':'转而未供','shouchi':'收储土地','gonghouweiyong':'供而未用'};
+    grid.innerHTML = allItems.map(function(v){
+        return '<div class="land-card">'+
+            '<div class="land-card-header">'+
+                '<div class="land-card-title">'+v.name+'</div>'+
+                '<span class="land-card-type '+v._type+'">'+typeName[v._type]+'</span>'+
+            '</div>'+
+            '<div class="land-card-location">📍 '+v.location+'</div>'+
+            '<div class="land-card-area">'+v.area+'<span> 亩</span></div>'+
+            (v.note ? '<div class="land-card-note">⚠️ '+v.note+'</div>' : '')+
+        '</div>';
+    }).join('');
+}
+
+// 产业链详情
+var currentChain = 'ev';
+function showChainTab(chainId) {
+    currentChain = chainId;
+    document.querySelectorAll('.chain-tab').forEach(function(el){el.classList.remove('active')});
+    document.querySelector('.chain-tab[onclick*="'+chainId+'"]').classList.add('active');
+    renderChainDetail();
+}
+
+function renderChainDetail() {
+    if(typeof chainFullData === 'undefined') return;
+    var chain = null;
+    for(var i=0;i<chainFullData.chains.length;i++){
+        if(chainFullData.chains[i].id === currentChain){chain = chainFullData.chains[i];break;}
+    }
+    if(!chain) return;
+    
+    var typeName = {'upstream':'上游原材料','midstream':'中游零部件','downstream':'下游应用'};
+    var companies = chain.companies || {};
+    var local = chain.local_companies || [];
+    
+    var html = '<div class="chain-detail">'+
+        '<div class="chain-header">'+
+            '<div>'+
+                '<div class="chain-title">'+chain.icon+' '+chain.name+'</div>'+
+                '<div class="chain-market">📊 '+chain.market_scale+'</div>'+
+            '</div>'+
+            '<div class="chain-priority">招商优先级：'+chain.investment_priority+'</div>'+
+        '</div>';
+    
+    ['upstream','midstream','downstream'].forEach(function(level){
+        html += '<div class="chain-section">'+
+            '<div class="chain-section-title">'+typeName[level]+'</div>'+
+            '<div class="chain-flow">';
+        (chain[level]||[]).forEach(function(item){html += '<span class="chain-item">'+item+'</span>';});
+        html += '</div>'+
+            '<div class="chain-companies">';
+        (companies[level]||[]).forEach(function(c){
+            var isLocal = local.indexOf(c)>=0;
+            html += '<span class="chain-company'+(isLocal?' local':'')+'">'+(isLocal?'✅ ':'')+c+'</span>';
+        });
+        html += '</div></div>';
+    });
+    
+    if(local.length > 0) {
+        html += '<div class="chain-section"><div class="chain-local-title">✅ 已落地长合区企业</div><div class="chain-companies">';
+        local.forEach(function(c){html += '<span class="chain-company local">'+c+'</span>';});
+        html += '</div></div>';
+    }
+    
+    var targets = chainFullData.investment_targets && chainFullData.investment_targets[chain.id];
+    if(targets && targets.targets.length > 0) {
+        html += '<div class="chain-section"><div class="chain-local-title">🎯 招商目标企业</div><div class="chain-companies">';
+        targets.targets.forEach(function(t){html += '<span class="chain-company">'+t+'</span>';});
+        html += '</div>';
+        if(targets.local_gaps && targets.local_gaps.length > 0) {
+            html += '<div class="chain-gaps">缺链环节：';
+            targets.local_gaps.forEach(function(g){html += '<span class="chain-gap">'+g+'</span>';});
+            html += '</div>';
+        }
+        html += '</div>';
+    }
+    
+    html += '</div>';
+    document.getElementById('chainContent').innerHTML = html;
+}
+
+// 初始化
+window.addEventListener('DOMContentLoaded', function(){
+    initLand();
+    showChainTab('ev');
+});
+
 </script>
 </body>
 </html>
