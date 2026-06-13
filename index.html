@@ -31,68 +31,92 @@ body{font-family:"PingFang SC","Microsoft YaHei",sans-serif;background:#0a0e14;c
 .filter-tag{padding:8px 18px;background:#21262d;border:1px solid #30363d;border-radius:25px;color:#c9d1d9;font-size:13px;cursor:pointer;transition:all .2s}
 .filter-tag:hover{border-color:#58a6ff;color:#58a6ff}
 .filter-tag.active{background:linear-gradient(135deg,#1f6feb,#58a6ff);border-color:transparent;color:#fff;font-weight:500}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px}
 .chain-card{background:linear-gradient(145deg,#161b22,#1a2332);border:1px solid #30363d;border-radius:16px;padding:24px;cursor:pointer;transition:all .3s;position:relative;overflow:hidden}
 .chain-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#58a6ff,#1f6feb);transform:scaleX(0);transition:transform .3s}
 .chain-card:hover::before{transform:scaleX(1)}
 .chain-card:hover{border-color:#58a6ff;transform:translateY(-6px);box-shadow:0 12px 40px rgba(31,111,235,0.2)}
-.chain-card .card-img{width:100%;height:120px;object-fit:cover;border-radius:10px;margin-bottom:14px;background:#21262d}
+.chain-card .card-img{width:100%;height:140px;object-fit:cover;border-radius:10px;margin-bottom:14px;background:#21262d}
 .chain-card h3{font-size:16px;color:#e6edf3;margin-bottom:8px;font-weight:600}
 .chain-card .desc{font-size:13px;color:#8b949e;margin-bottom:12px;line-height:1.6}
 .chain-card .meta{display:flex;justify-content:space-between;font-size:12px;color:#6e7681}
 .chain-card .meta strong{color:#58a6ff}
-.card-badge{position:absolute;top:16px;right:16px;padding:4px 12px;border-radius:15px;font-size:11px;font-weight:600}
-.badge-green{background:#238636;color:#fff}
-.badge-blue{background:#1f6feb;color:#fff}
-.badge-purple{background:#8957e5;color:#fff}
-/* 真实汽车拆解区域 */
-.real-car-section{margin:20px 0}
-.car-hero{position:relative;width:100%;max-width:900px;margin:0 auto 30px;background:linear-gradient(180deg,#161b22,#0d1117);border-radius:20px;border:1px solid #30363d;overflow:hidden;padding:30px}
-.car-hero img{width:100%;height:auto;display:block;border-radius:12px}
-.car-parts-overlay{position:absolute;top:0;left:0;right:0;bottom:0}
-.clickable-part{position:absolute;cursor:pointer;transition:all .3s;border:2px solid transparent;border-radius:8px}
-.clickable-part:hover{border-color:#58a6ff;background:rgba(88,166,255,0.2);transform:scale(1.05)}
-.clickable-part .part-label{position:absolute;bottom:-28px;left:50%;transform:translateX(-50%);background:#161b22;border:1px solid #58a6ff;padding:4px 12px;border-radius:12px;font-size:11px;color:#58a6ff;white-space:nowrap;opacity:0;transition:opacity .3s}
-.clickable-part:hover .part-label{opacity:1}
-.parts-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px;margin-top:24px}
-.part-detail-card{background:#161b22;border:1px solid #30363d;border-radius:16px;padding:20px;cursor:pointer;transition:all .3s}
-.part-detail-card:hover{border-color:#58a6ff;transform:translateY(-4px);box-shadow:0 8px 30px rgba(31,111,235,0.2)}
-.part-detail-card .part-img{width:100%;height:140px;object-fit:cover;border-radius:10px;margin-bottom:14px;background:#21262d}
-.part-detail-card h4{color:#58a6ff;font-size:15px;margin-bottom:10px}
-.part-detail-card .suppliers{font-size:12px;color:#8b949e;line-height:1.7}
-.part-detail-card .supplier-tag{display:inline-block;padding:2px 8px;background:rgba(88,166,255,0.15);border-radius:8px;font-size:11px;color:#58a6ff;margin:2px}
-.explode-controls{margin-top:24px;display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
-.explode-btn{padding:14px 32px;background:linear-gradient(135deg,#1f6feb,#58a6ff);border:none;border-radius:25px;color:#fff;font-size:14px;font-weight:600;cursor:pointer;transition:all .3s;box-shadow:0 4px 15px rgba(31,111,235,0.3)}
-.explode-btn:hover{transform:scale(1.05);box-shadow:0 6px 25px rgba(31,111,235,0.5)}
+.chain-card .company-count{font-size:11px;color:#6e7681;margin-top:8px}
+/* 蔚来拆解动画 */
+.nio-explode-section{margin:20px 0}
+.nio-hero{position:relative;width:100%;max-width:1000px;margin:0 auto;background:linear-gradient(180deg,#161b22,#0d1117);border-radius:20px;border:1px solid #30363d;overflow:hidden}
+.nio-hero h3{color:#58a6ff;text-align:center;padding:20px;font-size:18px}
+.nio-car-container{position:relative;width:100%;padding-bottom:50%}
+.nio-car{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:90%;max-width:800px;transition:all .8s cubic-bezier(0.68,-0.55,0.265,1.55)}
+.nio-car img{width:100%;height:auto;display:block}
+.nio-parts-layer{position:absolute;top:0;left:0;right:0;bottom:0;pointer-events:none}
+.nio-part{position:absolute;cursor:pointer;transition:all .5s;border:2px solid transparent;border-radius:8px;pointer-events:all;display:flex;align-items:center;justify-content:center;background:rgba(31,111,235,0.1);overflow:hidden}
+.nio-part:hover{border-color:#58a6ff;background:rgba(88,166,255,0.3);z-index:100}
+.nio-part .part-icon{font-size:24px;opacity:0.8}
+.nio-part .part-label{position:absolute;bottom:4px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,0.9);padding:2px 8px;border-radius:4px;font-size:10px;white-space:nowrap;opacity:0;transition:opacity .3s}
+.nio-part:hover .part-label{opacity:1}
+/* 零部件详情弹窗 */
+.part-popup{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.9);z-index:9999;display:none;align-items:center;justify-content:center}
+.part-popup.show{display:flex}
+.part-popup-content{background:#161b22;border:1px solid #30363d;border-radius:20px;max-width:900px;width:95%;max-height:90vh;overflow-y:auto}
+.part-popup-header{padding:20px 24px;border-bottom:1px solid #30363d;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;background:#161b22}
+.part-popup-header h3{color:#58a6ff;font-size:18px}
+.part-popup-close{background:#30363d;border:none;color:#c9d1d9;width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:18px}
+.part-popup-body{padding:24px}
+.part-popup-body img{max-width:100%;border-radius:12px;margin-bottom:20px}
+.part-popup-body h4{color:#58a6ff;margin:16px 0 12px}
+.part-popup-body p{color:#c9d1d9;font-size:13px;line-height:1.8}
+.part-popup-body .supplier-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin-top:12px}
+.part-popup-body .supplier-item{background:#21262d;padding:12px;border-radius:8px;font-size:12px}
+.part-popup-body .supplier-item .name{color:#c9d1d9;font-weight:600}
+.part-popup-body .supplier-item .info{color:#6e7681;margin-top:4px}
 /* 鱼骨图 */
-.fishbone-wrap{width:100%;overflow-x:auto;padding:20px 0;background:#161b22;border-radius:16px;margin:20px 0}
-.fishbone-wrap svg{min-width:1400px;height:600px}
-.fb-title{font-size:18px;font-weight:bold;fill:#58a6ff}
-.fb-node{fill:#1a2332;stroke:#58a6ff;stroke-width:2;rx:10}
-.fb-node:hover{fill:#1f6feb;cursor:pointer}
-.fb-text{fill:#c9d1d9;font-size:12px;text-anchor:middle}
-.fb-line{stroke:#30363d;stroke-width:3}
-.fb-branch{stroke:#58a6ff;stroke-width:3;fill:none}
-.fb-remark{fill:#6e7681;font-size:10px}
+.fishbone-container{background:#161b22;border-radius:16px;padding:24px;margin:20px 0;overflow-x:auto}
+.fishbone-container h3{color:#58a6ff;margin-bottom:20px}
+.fishbone-svg{width:100%;min-width:1500px;height:700px}
+.fb-main-line{stroke:#58a6ff;stroke-width:4;fill:none}
+.fb-spine{stroke:#30363d;stroke-width:2}
+.fb-node{transition:all .3s;cursor:pointer}
+.fb-node:hover{fill:#1f6feb;filter:drop-shadow(0 0 10px rgba(88,166,255,0.5))}
+.fb-node-center{fill:#1f6feb;stroke:#58a6ff;stroke-width:3;rx:15}
+.fb-text{font-size:12px;fill:#c9d1d9;text-anchor:middle}
+.fb-text-small{font-size:10px;fill:#6e7681;text-anchor:middle}
+.fb-branch{stroke:#58a6ff;stroke-width:2;fill:none;marker-end:url(#arrowhead)}
+.fb-branch-gray{stroke:#30363d;stroke-width:2;fill:none;marker-end:url(#arrowhead-gray)}
+.fb-remark{font-size:9px;fill:#6e7681}
+/* 鱼骨图子节点弹窗 */
+.fb-detail-popup{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.9);z-index:9999;display:none;align-items:center;justify-content:center}
+.fb-detail-popup.show{display:flex}
+.fb-detail-content{background:#161b22;border:1px solid #30363d;border-radius:16px;max-width:600px;width:90%;padding:24px}
+.fb-detail-content h3{color:#58a6ff;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid #30363d}
+.fb-detail-content ul{list-style:none;padding:0}
+.fb-detail-content li{padding:10px 0;border-bottom:1px solid #21262d;font-size:13px;color:#c9d1d9}
+.fb-detail-content li:last-child{border:none}
+.fb-detail-content li::before{content:'▶ ';color:#58a6ff;margin-right:8px}
 /* 供应商详情 */
+.supply-modal{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.9);z-index:9999}
+.supply-modal.show{display:flex;align-items:flex-start;justify-content:center;padding:30px;overflow-y:auto}
+.supply-box{background:#161b22;border:1px solid #30363d;border-radius:16px;max-width:1400px;width:100%;max-height:90vh;overflow-y:auto}
+.supply-header{padding:24px;border-bottom:1px solid #30363d;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;background:#161b22}
+.supply-header h2{color:#58a6ff;font-size:20px}
+.supply-body{padding:24px}
 .supply-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .supply-col{}
 .supply-col-header{padding:12px 16px;border-radius:10px 10px 0 0;font-size:13px;font-weight:600;text-align:center}
 .supply-col-header.local{background:linear-gradient(135deg,#238636,#2ea043);color:#fff}
 .supply-col-header.region{background:linear-gradient(135deg,#1f6feb,#388bfd);color:#fff}
 .supply-col-header.nation{background:linear-gradient(135deg,#8957e5,#a371f7);color:#fff}
-.supply-list{background:#161b22;border:1px solid #30363d;border-top:none;border-radius:0 0 10px 10px;padding:12px;max-height:400px;overflow-y:auto}
-.supply-item{background:#1a2332;border:1px solid #21262d;border-radius:8px;padding:14px;margin-bottom:10px;transition:all .2s}
+.supply-list{background:#161b22;border:1px solid #30363d;border-top:none;border-radius:0 0 10px 10px;padding:12px;max-height:500px;overflow-y:auto}
+.supply-item{background:#1a2332;border:1px solid #21262d;border-radius:8px;padding:16px;margin-bottom:12px;transition:all .2s}
 .supply-item:last-child{margin-bottom:0}
 .supply-item:hover{border-color:#58a6ff;transform:translateX(4px)}
-.supply-item .rank{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;background:#58a6ff;color:#fff;border-radius:50%;font-size:12px;font-weight:700;margin-right:8px}
-.supply-item .name{font-size:14px;font-weight:600;color:#c9d1d9;display:block;margin-bottom:6px}
-.supply-item .info{font-size:12px;color:#8b949e;line-height:1.6}
-.supply-item .info-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:6px}
-.supply-item .info-tag{padding:2px 8px;background:rgba(88,166,255,0.12);border-radius:6px;font-size:11px}
-.supply-item .price{color:#3fb950;font-size:13px;font-weight:600;margin-top:6px}
-.supply-item .tag{display:inline-block;padding:3px 10px;background:rgba(88,166,255,0.15);border-radius:10px;font-size:11px;color:#58a6ff;margin:4px 4px 0 0}
-.supply-item .listed{color:#ffd700;font-size:11px;margin-left:6px}
+.supply-item .rank{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;background:linear-gradient(135deg,#58a6ff,#1f6feb);color:#fff;border-radius:50%;font-size:12px;font-weight:700;margin-right:10px;flex-shrink:0}
+.supply-item .name{font-size:14px;font-weight:600;color:#c9d1d9;display:inline}
+.supply-item .listed{color:#ffd700;font-size:11px;margin-left:8px}
+.supply-item .info{font-size:12px;color:#8b949e;line-height:1.7;margin-top:8px}
+.supply-item .info-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.supply-item .info-tag{padding:3px 10px;background:rgba(88,166,255,0.12);border-radius:6px;font-size:11px;color:#58a6ff}
+.supply-item .note{color:#3fb950;font-size:12px;margin-top:8px;font-weight:500}
 #detailMap{height:400px;border-radius:12px;border:1px solid #30363d;margin-top:16px}
 .legend{display:flex;gap:20px;font-size:13px;color:#8b949e;margin-bottom:16px;flex-wrap:wrap}
 .legend span{display:flex;align-items:center;gap:8px}
@@ -100,57 +124,57 @@ body{font-family:"PingFang SC","Microsoft YaHei",sans-serif;background:#0a0e14;c
 .legend .dot-local{background:#238636}
 .legend .dot-region{background:#1f6feb}
 .legend .dot-nation{background:#8957e5}
-/* 智能筛选 - 匹配模板 */
+.legend .dot-dashed{border:2px dashed #58a6ff;background:transparent;width:20px;height:2px}
+/* 匹配模板 */
 .match-template{background:linear-gradient(135deg,#161b22,#1a2332);border:1px solid #30363d;border-radius:16px;padding:24px;margin-bottom:24px}
-.match-template h3{color:#58a6ff;font-size:16px;margin-bottom:16px;display:flex;align-items:center;gap:8px}
-.match-template h3::before{content:'';display:inline-block;width:8px;height:8px;border-radius:50%;background:#58a6ff}
-.match-form{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;margin-bottom:20px}
-.form-group{margin-bottom:12px}
-.form-group label{display:block;color:#8b949e;font-size:13px;margin-bottom:6px}
-.form-group input,.form-group select,.form-group textarea{width:100%;padding:10px 14px;border:1px solid #30363d;border-radius:8px;background:#0d1117;color:#c9d1d9;font-size:13px;font-family:inherit}
-.form-group textarea{min-height:100px;resize:vertical}
-.match-result{background:#161b22;border:1px solid #30363d;border-radius:16px;padding:20px;margin-top:20px}
-.match-result-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:12px}
-.match-score{font-size:32px;font-weight:700;color:#58a6ff}
-.match-score.high{color:#3fb950}
-.match-score.medium{color:#f0883e}
-.match-score.low{color:#f85149}
-.match-bars{display:flex;flex-direction:column;gap:12px}
-.match-bar{display:flex;align-items:center;gap:12px}
-.match-bar-label{min-width:100px;color:#8b949e;font-size:13px}
-.match-bar-track{flex:1;height:10px;background:#21262d;border-radius:5px;overflow:hidden}
-.match-bar-fill{height:100%;border-radius:5px;transition:width .5s}
-.match-bar-value{min-width:50px;text-align:right;color:#58a6ff;font-size:13px;font-weight:600}
-.match-companies{margin-top:20px;padding-top:16px;border-top:1px solid #30363d}
-.match-companies h4{color:#58a6ff;font-size:14px;margin-bottom:12px}
-.match-company-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
-.match-company-item{background:#21262d;padding:12px;border-radius:8px;font-size:12px}
-.match-company-item .name{color:#c9d1d9;font-weight:600}
-.match-company-item .relation{color:#3fb950;margin-top:4px}
+.match-template h3{color:#58a6ff;font-size:16px;margin-bottom:16px}
 .template-presets{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}
 .preset-btn{padding:8px 16px;background:#21262d;border:1px solid #30363d;border-radius:20px;color:#8b949e;font-size:12px;cursor:pointer;transition:all .2s}
 .preset-btn:hover,.preset-btn.active{background:#1f6feb;border-color:#1f6feb;color:#fff}
+.match-form{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-bottom:20px}
+.form-group label{display:block;color:#8b949e;font-size:13px;margin-bottom:6px}
+.form-group input,.form-group select,.form-group textarea{width:100%;padding:10px 14px;border:1px solid #30363d;border-radius:8px;background:#0d1117;color:#c9d1d9;font-size:13px;font-family:inherit}
+.form-group textarea{min-height:80px;resize:vertical}
+.match-result{background:#0d1117;border:1px solid #30363d;border-radius:16px;padding:20px;margin-top:20px;display:none}
+.match-result.show{display:block}
+.match-result-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;flex-wrap:wrap;gap:16px}
+.match-score{font-size:36px;font-weight:700}
+.match-score.high{color:#3fb950}
+.match-score.medium{color:#f0883e}
+.match-score.low{color:#f85149}
+.match-bars{display:flex;flex-direction:column;gap:14px}
+.match-bar{display:flex;align-items:center;gap:12px}
+.match-bar-label{min-width:90px;color:#8b949e;font-size:13px}
+.match-bar-track{flex:1;height:12px;background:#21262d;border-radius:6px;overflow:hidden}
+.match-bar-fill{height:100%;border-radius:6px;transition:width .8s}
+.match-bar-value{min-width:45px;text-align:right;color:#58a6ff;font-size:13px;font-weight:600}
+.match-companies{margin-top:20px;padding-top:16px;border-top:1px solid #30363d}
+.match-companies h4{color:#58a6ff;font-size:14px;margin-bottom:12px}
+.match-company-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
+.match-company-item{background:#21262d;padding:12px;border-radius:8px}
+.match-company-item .name{color:#c9d1d9;font-weight:600;font-size:12px}
+.match-company-item .relation{color:#3fb950;font-size:11px;margin-top:4px}
 /* 项目研判 */
 .project-judge{background:linear-gradient(135deg,#161b22,#1a2332);border:1px solid #30363d;border-radius:16px;padding:24px;margin-top:24px}
 .project-judge h3{color:#58a6ff;font-size:16px;margin-bottom:16px}
-.judge-categories{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:20px}
+.judge-categories{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-bottom:20px}
 .judge-category{background:#21262d;border:1px solid #30363d;border-radius:12px;padding:16px;cursor:pointer;transition:all .3s;text-align:center}
 .judge-category:hover,.judge-category.selected{border-color:#58a6ff;background:rgba(31,111,235,0.1)}
-.judge-category .icon{font-size:32px;margin-bottom:10px}
+.judge-category .icon{font-size:36px;margin-bottom:10px}
 .judge-category .name{color:#c9d1d9;font-size:14px;font-weight:600}
 .judge-category .desc{color:#6e7681;font-size:11px;margin-top:6px}
-.judge-result{margin-top:20px;padding:20px;background:#0d1117;border-radius:12px;border:1px solid #30363d}
+.judge-result{margin-top:20px;padding:20px;background:#0d1117;border-radius:12px;border:1px solid #30363d;display:none}
+.judge-result.show{display:block}
 .judge-result h4{color:#58a6ff;margin-bottom:16px}
-.judge-radar{text-align:center;margin:20px 0}
-.judge-items{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:16px}
-.judge-item{background:#21262d;padding:14px;border-radius:8px;text-align:center}
-.judge-item .score{font-size:24px;font-weight:700;color:#58a6ff}
-.judge-item .label{font-size:11px;color:#6e7681;margin-top:4px}
+.judge-items{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px}
+.judge-item{background:#21262d;padding:16px;border-radius:10px;text-align:center}
+.judge-item .score{font-size:28px;font-weight:700;color:#58a6ff}
+.judge-item .label{font-size:11px;color:#6e7681;margin-top:6px}
 .judge-item.high .score{color:#3fb950}
 .judge-item.medium .score{color:#f0883e}
 .judge-item.low .score{color:#f85149}
 /* 区位优势 */
-.location-content{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.location-content{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
 .location-card{background:linear-gradient(145deg,#161b22,#1a2332);border:1px solid #30363d;border-radius:16px;padding:24px}
 .location-card h3{color:#58a6ff;font-size:15px;margin-bottom:14px;padding-left:12px;border-left:3px solid #1f6feb}
 .location-card p{font-size:13px;color:#c9d1d9;line-height:1.9;text-align:justify}
@@ -160,7 +184,7 @@ body{font-family:"PingFang SC","Microsoft YaHei",sans-serif;background:#0a0e14;c
 .location-stat .num{font-size:22px;font-weight:700;color:#58a6ff}
 .location-stat .label{font-size:11px;color:#8b949e;margin-top:4px}
 .location-card.full{grid-column:1 / -1}
-#mainMap{height:400px;border-radius:12px;border:1px solid #30363d;margin-top:16px}
+#mainMap{height:450px;border-radius:12px;border:1px solid #30363d;margin-top:16px}
 .location-company{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px}
 .location-company-item{background:#21262d;padding:14px;border-radius:10px}
 .location-company-item .city{color:#58a6ff;font-weight:600;font-size:14px}
@@ -173,14 +197,10 @@ body{font-family:"PingFang SC","Microsoft YaHei",sans-serif;background:#0a0e14;c
 .key-enterprise-item .distance{color:#6e7681;font-size:10px;margin-top:4px}
 /* 企业表格 */
 .ent-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:20px}
-.ent-stat{background:linear-gradient(135deg,#238636,#2ea043);padding:20px;border-radius:12px;text-align:center;transition:all .3s}
-.ent-stat:hover{transform:translateY(-4px);box-shadow:0 8px 20px rgba(35,134,54,0.3)}
+.ent-stat{background:linear-gradient(135deg,#238636,#2ea043);padding:20px;border-radius:12px;text-align:center}
 .ent-stat.blue{background:linear-gradient(135deg,#1f6feb,#388bfd)}
-.ent-stat.blue:hover{box-shadow:0 8px 20px rgba(31,111,235,0.3)}
 .ent-stat.purple{background:linear-gradient(135deg,#8957e5,#a371f7)}
-.ent-stat.purple:hover{box-shadow:0 8px 20px rgba(137,87,229,0.3)}
 .ent-stat.orange{background:linear-gradient(135deg,#f0883e,#db6d28)}
-.ent-stat.orange:hover{box-shadow:0 8px 20px rgba(240,136,62,0.3)}
 .ent-stat .num{font-size:32px;font-weight:700;color:#fff}
 .ent-stat .label{font-size:12px;color:rgba(255,255,255,0.8);margin-top:4px}
 .ent-toolbar{display:flex;gap:16px;align-items:center;padding:16px;background:#161b22;border-radius:12px;margin-bottom:16px;flex-wrap:wrap}
@@ -195,55 +215,38 @@ body{font-family:"PingFang SC","Microsoft YaHei",sans-serif;background:#0a0e14;c
 .ent-type.gs{background:#238636;color:#fff}
 .ent-type.xwy{background:#1f6feb;color:#fff}
 .ent-type.xsg{background:#8957e5;color:#fff}
-.ent-tel{color:#58a6ff;text-decoration:none;cursor:pointer}
+.ent-tel{color:#58a6ff;text-decoration:none}
 .ent-tel:hover{text-decoration:underline}
 .pagination{display:flex;justify-content:center;gap:8px;margin-top:20px}
 .pagination button{padding:8px 16px;background:#21262d;border:1px solid #30363d;border-radius:8px;color:#c9d1d9;cursor:pointer;transition:all .2s}
 .pagination button:hover,.pagination button.active{background:#1f6feb;border-color:#1f6feb;color:#fff}
 /* 厂房 */
 .factory-stats{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
-.factory-stat{background:linear-gradient(135deg,#238636,#2ea043);padding:24px;border-radius:16px;text-align:center;transition:all .3s}
-.factory-stat:hover{transform:translateY(-4px);box-shadow:0 8px 25px rgba(35,134,54,0.3)}
+.factory-stat{background:linear-gradient(135deg,#238636,#2ea043);padding:24px;border-radius:16px;text-align:center}
 .factory-stat.blue{background:linear-gradient(135deg,#1f6feb,#388bfd)}
-.factory-stat.blue:hover{box-shadow:0 8px 25px rgba(31,111,235,0.3)}
 .factory-stat .num{font-size:36px;font-weight:700;color:#fff}
 .factory-stat .label{font-size:13px;color:rgba(255,255,255,0.8);margin-top:6px}
 .factory-toolbar{display:flex;gap:12px;margin-bottom:16px;flex-wrap:wrap}
 .factory-toolbar select{padding:10px 16px;border:1px solid #30363d;border-radius:8px;background:#161b22;color:#c9d1d9;font-size:13px}
-#factoryMap{height:350px;border-radius:12px;border:1px solid #30363d}
-.factory-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin-top:16px}
-.factory-card{background:#161b22;border:1px solid #30363d;border-radius:12px;padding:20px;cursor:pointer;transition:all .3s}
-.factory-card:hover{border-color:#58a6ff;transform:translateY(-4px);box-shadow:0 8px 25px rgba(31,111,235,0.15)}
+#factoryMap{height:400px;border-radius:12px;border:1px solid #30363d}
+.factory-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px;margin-top:16px}
+.factory-card{background:#161b22;border:1px solid #30363d;border-radius:12px;padding:20px;transition:all .3s}
+.factory-card:hover{border-color:#58a6ff;transform:translateY(-4px)}
 .factory-card h4{color:#58a6ff;font-size:14px;margin-bottom:10px}
 .factory-card .info{font-size:12px;color:#8b949e;line-height:1.8}
 .factory-card .contact{margin-top:12px;padding-top:12px;border-top:1px solid #30363d;font-size:12px}
 .factory-card .area-tag{display:inline-block;padding:3px 10px;border-radius:10px;font-size:11px;margin-bottom:8px}
 .factory-card .area-tzh{background:#238636;color:#fff}
 .factory-card .area-sa{background:#1f6feb;color:#fff}
-/* 弹窗 */
-.modal{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.9);z-index:9999;padding:20px}
-.modal.show{display:flex;align-items:flex-start;justify-content:center;padding-top:30px;padding-bottom:30px;overflow-y:auto}
-.modal-box{background:#161b22;border:1px solid #30363d;border-radius:16px;max-width:1400px;width:100%;max-height:90vh;overflow-y:auto}
-.modal-header{padding:24px 28px 18px;border-bottom:1px solid #30363d;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;background:#161b22;z-index:10}
-.modal-header h2{font-size:20px;color:#58a6ff}
-.modal-close{background:#30363d;border:none;color:#c9d1d9;width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:18px;line-height:36px;text-align:center;transition:all .2s}
-.modal-close:hover{background:#484f58;transform:rotate(90deg)}
-.modal-body{padding:24px 28px 32px}
-/* 流程图 */
-.process-flow{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:10px;padding:24px;background:#161b22;border-radius:16px;margin:20px 0}
-.process-step{padding:12px 20px;background:linear-gradient(135deg,#1f6feb,#58a6ff);border-radius:25px;font-size:13px;font-weight:500;display:flex;align-items:center;gap:8px}
-.process-arrow{color:#58a6ff;font-size:24px;font-weight:300}
+.factory-card .area-lx{background:#8957e5;color:#fff}
 /* 响应式 */
 @media(max-width:768px){
-.location-content{grid-template-columns:1fr}
-.supply-grid{grid-template-columns:1fr}
+.location-content,.supply-grid{grid-template-columns:1fr}
 .ent-stats{grid-template-columns:repeat(2,1fr)}
 .factory-stats{grid-template-columns:1fr}
 .location-stats{grid-template-columns:repeat(2,1fr)}
-.match-form{grid-template-columns:1fr}
-.parts-grid{grid-template-columns:1fr}
-.location-company{grid-template-columns:1fr}
-.key-enterprise-grid{grid-template-columns:repeat(2,1fr)}
+.nio-part{font-size:16px}
+.nio-part .part-label{font-size:9px}
 }
 </style>
 </head>
@@ -255,7 +258,7 @@ body{font-family:"PingFang SC","Microsoft YaHei",sans-serif;background:#0a0e14;c
 <div class="stat-item"><div class="num">28</div><div class="label">产业分类</div></div>
 <div class="stat-item"><div class="num">420+</div><div class="label">供应商企业</div></div>
 <div class="stat-item"><div class="num">286</div><div class="label">园区企业</div></div>
-<div class="stat-item"><div class="num">52</div><div class="label">空余厂房</div></div>
+<div class="stat-item"><div class="num">30+</div><div class="label">空余厂房</div></div>
 </div>
 </div>
 <div class="tab-bar">
@@ -280,136 +283,182 @@ body{font-family:"PingFang SC","Microsoft YaHei",sans-serif;background:#0a0e14;c
 
 <!-- 零部件拆解 -->
 <div id="tab-parts" class="tab-content">
-<div class="real-car-section">
-<h3 style="color:#58a6ff;text-align:center;margin-bottom:20px;font-size:18px">新能源汽车整车及核心零部件分解</h3>
-<div class="car-hero">
-<img src="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=800&q=80" alt="新能源汽车" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 800 400%22><rect fill=%22%231a2332%22 width=%22800%22 height=%22400%22/><text fill=%22%2358a6ff%22 x=%22400%22 y=%22200%22 text-anchor=%22middle%22 font-size=%2240%22>新能源汽车示意</text></svg>'">
-<div class="car-parts-overlay">
-<div class="clickable-part" style="top:55%;left:30%;width:18%;height:20%" data-part="battery" onclick="showPartDetail('battery')"><span class="part-label">动力电池</span></div>
-<div class="clickable-part" style="top:65%;left:42%;width:12%;height:15%" data-part="motor" onclick="showPartDetail('motor')"><span class="part-label">驱动电机</span></div>
-<div class="clickable-part" style="top:45%;left:55%;width:30%;height:25%" data-part="body" onclick="showPartDetail('body')"><span class="part-label">车身</span></div>
-<div class="clickable-part" style="top:35%;left:40%;width:20%;height:15%" data-part="roof" onclick="showPartDetail('roof')"><span class="part-label">智能座舱</span></div>
-<div class="clickable-part" style="top:70%;left:20%;width:15%;height:18%" data-part="wheel" onclick="showPartDetail('wheel')"><span class="part-label">轮毂电机</span></div>
-<div class="clickable-part" style="top:70%;right:20%;width:15%;height:18%" data-part="wheel" onclick="showPartDetail('wheel')"><span class="part-label">轮毂电机</span></div>
-<div class="clickable-part" style="top:75%;left:30%;width:40%;height:10%" data-part="chassis" onclick="showPartDetail('chassis')"><span class="part-label">底盘系统</span></div>
-<div class="clickable-part" style="top:30%;right:15%;width:12%;height:12%" data-part="sensor" onclick="showPartDetail('sensor')"><span class="part-label">传感器</span></div>
+<div class="nio-explode-section">
+<h3 style="color:#58a6ff;text-align:center;margin-bottom:20px">蔚来ES8 整车结构拆解动画</h3>
+<div class="nio-hero">
+<div class="nio-car-container">
+<div class="nio-car" id="nioCar">
+<img src="https://img1.baichezhijia.com/2024/12/04/efd4f38a4f7d4b2a9c0f1e2d3b4a5c6d.jpg" alt="蔚来ES8" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/NIO_ES8_2021_front.jpg/800px-NIO_ES8_2021_front.jpg'">
+</div>
+<div class="nio-parts-layer" id="nioParts">
+<div class="nio-part" id="part-roof" style="top:8%;left:30%;width:40%;height:18%" onclick="showPartDetail('roof')"><span class="part-icon">🏠</span><span class="part-label">智能座舱顶棚</span></div>
+<div class="nio-part" id="part-screen" style="top:35%;left:55%;width:18%;height:20%" onclick="showPartDetail('screen')"><span class="part-icon">📺</span><span class="part-label">中控大屏</span></div>
+<div class="nio-part" id="part-battery" style="top:70%;left:35%;width:30%;height:15%" onclick="showPartDetail('battery')"><span class="part-icon">🔋</span><span class="part-label">100kWh电池包</span></div>
+<div class="nio-part" id="part-motor" style="top:62%;left:20%;width:15%;height:15%" onclick="showPartDetail('motor')"><span class="part-icon">⚡</span><span class="part-label">前永磁电机</span></div>
+<div class="nio-part" id="part-motor2" style="top:62%;right:20%;width:15%;height:15%" onclick="showPartDetail('motor')"><span class="part-icon">⚡</span><span class="part-label">后感应电机</span></div>
+<div class="nio-part" id="part-chassis" style="top:78%;left:15%;width:70%;height:10%" onclick="showPartDetail('chassis')"><span class="part-icon">🎯</span><span class="part-label">空气悬架底盘</span></div>
+<div class="nio-part" id="part-wheel" style="top:72%;left:8%;width:12%;height:18%" onclick="showPartDetail('wheel')"><span class="part-icon">🛞</span><span class="part-label">21寸轮毂</span></div>
+<div class="nio-part" id="part-wheel2" style="top:72%;right:8%;width:12%;height:18%" onclick="showPartDetail('wheel')"><span class="part-icon">🛞</span><span class="part-label">21寸轮毂</span></div>
+<div class="nio-part" id="part-sensor" style="top:28%;left:72%;width:10%;height:10%" onclick="showPartDetail('sensor')"><span class="part-icon">👁️</span><span class="part-label">激光雷达</span></div>
+<div class="nio-part" id="part-body" style="top:25%;left:25%;width:50%;height:40%" onclick="showPartDetail('body')"><span class="part-icon">🚗</span><span class="part-label">全铝车身</span></div>
 </div>
 </div>
-<div class="explode-controls">
-<button class="explode-btn" onclick="showPartDetail('battery')">电池系统</button>
-<button class="explode-btn" onclick="showPartDetail('motor')">电驱电机</button>
-<button class="explode-btn" onclick="showPartDetail('smartdrive')">智能驾驶</button>
-<button class="explode-btn" onclick="showPartDetail('inverter')">功率半导体</button>
-<button class="explode-btn" onclick="showPartDetail('thermal')">热管理</button>
+<div style="text-align:center;padding:20px">
+<button class="explode-btn" onclick="toggleExplode()" id="explodeBtn">▶ 拆解动画</button>
+<button class="explode-btn" style="background:#30363d" onclick="resetExplode()">↺ 重置</button>
+</div>
 </div>
 </div>
 
-<h3 style="color:#58a6ff;margin:30px 0 20px">核心零部件供应链</h3>
-<div class="parts-grid" id="partsGrid"></div>
+<h3 style="color:#58a6ff;margin:30px 0 20px">核心零部件供应链（可点击查看详情）</h3>
+<div class="grid" id="partsGrid"></div>
 
-<h3 style="color:#58a6ff;margin:30px 0 20px">新能源汽车制造工艺鱼骨图分析</h3>
-<div class="fishbone-wrap">
-<svg viewBox="0 0 1400 600">
+<h3 style="color:#58a6ff;margin:30px 0 20px">新能源汽车全产业链鱼骨图分析（可点击分解）</h3>
+<div class="fishbone-container">
+<svg class="fishbone-svg" viewBox="0 0 1500 700">
+<defs>
+<marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#58a6ff"/></marker>
+<marker id="arrowhead-gray" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#6e7681"/></marker>
+</defs>
 <!-- 主干 -->
-<line x1="80" y1="320" x2="1320" y2="320" class="fb-branch" stroke-width="5"/>
+<line x1="80" y1="360" x2="1420" y2="360" class="fb-main-line" stroke-width="5"/>
 <!-- 中心标题 -->
-<text x="700" y="50" class="fb-title" font-size="20">新能源汽车全生命周期价值链分析</text>
-<rect x="580" y="70" width="240" height="45" class="fb-node"/>
-<text x="700" y="100" class="fb-text" fill="#fff" font-size="14">新能源汽车产业链</text>
-<!-- 左上分支 - 研发设计 -->
-<line x1="250" y1="120" x2="580" y2="115" class="fb-branch"/>
-<rect x="120" y="85" width="130" height="38" class="fb-node"/>
-<text x="185" y="110" class="fb-text">研发设计</text>
-<rect x="50" y="30" width="90" height="30" rx="6" class="fb-node"/>
-<text x="95" y="50" class="fb-text" font-size="10">造型设计</text>
-<rect x="150" y="30" width="90" height="30" rx="6" class="fb-node"/>
-<text x="195" y="50" class="fb-text" font-size="10">CAE仿真</text>
-<rect x="250" y="30" width="90" height="30" rx="6" class="fb-node"/>
-<text x="295" y="50" class="fb-text" font-size="10">电池设计</text>
-<rect x="50" y="130" width="90" height="30" rx="6" class="fb-node"/>
-<text x="95" y="150" class="fb-text" font-size="10">电驱开发</text>
-<rect x="150" y="130" width="90" height="30" rx="6" class="fb-node"/>
-<text x="195" y="150" class="fb-text" font-size="10">智驾算法</text>
-<!-- 左上分支 - 核心材料 -->
-<line x1="280" y1="220" x2="580" y2="200" class="fb-branch"/>
-<rect x="120" y="185" width="160" height="38" class="fb-node"/>
-<text x="200" y="210" class="fb-text">核心材料</text>
-<rect x="50" y="170" width="90" height="30" rx="6" class="fb-node"/>
-<text x="95" y="190" class="fb-text" font-size="10">正极材料</text>
-<rect x="150" y="170" width="90" height="30" rx="6" class="fb-node"/>
-<text x="195" y="190" class="fb-text" font-size="10">负极材料</text>
-<rect x="50" y="230" width="90" height="30" rx="6" class="fb-node"/>
-<text x="95" y="250" class="fb-text" font-size="10">电解液</text>
-<rect x="150" y="230" width="90" height="30" rx="6" class="fb-node"/>
-<text x="195" y="250" class="fb-text" font-size="10">隔膜材料</text>
-<!-- 右上分支 - 核心零部件 -->
-<line x1="820" y1="115" x2="1100" y2="120" class="fb-branch"/>
-<rect x="1100" y="90" width="160" height="38" class="fb-node"/>
-<text x="1180" y="115" class="fb-text">核心零部件</text>
-<rect x="1260" y="40" width="100" height="30" rx="6" class="fb-node"/>
-<text x="1310" y="60" class="fb-text" font-size="10">电池系统</text>
-<rect x="1260" y="80" width="100" height="30" rx="6" class="fb-node"/>
-<text x="1310" y="100" class="fb-text" font-size="10">电驱系统</text>
-<rect x="1260" y="120" width="100" height="30" rx="6" class="fb-node"/>
-<text x="1310" y="140" class="fb-text" font-size="10">智能驾驶</text>
-<rect x="1260" y="160" width="100" height="30" rx="6" class="fb-node"/>
-<text x="1310" y="180" class="fb-text" font-size="10">热管理</text>
-<!-- 右上分支 - 制造工艺 -->
-<line x1="820" y1="200" x2="1100" y2="220" class="fb-branch"/>
-<rect x="1100" y="200" width="160" height="38" class="fb-node"/>
-<text x="1180" y="225" class="fb-text">制造工艺</text>
-<rect x="1260" y="190" width="100" height="30" rx="6" class="fb-node"/>
-<text x="1310" y="210" class="fb-text" font-size="10">一体化压铸</text>
-<rect x="1260" y="230" width="100" height="30" rx="6" class="fb-node"/>
-<text x="1310" y="250" class="fb-text" font-size="10">扁线电机</text>
-<rect x="1260" y="270" width="100" height="30" rx="6" class="fb-node"/>
-<text x="1310" y="290" class="fb-text" font-size="10">CTC电池</text>
-<!-- 左下分支 - 生产设备 -->
-<line x1="250" y1="420" x2="580" y2="450" class="fb-branch"/>
-<rect x="120" y="430" width="130" height="38" class="fb-node"/>
-<text x="185" y="455" class="fb-text">生产设备</text>
-<rect x="50" y="380" width="90" height="30" rx="6" class="fb-node"/>
-<text x="95" y="400" class="fb-text" font-size="10">工业机器人</text>
-<rect x="150" y="380" width="90" height="30" rx="6" class="fb-node"/>
-<text x="195" y="400" class="fb-text" font-size="10">数控机床</text>
-<rect x="50" y="470" width="90" height="30" rx="6" class="fb-node"/>
-<text x="95" y="490" class="fb-text" font-size="10">自动化产线</text>
-<rect x="150" y="470" width="90" height="30" rx="6" class="fb-node"/>
-<text x="195" y="490" class="fb-text" font-size="10">检测设备</text>
-<!-- 左下分支 - 质量控制 -->
-<line x1="280" y1="480" x2="580" y2="520" class="fb-branch"/>
-<rect x="120" y="490" width="160" height="38" class="fb-node"/>
-<text x="200" y="515" class="fb-text">质量控制</text>
-<rect x="50" y="530" width="90" height="30" rx="6" class="fb-node"/>
-<text x="95" y="550" class="fb-text" font-size="10">安全测试</text>
-<rect x="150" y="530" width="90" height="30" rx="6" class="fb-node"/>
-<text x="195" y="550" class="fb-text" font-size="10">续航标定</text>
-<rect x="50" y="570" width="90" height="30" rx="6" class="fb-node"/>
-<text x="95" y="590" class="fb-text" font-size="10">EMC检测</text>
-<rect x="150" y="570" width="90" height="30" rx="6" class="fb-node"/>
-<text x="195" y="590" class="fb-text" font-size="10">NVH测试</text>
-<!-- 右下分支 - 整车总装 -->
-<line x1="820" y1="450" x2="1100" y2="420" class="fb-branch"/>
-<rect x="1100" y="400" width="160" height="38" class="fb-node"/>
-<text x="1180" y="425" class="fb-text">整车总装</text>
-<rect x="1260" y="340" width="100" height="30" rx="6" class="fb-node"/>
-<text x="1310" y="360" class="fb-text" font-size="10">电池Pack</text>
-<rect x="1260" y="380" width="100" height="30" rx="6" class="fb-node"/>
-<text x="1310" y="400" class="fb-text" font-size="10">底盘合装</text>
-<rect x="1260" y="420" width="100" height="30" rx="6" class="fb-node"/>
-<text x="1310" y="440" class="fb-text" font-size="10">动力系统</text>
-<rect x="1260" y="460" width="100" height="30" rx="6" class="fb-node"/>
-<text x="1310" y="480" class="fb-text" font-size="10">内饰装配</text>
-<!-- 右下分支 - 充换电 -->
-<line x1="820" y1="520" x2="1100" y2="480" class="fb-branch"/>
-<rect x="1100" y="460" width="160" height="38" class="fb-node"/>
-<text x="1180" y="485" class="fb-text">充换电服务</text>
-<rect x="1260" y="510" width="100" height="30" rx="6" class="fb-node"/>
-<text x="1310" y="530" class="fb-text" font-size="10">充电桩</text>
-<rect x="1260" y="550" width="100" height="30" rx="6" class="fb-node"/>
-<text x="1310" y="570" class="fb-text" font-size="10">换电站</text>
-<rect x="1260" y="590" width="100" height="30" rx="6" class="fb-node"/>
-<text x="1310" y="610" class="fb-text" font-size="10">储能系统</text>
+<rect x="620" y="50" width="260" height="50" class="fb-node-center"/>
+<text x="750" y="83" class="fb-text" fill="#fff" font-size="16">新能源汽车全产业链</text>
+<!-- 左上: 研发设计 -->
+<g onclick="showFishboneDetail('rd')" style="cursor:pointer">
+<line x1="280" y1="150" x2="620" y2="150" class="fb-branch"/>
+<rect x="160" y="115" width="120" height="40" class="fb-node fb-node-center" rx="8"/>
+<text x="220" y="142" class="fb-text" fill="#fff">研发设计</text>
+<rect x="60" y="60" width="100" height="32" class="fb-node" rx="6"/>
+<text x="110" y="82" class="fb-text-small">造型设计</text>
+<rect x="180" y="60" width="100" height="32" class="fb-node" rx="6"/>
+<text x="230" y="82" class="fb-text-small">CAE仿真</text>
+<rect x="60" y="165" width="100" height="32" class="fb-node" rx="6"/>
+<text x="110" y="187" class="fb-text-small">电池设计</text>
+<rect x="180" y="165" width="100" height="32" class="fb-node" rx="6"/>
+<text x="230" y="187" class="fb-text-small">电驱开发</text>
+<rect x="60" y="220" width="100" height="32" class="fb-node" rx="6"/>
+<text x="110" y="242" class="fb-text-small">智驾算法</text>
+<rect x="180" y="220" width="100" height="32" class="fb-node" rx="6"/>
+<text x="230" y="242" class="fb-text-small">热管理设计</text>
+</g>
+<!-- 左上: 核心材料 -->
+<g onclick="showFishboneDetail('material')" style="cursor:pointer">
+<line x1="320" y1="260" x2="620" y2="240" class="fb-branch"/>
+<rect x="160" y="220" width="160" height="40" class="fb-node fb-node-center" rx="8"/>
+<text x="240" y="247" class="fb-text" fill="#fff">核心材料</text>
+<rect x="50" y="200" width="90" height="30" class="fb-node" rx="5"/>
+<text x="95" y="220" class="fb-text-small">正极材料</text>
+<rect x="160" y="200" width="90" height="30" class="fb-node" rx="5"/>
+<text x="205" y="220" class="fb-text-small">负极材料</text>
+<rect x="50" y="260" width="90" height="30" class="fb-node" rx="5"/>
+<text x="95" y="280" class="fb-text-small">电解液</text>
+<rect x="160" y="260" width="90" height="30" class="fb-node" rx="5"/>
+<text x="205" y="280" class="fb-text-small">隔膜材料</text>
+<rect x="50" y="320" width="90" height="30" class="fb-node" rx="5"/>
+<text x="95" y="340" class="fb-text-small">碳纤维</text>
+<rect x="160" y="320" width="90" height="30" class="fb-node" rx="5"/>
+<text x="205" y="340" class="fb-text-small">铝合金</text>
+</g>
+<!-- 右上: 核心零部件 -->
+<g onclick="showFishboneDetail('parts')" style="cursor:pointer">
+<line x1="880" y1="150" x2="1120" y2="150" class="fb-branch"/>
+<rect x="1120" y="115" width="160" height="40" class="fb-node fb-node-center" rx="8"/>
+<text x="1200" y="142" class="fb-text" fill="#fff">核心零部件</text>
+<rect x="1280" y="55" width="110" height="32" class="fb-node" rx="6"/>
+<text x="1335" y="77" class="fb-text-small">电池系统</text>
+<rect x="1280" y="95" width="110" height="32" class="fb-node" rx="6"/>
+<text x="1335" y="117" class="fb-text-small">电驱系统</text>
+<rect x="1280" y="135" width="110" height="32" class="fb-node" rx="6"/>
+<text x="1335" y="157" class="fb-text-small">智能驾驶</text>
+<rect x="1280" y="175" width="110" height="32" class="fb-node" rx="6"/>
+<text x="1335" y="197" class="fb-text-small">热管理系统</text>
+<rect x="1280" y="215" width="110" height="32" class="fb-node" rx="6"/>
+<text x="1335" y="237" class="fb-text-small">底盘系统</text>
+<rect x="1280" y="255" width="110" height="32" class="fb-node" rx="6"/>
+<text x="1335" y="277" class="fb-text-small">车身内外饰</text>
+</g>
+<!-- 右上: 制造工艺 -->
+<g onclick="showFishboneDetail('manufacture')" style="cursor:pointer">
+<line x1="880" y1="240" x2="1120" y2="260" class="fb-branch"/>
+<rect x="1120" y="235" width="160" height="40" class="fb-node fb-node-center" rx="8"/>
+<text x="1200" y="262" class="fb-text" fill="#fff">制造工艺</text>
+<rect x="1280" y="190" width="110" height="32" class="fb-node" rx="6"/>
+<text x="1335" y="212" class="fb-text-small">一体化压铸</text>
+<rect x="1280" y="230" width="110" height="32" class="fb-node" rx="6"/>
+<text x="1335" y="252" class="fb-text-small">冲压</text>
+<rect x="1280" y="270" width="110" height="32" class="fb-node" rx="6"/>
+<text x="1335" y="292" class="fb-text-small">焊接</text>
+<rect x="1280" y="310" width="110" height="32" class="fb-node" rx="6"/>
+<text x="1335" y="332" class="fb-text-small">涂装</text>
+<rect x="1280" y="350" width="110" height="32" class="fb-node" rx="6"/>
+<text x="1335" y="372" class="fb-text-small">总装</text>
+</g>
+<!-- 左下: 生产设备 -->
+<g onclick="showFishboneDetail('equipment')" style="cursor:pointer">
+<line x1="280" y1="470" x2="620" y2="480" class="fb-branch"/>
+<rect x="160" y="450" width="120" height="40" class="fb-node fb-node-center" rx="8"/>
+<text x="220" y="477" class="fb-text" fill="#fff">生产设备</text>
+<rect x="50" y="420" width="100" height="32" class="fb-node" rx="6"/>
+<text x="100" y="442" class="fb-text-small">工业机器人</text>
+<rect x="180" y="420" width="100" height="32" class="fb-node" rx="6"/>
+<text x="230" y="442" class="fb-text-small">数控机床</text>
+<rect x="50" y="490" width="100" height="32" class="fb-node" rx="6"/>
+<text x="100" y="512" class="fb-text-small">自动化产线</text>
+<rect x="180" y="490" width="100" height="32" class="fb-node" rx="6"/>
+<text x="230" y="512" class="fb-text-small">检测设备</text>
+<rect x="50" y="540" width="100" height="32" class="fb-node" rx="6"/>
+<text x="100" y="562" class="fb-text-small">激光焊接</text>
+<rect x="180" y="540" width="100" height="32" class="fb-node" rx="6"/>
+<text x="230" y="562" class="fb-text-small">AGV物流</text>
+</g>
+<!-- 左下: 质量控制 -->
+<g onclick="showFishboneDetail('qc')" style="cursor:pointer">
+<line x1="320" y1="560" x2="620" y2="530" class="fb-branch"/>
+<rect x="160" y="540" width="160" height="40" class="fb-node fb-node-center" rx="8"/>
+<text x="240" y="567" class="fb-text" fill="#fff">质量控制</text>
+<rect x="50" y="580" width="90" height="30" class="fb-node" rx="5"/>
+<text x="95" y="600" class="fb-text-small">安全测试</text>
+<rect x="160" y="580" width="90" height="30" class="fb-node" rx="5"/>
+<text x="205" y="600" class="fb-text-small">续航标定</text>
+<rect x="50" y="620" width="90" height="30" class="fb-node" rx="5"/>
+<text x="95" y="640" class="fb-text-small">EMC检测</text>
+<rect x="160" y="620" width="90" height="30" class="fb-node" rx="5"/>
+<text x="205" y="640" class="fb-text-small">NVH测试</text>
+<rect x="50" y="660" width="90" height="30" class="fb-node" rx="5"/>
+<text x="95" y="680" class="fb-text-small">碰撞测试</text>
+<rect x="160" y="660" width="90" height="30" class="fb-node" rx="5"/>
+<text x="205" y="680" class="fb-text-small">淋雨试验</text>
+</g>
+<!-- 右下: 整车总装 -->
+<g onclick="showFishboneDetail('assembly')" style="cursor:pointer">
+<line x1="880" y1="480" x2="1120" y2="450" class="fb-branch"/>
+<rect x="1120" y="420" width="160" height="40" class="fb-node fb-node-center" rx="8"/>
+<text x="1200" y="447" class="fb-text" fill="#fff">整车总装</text>
+<rect x="1280" y="380" width="110" height="32" class="fb-node" rx="6"/>
+<text x="1335" y="402" class="fb-text-small">电池Pack</text>
+<rect x="1280" y="420" width="110" height="32" class="fb-node" rx="6"/>
+<text x="1335" y="442" class="fb-text-small">底盘合装</text>
+<rect x="1280" y="460" width="110" height="32" class="fb-node" rx="6"/>
+<text x="1335" y="482" class="fb-text-small">动力系统</text>
+<rect x="1280" y="500" width="110" height="32" class="fb-node" rx="6"/>
+<text x="1335" y="522" class="fb-text-small">内饰装配</text>
+<rect x="1280" y="540" width="110" height="32" class="fb-node" rx="6"/>
+<text x="1335" y="562" class="fb-text-small">外饰装配</text>
+</g>
+<!-- 右下: 充换电 -->
+<g onclick="showFishboneDetail('charging')" style="cursor:pointer">
+<line x1="880" y1="560" x2="1120" y2="520" class="fb-branch"/>
+<rect x="1120" y="500" width="160" height="40" class="fb-node fb-node-center" rx="8"/>
+<text x="1200" y="527" class="fb-text" fill="#fff">充换电服务</text>
+<rect x="1280" y="580" width="110" height="32" class="fb-node" rx="6"/>
+<text x="1335" y="602" class="fb-text-small">充电桩</text>
+<rect x="1280" y="620" width="110" height="32" class="fb-node" rx="6"/>
+<text x="1335" y="642" class="fb-text-small">换电站</text>
+<rect x="1280" y="660" width="110" height="32" class="fb-node" rx="6"/>
+<text x="1335" y="682" class="fb-text-small">储能系统</text>
+</g>
 </svg>
 </div>
 </div>
@@ -429,10 +478,6 @@ body{font-family:"PingFang SC","Microsoft YaHei",sans-serif;background:#0a0e14;c
 <div class="filter-title">产业趋势</div>
 <div class="filter-tags" id="filterTrend"></div>
 </div>
-<div class="filter-section">
-<div class="filter-title">技术壁垒</div>
-<div class="filter-tags" id="filterBarrier"></div>
-</div>
 </div>
 <div id="filterResults"></div>
 
@@ -446,92 +491,29 @@ body{font-family:"PingFang SC","Microsoft YaHei",sans-serif;background:#0a0e14;c
 <button class="preset-btn" onclick="selectPreset('material')">材料项目</button>
 </div>
 <div class="match-form">
-<div class="form-group">
-<label>项目名称</label>
-<input type="text" id="projectName" placeholder="输入项目名称">
-</div>
-<div class="form-group">
-<label>所属业态</label>
-<select id="projectType">
-<option value="">请选择业态类型</option>
-<option value="电池系统">电池系统</option>
-<option value="电驱电机">电驱电机</option>
-<option value="智能驾驶">智能驾驶</option>
-<option value="智能座舱">智能座舱</option>
-<option value="热管理">热管理系统</option>
-<option value="底盘传动">底盘传动</option>
-<option value="核心材料">核心材料</option>
-<option value="精密制造">精密制造</option>
-<option value="整车企业">整车企业</option>
-<option value="充换电">充换电设施</option>
-</select>
-</div>
-<div class="form-group">
-<label>技术领域</label>
-<select id="projectTech">
-<option value="">请选择技术领域</option>
-<option value="固态电池">固态电池</option>
-<option value="800V高压">800V高压平台</option>
-<option value="碳化硅SiC">碳化硅SiC</option>
-<option value="大圆柱电池">大圆柱电池</option>
-<option value="智驾域控">智驾域控制器</option>
-<option value="线控底盘">线控底盘</option>
-<option value="一体化压铸">一体化压铸</option>
-</select>
-</div>
-<div class="form-group">
-<label>产能规模</label>
-<select id="projectCapacity">
-<option value="">请选择产能规模</option>
-<option value="10亿以下">10亿以下</option>
-<option value="10-50亿">10-50亿</option>
-<option value="50-100亿">50-100亿</option>
-<option value="100亿以上">100亿以上</option>
-</select>
-</div>
+<div class="form-group"><label>项目名称</label><input type="text" id="projectName" placeholder="输入项目名称"></div>
+<div class="form-group"><label>业态类型</label><select id="projectType"><option value="">请选择</option><option value="电池系统">电池系统</option><option value="电驱电机">电驱电机</option><option value="智能驾驶">智能驾驶</option><option value="智能座舱">智能座舱</option><option value="热管理系统">热管理系统</option><option value="底盘传动">底盘传动</option><option value="核心材料">核心材料</option><option value="整车企业">整车企业</option><option value="充换电设施">充换电设施</option></select></div>
+<div class="form-group"><label>技术领域</label><select id="projectTech"><option value="">请选择</option><option value="固态电池">固态电池</option><option value="800V高压">800V高压平台</option><option value="碳化硅SiC">碳化硅SiC</option><option value="大圆柱电池">大圆柱电池</option><option value="智驾域控">智驾域控制器</option><option value="线控底盘">线控底盘</option><option value="一体化压铸">一体化压铸</option></select></div>
+<div class="form-group"><label>产能规模</label><select id="projectCapacity"><option value="">请选择</option><option value="10亿以下">10亿以下</option><option value="10-50亿">10-50亿</option><option value="50-100亿">50-100亿</option><option value="100亿以上">100亿以上</option></select></div>
 </div>
 <div style="display:flex;gap:12px;flex-wrap:wrap">
 <button class="explode-btn" onclick="runMatchAnalysis()">开始匹配分析</button>
 <button class="explode-btn" style="background:#30363d" onclick="resetMatchForm()">重置</button>
 </div>
-<div class="match-result" id="matchResult" style="display:none"></div>
+<div class="match-result" id="matchResult"></div>
 </div>
 
 <div class="project-judge">
 <h3>项目研判分析</h3>
 <div class="judge-categories">
-<div class="judge-category" onclick="runJudge('battery')">
-<div class="icon">🔋</div>
-<div class="name">电池项目</div>
-<div class="desc">电芯/模组/Pack/BMS</div>
+<div class="judge-category" onclick="runJudge('battery')"><div class="icon">🔋</div><div class="name">电池项目</div><div class="desc">电芯/模组/Pack</div></div>
+<div class="judge-category" onclick="runJudge('motor')"><div class="icon">⚡</div><div class="name">电驱项目</div><div class="desc">电机/电控</div></div>
+<div class="judge-category" onclick="runJudge('smart')"><div class="icon">🧠</div><div class="name">智能驾驶</div><div class="desc">域控/雷达</div></div>
+<div class="judge-category" onclick="runJudge('chassis')"><div class="icon">🎯</div><div class="name">底盘项目</div><div class="desc">悬架/转向</div></div>
+<div class="judge-category" onclick="runJudge('material')"><div class="icon">🧪</div><div class="name">材料项目</div><div class="desc">正负极</div></div>
+<div class="judge-category" onclick="runJudge('equipment')"><div class="icon">🔧</div><div class="name">装备项目</div><div class="desc">机器人/产线</div></div>
 </div>
-<div class="judge-category" onclick="runJudge('motor')">
-<div class="icon">⚡</div>
-<div class="name">电驱项目</div>
-<div class="desc">电机/电控/功率半导体</div>
-</div>
-<div class="judge-category" onclick="runJudge('smart')">
-<div class="icon">🧠</div>
-<div class="name">智能驾驶</div>
-<div class="desc">域控/雷达/摄像头</div>
-</div>
-<div class="judge-category" onclick="runJudge('chassis')">
-<div class="icon">🎯</div>
-<div class="name">底盘项目</div>
-<div class="desc">悬架/转向/制动</div>
-</div>
-<div class="judge-category" onclick="runJudge('material')">
-<div class="icon">🧪</div>
-<div class="name">材料项目</div>
-<div class="desc">正负极/电解液/隔膜</div>
-</div>
-<div class="judge-category" onclick="runJudge('equipment')">
-<div class="icon">🔧</div>
-<div class="name">装备项目</div>
-<div class="desc">机器人/机床/产线</div>
-</div>
-</div>
-<div class="judge-result" id="judgeResult" style="display:none"></div>
+<div class="judge-result" id="judgeResult"></div>
 </div>
 </div>
 
@@ -539,7 +521,7 @@ body{font-family:"PingFang SC","Microsoft YaHei",sans-serif;background:#0a0e14;c
 <div id="tab-location" class="tab-content">
 <div class="location-card full">
 <h3>长三角（湖州）产业合作区 · 战略定位</h3>
-<p>长三角（湖州）产业合作区是长三角一体化发展国家战略的重要载体，2021年11月由浙江省人民政府正式批复设立，是长三角一地六县（区）第一个以"长三角"冠名的产业合作区。合作区位于长三角中心区域，东起桐乡市、西至广德市、南抵安吉县、北临宜兴市，规划面积86.9平方公里，重点发展新能源汽车及关键零部件、高端装备制造、数字经济等主导产业，着力打造长三角产业合作示范区和绿色智造创新高地。</p>
+<p>长三角（湖州）产业合作区是长三角一体化发展国家战略的重要载体，2021年11月由浙江省人民政府正式批复设立。合作区位于浙江省湖州市长兴县境内，规划面积86.9平方公里，核心区涵盖天子湖镇、泗安镇等区域，东起桐乡市、西至广德市、南抵安吉县、北临宜兴市。重点发展新能源汽车及关键零部件、高端装备制造、数字经济等主导产业，着力打造长三角产业合作示范区和绿色智造创新高地。</p>
 <div class="location-stats">
 <div class="location-stat"><div class="num">86.9k㎡</div><div class="label">核心区面积</div></div>
 <div class="location-stat"><div class="num">90分钟</div><div class="label">高铁到沪杭</div></div>
@@ -550,30 +532,26 @@ body{font-family:"PingFang SC","Microsoft YaHei",sans-serif;background:#0a0e14;c
 <div class="location-content">
 <div class="location-card">
 <h3>区位交通优势</h3>
-<p>合作区地处长三角地理中心，沪宁杭苏甬"Z"字形几何中心，2小时通勤圈覆盖长三角所有万亿级城市。商合杭高铁、沪苏湖高铁（在建）、杭宁高铁穿境而过，30分钟直达湖州高铁站，90分钟可达上海虹桥、杭州东站。杭长高速、申苏浙皖高速构建"井"字形高速网络。</p>
+<p>合作区地处长三角地理中心，沪宁杭苏甬"Z"字形几何中心，2小时通勤圈覆盖长三角所有万亿级城市。商合杭高铁、沪苏湖高铁（在建）穿境而过，天子湖镇距长兴高铁站仅30分钟车程，90分钟可达上海虹桥、杭州东站。</p>
 <div class="location-stats">
-<div class="location-stat"><div class="num">30分钟</div><div class="label">到湖州高铁</div></div>
+<div class="location-stat"><div class="num">30分钟</div><div class="label">到长兴高铁</div></div>
 <div class="location-stat"><div class="num">90分钟</div><div class="label">到沪杭</div></div>
 </div>
 </div>
 <div class="location-card">
-<h3>产业生态优势</h3>
-<p>合作区周边200公里范围内集聚宁德时代、比亚迪、吉利、蔚来、特斯拉等头部企业，已形成完整的新能源汽车产业链。园区内已落户吉利汽车、蜂巢能源、均胜电子、三花智控等行业龙头企业，产业集聚效应显著。</p>
-<div id="mainMap"></div>
-</div>
-<div class="location-card">
 <h3>200km产业生态圈</h3>
+<div id="mainMap"></div>
 <div class="location-company">
-<div class="location-company-item"><div class="city">杭州市<span class="distance">80km</span></div><div class="detail">零跑汽车总部<br>吉利控股集团<br>驱动电机/电控系统</div></div>
-<div class="location-company-item"><div class="city">苏州市<span class="distance">80km</span></div><div class="detail">汇川技术<br>绿的谐波<br>伺服系统/精密减速器</div></div>
-<div class="location-company-item"><div class="city">上海市<span class="distance">150km</span></div><div class="detail">特斯拉上海工厂<br>上汽大众安徽<br>整车制造/智能驾驶</div></div>
-<div class="location-company-item"><div class="city">常州市<span class="distance">100km</span></div><div class="detail">蜂巢能源<br>理想汽车常州基地<br>动力电池/整车</div></div>
-<div class="location-company-item"><div class="city">宁波市<span class="distance">120km</span></div><div class="detail">吉利极氪<br>拓普集团<br>铝合金/汽车电子</div></div>
-<div class="location-company-item"><div class="city">无锡市<span class="distance">100km</span></div><div class="detail">先导智能<br>雅克科技<br>锂电设备/硅微粉</div></div>
+<div class="location-company-item"><div class="city">宜兴<span class="distance">40km</span></div><div class="detail">宁德时代宜春/溧阳基地<br>蜂巢能源</div></div>
+<div class="location-company-item"><div class="city">杭州市<span class="distance">80km</span></div><div class="detail">零跑汽车总部<br>吉利控股集团</div></div>
+<div class="location-company-item"><div class="city">苏州市<span class="distance">80km</span></div><div class="detail">汇川技术<br>绿的谐波</div></div>
+<div class="location-company-item"><div class="city">常州市<span class="distance">100km</span></div><div class="detail">蜂巢能源总部<br>理想汽车常州</div></div>
+<div class="location-company-item"><div class="city">宁波市<span class="distance">120km</span></div><div class="detail">吉利极氪<br>拓普集团</div></div>
+<div class="location-company-item"><div class="city">上海市<span class="distance">150km</span></div><div class="detail">特斯拉上海工厂<br>上汽大众安徽</div></div>
 </div>
 </div>
-<div class="location-card">
-<h3>重点配套企业</h3>
+<div class="location-card full">
+<h3>长合区周边重点配套企业</h3>
 <div class="key-enterprise-grid">
 <div class="key-enterprise-item"><div class="name">宁德时代</div><div class="industry">动力电池</div><div class="distance">宜兴 40km</div></div>
 <div class="key-enterprise-item"><div class="name">比亚迪</div><div class="industry">整车/电池</div><div class="distance">常州 100km</div></div>
@@ -581,6 +559,8 @@ body{font-family:"PingFang SC","Microsoft YaHei",sans-serif;background:#0a0e14;c
 <div class="key-enterprise-item"><div class="name">蜂巢能源</div><div class="industry">动力电池</div><div class="distance">园区内</div></div>
 <div class="key-enterprise-item"><div class="name">均胜电子</div><div class="industry">汽车安全</div><div class="distance">园区内</div></div>
 <div class="key-enterprise-item"><div class="name">三花智控</div><div class="industry">热管理</div><div class="distance">园区内</div></div>
+<div class="key-enterprise-item"><div class="name">汇川技术</div><div class="industry">电驱/工控</div><div class="distance">苏州 80km</div></div>
+<div class="key-enterprise-item"><div class="name">零跑汽车</div><div class="industry">整车</div><div class="distance">杭州 80km</div></div>
 </div>
 </div>
 </div>
@@ -608,22 +588,39 @@ body{font-family:"PingFang SC","Microsoft YaHei",sans-serif;background:#0a0e14;c
 <!-- 空余厂房 -->
 <div id="tab-factory" class="tab-content">
 <div class="factory-stats">
-<div class="factory-stat"><div class="num">18</div><div class="label">天子湖镇厂房</div></div>
-<div class="factory-stat blue"><div class="num">12</div><div class="label">泗安镇厂房</div></div>
+<div class="factory-stat"><div class="num">12</div><div class="label">天子湖镇厂房</div></div>
+<div class="factory-stat blue"><div class="num">10</div><div class="label">泗安镇厂房</div></div>
 </div>
 <div class="factory-toolbar">
-<select id="factoryAreaFilter" onchange="renderFactoryList()"><option value="all">全部区域</option><option value="天子湖镇">天子湖镇</option><option value="泗安镇">泗安镇</option></select>
+<select id="factoryAreaFilter" onchange="renderFactoryList()"><option value="all">全部区域</option><option value="天子湖镇">天子湖镇</option><option value="泗安镇">泗安镇</option><option value="长兴县">长兴县其他</option></select>
 <select id="factorySizeFilter" onchange="renderFactoryList()"><option value="all">全部面积</option><option value="5000+">≥5000㎡</option><option value="10000+">≥10000㎡</option></select>
 </div>
 <div id="factoryMap"></div>
 <div class="factory-list" id="factoryList"></div>
 </div>
 
-<!-- 弹窗 -->
-<div class="modal" id="detailModal" onclick="if(event.target===this)closeModal()">
-<div class="modal-box">
-<div class="modal-header"><h2 id="modalTitle">详情</h2><button class="modal-close" onclick="closeModal()">×</button></div>
-<div class="modal-body" id="modalBody"></div>
+<!-- 零部件详情弹窗 -->
+<div class="part-popup" id="partPopup">
+<div class="part-popup-content">
+<div class="part-popup-header"><h3 id="partPopupTitle">零部件详情</h3><button class="part-popup-close" onclick="closePartPopup()">×</button></div>
+<div class="part-popup-body" id="partPopupBody"></div>
+</div>
+</div>
+
+<!-- 鱼骨图详情弹窗 -->
+<div class="fb-detail-popup" id="fbDetailPopup">
+<div class="fb-detail-content">
+<h3 id="fbDetailTitle">详情</h3>
+<ul id="fbDetailList"></ul>
+<button class="explode-btn" style="margin-top:20px;width:100%;background:#30363d" onclick="closeFbDetail()">关闭</button>
+</div>
+</div>
+
+<!-- 供应商详情弹窗 -->
+<div class="supply-modal" id="supplyModal" onclick="if(event.target===this)closeSupplyModal()">
+<div class="supply-box">
+<div class="supply-header"><h2 id="supplyModalTitle">供应商详情</h2><button class="modal-close" onclick="closeSupplyModal()">×</button></div>
+<div class="supply-body" id="supplyModalBody"></div>
 </div>
 </div>
 
@@ -631,95 +628,157 @@ body{font-family:"PingFang SC","Microsoft YaHei",sans-serif;background:#0a0e14;c
 <link rel="stylesheet" href="https://a.amap.com/jsapi_demos/static/demo-center/css/demo-center.css" />
 <script src="local_enterprise_data.js"></script>
 <script>
-// ========== 产业数据 ==========
+// ========== 产业数据（28个分类，每个15家企业） ==========
 var chainData = {
-battery:{name:"电池系统",icon:"🔋",desc:"动力电池是新能源汽车核心，占整车成本30-40%，包含电芯、模组、Pack及BMS系统",img:"https://images.unsplash.com/photo-1620714223084-8fcacc6dfd8d?w=400&q=80",local:3,region:5,nation:7},
-motor:{name:"电驱电机",icon:"⚡",desc:"驱动电机是新能源汽车三大件之一，永磁同步电机效率高达97%",img:"https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80",local:3,region:5,nation:7},
-inverter:{name:"电机控制器",icon:"🎛️",desc:"电机控制器是电驱系统的核心，SiC功率器件是下一代方向",img:"https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&q=80",local:3,region:5,nation:7},
-smartdrive:{name:"智能驾驶",icon:"🧠",desc:"智能驾驶是未来竞争焦点，包括域控制器、激光雷达、摄像头等",img:"https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=400&q=80",local:2,region:4,nation:9},
-chassis:{name:"底盘传动",icon:"🎯",desc:"底盘系统关乎车辆安全和操控，包括线控制动、线控转向、空气悬架",img:"https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=400&q=80",local:4,region:5,nation:6},
-thermal:{name:"热管理系统",icon:"❄️",desc:"热管理影响电池安全和续航，包括液冷板、PTC、压缩机等",img:"https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=400&q=80",local:2,region:5,nation:8},
-connector:{name:"连接器线束",icon:"🔌",desc:"高压连接器是电动车特有部件，包括Busbar、线束等",img:"https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&q=80",local:3,region:5,nation:7},
-sensor:{name:"车载传感器",icon:"👁️",desc:"传感器是智能驾驶的眼睛，包括毫米波雷达、超声波雷达、摄像头",img:"https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=400&q=80",local:2,region:4,nation:9},
-smartcabin:{name:"智能座舱",icon:"🎬",desc:"座舱是用户体验窗口，包括中控大屏、仪表盘、HUD等",img:"https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=400&q=80",local:2,region:5,nation:8},
-ev:{name:"整车企业",icon:"🚗",desc:"整车是产业链核心，包括纯电、混动、增程等多种路线",img:"https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=400&q=80",local:1,region:3,nation:16},
-cathode:{name:"正极材料",icon:"🧪",desc:"正极材料决定电池性能，包括磷酸铁锂、三元材料等",img:"https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=400&q=80",local:2,region:5,nation:8},
-anode:{name:"负极材料",icon:"⚫",desc:"负极材料影响充电速度，石墨是主流，硅碳是方向",img:"https://images.unsplash.com/photo-1507041957456-9c397ce39c97?w=400&q=80",local:2,region:5,nation:8},
-electrolyte:{name:"电解液",icon:"💧",desc:"电解液是电池血液，影响充放电性能和安全",img:"https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80",local:2,region:5,nation:8},
-separator:{name:"隔膜",icon:"🔲",desc:"隔膜是电池安全屏障，干法湿法各有应用",img:"https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=400&q=80",local:2,region:5,nation:8},
-sic:{name:"SiC半导体",icon:"💎",desc:"SiC是下一代功率器件，耐高压、高频、高效",img:"https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&q=80",local:1,region:4,nation:10},
-charging:{name:"充换电设施",icon:"⚡",desc:"基础设施决定用户体验，包括充电桩、换电站",img:"https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80",local:2,region:5,nation:8},
-recycle:{name:"电池回收",icon:"♻️",desc:"循环经济绿色产业，梯次利用和再生回收",img:"https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?w=400&q=80",local:2,region:4,nation:9},
-evtol:{name:"eVTOL/低空",icon:"🚁",desc:"低空经济新赛道，电动垂直起降飞行器",img:"https://images.unsplash.com/photo-1473968512647-3e447244af8f?w=400&q=80",local:1,region:3,nation:11}
+battery:{name:"电池系统",icon:"🔋",desc:"动力电池是新能源汽车核心，占整车成本30-40%",img:"https://img1.baichezhijia.com/2024/12/04/efd4f38a4f7d4b2a9c0f1e2d3b4a5c6d.jpg",count:15},
+motor:{name:"电驱电机",icon:"⚡",desc:"驱动电机是新能源汽车三大件之一，永磁同步电机效率高达97%",img:"https://img-blog.csdnimg.cn/img_convert/a16d2020c89efd4f7e92cfb3e1ad7c7c.png",count:15},
+inverter:{name:"电机控制器",icon:"🎛️",desc:"电机控制器是电驱系统的核心，SiC功率器件是下一代方向",img:"https://img-blog.csdnimg.cn/img_convert/b7c4a5f8e9d0c1b2a3f4e5d6c7b8a9f0.png",count:15},
+smartdrive:{name:"智能驾驶",icon:"🧠",desc:"智能驾驶是未来竞争焦点，包括域控制器、激光雷达、摄像头等",img:"https://img-blog.csdnimg.cn/img_convert/c8d5e6f9a0b1c2d3e4f5a6b7c8d9e0f.png",count:15},
+chassis:{name:"底盘传动",icon:"🎯",desc:"底盘系统关乎车辆安全和操控，包括线控制动、线控转向、空气悬架",img:"https://img-blog.csdnimg.cn/img_convert/d9e0f1a2b3c4d5e6f7a8b9c0d1e2f3a.png",count:15},
+thermal:{name:"热管理系统",icon:"❄️",desc:"热管理影响电池安全和续航，包括液冷板、PTC、压缩机等",img:"https://img-blog.csdnimg.cn/img_convert/e0f1a2b3c4d5e6f7a8b9c0d1e2f3a4b.png",count:15},
+connector:{name:"连接器线束",icon:"🔌",desc:"高压连接器是电动车特有部件，包括Busbar、线束等",img:"https://img-blog.csdnimg.cn/img_convert/f1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c.png",count:15},
+sensor:{name:"车载传感器",icon:"👁️",desc:"传感器是智能驾驶的眼睛，包括毫米波雷达、超声波雷达、摄像头",img:"https://img-blog.csdnimg.cn/img_convert/a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d.png",count:15},
+smartcabin:{name:"智能座舱",icon:"🎬",desc:"座舱是用户体验窗口，包括中控大屏、仪表盘、HUD等",img:"https://img-blog.csdnimg.cn/img_convert/b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e.png",count:15},
+ev:{name:"整车企业",icon:"🚗",desc:"整车是产业链核心，包括纯电、混动、增程等多种路线",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/NIO_ES8_2021_front.jpg/800px-NIO_ES8_2021_front.jpg",count:20},
+cathode:{name:"正极材料",icon:"🧪",desc:"正极材料决定电池性能，包括磷酸铁锂、三元材料等",img:"https://img-blog.csdnimg.cn/img_convert/c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f.png",count:15},
+anode:{name:"负极材料",icon:"⚫",desc:"负极材料影响充电速度，石墨是主流，硅碳是方向",img:"https://img-blog.csdnimg.cn/img_convert/d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a.png",count:15},
+electrolyte:{name:"电解液",icon:"💧",desc:"电解液是电池血液，影响充放电性能和安全",img:"https://img-blog.csdnimg.cn/img_convert/e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b.png",count:15},
+separator:{name:"隔膜",icon:"🔲",desc:"隔膜是电池安全屏障，干法湿法各有应用",img:"https://img-blog.csdnimg.cn/img_convert/f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c.png",count:15},
+sic:{name:"SiC半导体",icon:"💎",desc:"SiC是下一代功率器件，耐高压、高频、高效",img:"https://img-blog.csdnimg.cn/img_convert/a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d.png",count:15},
+charging:{name:"充换电设施",icon:"⚡",desc:"基础设施决定用户体验，包括充电桩、换电站",img:"https://img-blog.csdnimg.cn/img_convert/b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e.png",count:15},
+recycle:{name:"电池回收",icon:"♻️",desc:"循环经济绿色产业，梯次利用和再生回收",img:"https://img-blog.csdnimg.cn/img_convert/c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f.png",count:15},
+evtol:{name:"eVTOL/低空",icon:"🚁",desc:"低空经济新赛道，电动垂直起降飞行器",img:"https://img-blog.csdnimg.cn/img_convert/d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a.png",count:15},
+lightweight:{name:"轻量化材料",icon:"🪶",desc:"轻量化提升续航，铝合金、碳纤维应用广泛",img:"https://img-blog.csdnimg.cn/img_convert/e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b.png",count:15},
+chip:{name:"汽车芯片",icon:"💻",desc:"芯片是汽车的大脑，包括MCU、功率IC、传感器IC等",img:"https://img-blog.csdnimg.cn/img_convert/f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c.png",count:15},
+electronics:{name:"汽车电子",icon:"📟",desc:"汽车电子无处不在，包括BCM、域控制器等",img:"https://img-blog.csdnimg.cn/img_convert/a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d.png",count:15},
+servo:{name:"伺服系统",icon:"🎮",desc:"伺服系统是自动化设备核心",img:"https://img-blog.csdnimg.cn/img_convert/b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e.png",count:15},
+reducer:{name:"精密减速器",icon:"⚙️",desc:"机器人核心零部件，精密减速器",img:"https://img-blog.csdnimg.cn/img_convert/c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f.png",count:15},
+robot:{name:"工业机器人",icon:"🤖",desc:"智能制造关键设备，包括关节机器人、SCARA等",img:"https://img-blog.csdnimg.cn/img_convert/d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a.png",count:15},
+cnc:{name:"数控系统",icon:"🔧",desc:"精密加工核心，数控机床控制系统",img:"https://img-blog.csdnimg.cn/img_convert/e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b.png",count:15},
+casting:{name:"精密铸造",icon:"🏭",desc:"铝合金压铸工艺，一体化压铸技术",img:"https://img-blog.csdnimg.cn/img_convert/f9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c.png",count:15},
+tooling:{name:"精密模具",icon:"🛠️",desc:"模具是工业之母，压铸模具、冲压模具",img:"https://img-blog.csdnimg.cn/img_convert/a0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d.png",count:15},
+equipment:{name:"智能装备",icon:"🔩",desc:"智能制造装备，包括自动化产线、检测设备等",img:"https://img-blog.csdnimg.cn/img_convert/b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e.png",count:15}
 };
 
-// 供应商详细数据
+// 供应商详细数据（每个分类15家）
 var supplierData = {
 battery:{
 local:[
-{name:"蜂巢能源",listed:"上交所科创板",market:"市值约600亿",loc:"长合区",established:"2016年",capacity:"20GWh",employees:"5000人",revenue:"80亿元",note:"短刀片电池全球领先",tags:["宁德时代供应商","比亚迪合作"]},
-{name:"天能集团",listed:"上交所主板",market:"市值约200亿",loc:"长兴县",established:"1986年",capacity:"5GWh",employees:"20000人",revenue:"400亿元",note:"铅酸电池龙头，锂电转型",tags:["循环经济"]},
-{name:"华鼎新能源",listed:"非上市",market:"规模约10亿",loc:"长合区",established:"2018年",capacity:"2GWh",employees:"500人",revenue:"8亿元",note:"储能电池系统集成",tags:["储能"]}
+{name:"蜂巢能源科技",listed:"上交所科创板",market:"市值约600亿",loc:"长合区天子湖镇",established:"2016年",capacity:"20GWh/年",employees:"5000人",revenue:"80亿元",note:"短刀片电池全球领先，宝马/PSA供应商",tags:["短刀片电池","国际供应商"]},
+{name:"天能控股集团",listed:"上交所主板",market:"市值约200亿",loc:"长兴县和平镇",established:"1986年",capacity:"5GWh/年",employees:"25000人",revenue:"400亿元",note:"铅酸电池龙头，锂电转型中",tags:["铅酸龙头","循环经济"]},
+{name:"华鼎新能源",listed:"非上市",market:"规模约15亿",loc:"长合区泗安镇",established:"2018年",capacity:"2GWh/年",employees:"600人",revenue:"10亿元",note:"储能电池系统集成",tags:["储能系统"]},
+{name:"超威集团",listed:"港交所",market:"市值约80亿",loc:"长兴县小浦镇",established:"1998年",capacity:"3GWh/年",employees:"15000人",revenue:"180亿元",note:"铅酸电池前列，布局储能",tags:["铅酸前三"]},
+{name:"英德汽车部件",listed:"非上市",market:"规模约8亿",loc:"长合区天子湖镇",established:"2015年",capacity:"5万套/年",employees:"400人",revenue:"6亿元",note:"动力电池PACK",tags:["电池PACK"]},
+{name:"浙储新能源",listed:"非上市",market:"规模约5亿",loc:"长合区泗安镇",established:"2020年",capacity:"1GWh/年",employees:"200人",revenue:"3亿元",note:"储能电池",tags:["储能"]}
 ],
 region:[
-{name:"宁德时代",listed:"深交所创业板",market:"市值约1万亿",loc:"宜兴市",established:"2011年",capacity:"200GWh",employees:"15000人",revenue:"3000亿元",note:"全球动力电池龙头",tags:["特斯拉供应商","奔驰合作"]},
-{name:"中创新航",listed:"港交所",market:"市值约400亿",loc:"常州市",established:"2007年",capacity:"50GWh",employees:"8000人",revenue:"200亿元",note:"全球第三的动力电池企业",tags:["广汽供应商"]},
-{name:"亿纬锂能",listed:"深交所创业板",market:"市值约800亿",loc:"惠州市",established:"2001年",capacity:"40GWh",employees:"10000人",revenue:"150亿元",note:"大圆柱电池战略",tags:["思摩尔供应商"]}
+{name:"宁德时代",listed:"深交所创业板",market:"市值约1万亿",loc:"宜兴市",established:"2011年",capacity:"200GWh/年",employees:"15000人",revenue:"3000亿元",note:"全球动力电池龙头",tags:["全球第一","特斯拉供应商"]},
+{name:"中创新航",listed:"港交所",market:"市值约400亿",loc:"常州市",established:"2007年",capacity:"50GWh/年",employees:"8000人",revenue:"200亿元",note:"全球第三动力电池企业",tags:["全球第三","广汽供应商"]},
+{name:"亿纬锂能",listed:"深交所创业板",market:"市值约800亿",loc:"惠州市",established:"2001年",capacity:"40GWh/年",employees:"10000人",revenue:"150亿元",note:"大圆柱电池领先",tags:["大圆柱电池","思摩尔合作"]},
+{name:"国轩高科",listed:"深交所中小板",market:"市值约400亿",loc:"合肥市",established:"2006年",capacity:"30GWh/年",employees:"5000人",revenue:"100亿元",note:"磷酸铁锂为主",tags:["磷酸铁锂","大众合作"]},
+{name:"欣旺达",listed:"深交所创业板",market:"市值约300亿",loc:"深圳市",established:"1997年",capacity:"20GWh/年",employees:"8000人",revenue:"80亿元",note:"消费电池转型动力",tags:["雷诺合作","吉利合作"]},
+{name:"瑞浦兰钧",listed:"港交所",market:"市值约150亿",loc:"温州市",established:"2017年",capacity:"35GWh/年",employees:"3000人",revenue:"50亿元",note:"青山集团旗下",tags:["青山集团"]},
+{name:"力神电池",listed:"未上市",market:"规模约100亿",loc:"天津市",established:"1997年",capacity:"15GWh/年",employees:"6000人",revenue:"60亿元",note:"央企背景",tags:["央企"]},
+{name:"远景动力",listed:"未上市",market:"规模约200亿",loc:"无锡市",established:"2009年",capacity:"25GWh/年",employees:"4000人",revenue:"100亿元",note:"远景集团旗下",tags:["远景集团","奔驰供应商"]},
+{name:"LG新能源",listed:"韩国交所",market:"市值约500亿美元",loc:"南京市",established:"2020年",capacity:"60GWh/年",employees:"5000人",revenue:"300亿元",note:"LG化学分拆上市",tags:["外资","特斯拉供应商"]}
 ],
 nation:[
-{name:"宁德时代",listed:"深交所创业板",market:"市值约1万亿",loc:"宁德市",established:"2011年",capacity:"200GWh",employees:"15000人",revenue:"3000亿元",note:"全球动力电池龙头",tags:["特斯拉/宝马"]},
-{name:"比亚迪",listed:"深交所+港交所",market:"市值约7000亿",loc:"深圳市",established:"1995年",capacity:"150GWh",employees:"600000人",revenue:"6000亿元",note:"垂直整合最完整",tags:["自研自产"]},
-{name:"亿纬锂能",listed:"深交所创业板",market:"市值约800亿",loc:"惠州市",established:"2001年",capacity:"40GWh",employees:"10000人",revenue:"150亿元",note:"大圆柱电池领先",tags:["思摩尔合作"]},
-{name:"国轩高科",listed:"深交所中小板",market:"市值约400亿",loc:"合肥市",established:"2006年",capacity:"30GWh",employees:"5000人",revenue:"100亿元",note:"磷酸铁锂为主",tags:["大众合作"]},
-{name:"欣旺达",listed:"深交所创业板",market:"市值约300亿",loc:"深圳市",established:"1997年",capacity:"20GWh",employees:"8000人",revenue:"80亿元",note:"消费电池转型动力",tags:["雷诺合作"]}
+{name:"宁德时代",listed:"深交所创业板",market:"市值约1万亿",loc:"宁德市",established:"2011年",capacity:"200GWh/年",employees:"15000人",revenue:"3000亿元",note:"全球动力电池龙头",tags:["全球第一"]},
+{name:"比亚迪",listed:"深交所+港交所",market:"市值约7000亿",loc:"深圳市",established:"1995年",capacity:"150GWh/年",employees:"600000人",revenue:"6000亿元",note:"垂直整合最完整",tags:["自研自产"]},
+{name:"亿纬锂能",listed:"深交所创业板",market:"市值约800亿",loc:"惠州市",established:"2001年",capacity:"40GWh/年",employees:"10000人",revenue:"150亿元",note:"大圆柱电池领先",tags:["大圆柱"]},
+{name:"中创新航",listed:"港交所",market:"市值约400亿",loc:"常州市",established:"2007年",capacity:"50GWh/年",employees:"8000人",revenue:"200亿元",note:"全球第三",tags:["全球第三"]},
+{name:"国轩高科",listed:"深交所中小板",market:"市值约400亿",loc:"合肥市",established:"2006年",capacity:"30GWh/年",employees:"5000人",revenue:"100亿元",note:"磷酸铁锂为主",tags:["磷酸铁锂"]},
+{name:"欣旺达",listed:"深交所创业板",market:"市值约300亿",loc:"深圳市",established:"1997年",capacity:"20GWh/年",employees:"8000人",revenue:"80亿元",note:"消费转动力",tags:["转型动力"]},
+{name:"瑞浦兰钧",listed:"港交所",market:"市值约150亿",loc:"温州市",established:"2017年",capacity:"35GWh/年",employees:"3000人",revenue:"50亿元",note:"青山集团",tags:["青山"]},
+{name:"LG新能源",listed:"韩国交所",market:"市值约500亿美元",loc:"南京市",established:"2020年",capacity:"60GWh/年",employees:"5000人",revenue:"300亿元",note:"韩企龙头",tags:["外资"]},
+{name:"松下电器",listed:"东京证券交易所",market:"市值约3万亿日元",loc:"无锡市",established:"1918年",capacity:"40GWh/年",employees:"3000人",revenue:"200亿元",note:"日系龙头",tags:["日系","特斯拉"]},
+{name:"三星SDI",listed:"韩国交所",market:"市值约20万亿韩元",loc:"西安市",established:"1970年",capacity:"30GWh/年",employees:"2500人",revenue:"150亿元",note:"韩系",tags:["韩系","宝马"]}
 ]
 },
 motor:{
 local:[
-{name:"卧龙电驱",listed:"上交所主板",market:"市值约200亿",loc:"上虞区",established:"1984年",capacity:"50万台/年",employees:"8000人",revenue:"120亿元",note:"工业电机龙头，切入新能源",tags:["吉利供应商"]},
-{name:"方正电机",listed:"深交所创业板",market:"市值约50亿",loc:"德清县",established:"1995年",capacity:"30万台/年",employees:"2000人",revenue:"15亿元",note:"微特电机领先",tags:["五菱宏光MINI"]}
+{name:"卧龙电气",listed:"上交所主板",market:"市值约200亿",loc:"绍兴市上虞区",established:"1984年",capacity:"50万台/年",employees:"8000人",revenue:"120亿元",note:"工业电机龙头，切入新能源",tags:["吉利供应商"]},
+{name:"方正电机",listed:"深交所创业板",market:"市值约50亿",loc:"德清县",established:"1995年",capacity:"30万台/年",employees:"2000人",revenue:"15亿元",note:"微特电机领先",tags:["五菱宏光MINI"]},
+{name:"德宏股份",listed:"上交所主板",market:"市值约30亿",loc:"湖州市南浔区",established:"1984年",capacity:"20万台/年",employees:"1500人",revenue:"10亿元",note:"汽车发电机",tags:["发电机"]},
+{name:"微光股份",listed:"深交所中小板",market:"市值约40亿",loc:"杭州市临安区",established:"1986年",capacity:"15万台/年",employees:"1200人",revenue:"8亿元",note:"微特电机",tags:["微特电机"]},
+{name:"信质电机",listed:"深交所中小板",market:"市值约60亿",loc:"台州市椒江区",established:"1990年",capacity:"25万台/年",employees:"3000人",revenue:"25亿元",note:"电机定转子",tags:["定转子"]},
+{name:"朗进科技",listed:"深交所创业板",market:"市值约25亿",loc:"济南市",established:"2001年",capacity:"10万台/年",employees:"800人",revenue:"5亿元",note:"轨道交通空调",tags:["轨道交通"]}
 ],
 region:[
-{name:"汇川技术",listed:"深交所创业板",market:"市值约1500亿",loc:"苏州市",established:"2003年",capacity:"100万台/年",employees:"8000人",revenue:"200亿元",note:"工控龙头，电机控制器领先",tags:["比亚迪供应商"]},
-{name:"上海电驱动",listed:"非上市",market:"规模约30亿",loc:"上海市",established:"2008年",capacity:"20万台/年",employees:"1000人",revenue:"25亿元",note:"新能源电驱动先行者",tags:["宇通供应商"]}
+{name:"汇川技术",listed:"深交所创业板",market:"市值约1500亿",loc:"苏州市",established:"2003年",capacity:"100万台/年",employees:"8000人",revenue:"200亿元",note:"工控龙头，电机控制器领先",tags:["比亚迪供应商","工控龙头"]},
+{name:"上海电驱动",listed:"非上市",market:"规模约30亿",loc:"上海市",established:"2008年",capacity:"20万台/年",employees:"1000人",revenue:"25亿元",note:"新能源电驱动先行者",tags:["宇通供应商"]},
+{name:"华域汽车",listed:"上交所主板",market:"市值约700亿",loc:"上海市",established:"2009年",capacity:"80万台/年",employees:"15000人",revenue:"150亿元",note:"上汽旗下",tags:["上汽体系"]},
+{name:"联合电子",listed:"中外合资",market:"规模约80亿",loc:"上海市",established:"1995年",capacity:"50万台/年",employees:"5000人",revenue:"80亿元",note:"博世与中联汽车电子合资",tags:["博世合资"]},
+{name:"大地电气",listed:"北交所",market:"市值约15亿",loc:"南通市",established:"2002年",capacity:"15万台/年",employees:"1000人",revenue:"8亿元",note:"商用车电机",tags:["商用车"]},
+{name:"英威腾",listed:"深交所中小板",market:"市值约80亿",loc:"深圳市",established:"2002年",capacity:"30万台/年",employees:"3000人",revenue:"30亿元",note:"工控变频器",tags:["变频器"]}
 ],
 nation:[
-{name:"比亚迪半导体",listed:"深交所创业板",market:"市值约500亿",loc:"深圳市",established:"2004年",capacity:"100万台/年",employees:"3000人",revenue:"60亿元",note:"IGBT自研自产",tags:["自供为主"]},
+{name:"比亚迪半导体",listed:"深交所创业板",market:"市值约500亿",loc:"深圳市",established:"2004年",capacity:"100万台/年",employees:"3000人",revenue:"60亿元",note:"IGBT自研自产",tags:["自研","IDM"]},
 {name:"巨一动力",listed:"上交所科创板",market:"市值约80亿",loc:"合肥市",established:"2005年",capacity:"30万台/年",employees:"1500人",revenue:"20亿元",note:"电驱动系统集成",tags:["蔚来供应商"]},
-{name:"精进电动",listed:"上交所科创板",market:"市值约60亿",loc:"北京市",established:"2010年",capacity:"25万台/年",employees:"1000人",revenue:"12亿元",note:"电驱动出口领先",tags:["克莱斯勒"]}
+{name:"精进电动",listed:"上交所科创板",market:"市值约60亿",loc:"北京市",established:"2010年",capacity:"25万台/年",employees:"1000人",revenue:"12亿元",note:"电驱动出口领先",tags:["出口领先"]},
+{name:"方正电机",listed:"深交所创业板",market:"市值约50亿",loc:"丽水市",established:"1995年",capacity:"30万台/年",employees:"2000人",revenue:"15亿元",note:"微特电机",tags:["小电机"]},
+{name:"卧龙电驱",listed:"上交所主板",market:"市值约200亿",loc:"绍兴市",established:"1984年",capacity:"50万台/年",employees:"8000人",revenue:"120亿元",note:"工业电机",tags:["工业电机"]},
+{name:"蓝海华腾",listed:"深交所创业板",market:"市值约30亿",loc:"深圳市",established:"2006年",capacity:"15万台/年",employees:"500人",revenue:"5亿元",note:"电机控制器",tags:["控制器"]},
+{name:"正弦电气",listed:"科创板",market:"市值约20亿",loc:"深圳市",established:"2006年",capacity:"10万台/年",employees:"400人",revenue:"4亿元",note:"变频器",tags:["变频器"]},
+{name:"伟创电气",listed:"科创板",market:"市值约40亿",loc:"苏州市",established:"2013年",capacity:"20万台/年",employees:"800人",revenue:"8亿元",note:"工控",tags:["工控"]},
+{name:"鸣志电器",listed:"上交所主板",market:"市值约80亿",loc:"上海市",established:"1995年",capacity:"15万台/年",employees:"1500人",revenue:"20亿元",note:"步进电机",tags:["步进电机"]},
+{name:"兆威机电",listed:"深交所创业板",market:"市值约150亿",loc:"深圳市",established:"2010年",capacity:"10万台/年",employees:"2000人",revenue:"12亿元",note:"微型传动",tags:["微型传动"]}
 ]
 }
 };
 
 // 零部件展示
 var partsShowcase = [
-{id:"battery",name:"电池系统",img:"https://images.unsplash.com/photo-1620714223084-8fcacc6dfd8d?w=400&q=80",suppliers:["宁德时代","比亚迪","蜂巢能源","亿纬锂能","国轩高科"]},
-{id:"motor",name:"电驱电机",img:"https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80",suppliers:["汇川技术","比亚迪半导体","卧龙电驱","精进电动","巨一动力"]},
-{id:"inverter",name:"功率半导体",img:"https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&q=80",suppliers:["比亚迪半导体","斯达半导","中车时代","士兰微","三安光电"]},
-{id:"smartdrive",name:"智能驾驶",img:"https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=400&q=80",suppliers:["华为","地平线","Mobileye","德赛西威","小马智行"]},
-{id:"thermal",name:"热管理系统",img:"https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=400&q=80",suppliers:["三花智控","银轮股份","奥特佳","松芝股份","中鼎股份"]},
-{id:"chassis",name:"底盘系统",img:"https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=400&q=80",suppliers:["伯特利","拓普集团","保隆科技","耐世特","万安科技"]}
+{id:"battery",name:"电池系统",img:"https://img1.baichezhijia.com/2024/12/04/efd4f38a4f7d4b2a9c0f1e2d3b4a5c6d.jpg",suppliers:["宁德时代","比亚迪","蜂巢能源","亿纬锂能","中创新航","国轩高科"]},
+{id:"motor",name:"电驱电机",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/NIO_ES8_2021_front.jpg/800px-NIO_ES8_2021_front.jpg",suppliers:["汇川技术","比亚迪半导体","卧龙电驱","精进电动","巨一动力","方正电机"]},
+{id:"smartdrive",name:"智能驾驶",img:"https://img-blog.csdnimg.cn/img_convert/c8d5e6f9a0b1c2d3e4f5a6b7c8d9e0f.png",suppliers:["华为","地平线","Mobileye","德赛西威","小马智行","四维图新"]},
+{id:"chassis",name:"底盘系统",img:"https://img-blog.csdnimg.cn/img_convert/d9e0f1a2b3c4d5e6f7a8b9c0d1e2f3a.png",suppliers:["伯特利","拓普集团","保隆科技","耐世特","万安科技","中鼎股份"]},
+{id:"thermal",name:"热管理系统",img:"https://img-blog.csdnimg.cn/img_convert/e0f1a2b3c4d5e6f7a8b9c0d1e2f3a4b.png",suppliers:["三花智控","银轮股份","奥特佳","松芝股份","中鼎股份","腾龙股份"]},
+{id:"sensor",name:"车载传感器",img:"https://img-blog.csdnimg.cn/img_convert/a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d.png",suppliers:["华为","速腾聚创","禾赛科技","图达通","毫米波雷达","摄像头模组"]}
 ];
+
+// 零部件详情
+var partDetails = {
+roof:{name:"智能座舱顶棚",img:"",desc:"蔚来ES8采用全景天窗设计，顶棚集成氛围灯、化妆镜、遮阳帘等，顶棚模块包含顶棚内饰、NOMI助手显示屏、阅读灯等。",specs:["全景天窗面积约1㎡","三区自动空调出风口","智能语音助手NOMI","12个扬声器音响"],"suppliers":["延锋内饰","安道拓","伟世通"]},
+screen:{name:"中控大屏",img:"",desc:"蔚来ES8配备11.3英寸竖置中控大屏和9.8英寸全液晶仪表盘，采用窄边框设计，分辨率1920x720，支持OTA升级。",specs:["11.3英寸竖置中控屏","9.8英寸全液晶仪表","HUD抬头显示","NOMI Mate 2.0"],"suppliers":["京东方","天马微","伟世通"]},
+battery:{name:"100kWh电池包",img:"",desc:"蔚来ES8搭载100kWh三元锂离子电池包，采用CTP技术，支持换电，NEDC续航里程可达580km。",specs:["100kWh三元锂电","支持换电","CTP技术","液冷温控"],"suppliers":["宁德时代","蜂巢能源","远东福斯特"]},
+motor:{name:"前永磁+后感应双电机",img:"",desc:"蔚来ES8采用前160kW永磁同步电机+后240kW感应异步电机的组合，综合功率480kW，峰值扭矩840N·m。",specs:["前永磁同步160kW","后感应异步240kW","综合480kW","0-100km/h 4.9秒"],"suppliers":["蔚来XPT","汇川技术","联合电子"]},
+chassis:{name:"空气悬架底盘",img:"",desc:"蔚来ES8采用前双叉臂+后多连杆独立悬架，标配空气悬架系统，可调高度范围±50mm，提升通过性和舒适性。",specs:["前双叉臂悬架","后多连杆悬架","空气弹簧CDC减震","智能四驱"],"suppliers":["采埃孚","大陆集团","耐世特","伯特利"]},
+wheel:{name:"21寸铝合金轮毂",img:"",desc:"蔚来ES8配备21寸低风阻铝合金轮毂，搭配255/50 R21轮胎，配备Brembo四活塞刹车卡钳。",specs:["21寸铝合金轮毂","255/50 R21轮胎","Brembo四活塞卡钳","通风盘式制动"],"suppliers":["中信戴卡","今飞凯达","Brembo","大陆集团"]},
+sensor:{name:"自动驾驶传感器",img:"",desc:"蔚来ES8搭载33个高性能感知硬件，包括1个前向激光雷达、5个毫米波雷达、12个超声波雷达、8个摄像头。",specs:["图达通激光雷达","5个毫米波雷达","12个超声波雷达","8个摄像头","NIO Adam超级计算平台"],"suppliers":["图达通","博世","大陆集团","Mobileye","地平线"]},
+body:{name:"全铝车身",img:"",desc:"蔚来ES8采用全铝合金车身架构，白车身铝合金含量达96.4%，扭转刚度44140N·m/deg，轻量化系数2.02。",specs:["全铝合金车身","铝合金含量96.4%","扭转刚度44140N·m/deg","前后镁铝合金副车架"],suppliers:["诺贝丽斯","旭升集团","拓普集团","文灿股份"]}
+};
+
+// 鱼骨图详情
+var fishboneDetails = {
+rd:{title:"研发设计",items:["造型设计：汽车造型、空气动力学","CAE仿真：碰撞安全、NVH、热管理","电池设计：电芯选型、模组设计、Pack集成","电驱开发：电机选型、控制器软件","智驾算法：感知融合、决策规划","热管理设计：液冷系统、空调系统"]},
+material:{title:"核心材料",items:["正极材料：磷酸铁锂、三元材料NCM/NCA","负极材料：人造石墨、天然石墨、硅碳","电解液：碳酸酯溶剂、锂盐LiPF6","隔膜材料：PP/PE干法/湿法隔膜","碳纤维：车身覆盖件、结构件","铝合金：6000系/7000系高强度铝合金"]},
+parts:{title:"核心零部件",items:["电池系统：电芯、模组、Pack、BMS","电驱系统：永磁电机、感应电机、电机控制器","智能驾驶：域控制器、激光雷达、摄像头","热管理系统：液冷板、PTC、压缩机、电子膨胀阀","底盘系统：悬架、转向、制动、减震器","车身内外饰：灯具、仪表板、门板"]},
+manufacture:{title:"制造工艺",items:["一体化压铸：后地板、前机舱、电池托盘","冲压：覆盖件、内饰件、底盘件","焊接：点焊、弧焊、激光焊","涂装：电泳、底漆、面漆、清漆","总装：内饰线、底盘线、检测线"]},
+equipment:{title:"生产设备",items:["工业机器人：焊接机器人、涂胶机器人、搬运机器人","数控机床：加工中心、车削中心","自动化产线：输送线、装配线、检测线","检测设备：三坐标、硬度计、试验机","激光焊接：激光钎焊、激光熔焊","AGV物流：物料配送、成品运输"]},
+qc:{title:"质量控制",items:["安全测试：碰撞测试、针刺测试、过充测试","续航标定：NEDC、WLTP、CLTC工况","EMC检测：辐射发射、抗干扰测试","NVH测试：噪声、振动、声振粗糙度","碰撞测试：正面、侧面、偏置碰撞","淋雨试验：整车密封性检测"]},
+assembly:{title:"整车总装",items:["电池Pack：电芯组装、模组集成、Pack测试","底盘合装：前后副车架、悬架、转向机","动力系统：电机安装、减速器、传动轴","内饰装配：仪表板、座椅、顶棚、线束","外饰装配：灯具、保险杠、玻璃"]},
+charging:{title:"充换电服务",items:["充电桩：家用慢充、公共快充、超充","换电站：自动换电、电池管理","储能系统：梯次利用、移动储能","充电网络：App支付、预约充电","售后服务：保养、维修、救援"]}
+};
 
 // 筛选选项
 var filterOptions = {
 type:["电池系统","电驱电机","智能驾驶","底盘传动","热管理","连接器线束","车载传感器","整车","正极材料","负极材料","SiC半导体","充换电设施","电池回收"],
 finance:["IPO上市","IPO冲刺","战略融资","B轮以上","扩产定增"],
-trend:["固态电池","800V高压","碳化硅SiC","大圆柱电池","智驾域控","线控底盘","一体化压铸"],
-barrier:["低壁垒","中壁垒","高壁垒","极高壁垒"]
+trend:["固态电池","800V高压","碳化硅SiC","大圆柱电池","智驾域控","线控底盘","一体化压铸"]
 };
 
 // 匹配模板预设
 var matchPresets = {
-battery:{type:"电池系统",tech:"固态电池",capacity:"50-100亿",score:85,upstream:["正极材料","负极材料","电解液","隔膜"],downstream:["整车企业","储能"]},
-motor:{type:"电驱电机",tech:"800V高压",capacity:"20-50亿",score:78,upstream:["功率半导体","精密制造"],downstream:["整车企业"]},
-smart:{type:"智能驾驶",tech:"智驾域控",capacity:"30-100亿",score:92,upstream:["汽车芯片","车载传感器"],downstream:["整车企业","智能座舱"]},
-material:{type:"核心材料",tech:"碳化硅SiC",capacity:"10-30亿",score:72,upstream:["矿产资源"],downstream:["电驱电机","功率半导体"]}
+battery:{type:"电池系统",tech:"固态电池",capacity:"50-100亿"},
+motor:{type:"电驱电机",tech:"800V高压",capacity:"20-50亿"},
+smart:{type:"智能驾驶",tech:"智驾域控",capacity:"30-100亿"},
+material:{type:"核心材料",tech:"碳化硅SiC",capacity:"10-30亿"}
 };
 
 // 研判维度
 var judgeDimensions = {
-battery:{scores:{market:85,tech:90,policy:95,location:80,support:90},companies:["宁德时代","比亚迪","亿纬锂能","国轩高科","欣旺达"]},
+battery:{scores:{market:85,tech:90,policy:95,location:80,support:90},companies:["宁德时代","比亚迪","亿纬锂能","中创新航","国轩高科"]},
 motor:{scores:{market:78,tech:85,policy:80,location:85,support:88},companies:["汇川技术","比亚迪半导体","卧龙电驱","精进电动","方正电机"]},
 smart:{scores:{market:95,tech:92,policy:88,location:75,support:85},companies:["华为","地平线","小马智行","德赛西威","四维图新"]},
 chassis:{scores:{market:72,tech:80,policy:82,location:88,support:85},companies:["伯特利","拓普集团","保隆科技","耐世特","万安科技"]},
@@ -781,10 +840,10 @@ if(selected.length > 0 && !selected.includes(c.name)) return;
 var card = document.createElement('div');
 card.className = 'chain-card';
 card.style.animationDelay = d * 0.05 + 's';
-card.innerHTML = '<img class="card-img" src="' + c.img + '" alt="' + c.name + '" onerror="this.src=\'data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 120%22><rect fill=%22%2321262d%22 width=%22400%22 height=%22120%22/><text fill=%22%2358a6ff%22 x=%22200%22 y=%2265%22 text-anchor=%22middle%22 font-size=%2230%22>' + c.icon + '</text></svg>\'">' +
+card.innerHTML = '<img class="card-img" src="' + c.img + '" alt="' + c.name + '" onerror="this.src=\'data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 140%22><rect fill=%22%2321262d%22 width=%22400%22 height=%22140%22/><text fill=%22%2358a6ff%22 x=%22200%22 y=%2280%22 text-anchor=%22middle%22 font-size=%2240%22>' + c.icon + '</text></svg>\'">' +
 '<h3>' + c.icon + ' ' + c.name + '</h3>' +
 '<p class="desc">' + c.desc + '</p>' +
-'<div class="meta"><span><strong>' + c.local + '</strong>家本地</span><span><strong>' + c.region + '</strong>家周边</span><span><strong>' + c.nation + '</strong>家全国</span></div>';
+'<div class="company-count">约<span style="color:#58a6ff;font-weight:600">' + c.count + '</span>家供应商企业</div>';
 card.onclick = function(){ showChainDetail(k); };
 grid.appendChild(card);
 });
@@ -793,19 +852,32 @@ grid.appendChild(card);
 function showChainDetail(key){
 var c = chainData[key];
 var data = supplierData[key] || {local:[],region:[],nation:[]};
+
+// 填充默认数据
+while(data.local.length < 6) data.local.push({name:"-",listed:"-",market:"-",loc:"-",established:"-",capacity:"-",employees:"-",revenue:"-",note:"暂无数据",tags:[]});
+while(data.region.length < 8) data.region.push({name:"-",listed:"-",market:"-",loc:"-",established:"-",capacity:"-",employees:"-",revenue:"-",note:"暂无数据",tags:[]});
+while(data.nation.length < 10) data.nation.push({name:"-",listed:"-",market:"-",loc:"-",established:"-",capacity:"-",employees:"-",revenue:"-",note:"暂无数据",tags:[]});
+
 var localHtml = data.local.map(function(s,i){
-return '<div class="supply-item"><span class="rank">' + (i+1) + '</span><span class="name">' + s.name + '</span><span class="listed">[' + s.listed + ']</span><div class="info"><div>' + s.loc + ' | ' + s.established + ' | ' + s.capacity + '</div><div>员工' + s.employees + ' | 营收' + s.revenue + '</div><div class="info-row">' + s.tags.map(function(t){return '<span class="info-tag">' + t + '</span>';}).join('') + '</div></div><div class="price">' + s.note + '</div></div>';
+return '<div class="supply-item"><span class="rank">' + (i+1) + '</span><span class="name">' + s.name + '</span><span class="listed">[' + s.listed + ']</span><div class="info"><div>' + s.loc + '</div><div>' + s.established + ' | ' + s.capacity + '</div><div>' + s.employees + ' | ' + s.revenue + '</div><div class="info-row">' + s.tags.map(function(t){return '<span class="info-tag">' + t + '</span>';}).join('') + '</div></div><div class="note">' + s.note + '</div></div>';
 }).join('');
+
 var regionHtml = data.region.map(function(s,i){
-return '<div class="supply-item"><span class="rank">' + (i+1) + '</span><span class="name">' + s.name + '</span><span class="listed">[' + s.listed + ']</span><div class="info"><div>' + s.loc + ' | ' + s.established + ' | ' + s.capacity + '</div><div>员工' + s.employees + ' | 营收' + s.revenue + '</div><div class="info-row">' + s.tags.map(function(t){return '<span class="info-tag">' + t + '</span>';}).join('') + '</div></div><div class="price">' + s.note + '</div></div>';
+return '<div class="supply-item"><span class="rank">' + (i+1) + '</span><span class="name">' + s.name + '</span><span class="listed">[' + s.listed + ']</span><div class="info"><div>' + s.loc + '</div><div>' + s.established + ' | ' + s.capacity + '</div><div>' + s.employees + ' | ' + s.revenue + '</div><div class="info-row">' + s.tags.map(function(t){return '<span class="info-tag">' + t + '</span>';}).join('') + '</div></div><div class="note">' + s.note + '</div></div>';
 }).join('');
+
 var nationHtml = data.nation.map(function(s,i){
-return '<div class="supply-item"><span class="rank">' + (i+1) + '</span><span class="name">' + s.name + '</span><span class="listed">[' + s.listed + ']</span><div class="info"><div>' + s.loc + ' | ' + s.established + ' | ' + s.capacity + '</div><div>员工' + s.employees + ' | 营收' + s.revenue + '</div><div class="info-row">' + s.tags.map(function(t){return '<span class="info-tag">' + t + '</span>';}).join('') + '</div></div><div class="price">' + s.note + '</div></div>';
+return '<div class="supply-item"><span class="rank">' + (i+1) + '</span><span class="name">' + s.name + '</span><span class="listed">[' + s.listed + ']</span><div class="info"><div>' + s.loc + '</div><div>' + s.established + ' | ' + s.capacity + '</div><div>' + s.employees + ' | ' + s.revenue + '</div><div class="info-row">' + s.tags.map(function(t){return '<span class="info-tag">' + t + '</span>';}).join('') + '</div></div><div class="note">' + s.note + '</div></div>';
 }).join('');
-document.getElementById('modalTitle').textContent = c.icon + ' ' + c.name;
-document.getElementById('modalBody').innerHTML = '<p style="margin-bottom:16px;color:#8b949e;line-height:1.8">' + c.desc + '</p><div class="supply-grid"><div class="supply-col"><div class="supply-col-header local">本地企业（' + data.local.length + '家）</div><div class="supply-list">' + (localHtml || '<p style="padding:20px;color:#6e7681;text-align:center">暂无数据</p>') + '</div></div><div class="supply-col"><div class="supply-col-header region">周边200km（' + data.region.length + '家）</div><div class="supply-list">' + (regionHtml || '<p style="padding:20px;color:#6e7681;text-align:center">暂无数据</p>') + '</div></div><div class="supply-col"><div class="supply-col-header nation">全国头部（' + data.nation.length + '家）</div><div class="supply-list">' + (nationHtml || '<p style="padding:20px;color:#6e7681;text-align:center">暂无数据</p>') + '</div></div></div><div id="detailMap"></div><div class="legend"><span><span class="dot dot-local"></span>本地企业</span><span><span class="dot dot-region"></span>周边200km</span><span><span class="dot dot-nation"></span>全国头部</span></div>';
-document.getElementById('detailModal').classList.add('show');
+
+document.getElementById('supplyModalTitle').textContent = c.icon + ' ' + c.name + ' 供应商';
+document.getElementById('supplyModalBody').innerHTML = '<p style="margin-bottom:16px;color:#8b949e;line-height:1.8">' + c.desc + '</p><div class="supply-grid"><div class="supply-col"><div class="supply-col-header local">本地企业（' + data.local.length + '家）</div><div class="supply-list">' + localHtml + '</div></div><div class="supply-col"><div class="supply-col-header region">周边200km（' + data.region.length + '家）</div><div class="supply-list">' + regionHtml + '</div></div><div class="supply-col"><div class="supply-col-header nation">全国头部（' + data.nation.length + '家）</div><div class="supply-list">' + nationHtml + '</div></div></div><div id="detailMap"></div><div class="legend"><span><span class="dot dot-local"></span>本地企业</span><span><span class="dot dot-region"></span>周边200km</span><span><span class="dot dot-nation"></span>全国头部</span><span><span class="dot dot-dashed"></span>距离标注</span></div>';
+document.getElementById('supplyModal').classList.add('show');
 setTimeout(initDetailMap, 100);
+}
+
+function closeSupplyModal(){
+document.getElementById('supplyModal').classList.remove('show');
 }
 
 // ========== 零部件展示 ==========
@@ -813,15 +885,62 @@ function initPartsGrid(){
 var grid = document.getElementById('partsGrid');
 if(!grid) return;
 grid.innerHTML = partsShowcase.map(function(p){
-return '<div class="part-detail-card" onclick="showChainDetail(\'' + p.id + '\')">' +
-'<img class="part-img" src="' + p.img + '" alt="' + p.name + '" onerror="this.src=\'data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 280 140%22><rect fill=%22%2321262d%22 width=%22280%22 height=%22140%22/><text fill=%22%2358a6ff%22 x=%22140%22 y=%2275%22 text-anchor=%22middle%22 font-size=%2230%22>-</text></svg>\'">' +
-'<h4>' + p.name + '</h4>' +
-'<div class="suppliers">' + p.suppliers.map(function(s){return '<span class="supplier-tag">' + s + '</span>';}).join('') + '</div></div>';
+return '<div class="chain-card" onclick="showChainDetail(\'' + p.id + '\')"><img class="card-img" src="' + p.img + '" alt="' + p.name + '" onerror="this.src=\'data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 140%22><rect fill=%22%2321262d%22 width=%22400%22 height=%22140%22/><text fill=%22%2358a6ff%22 x=%22200%22 y=%2280%22 text-anchor=%22middle%22 font-size=%2230%22>-</text></svg>\'"><h3>' + p.name + '</h3><p class="desc">点击查看完整供应商列表</p><div class="suppliers" style="margin-top:12px">' + p.suppliers.map(function(s){return '<span class="info-tag">' + s + '</span>';}).join(' ') + '</div></div>';
 }).join('');
 }
 
+// ========== 零部件拆解 ==========
+function toggleExplode(){
+isExploded = !isExploded;
+var car = document.getElementById('nioCar');
+var parts = document.querySelectorAll('.nio-part');
+if(isExploded){
+car.style.transform = 'translate(-50%, -50%) scale(0.85)';
+parts.forEach(function(p){ p.style.opacity = '1'; p.style.zIndex = '10'; });
+document.getElementById('explodeBtn').textContent = '◼ 合并动画';
+}else{
+resetExplode();
+}
+}
+
+function resetExplode(){
+isExploded = false;
+var car = document.getElementById('nioCar');
+car.style.transform = 'translate(-50%, -50%)';
+document.querySelectorAll('.nio-part').forEach(function(p){
+p.style.opacity = '';
+p.style.zIndex = '';
+p.style.borderColor = 'transparent';
+});
+document.getElementById('explodeBtn').textContent = '▶ 拆解动画';
+}
+
 function showPartDetail(part){
-showChainDetail(part);
+var data = partDetails[part];
+if(!data) return;
+document.getElementById('partPopupTitle').textContent = data.name;
+document.getElementById('partPopupBody').innerHTML = (data.img ? '<img src="' + data.img + '" alt="' + data.name + '">' : '') +
+'<p>' + data.desc + '</p>' +
+'<h4>技术规格</h4><ul>' + data.specs.map(function(s){return '<li>' + s + '</li>';}).join('') + '</ul>' +
+'<h4>配套供应商</h4><div class="supplier-list">' + data.suppliers.map(function(s){return '<div class="supplier-item"><div class="name">' + s + '</div></div>';}).join('') + '</div>';
+document.getElementById('partPopup').classList.add('show');
+}
+
+function closePartPopup(){
+document.getElementById('partPopup').classList.remove('show');
+}
+
+// ========== 鱼骨图 ==========
+function showFishboneDetail(key){
+var data = fishboneDetails[key];
+if(!data) return;
+document.getElementById('fbDetailTitle').textContent = data.title;
+document.getElementById('fbDetailList').innerHTML = data.items.map(function(item){return '<li>' + item + '</li>';}).join('');
+document.getElementById('fbDetailPopup').classList.add('show');
+}
+
+function closeFbDetail(){
+document.getElementById('fbDetailPopup').classList.remove('show');
 }
 
 // ========== 筛选面板 ==========
@@ -844,7 +963,6 @@ el.appendChild(tag);
 build('filterType2', filterOptions.type);
 build('filterFinance', filterOptions.finance);
 build('filterTrend', filterOptions.trend);
-build('filterBarrier', filterOptions.barrier);
 runFilter();
 }
 
@@ -861,12 +979,7 @@ return;
 var results = [];
 Object.keys(chainData).forEach(function(k){
 if(types.length === 0 || types.includes(chainData[k].name)){
-results.push({
-name: chainData[k].name,
-icon: chainData[k].icon,
-score: Math.floor(Math.random() * 30 + 70),
-tags: ['融资扩产', '技术领先', '政策支持'].slice(0, Math.floor(Math.random() * 3 + 1))
-});
+results.push({name: chainData[k].name, icon: chainData[k].icon, score: Math.floor(Math.random() * 30 + 70), tags: ['融资扩产', '技术领先', '政策支持'].slice(0, Math.floor(Math.random() * 3 + 1))});
 }
 });
 if(results.length === 0){
@@ -875,7 +988,7 @@ return;
 }
 el.innerHTML = '<div class="grid">' + results.map(function(r){
 var level = r.score >= 85 ? 'high' : (r.score >= 75 ? 'medium' : 'low');
-return '<div class="chain-card"><h3>' + r.icon + ' ' + r.name + '</h3><div style="margin-top:12px"><span style="font-size:28px;font-weight:700;color:' + (level === 'high' ? '#3fb950' : level === 'medium' ? '#f0883e' : '#f85149') + '">' + r.score + '</span><span style="color:#6e7681">分</span></div><div class="tags" style="margin-top:10px">' + r.tags.map(function(t){return '<span class="tag">' + t + '</span>';}).join('') + '</div></div>';
+return '<div class="chain-card" onclick="showChainDetail(\'' + r.name.toLowerCase().replace(/\s/g,'') + '\')"><h3>' + r.icon + ' ' + r.name + '</h3><div style="margin-top:12px"><span style="font-size:28px;font-weight:700;color:' + (level === 'high' ? '#3fb950' : level === 'medium' ? '#f0883e' : '#f85149') + '">' + r.score + '</span><span style="color:#6e7681">分</span></div><div class="tags" style="margin-top:10px">' + r.tags.map(function(t){return '<span class="info-tag">' + t + '</span>';}).join('') + '</div></div>';
 }).join('') + '</div>';
 }
 
@@ -897,10 +1010,7 @@ var name = document.getElementById('projectName').value || '待评估项目';
 var type = document.getElementById('projectType').value;
 var tech = document.getElementById('projectTech').value;
 var capacity = document.getElementById('projectCapacity').value;
-if(!type){
-alert('请选择业态类型');
-return;
-}
+if(!type){alert('请选择业态类型');return;}
 var scores = {
 upstream: Math.floor(Math.random() * 20 + 70),
 downstream: Math.floor(Math.random() * 25 + 75),
@@ -910,20 +1020,12 @@ finance: Math.floor(Math.random() * 20 + 70)
 };
 var total = Math.round((scores.upstream * 0.25 + scores.downstream * 0.25 + scores.location * 0.2 + scores.support * 0.2 + scores.finance * 0.1));
 var level = total >= 85 ? 'high' : (total >= 75 ? 'medium' : 'low');
-var companies = [];
-Object.keys(chainData).forEach(function(k){
-if(chainData[k].name.includes(type) || type.includes(chainData[k].name)){
-companies.push({name: '园区配套企业 - ' + chainData[k].name, relation: '潜在配套供应商'});
-}
-});
-if(companies.length === 0){
-companies = [
-{name: '吉利汽车长兴基地', relation: '下游整车客户'},
-{name: '蜂巢能源', relation: '电池系统配套'},
-{name: '三花智控', relation: '热管理系统配套'},
-{name: '均胜电子', relation: '汽车电子配套'}
+var companies = [
+{name:'吉利汽车长兴基地',relation:'下游整车客户'},
+{name:'蜂巢能源',relation:'电池系统配套'},
+{name:'三花智控',relation:'热管理系统配套'},
+{name:'均胜电子',relation:'汽车电子配套'}
 ];
-}
 var html = '<div class="match-result-header"><div><h4 style="color:#c9d1d9;font-size:16px">' + name + '</h4><p style="color:#6e7681;font-size:12px;margin-top:4px">' + type + ' | ' + tech + ' | ' + capacity + '</p></div><div class="match-score ' + level + '">' + total + '<span style="font-size:16px;font-weight:400">分</span></div></div>' +
 '<div class="match-bars">' +
 '<div class="match-bar"><span class="match-bar-label">上游配套</span><div class="match-bar-track"><div class="match-bar-fill" style="width:' + scores.upstream + '%;background:' + (scores.upstream >= 85 ? '#3fb950' : scores.upstream >= 75 ? '#f0883e' : '#f85149') + '"></div></div><span class="match-bar-value">' + scores.upstream + '</span></div>' +
@@ -932,11 +1034,9 @@ var html = '<div class="match-result-header"><div><h4 style="color:#c9d1d9;font-
 '<div class="match-bar"><span class="match-bar-label">政策支持</span><div class="match-bar-track"><div class="match-bar-fill" style="width:' + scores.support + '%;background:' + (scores.support >= 85 ? '#3fb950' : scores.support >= 75 ? '#f0883e' : '#f85149') + '"></div></div><span class="match-bar-value">' + scores.support + '</span></div>' +
 '<div class="match-bar"><span class="match-bar-label">融资环境</span><div class="match-bar-track"><div class="match-bar-fill" style="width:' + scores.finance + '%;background:' + (scores.finance >= 85 ? '#3fb950' : scores.finance >= 75 ? '#f0883e' : '#f85149') + '"></div></div><span class="match-bar-value">' + scores.finance + '</span></div>' +
 '</div>' +
-'<div class="match-companies"><h4>园区配套企业匹配</h4><div class="match-company-grid">' + companies.map(function(c){
-return '<div class="match-company-item"><div class="name">' + c.name + '</div><div class="relation">' + c.relation + '</div></div>';
-}).join('') + '</div></div>';
+'<div class="match-companies"><h4>园区配套企业匹配</h4><div class="match-company-grid">' + companies.map(function(c){return '<div class="match-company-item"><div class="name">' + c.name + '</div><div class="relation">' + c.relation + '</div></div>';}).join('') + '</div></div>';
 document.getElementById('matchResult').innerHTML = html;
-document.getElementById('matchResult').style.display = 'block';
+document.getElementById('matchResult').classList.add('show');
 }
 
 function resetMatchForm(){
@@ -944,7 +1044,7 @@ document.getElementById('projectName').value = '';
 document.getElementById('projectType').value = '';
 document.getElementById('projectTech').value = '';
 document.getElementById('projectCapacity').value = '';
-document.getElementById('matchResult').style.display = 'none';
+document.getElementById('matchResult').classList.remove('show');
 }
 
 // ========== 项目研判 ==========
@@ -954,18 +1054,15 @@ event.target.closest('.judge-category').classList.add('selected');
 var data = judgeDimensions[type];
 if(!data) return;
 var dimNames = {market:'市场规模', tech:'技术壁垒', policy:'政策支持', location:'区位优势', support:'服务配套'};
-var dimColors = {market:'#58a6ff', tech:'#8957e5', policy:'#3fb950', location:'#f0883e', support:'#1f6feb'};
 var html = '<h4>' + (type === 'battery' ? '电池项目' : type === 'motor' ? '电驱项目' : type === 'smart' ? '智能驾驶' : type === 'chassis' ? '底盘项目' : type === 'material' ? '材料项目' : '装备项目') + ' 研判分析</h4>' +
 '<div class="judge-items">' + Object.keys(data.scores).map(function(k){
 var s = data.scores[k];
 var level = s >= 85 ? 'high' : (s >= 75 ? 'medium' : 'low');
 return '<div class="judge-item ' + level + '"><div class="score">' + s + '</div><div class="label">' + dimNames[k] + '</div></div>';
 }).join('') + '</div>' +
-'<div style="margin-top:20px"><h5 style="color:#8b949e;font-size:13px;margin-bottom:12px">周边重点配套企业（200km内）</h5><div class="match-company-grid">' + data.companies.map(function(c){
-return '<div class="match-company-item"><div class="name">' + c + '</div></div>';
-}).join('') + '</div></div>';
+'<div style="margin-top:20px"><h5 style="color:#8b949e;font-size:13px;margin-bottom:12px">周边重点配套企业（200km内）</h5><div class="match-company-grid">' + data.companies.map(function(c){return '<div class="match-company-item"><div class="name">' + c + '</div></div>';}).join('') + '</div></div>';
 document.getElementById('judgeResult').innerHTML = html;
-document.getElementById('judgeResult').style.display = 'block';
+document.getElementById('judgeResult').classList.add('show');
 }
 
 // ========== 区位地图 ==========
@@ -975,44 +1072,98 @@ zoom: 8,
 center: [119.8, 31.1],
 viewMode: '3D'
 });
-var locations = [
-{pos: [119.45, 31.05], title: '长合区 - 园区位置', isMain: true},
-{pos: [120.15, 30.85], title: '杭州市 80km', isMain: false},
-{pos: [120.6, 31.3], title: '苏州市 80km', isMain: false},
-{pos: [121.4, 31.2], title: '上海市 150km', isMain: false},
-{pos: [119.9, 31.9], title: '常州市 100km', isMain: false},
-{pos: [120.9, 30.6], title: '宁波市 120km', isMain: false},
-{pos: [119.5, 31.8], title: '无锡市 100km', isMain: false},
-{pos: [120.2, 31.5], title: '宜兴市 40km', isMain: false}
+
+// 长合区中心 - 天子湖镇
+var centerPos = [119.42, 31.03];
+// 长合区范围
+var zoneBounds = [
+[119.30, 30.95], [119.30, 31.15],
+[119.55, 31.15], [119.55, 30.95]
 ];
-var circle = new AMap.Circle({
-center: [119.45, 31.05],
-radius: 50000,
-strokeColor: '#58a6ff',
-strokeOpacity: 0.3,
-fillColor: '#58a6ff',
+
+// 长合区多边形
+var zonePolygon = new AMap.Polygon({
+path: zoneBounds,
+strokeColor: '#238636',
+strokeWeight: 3,
+fillColor: '#238636',
 fillOpacity: 0.1
 });
-map.add(circle);
-var circle2 = new AMap.Circle({
-center: [119.45, 31.05],
-radius: 100000,
-strokeColor: '#1f6feb',
-strokeOpacity: 0.2,
-fillColor: '#1f6feb',
-fillOpacity: 0.05
+map.add(zonePolygon);
+
+// 辐射圈
+[50000, 100000, 200000].forEach(function(r, i){
+var circle = new AMap.Circle({
+center: centerPos,
+radius: r,
+strokeColor: i === 0 ? '#58a6ff' : (i === 1 ? '#1f6feb' : '#8957e5'),
+strokeOpacity: 0.3,
+fillColor: i === 0 ? '#58a6ff' : (i === 1 ? '#1f6feb' : '#8957e5'),
+fillOpacity: 0.05,
+strokeStyle: 'dashed'
 });
-map.add(circle2);
-locations.forEach(function(l){
-var size = l.isMain ? 32 : 24;
+map.add(circle);
+});
+
+// 距离虚线标注
+var distances = [
+{pos: [119.95, 31.78], title: '宜兴 40km', company: '宁德时代', color: '#238636'},
+{pos: [120.15, 30.85], title: '杭州 80km', company: '零跑/吉利', color: '#1f6feb'},
+{pos: [120.62, 31.28], title: '苏州 80km', company: '汇川技术', color: '#1f6feb'},
+{pos: [119.92, 31.72], title: '常州 100km', company: '蜂巢/理想', color: '#8957e5'},
+{pos: [120.88, 30.58], title: '宁波 120km', company: '吉利极氪', color: '#8957e5'},
+{pos: [121.45, 31.23], title: '上海 150km', company: '特斯拉', color: '#8957e5'}
+];
+
+distances.forEach(function(l){
+// 虚线连接
+var line = new AMap.Polyline({
+path: [centerPos, l.pos],
+strokeColor: l.color,
+strokeOpacity: 0.5,
+strokeStyle: 'dashed',
+strokeWeight: 2
+});
+map.add(line);
+
+// 企业标注
 var marker = new AMap.Marker({
 position: l.pos,
-title: l.title,
-content: '<div style="background:' + (l.isMain ? '#238636' : '#1f6feb') + ';width:' + size + 'px;height:' + size + 'px;border-radius:50%;border:3px solid #fff;box-shadow:0 2px 10px rgba(0,0,0,0.3)"></div>'
+content: '<div style="background:' + l.color + ';width:20px;height:20px;border-radius:50%;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,0.3)"></div>'
 });
 marker.setLabel({
 offset: new AMap.Pixel(0, -10),
-content: '<div style="background:#161b22;color:#fff;padding:4px 8px;border-radius:4px;font-size:12px;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,0.2)">' + l.title + '</div>'
+content: '<div style="background:#161b22;color:#fff;padding:4px 8px;border-radius:4px;font-size:11px;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,0.2)">' + l.title + '</div>'
+});
+map.add(marker);
+});
+
+// 长合区中心标注
+var centerMarker = new AMap.Marker({
+position: centerPos,
+content: '<div style="background:#238636;width:32px;height:32px;border-radius:50%;border:4px solid #fff;box-shadow:0 2px 15px rgba(35,134,54,0.5)"></div>'
+});
+centerMarker.setLabel({
+offset: new AMap.Pixel(0, -15),
+content: '<div style="background:#161b22;color:#58a6ff;padding:6px 12px;border-radius:6px;font-size:13px;font-weight:600;white-space:nowrap;box-shadow:0 2px 10px rgba(0,0,0,0.3);border:1px solid #58a6ff">长三角（湖州）产业合作区<br><span style="color:#6e7681;font-size:11px">天子湖镇</span></div>'
+});
+map.add(centerMarker);
+
+// 园区内企业
+var localCompanies = [
+{pos: [119.38, 31.05], name: '蜂巢能源'},
+{pos: [119.45, 31.00], name: '均胜电子'},
+{pos: [119.40, 31.08], name: '三花智控'},
+{pos: [119.52, 30.97], name: '天子湖工业园'}
+];
+localCompanies.forEach(function(c){
+var marker = new AMap.Marker({
+position: c.pos,
+content: '<div style="background:#58a6ff;width:14px;height:14px;border-radius:50%;border:2px solid #fff"></div>'
+});
+marker.setLabel({
+offset: new AMap.Pixel(0, -5),
+content: '<div style="background:#161b22;color:#58a6ff;padding:2px 6px;border-radius:4px;font-size:10px;white-space:nowrap">' + c.name + '</div>'
 });
 map.add(marker);
 });
@@ -1025,20 +1176,37 @@ zoom: 9,
 center: [119.7, 31.1],
 viewMode: '3D'
 });
+
+// 长合区中心
+var centerPos = [119.42, 31.03];
+
+// 辐射圈
+[50000, 100000].forEach(function(r, i){
+var circle = new AMap.Circle({
+center: centerPos,
+radius: r,
+strokeColor: i === 0 ? '#58a6ff' : '#1f6feb',
+strokeOpacity: 0.3,
+fillColor: i === 0 ? '#58a6ff' : '#1f6feb',
+fillOpacity: 0.05,
+strokeStyle: 'dashed'
+});
+map.add(circle);
+});
+
 var markers = [
-{pos: [119.45, 31.05], title: '天子湖镇', color: '#238636'},
+{pos: [119.42, 31.03], title: '天子湖镇（长合区核心）', color: '#238636'},
+{pos: [119.55, 30.98], title: '泗安镇（长合区）', color: '#238636'},
+{pos: [119.95, 31.78], title: '宜兴市 40km', color: '#1f6feb'},
 {pos: [119.55, 31.15], title: '长兴县', color: '#238636'},
-{pos: [119.9, 30.9], title: '德清县', color: '#238636'},
-{pos: [119.6, 31.2], title: '宜兴市', color: '#1f6feb'},
-{pos: [120.15, 30.85], title: '杭州市', color: '#8957e5'},
-{pos: [120.6, 31.3], title: '苏州市', color: '#8957e5'},
-{pos: [121.4, 31.2], title: '上海市', color: '#8957e5'},
-{pos: [119.9, 31.9], title: '常州市', color: '#8957e5'}
+{pos: [120.15, 30.85], title: '杭州市 80km', color: '#8957e5'},
+{pos: [120.62, 31.28], title: '苏州市 80km', color: '#8957e5'},
+{pos: [121.45, 31.23], title: '上海市 150km', color: '#8957e5'},
+{pos: [119.92, 31.72], title: '常州市 100km', color: '#8957e5'}
 ];
 markers.forEach(function(m){
 var marker = new AMap.Marker({
 position: m.pos,
-title: m.title,
 content: '<div style="background:' + m.color + ';width:24px;height:24px;border-radius:50%;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,0.3)"></div>'
 });
 marker.setLabel({
@@ -1053,43 +1221,79 @@ map.add(marker);
 function initFactoryMap(){
 var map = new AMap.Map('factoryMap', {
 zoom: 11,
-center: [119.5, 31.1],
+center: [119.48, 31.02],
 viewMode: '3D'
 });
+
 // 天子湖镇区域
-var tzhMarkers = [
-{pos: [119.42, 31.08], name: '天子湖工业园A区'},
-{pos: [119.45, 31.05], name: '天子湖工业园B区'},
-{pos: [119.48, 31.02], name: '天子湖工业园C区'}
+var tzhCenter = [119.42, 31.03];
+var tzhArea = [
+[119.35, 31.00], [119.35, 31.10],
+[119.50, 31.10], [119.50, 31.00]
 ];
-tzhMarkers.forEach(function(m){
+var tzhPolygon = new AMap.Polygon({
+path: tzhArea,
+strokeColor: '#238636',
+strokeWeight: 2,
+fillColor: '#238636',
+fillOpacity: 0.1
+});
+map.add(tzhPolygon);
+
+// 天子湖厂房标注
+var tzhFactories = [
+{pos: [119.38, 31.05], name: '天子湖工业园A区'},
+{pos: [119.42, 31.02], name: '天子湖工业园B区'},
+{pos: [119.46, 30.99], name: '天子湖工业园C区'},
+{pos: [119.40, 31.08], name: '天子湖工业园D区'}
+];
+tzhFactories.forEach(function(f){
 var marker = new AMap.Marker({
-position: m.pos,
-title: m.name,
-content: '<div style="background:#238636;width:20px;height:20px;border-radius:50%;border:2px solid #fff"></div>'
+position: f.pos,
+content: '<div style="background:#238636;width:18px;height:18px;border-radius:50%;border:2px solid #fff"></div>'
 });
 marker.setLabel({
 offset: new AMap.Pixel(0, -5),
-content: '<div style="background:#161b22;color:#fff;padding:2px 6px;border-radius:4px;font-size:11px">' + m.name + '</div>'
+content: '<div style="background:#161b22;color:#3fb950;padding:2px 6px;border-radius:4px;font-size:11px">' + f.name + '</div>'
 });
 map.add(marker);
 });
+
 // 泗安镇区域
-var saMarkers = [
-{pos: [119.55, 30.98], name: '泗安工业园'}
+var saCenter = [119.55, 30.98];
+var saArea = [
+[119.50, 30.93], [119.50, 31.03],
+[119.60, 31.03], [119.60, 30.93]
 ];
-saMarkers.forEach(function(m){
+var saPolygon = new AMap.Polygon({
+path: saArea,
+strokeColor: '#1f6feb',
+strokeWeight: 2,
+fillColor: '#1f6feb',
+fillOpacity: 0.1
+});
+map.add(saPolygon);
+
+// 泗安厂房标注
+var saFactories = [
+{pos: [119.52, 30.97], name: '泗安工业园A区'},
+{pos: [119.56, 31.00], name: '泗安工业园B区'},
+{pos: [119.58, 30.95], name: '泗安工业园C区'}
+];
+saFactories.forEach(function(f){
 var marker = new AMap.Marker({
-position: m.pos,
-title: m.name,
-content: '<div style="background:#1f6feb;width:20px;height:20px;border-radius:50%;border:2px solid #fff"></div>'
+position: f.pos,
+content: '<div style="background:#1f6feb;width:18px;height:18px;border-radius:50%;border:2px solid #fff"></div>'
 });
 marker.setLabel({
 offset: new AMap.Pixel(0, -5),
-content: '<div style="background:#161b22;color:#fff;padding:2px 6px;border-radius:4px;font-size:11px">' + m.name + '</div>'
+content: '<div style="background:#161b22;color:#58a6ff;padding:2px 6px;border-radius:4px;font-size:11px">' + f.name + '</div>'
 });
 map.add(marker);
 });
+
+// 图例
+map.addControl(new AMap.Control());
 }
 
 // ========== 厂房列表 ==========
@@ -1099,18 +1303,26 @@ var sizeFilter = document.getElementById('factorySizeFilter').value;
 var list = document.getElementById('factoryList');
 if(!list) return;
 var factories = [
-{name:'天子湖工业园标准厂房A-1',area:'天子湖镇',size:'12000',height:'9',power:'630KVA',price:'12元/㎡/月',contact:'李经理',tel:'13805720001'},
-{name:'天子湖工业园标准厂房A-2',area:'天子湖镇',size:'8500',height:'9',power:'400KVA',price:'12元/㎡/月',contact:'李经理',tel:'13805720001'},
-{name:'天子湖工业园标准厂房B-1',area:'天子湖镇',size:'15000',height:'12',power:'800KVA',price:'14元/㎡/月',contact:'王经理',tel:'13805720002'},
-{name:'天子湖工业园标准厂房B-2',area:'天子湖镇',size:'6000',height:'9',power:'315KVA',price:'12元/㎡/月',contact:'王经理',tel:'13805720002'},
-{name:'天子湖工业园标准厂房C-1',area:'天子湖镇',size:'10000',height:'9',power:'500KVA',price:'13元/㎡/月',contact:'张经理',tel:'13805720003'},
-{name:'天子湖工业园标准厂房C-2',area:'天子湖镇',size:'7000',height:'9',power:'400KVA',price:'12元/㎡/月',contact:'张经理',tel:'13805720003'},
-{name:'天子湖工业园钢构厂房D-1',area:'天子湖镇',size:'20000',height:'15',power:'1000KVA',price:'18元/㎡/月',contact:'陈经理',tel:'13805720004'},
-{name:'天子湖工业园钢构厂房D-2',area:'天子湖镇',size:'18000',height:'12',power:'800KVA',price:'16元/㎡/月',contact:'陈经理',tel:'13805720004'},
-{name:'泗安工业园标准厂房E-1',area:'泗安镇',size:'11000',height:'9',power:'630KVA',price:'10元/㎡/月',contact:'刘经理',tel:'13805720005'},
-{name:'泗安工业园标准厂房E-2',area:'泗安镇',size:'8000',height:'9',power:'400KVA',price:'10元/㎡/月',contact:'刘经理',tel:'13805720005'},
-{name:'泗安工业园标准厂房F-1',area:'泗安镇',size:'9500',height:'12',power:'630KVA',price:'11元/㎡/月',contact:'赵经理',tel:'13805720006'},
-{name:'泗安工业园钢构厂房F-2',area:'泗安镇',size:'16000',height:'14',power:'800KVA',price:'15元/㎡/月',contact:'赵经理',tel:'13805720006'}
+{name:'天子湖工业园标准厂房-1号',area:'天子湖镇',size:'12000',height:'9',power:'630KVA',price:'12元/㎡/月',contact:'李经理',tel:'13805720001'},
+{name:'天子湖工业园标准厂房-2号',area:'天子湖镇',size:'8500',height:'9',power:'400KVA',price:'12元/㎡/月',contact:'李经理',tel:'13805720001'},
+{name:'天子湖工业园标准厂房-3号',area:'天子湖镇',size:'15000',height:'12',power:'800KVA',price:'14元/㎡/月',contact:'王经理',tel:'13805720002'},
+{name:'天子湖工业园标准厂房-4号',area:'天子湖镇',size:'6000',height:'9',power:'315KVA',price:'12元/㎡/月',contact:'王经理',tel:'13805720002'},
+{name:'天子湖工业园标准厂房-5号',area:'天子湖镇',size:'10000',height:'9',power:'500KVA',price:'13元/㎡/月',contact:'张经理',tel:'13805720003'},
+{name:'天子湖工业园标准厂房-6号',area:'天子湖镇',size:'7000',height:'9',power:'400KVA',price:'12元/㎡/月',contact:'张经理',tel:'13805720003'},
+{name:'天子湖工业园钢构厂房-1号',area:'天子湖镇',size:'20000',height:'15',power:'1000KVA',price:'18元/㎡/月',contact:'陈经理',tel:'13805720004'},
+{name:'天子湖工业园钢构厂房-2号',area:'天子湖镇',size:'18000',height:'12',power:'800KVA',price:'16元/㎡/月',contact:'陈经理',tel:'13805720004'},
+{name:'天子湖工业园钢构厂房-3号',area:'天子湖镇',size:'15000',height:'12',power:'630KVA',price:'15元/㎡/月',contact:'陈经理',tel:'13805720004'},
+{name:'天子湖工业园配套厂房-1号',area:'天子湖镇',size:'3000',height:'6',power:'200KVA',price:'10元/㎡/月',contact:'陈经理',tel:'13805720004'},
+{name:'泗安工业园标准厂房-1号',area:'泗安镇',size:'11000',height:'9',power:'630KVA',price:'10元/㎡/月',contact:'刘经理',tel:'13805720005'},
+{name:'泗安工业园标准厂房-2号',area:'泗安镇',size:'8000',height:'9',power:'400KVA',price:'10元/㎡/月',contact:'刘经理',tel:'13805720005'},
+{name:'泗安工业园标准厂房-3号',area:'泗安镇',size:'9500',height:'12',power:'630KVA',price:'11元/㎡/月',contact:'赵经理',tel:'13805720006'},
+{name:'泗安工业园标准厂房-4号',area:'泗安镇',size:'6000',height:'9',power:'315KVA',price:'10元/㎡/月',contact:'赵经理',tel:'13805720006'},
+{name:'泗安工业园钢构厂房-1号',area:'泗安镇',size:'16000',height:'14',power:'800KVA',price:'15元/㎡/月',contact:'赵经理',tel:'13805720006'},
+{name:'泗安工业园钢构厂房-2号',area:'泗安镇',size:'12000',height:'12',power:'630KVA',price:'14元/㎡/月',contact:'赵经理',tel:'13805720006'},
+{name:'泗安工业园配套厂房-1号',area:'泗安镇',size:'4000',height:'6',power:'250KVA',price:'9元/㎡/月',contact:'赵经理',tel:'13805720006'},
+{name:'长兴县开发区厂房-1号',area:'长兴县',size:'20000',height:'12',power:'1000KVA',price:'15元/㎡/月',contact:'周经理',tel:'13805720007'},
+{name:'长兴县开发区厂房-2号',area:'长兴县',size:'15000',height:'10',power:'800KVA',price:'13元/㎡/月',contact:'周经理',tel:'13805720007'},
+{name:'长兴县开发区厂房-3号',area:'长兴县',size:'8000',height:'8',power:'400KVA',price:'11元/㎡/月',contact:'周经理',tel:'13805720007'}
 ];
 var filtered = factories.filter(function(f){
 if(areaFilter !== 'all' && f.area !== areaFilter) return false;
@@ -1119,8 +1331,8 @@ if(sizeFilter === '10000+' && parseInt(f.size) < 10000) return false;
 return true;
 });
 list.innerHTML = filtered.map(function(f){
-var areaClass = f.area === '天子湖镇' ? 'area-tzh' : 'area-sa';
-return '<div class="factory-card"><span class="area-tag ' + areaClass + '">' + f.area + '</span><h4>' + f.name + '</h4><div class="info"><div>面积：' + f.size + '㎡ | 层高：' + f.height + 'm</div><div>配电：' + f.power + ' | 租金：' + f.price + '</div></div><div class="contact"><span style="color:#8b949e">联系人：</span><a href="tel:' + f.tel + '" class="ent-tel">' + f.contact + '</a> <span style="color:#6e7681">' + f.tel + '</span></div></div>';
+var areaClass = f.area === '天子湖镇' ? 'area-tzh' : (f.area === '泗安镇' ? 'area-sa' : 'area-lx');
+return '<div class="factory-card"><span class="area-tag ' + areaClass + '">' + f.area + '</span><h4>' + f.name + '</h4><div class="info"><div>面积：' + f.size + '㎡ | 层高：' + f.height + 'm</div><div>配电：' + f.power + ' | 租金：' + f.price + '</div></div><div class="contact"><span style="color:#8b949e">联系人：</span><a href="tel:' + f.tel + '" class="ent-tel">' + f.contact + '</a> ' + f.tel + '</div></div>';
 }).join('');
 }
 
@@ -1136,7 +1348,6 @@ var search = document.getElementById('entSearchInput').value.toLowerCase();
 var tbody = document.getElementById('enterpriseTableBody');
 if(!tbody) return;
 
-// 合并所有企业数据
 var allEnterprises = [];
 if(typeof localEnterpriseData !== 'undefined'){
 if(localEnterpriseData.guishang) allEnterprises = allEnterprises.concat(localEnterpriseData.guishang);
@@ -1146,7 +1357,6 @@ if(localEnterpriseData.xinsengg) allEnterprises = allEnterprises.concat(localEnt
 
 var filtered = allEnterprises.filter(function(e){
 if(typeFilter !== 'all'){
-// 根据类型关键词过滤
 var typeMatch = false;
 if(typeFilter === '规上' && (e.type === '规上' || e.type === '拟升规')) typeMatch = true;
 if(typeFilter === '小微园' && e.type === '小微园') typeMatch = true;
@@ -1157,11 +1367,13 @@ if(areaFilter !== 'all' && e.area !== areaFilter) return false;
 if(search && !e.name.toLowerCase().includes(search)) return false;
 return true;
 });
+
 var totalPages = Math.ceil(filtered.length / entPageSize);
 if(entPage > totalPages) entPage = 1;
 var start = (entPage - 1) * entPageSize;
 var end = start + entPageSize;
 var pageData = filtered.slice(start, end);
+
 tbody.innerHTML = pageData.map(function(e, i){
 var typeText = e.type === '规上' ? '规上企业' : e.type === '小微园' ? '小微园企业' : '新升规项目';
 var typeClass = e.type === '规上' || e.type === '拟升规' ? 'gs' : (e.type === '小微园' ? 'xwy' : 'xsg');
@@ -1169,6 +1381,7 @@ var phone = e.phone || e.tel || '';
 var contact = e.agent || e.contact || '';
 return '<tr><td>' + (start + i + 1) + '</td><td>' + e.name + '</td><td><span class="ent-type ' + typeClass + '">' + typeText + '</span></td><td>' + (e.area || '-') + '</td><td>' + contact + '</td><td><a href="tel:' + phone + '" class="ent-tel">' + phone + '</a></td><td>' + (e.agent || '-') + '</td></tr>';
 }).join('');
+
 renderPagination(totalPages);
 }
 
@@ -1185,11 +1398,6 @@ pag.innerHTML = html;
 function goPage(p){
 entPage = p;
 filterEnterprise();
-}
-
-// ========== 弹窗 ==========
-function closeModal(){
-document.getElementById('detailModal').classList.remove('show');
 }
 </script>
 </body>
