@@ -1,0 +1,4 @@
+#!/bin/sh
+# 自动推送脚本 - 每次提交后执行
+
+git push origin main 2>/dev/null && echo "🚀 已自动推送到 GitHub" || echo "⚠️ 推送失败，请手动推送"
