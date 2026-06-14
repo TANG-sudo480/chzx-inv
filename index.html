@@ -151,6 +151,7 @@ main{padding:16px}
 <button data-page="industry">🏭 产业</button>
 <button data-page="map">🗺️ 按图索骥</button>
 <button data-page="factory">🏗️ 厂房</button>
+<button data-page="land">🗃️ 土地</button>
 <button data-page="enterprise">🏢 企业</button>
 <button data-page="policy">💰 政策</button>
 <button data-page="fishbone">🐟 产业图谱</button>
@@ -545,6 +546,43 @@ main{padding:16px}
 </div>
 </div>
 
+<!-- 土地资源 -->
+<div id="page-land" class="page">
+<div class="page-title">🗃️ 土地资源</div>
+<div class="page-sub">转而未供 · 政府收储 · 供而未用 | 统计时点：2026年3月</div>
+
+<div class="stats">
+<div class="stat"><div class="stat-num" id="s-land-tzh">0</div><div class="stat-label">天子湖土地</div></div>
+<div class="stat"><div class="stat-num" id="s-land-sian">0</div><div class="stat-label">泗安土地</div></div>
+<div class="stat"><div class="stat-num" id="s-land-total">0</div><div class="stat-label">合计面积(亩)</div></div>
+</div>
+
+<div class="filter-bar">
+<button class="filter-btn active" data-l="all">全部</button>
+<button class="filter-btn" data-l="天子湖北园区">天子湖北</button>
+<button class="filter-btn" data-l="天子湖南园区">天子湖南</button>
+<button class="filter-btn" data-l="泗安镇">泗安</button>
+<div style="flex:1"></div>
+<select id="land-type-filter" style="padding:8px 12px;border-radius:20px;border:1px solid var(--border);background:var(--bg);color:var(--text)">
+<option value="">全部类型</option>
+<option value="转而未供">转而未供</option>
+<option value="收储土地">政府收储</option>
+<option value="供而未用">供而未用</option>
+</select>
+<input type="text" id="land-search" placeholder="搜索地块名称" style="padding:8px 12px;border-radius:20px;border:1px solid var(--border);background:var(--bg);color:var(--text);width:150px">
+</div>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr><th>#</th><th>地块名称</th><th>土地坐落</th><th>类型</th><th>面积(亩)</th><th>备注</th></tr>
+</thead>
+<tbody id="land-tbody"></tbody>
+</table>
+</div>
+<div class="pages" id="land-pages"></div>
+</div>
+
 <!-- 投资政策 -->
 <div id="page-policy" class="page">
 <div class="page-title">💰 投资政策</div>
@@ -598,6 +636,7 @@ main{padding:16px}
 
 <script src="factory_data.js"></script>
 <script src="enterprise_data.js"></script>
+<script src="land_data.js"></script>
 <script src="chain_fishbone_data.js"></script>
 <script>
 // ============== 产业链数据 ==============
@@ -778,7 +817,41 @@ renderFacTable(allFac);
 renderEntTable(allEnt);
 renderMapFac();
 renderFishbone();
+renderLand();
 })();
+
+// ============== 土地资源 ==============
+let curLand='all',curLandType='';
+const LPS=15,allLand=landData.total||[];
+
+function renderLandTable(data,p=1){
+const s=(p-1)*LPS,rows=data.slice(s,s+LPS);
+document.getElementById('land-tbody').innerHTML=rows.map((l,i)=>
+`<tr><td>${s+i+1}</td><td>${l.name}</td><td>${l.location||'-'}</td><td><span class="tag ${l.type==='转而未供'?'tag-yellow':l.type==='收储土地'?'tag-green':'tag-blue'}">${l.type||'-'}</span></td><td>${(l.area||0).toLocaleString()}</td><td>${l.note||'-'}</td></tr>`
+).join('');
+const tp=Math.ceil(data.length/LPS)||1;
+document.getElementById('land-pages').innerHTML=
+`<button ${p<=1?'disabled':''} onclick="landGo(${p-1})">上一页</button><span>${p}/${tp}</span><button ${p>=tp?'disabled':''} onclick="landGo(${p+1})">下一页</button>`;
+}
+let landP=1;
+function landGo(p){const d=filterLand();const tp=Math.ceil(d.length/LPS)||1;if(p<1||p>tp)return;landP=p;renderLandTable(d,p);}
+function filterLand(){const kw=(document.getElementById('land-search')||{}).value||'';return allLand.filter(l=>(curLand==='all'||l.location.includes(curLand))&&(curLandType===''||l.type===curLandType)&&l.name.toLowerCase().includes(kw.toLowerCase()));}
+
+function renderLand(){
+const tzhLand=allLand.filter(l=>l.location&&(l.location.includes('天子湖北')||l.location.includes('天子湖南园区')&&!l.location.includes('泗安'))).reduce((a,b)=>a+(b.area||0),0);
+const sianLand=allLand.filter(l=>l.location&&l.location.includes('泗安')).reduce((a,b)=>a+(b.area||0),0);
+const totalLand=allLand.reduce((a,b)=>a+(b.area||0),0);
+document.getElementById('s-land-tzh').textContent=tzhLand.toFixed(1);
+document.getElementById('s-land-sian').textContent=sianLand.toFixed(1);
+document.getElementById('s-land-total').textContent=totalLand.toFixed(1);
+renderLandTable(filterLand());
+}
+
+document.querySelectorAll('[data-l]').forEach(btn=>{
+btn.addEventListener('click',()=>{document.querySelectorAll('[data-l]').forEach(b=>b.classList.remove('active'));btn.classList.add('active');curLand=btn.dataset.l;landP=1;renderLandTable(filterLand());});
+});
+document.getElementById('land-type-filter')?.addEventListener('change',(e)=>{curLandType=e.target.value;landP=1;renderLandTable(filterLand());});
+document.getElementById('land-search')?.addEventListener('input',()=>{landP=1;renderLandTable(filterLand());});
 
 // ============== 产业鱼骨图 ==============
 function renderFishbone(){
