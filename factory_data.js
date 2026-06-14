@@ -20,12 +20,12 @@ const factoryData = {
       "phone": "15868269855",
       "note": "其中一幢5F有装修",
       "images": [
-        "assets/factory_images/thumb_001.jpg",
-        "assets/factory_images/thumb_002.jpg",
-        "assets/factory_images/thumb_003.jpg",
-        "assets/factory_images/thumb_004.jpg",
-        "assets/factory_images/thumb_005.jpg",
-        "assets/factory_images/thumb_006.jpg"
+        "assets/factory_detail_images/detail_094.jpg",
+        "assets/factory_detail_images/detail_095.jpg",
+        "assets/factory_detail_images/detail_096.jpg",
+        "assets/factory_detail_images/detail_097.jpg",
+        "assets/factory_detail_images/detail_098.jpg",
+        "assets/factory_detail_images/detail_099.jpg"
       ]
     },
     {
@@ -48,11 +48,11 @@ const factoryData = {
       "phone": "18957287029",
       "note": "2楼有12.6*63连廊 化工园区",
       "images": [
-        "assets/factory_images/thumb_007.jpg",
-        "assets/factory_images/thumb_008.jpg",
-        "assets/factory_images/thumb_009.jpg",
-        "assets/factory_images/thumb_010.jpg",
-        "assets/factory_images/thumb_011.jpg"
+        "assets/factory_detail_images/detail_089.jpg",
+        "assets/factory_detail_images/detail_090.jpg",
+        "assets/factory_detail_images/detail_091.jpg",
+        "assets/factory_detail_images/detail_092.jpg",
+        "assets/factory_detail_images/detail_093.jpg"
       ]
     },
     {
@@ -75,12 +75,12 @@ const factoryData = {
       "phone": "13777888934",
       "note": "另有办公楼一栋出租（460平方米）3层，化工园区",
       "images": [
-        "assets/factory_images/thumb_012.jpg",
-        "assets/factory_images/thumb_013.jpg",
-        "assets/factory_images/thumb_014.jpg",
-        "assets/factory_images/thumb_015.jpg",
-        "assets/factory_images/thumb_016.jpg",
-        "assets/factory_images/thumb_017.jpg"
+        "assets/factory_detail_images/detail_076.jpg",
+        "assets/factory_detail_images/detail_077.jpg",
+        "assets/factory_detail_images/detail_078.jpg",
+        "assets/factory_detail_images/detail_079.jpg",
+        "assets/factory_detail_images/detail_080.jpg",
+        "assets/factory_detail_images/detail_081.jpg"
       ]
     },
     {
@@ -103,13 +103,13 @@ const factoryData = {
       "phone": "13697246091",
       "note": "另有办公楼2楼出租，已装修完成",
       "images": [
-        "assets/factory_images/thumb_018.jpg",
-        "assets/factory_images/thumb_019.jpg",
-        "assets/factory_images/thumb_020.jpg",
-        "assets/factory_images/thumb_021.jpg",
-        "assets/factory_images/thumb_022.jpg",
-        "assets/factory_images/thumb_023.jpg",
-        "assets/factory_images/thumb_024.jpg"
+        "assets/factory_detail_images/detail_082.jpg",
+        "assets/factory_detail_images/detail_083.jpg",
+        "assets/factory_detail_images/detail_084.jpg",
+        "assets/factory_detail_images/detail_085.jpg",
+        "assets/factory_detail_images/detail_086.jpg",
+        "assets/factory_detail_images/detail_087.jpg",
+        "assets/factory_detail_images/detail_088.jpg"
       ]
     },
     {
@@ -132,14 +132,14 @@ const factoryData = {
       "phone": "13867117198",
       "note": "",
       "images": [
-        "assets/factory_images/thumb_110.jpg",
-        "assets/factory_images/thumb_111.jpg",
-        "assets/factory_images/thumb_112.jpg",
-        "assets/factory_images/thumb_113.jpg",
-        "assets/factory_images/thumb_114.jpg",
-        "assets/factory_images/thumb_115.jpg",
-        "assets/factory_images/thumb_116.jpg",
-        "assets/factory_images/thumb_117.jpg"
+        "assets/factory_detail_images/detail_026.jpg",
+        "assets/factory_detail_images/detail_027.jpg",
+        "assets/factory_detail_images/detail_028.jpg",
+        "assets/factory_detail_images/detail_029.jpg",
+        "assets/factory_detail_images/detail_030.jpg",
+        "assets/factory_detail_images/detail_031.jpg",
+        "assets/factory_detail_images/detail_032.jpg",
+        "assets/factory_detail_images/detail_033.jpg"
       ]
     },
     {
@@ -162,8 +162,8 @@ const factoryData = {
       "phone": "13656727116",
       "note": "",
       "images": [
-        "assets/factory_images/thumb_025.jpg",
-        "assets/factory_images/thumb_026.jpg"
+        "assets/factory_detail_images/detail_046.jpg",
+        "assets/factory_detail_images/detail_047.jpg"
       ]
     },
     {
@@ -186,10 +186,10 @@ const factoryData = {
       "phone": "18057161515",
       "note": "",
       "images": [
-        "assets/factory_images/thumb_118.jpg",
-        "assets/factory_images/thumb_119.jpg",
-        "assets/factory_images/thumb_120.jpg",
-        "assets/factory_images/thumb_121.jpg"
+        "assets/factory_detail_images/detail_009.jpg",
+        "assets/factory_detail_images/detail_010.jpg",
+        "assets/factory_detail_images/detail_011.jpg",
+        "assets/factory_detail_images/detail_012.jpg"
       ]
     },
     {
@@ -212,11 +212,11 @@ const factoryData = {
       "phone": "18757273203",
       "note": "",
       "images": [
-        "assets/factory_images/thumb_027.jpg",
-        "assets/factory_images/thumb_028.jpg",
-        "assets/factory_images/thumb_029.jpg",
-        "assets/factory_images/thumb_030.jpg",
-        "assets/factory_images/thumb_031.jpg"
+        "assets/factory_detail_images/detail_048.jpg",
+        "assets/factory_detail_images/detail_049.jpg",
+        "assets/factory_detail_images/detail_050.jpg",
+        "assets/factory_detail_images/detail_051.jpg",
+        "assets/factory_detail_images/detail_052.jpg"
       ]
     },
     {
@@ -239,12 +239,12 @@ const factoryData = {
       "phone": "13868276811",
       "note": "",
       "images": [
-        "assets/factory_images/thumb_122.jpg",
-        "assets/factory_images/thumb_123.jpg",
-        "assets/factory_images/thumb_124.jpg",
-        "assets/factory_images/thumb_125.jpg",
-        "assets/factory_images/thumb_126.jpg",
-        "assets/factory_images/thumb_127.jpg"
+        "assets/factory_detail_images/detail_020.jpg",
+        "assets/factory_detail_images/detail_021.jpg",
+        "assets/factory_detail_images/detail_022.jpg",
+        "assets/factory_detail_images/detail_023.jpg",
+        "assets/factory_detail_images/detail_024.jpg",
+        "assets/factory_detail_images/detail_025.jpg"
       ]
     },
     {
@@ -267,8 +267,8 @@ const factoryData = {
       "phone": "15157255048",
       "note": "",
       "images": [
-        "assets/factory_images/thumb_032.jpg",
-        "assets/factory_images/thumb_033.jpg"
+        "assets/factory_detail_images/detail_074.jpg",
+        "assets/factory_detail_images/detail_075.jpg"
       ]
     },
     {
@@ -290,7 +290,10 @@ const factoryData = {
       "contact": "张正德",
       "phone": "13567276128",
       "note": "",
-      "images": []
+      "images": [
+        "assets/factory_detail_images/detail_072.jpg",
+        "assets/factory_detail_images/detail_073.jpg"
+      ]
     },
     {
       "name": "浙江华蒙环保新材料有限公司",
@@ -312,11 +315,11 @@ const factoryData = {
       "phone": "13588441340",
       "note": "",
       "images": [
-        "assets/factory_images/thumb_034.jpg",
-        "assets/factory_images/thumb_035.jpg",
-        "assets/factory_images/thumb_036.jpg",
-        "assets/factory_images/thumb_037.jpg",
-        "assets/factory_images/thumb_038.jpg"
+        "assets/factory_detail_images/detail_067.jpg",
+        "assets/factory_detail_images/detail_068.jpg",
+        "assets/factory_detail_images/detail_069.jpg",
+        "assets/factory_detail_images/detail_070.jpg",
+        "assets/factory_detail_images/detail_071.jpg"
       ]
     },
     {
@@ -339,13 +342,13 @@ const factoryData = {
       "phone": "13306512758",
       "note": "7号厂房是洁净车间",
       "images": [
-        "assets/factory_images/thumb_039.jpg",
-        "assets/factory_images/thumb_040.jpg",
-        "assets/factory_images/thumb_041.jpg",
-        "assets/factory_images/thumb_042.jpg",
-        "assets/factory_images/thumb_043.jpg",
-        "assets/factory_images/thumb_044.jpg",
-        "assets/factory_images/thumb_045.jpg"
+        "assets/factory_detail_images/detail_060.jpg",
+        "assets/factory_detail_images/detail_061.jpg",
+        "assets/factory_detail_images/detail_062.jpg",
+        "assets/factory_detail_images/detail_063.jpg",
+        "assets/factory_detail_images/detail_064.jpg",
+        "assets/factory_detail_images/detail_065.jpg",
+        "assets/factory_detail_images/detail_066.jpg"
       ]
     },
     {
@@ -368,8 +371,8 @@ const factoryData = {
       "phone": "18621861568",
       "note": "",
       "images": [
-        "assets/factory_images/thumb_046.jpg",
-        "assets/factory_images/thumb_047.jpg"
+        "assets/factory_detail_images/detail_058.jpg",
+        "assets/factory_detail_images/detail_059.jpg"
       ]
     },
     {
@@ -392,13 +395,13 @@ const factoryData = {
       "phone": "15268236602",
       "note": "",
       "images": [
-        "assets/factory_images/thumb_128.jpg",
-        "assets/factory_images/thumb_129.jpg",
-        "assets/factory_images/thumb_130.jpg",
-        "assets/factory_images/thumb_131.jpg",
-        "assets/factory_images/thumb_132.jpg",
-        "assets/factory_images/thumb_133.jpg",
-        "assets/factory_images/thumb_134.jpg"
+        "assets/factory_detail_images/detail_013.jpg",
+        "assets/factory_detail_images/detail_014.jpg",
+        "assets/factory_detail_images/detail_015.jpg",
+        "assets/factory_detail_images/detail_016.jpg",
+        "assets/factory_detail_images/detail_017.jpg",
+        "assets/factory_detail_images/detail_018.jpg",
+        "assets/factory_detail_images/detail_019.jpg"
       ]
     },
     {
@@ -421,9 +424,9 @@ const factoryData = {
       "phone": "13175235280",
       "note": "",
       "images": [
-        "assets/factory_images/thumb_048.jpg",
-        "assets/factory_images/thumb_049.jpg",
-        "assets/factory_images/thumb_050.jpg"
+        "assets/factory_detail_images/detail_055.jpg",
+        "assets/factory_detail_images/detail_056.jpg",
+        "assets/factory_detail_images/detail_057.jpg"
       ]
     },
     {
@@ -446,11 +449,11 @@ const factoryData = {
       "phone": "18606820672   15305725678",
       "note": "",
       "images": [
-        "assets/factory_images/thumb_051.jpg",
-        "assets/factory_images/thumb_052.jpg",
-        "assets/factory_images/thumb_053.jpg",
-        "assets/factory_images/thumb_054.jpg",
-        "assets/factory_images/thumb_055.jpg"
+        "assets/factory_detail_images/detail_041.jpg",
+        "assets/factory_detail_images/detail_042.jpg",
+        "assets/factory_detail_images/detail_043.jpg",
+        "assets/factory_detail_images/detail_044.jpg",
+        "assets/factory_detail_images/detail_045.jpg"
       ]
     },
     {
@@ -473,13 +476,13 @@ const factoryData = {
       "phone": "15857265711",
       "note": "",
       "images": [
-        "assets/factory_images/thumb_056.jpg",
-        "assets/factory_images/thumb_057.jpg",
-        "assets/factory_images/thumb_058.jpg",
-        "assets/factory_images/thumb_059.jpg",
-        "assets/factory_images/thumb_060.jpg",
-        "assets/factory_images/thumb_061.jpg",
-        "assets/factory_images/thumb_062.jpg"
+        "assets/factory_detail_images/detail_034.jpg",
+        "assets/factory_detail_images/detail_035.jpg",
+        "assets/factory_detail_images/detail_036.jpg",
+        "assets/factory_detail_images/detail_037.jpg",
+        "assets/factory_detail_images/detail_038.jpg",
+        "assets/factory_detail_images/detail_039.jpg",
+        "assets/factory_detail_images/detail_040.jpg"
       ]
     },
     {
@@ -502,11 +505,11 @@ const factoryData = {
       "phone": "13606810908",
       "note": "",
       "images": [
-        "assets/factory_images/thumb_135.jpg",
-        "assets/factory_images/thumb_136.jpg",
-        "assets/factory_images/thumb_137.jpg",
-        "assets/factory_images/thumb_138.jpg",
-        "assets/factory_images/thumb_139.jpg"
+        "assets/factory_detail_images/detail_004.jpg",
+        "assets/factory_detail_images/detail_005.jpg",
+        "assets/factory_detail_images/detail_006.jpg",
+        "assets/factory_detail_images/detail_007.jpg",
+        "assets/factory_detail_images/detail_008.jpg"
       ]
     },
     {
@@ -529,9 +532,9 @@ const factoryData = {
       "phone": "18257540842",
       "note": "",
       "images": [
-        "assets/factory_images/thumb_063.jpg",
-        "assets/factory_images/thumb_064.jpg",
-        "assets/factory_images/thumb_065.jpg"
+        "assets/factory_detail_images/detail_001.jpg",
+        "assets/factory_detail_images/detail_002.jpg",
+        "assets/factory_detail_images/detail_003.jpg"
       ]
     },
     {
@@ -554,8 +557,8 @@ const factoryData = {
       "phone": "13685758188",
       "note": "",
       "images": [
-        "assets/factory_images/thumb_066.jpg",
-        "assets/factory_images/thumb_067.jpg"
+        "assets/factory_detail_images/detail_053.png",
+        "assets/factory_detail_images/detail_054.png"
       ]
     },
     {
@@ -578,10 +581,10 @@ const factoryData = {
       "phone": "13587913646",
       "note": "",
       "images": [
-        "assets/factory_images/thumb_068.jpg",
-        "assets/factory_images/thumb_069.jpg",
-        "assets/factory_images/thumb_070.jpg",
-        "assets/factory_images/thumb_071.jpg"
+        "assets/factory_detail_images/detail_100.png",
+        "assets/factory_detail_images/detail_101.png",
+        "assets/factory_detail_images/detail_102.png",
+        "assets/factory_detail_images/detail_103.png"
       ]
     },
     {
@@ -604,9 +607,9 @@ const factoryData = {
       "phone": "15857252791",
       "note": "",
       "images": [
-        "assets/factory_images/thumb_072.jpg",
-        "assets/factory_images/thumb_073.jpg",
-        "assets/factory_images/thumb_074.jpg"
+        "assets/factory_detail_images/detail_104.jpg",
+        "assets/factory_detail_images/detail_105.jpg",
+        "assets/factory_detail_images/detail_106.jpg"
       ]
     },
     {
@@ -629,10 +632,10 @@ const factoryData = {
       "phone": "13735125028",
       "note": "",
       "images": [
-        "assets/factory_images/thumb_075.jpg",
-        "assets/factory_images/thumb_076.jpg",
-        "assets/factory_images/thumb_077.jpg",
-        "assets/factory_images/thumb_078.jpg"
+        "assets/factory_detail_images/detail_138.jpg",
+        "assets/factory_detail_images/detail_139.jpg",
+        "assets/factory_detail_images/detail_140.jpg",
+        "assets/factory_detail_images/detail_141.jpg"
       ]
     },
     {
@@ -654,7 +657,11 @@ const factoryData = {
       "contact": "霍明霞",
       "phone": "15268272986",
       "note": "",
-      "images": []
+      "images": [
+        "assets/factory_detail_images/detail_132.jpg",
+        "assets/factory_detail_images/detail_133.jpg",
+        "assets/factory_detail_images/detail_134.jpg"
+      ]
     },
     {
       "name": "安吉吉满盛地板有限公司",
@@ -676,10 +683,10 @@ const factoryData = {
       "phone": "13587917112",
       "note": "",
       "images": [
-        "assets/factory_images/thumb_079.jpg",
-        "assets/factory_images/thumb_080.jpg",
-        "assets/factory_images/thumb_081.jpg",
-        "assets/factory_images/thumb_082.jpg"
+        "assets/factory_detail_images/detail_110.jpg",
+        "assets/factory_detail_images/detail_111.jpg",
+        "assets/factory_detail_images/detail_112.jpg",
+        "assets/factory_detail_images/detail_113.jpg"
       ]
     },
     {
@@ -702,9 +709,9 @@ const factoryData = {
       "phone": "13567291163",
       "note": "",
       "images": [
-        "assets/factory_images/thumb_083.jpg",
-        "assets/factory_images/thumb_084.jpg",
-        "assets/factory_images/thumb_085.jpg"
+        "assets/factory_detail_images/detail_107.jpg",
+        "assets/factory_detail_images/detail_108.jpg",
+        "assets/factory_detail_images/detail_109.jpg"
       ]
     },
     {
@@ -727,10 +734,10 @@ const factoryData = {
       "phone": "13252039969",
       "note": "",
       "images": [
-        "assets/factory_images/thumb_086.jpg",
-        "assets/factory_images/thumb_087.jpg",
-        "assets/factory_images/thumb_088.jpg",
-        "assets/factory_images/thumb_089.jpg"
+        "assets/factory_detail_images/detail_114.jpg",
+        "assets/factory_detail_images/detail_115.jpg",
+        "assets/factory_detail_images/detail_116.jpg",
+        "assets/factory_detail_images/detail_117.jpg"
       ]
     },
     {
@@ -753,9 +760,9 @@ const factoryData = {
       "phone": "18358186170",
       "note": "",
       "images": [
-        "assets/factory_images/thumb_090.jpg",
-        "assets/factory_images/thumb_091.jpg",
-        "assets/factory_images/thumb_092.jpg"
+        "assets/factory_detail_images/detail_118.jpg",
+        "assets/factory_detail_images/detail_119.jpg",
+        "assets/factory_detail_images/detail_120.jpg"
       ]
     },
     {
@@ -778,9 +785,9 @@ const factoryData = {
       "phone": "18867536753",
       "note": "",
       "images": [
-        "assets/factory_images/thumb_140.jpg",
-        "assets/factory_images/thumb_141.jpg",
-        "assets/factory_images/thumb_142.jpg"
+        "assets/factory_detail_images/detail_135.jpg",
+        "assets/factory_detail_images/detail_136.jpg",
+        "assets/factory_detail_images/detail_137.jpg"
       ]
     },
     {
@@ -803,9 +810,9 @@ const factoryData = {
       "phone": "13605809397",
       "note": "",
       "images": [
-        "assets/factory_images/thumb_093.jpg",
-        "assets/factory_images/thumb_094.jpg",
-        "assets/factory_images/thumb_095.jpg"
+        "assets/factory_detail_images/detail_123.jpg",
+        "assets/factory_detail_images/detail_124.jpg",
+        "assets/factory_detail_images/detail_125.jpg"
       ]
     },
     {
@@ -828,12 +835,12 @@ const factoryData = {
       "phone": "13906816233",
       "note": "可分租",
       "images": [
-        "assets/factory_images/thumb_096.jpg",
-        "assets/factory_images/thumb_097.jpg",
-        "assets/factory_images/thumb_098.jpg",
-        "assets/factory_images/thumb_099.jpg",
-        "assets/factory_images/thumb_100.jpg",
-        "assets/factory_images/thumb_101.jpg"
+        "assets/factory_detail_images/detail_126.jpg",
+        "assets/factory_detail_images/detail_127.jpg",
+        "assets/factory_detail_images/detail_128.jpg",
+        "assets/factory_detail_images/detail_129.jpg",
+        "assets/factory_detail_images/detail_130.jpg",
+        "assets/factory_detail_images/detail_131.jpg"
       ]
     },
     {
@@ -856,8 +863,8 @@ const factoryData = {
       "phone": "13868280897",
       "note": "",
       "images": [
-        "assets/factory_images/thumb_102.jpg",
-        "assets/factory_images/thumb_103.jpg"
+        "assets/factory_detail_images/detail_121.jpg",
+        "assets/factory_detail_images/detail_122.jpg"
       ]
     },
     {
@@ -880,9 +887,9 @@ const factoryData = {
       "phone": "13957259948",
       "note": "",
       "images": [
-        "assets/factory_images/thumb_143.jpg",
-        "assets/factory_images/thumb_144.jpg",
-        "assets/factory_images/thumb_145.jpg"
+        "assets/factory_detail_images/detail_142.jpg",
+        "assets/factory_detail_images/detail_143.jpg",
+        "assets/factory_detail_images/detail_144.jpg"
       ]
     },
     {
@@ -905,10 +912,10 @@ const factoryData = {
       "phone": "13968009818",
       "note": "",
       "images": [
-        "assets/factory_images/thumb_146.jpg",
-        "assets/factory_images/thumb_147.jpg",
-        "assets/factory_images/thumb_148.jpg",
-        "assets/factory_images/thumb_149.jpg"
+        "assets/factory_detail_images/detail_145.jpg",
+        "assets/factory_detail_images/detail_146.jpg",
+        "assets/factory_detail_images/detail_147.jpg",
+        "assets/factory_detail_images/detail_148.jpg"
       ]
     },
     {
@@ -931,9 +938,9 @@ const factoryData = {
       "phone": "13967278632",
       "note": "部分有夹层，夹层2000方为无证建筑，可分租",
       "images": [
-        "assets/factory_images/thumb_104.jpg",
-        "assets/factory_images/thumb_105.jpg",
-        "assets/factory_images/thumb_106.jpg"
+        "assets/factory_detail_images/detail_149.jpg",
+        "assets/factory_detail_images/detail_150.jpg",
+        "assets/factory_detail_images/detail_151.jpg"
       ]
     },
     {
@@ -1124,9 +1131,9 @@ const factoryData = {
       "phone": "18329190693",
       "note": "",
       "images": [
-        "assets/factory_images/thumb_107.jpg",
-        "assets/factory_images/thumb_108.jpg",
-        "assets/factory_images/thumb_109.jpg"
+        "assets/factory_detail_images/detail_152.jpg",
+        "assets/factory_detail_images/detail_153.jpg",
+        "assets/factory_detail_images/detail_154.jpg"
       ]
     },
   ],
