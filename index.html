@@ -199,7 +199,7 @@ main{padding:16px}
   <div class="video-marquee">
     <div class="video-clip-wrap">
       <video src="assets/video/clip_location_web.mp4" poster="assets/video/poster.jpg" muted loop playsinline preload="auto"></video>
-      <div class="clip-label">🌐 长三角之心 · 区位优势</div>
+      <div class="clip-label">🌐 平台简介 · 长三角之心</div>
     </div>
     <div class="video-clip-wrap">
       <video src="assets/video/clip_industry_web.mp4" poster="assets/video/poster.jpg" muted loop playsinline preload="auto"></video>
@@ -212,7 +212,7 @@ main{padding:16px}
     <!-- 重复一轮实现无缝滚动 -->
     <div class="video-clip-wrap">
       <video src="assets/video/clip_location_web.mp4" poster="assets/video/poster.jpg" muted loop playsinline preload="auto"></video>
-      <div class="clip-label">🌐 长三角之心 · 区位优势</div>
+      <div class="clip-label">🌐 平台简介 · 长三角之心</div>
     </div>
     <div class="video-clip-wrap">
       <video src="assets/video/clip_industry_web.mp4" poster="assets/video/poster.jpg" muted loop playsinline preload="auto"></video>
@@ -299,7 +299,7 @@ main{padding:16px}
 </div>
 
 <div class="quick">
-<div class="quick-item" onclick="goPage('location')"><div class="icon">📍</div><h3>区位优势</h3><p>苏浙皖三省交汇 · 90分钟交通圈</p></div>
+<div class="quick-item" onclick="goPage('location')"><div class="icon">📍</div><h3>平台及区位</h3><p>苏浙皖三省交汇 · 90分钟交通圈</p></div>
 <div class="quick-item" onclick="goPage('fishbone')"><div class="icon">🐟</div><h3>产业图谱</h3><p>产业链上中下游企业全景</p></div>
 <div class="quick-item" onclick="goPage('map')"><div class="icon">🗺️</div><h3>按图索骥</h3><p>招商目标×园区资源精准配对</p></div>
 <div class="quick-item" onclick="goPage('factory')"><div class="icon">🏗️</div><h3>厂房资源</h3><p>天子湖+泗安片区厂房详情</p></div>
@@ -354,14 +354,26 @@ main{padding:16px}
 
 <!-- 区位 -->
 <div id="page-location" class="page">
-<div class="page-title">📍 区位优势</div>
+<div class="page-title">📍 平台简介及区位</div>
 <div class="page-sub">长三角之心 · 苏浙皖三省交汇 · 90分钟通达四大都市圈</div>
 
 <div class="card">
-<div class="card-title">🗺️ 精准区位图</div>
-<div class="map-wrap">
-<div id="amap-container"></div>
+  <div class="card-title">📖 长合区推介</div>
+  <div style="color:var(--text);font-size:13px;line-height:1.9;max-height:260px;overflow-y:auto;padding-right:4px">
+    <p style="margin-bottom:10px"><strong style="color:var(--primary)">▎战略要地</strong><br>
+长三角之心，苏浙皖三省交汇。2021年11月省政府正式批复设立，2022年1月正式挂牌，长三角一地六县首个以"长三角"冠名的产业合作区，浙江省两大高能级战略平台之一。</p>
+    <p style="margin-bottom:10px"><strong style="color:var(--primary)">▎交通枢纽</strong><br>
+商合杭高铁、沪苏湖高铁交汇，<strong>90分钟直达上海虹桥、杭州东、南京南、合肥南</strong>；高速10分钟上G50沪渝、S14杭长；<strong>90分钟可达杭州萧山、上海虹桥、南京禄口三大机场</strong>；千吨级内河码头联通上海港、宁波舟山港。</p>
+    <p><strong style="color:var(--primary)">▎产业高地</strong><br>
+规上企业194家，2025年规上工业总产值<strong>530亿</strong>，四年翻番。浙江省五大新能源汽车产业培育基地之一，长三角机器人产业核心区。</p>
+  </div>
 </div>
+
+<div class="card">
+  <div class="card-title">🗺️ 精准区位图</div>
+  <div class="map-wrap">
+    <div id="amap-container"></div>
+  </div>
 <script>
 (function(){
   function initHomeMap(){
@@ -369,35 +381,83 @@ main{padding:16px}
       document.getElementById('amap-container').innerHTML='<div style="color:#9ca3af;text-align:center;padding:80px 0"><p style="font-size:32px;margin-bottom:8px">🗺️</p><p style="font-size:14px">地图加载中...</p></div>';
       setTimeout(initHomeMap,800);return;
     }
-    var opts={zoom:9,center:[119.62,30.82],viewMode:'2D'};
-    try{opts.mapStyle='amap://styles/dark';}catch(e){}
+    var opts={zoom:9,center:[119.43,30.87],viewMode:'2D'};
     var map=new AMap.Map('amap-container',opts);
     try{map.addControl(new AMap.Scale());}catch(e){}
     try{map.addControl(new AMap.ToolBar({position:'rt'}));}catch(e){}
+
     var cities=[
-      [120.19,30.25,'杭州','#ff6b35'],[121.47,31.23,'上海','#ff6b35'],[118.78,32.06,'南京','#ff6b35'],
-      [117.28,31.86,'合肥','#f97316'],[120.16,30.28,'嘉兴','#f97316'],[119.95,31.79,'湖州','#f97316'],
-      [120.89,31.98,'苏州','#f97316'],[119.42,31.37,'长兴','#f97316'],[119.38,30.93,'安吉','#f97316'],
-      [119.57,31.19,'宜兴','#f97316'],[119.48,31.41,'溧阳','#f97316'],[119.17,30.65,'广德','#f97316'],
-      [118.75,30.92,'宁国','#f97316'],[119.90,30.77,'临安','#f97316'],[120.57,31.30,'无锡','#f97316'],
-      [119.92,31.70,'常州','#f97316'],[121.55,29.88,'宁波','#f97316'],[120.58,30.01,'绍兴','#f97316'],
+      [121.47,31.23,'上海虹桥','#e53e3e','距管委会 230km<br>高铁 1.5h'],
+      [120.19,30.25,'杭州东','#e53e3e','距管委会 110km<br>高铁 1.5h'],
+      [118.78,32.06,'南京南','#e53e3e','距管委会 200km<br>高铁 1.5h'],
+      [117.28,31.86,'合肥南','#e53e3e','距管委会 260km<br>高铁 1.5h'],
+      [120.16,30.28,'嘉兴','#f97316',''],
+      [119.95,31.79,'湖州','#f97316',''],
+      [120.89,31.98,'苏州','#f97316',''],
+      [119.42,31.37,'长兴','#f97316',''],
+      [119.38,30.93,'安吉','#f97316',''],
+      [119.57,31.19,'宜兴','#f97316',''],
+      [119.48,31.41,'溧阳','#f97316',''],
+      [119.17,30.65,'广德','#f97316',''],
+      [118.75,30.92,'宁国','#f97316',''],
+      [119.90,30.77,'临安','#f97316',''],
+      [120.57,31.30,'无锡','#f97316',''],
+      [119.92,31.70,'常州','#f97316',''],
+      [121.55,29.88,'宁波','#f97316',''],
+      [120.58,30.01,'绍兴','#f97316',''],
+      // 机场
+      [120.43,30.23,'杭州萧山机场','#3184fd','距管委会 100km<br>自驾 90min'],
+      [121.33,31.20,'上海虹桥机场','#3184fd','距管委会 210km<br>自驾 90min'],
+      [118.86,31.98,'南京禄口机场','#3184fd','距管委会 210km<br>自驾 90min'],
+      // 高速口
+      [119.38,30.95,'天子湖高速口','#16a34a','距管委会 9km'],
+      [119.55,31.01,'泗安高速口','#16a34a','距管委会 10km'],
     ];
     cities.forEach(function(c){
       try{
-        var mk=new AMap.Marker({position:[c[0],c[1]],title:c[2],
-          content:'<div style="background:'+c[3]+';color:#fff;padding:3px 8px;border-radius:4px;font-size:11px">'+c[2]+'</div>'});
+        var lbl=c[4]?'<div style="background:'+c[3]+';color:#fff;padding:3px 8px;border-radius:4px;font-size:11px;line-height:1.4;text-align:center;min-width:80px"><b>'+c[2]+'</b><br><span style="font-size:10px">'+c[4]+'</span></div>':'<div style="background:'+c[3]+';color:#fff;padding:3px 8px;border-radius:4px;font-size:11px">'+c[2]+'</div>';
+        var mk=new AMap.Marker({position:[c[0],c[1]],title:c[2],content:lbl,anchor:'bottom-center'});
         map.add(mk);
       }catch(e){}
     });
-    var lines=[[[119.62,30.82],[120.19,30.25]],[[119.62,30.82],[121.47,31.23]],[[119.62,30.82],[118.78,32.06]],[[119.62,30.82],[117.28,31.86]],[[119.62,30.82],[119.95,31.79]]];
-    lines.forEach(function(l){try{map.add(new AMap.Polyline({path:l,strokeColor:'rgba(0,212,255,0.4)',strokeWeight:2,strokeDasharray:[6,4]}));}catch(e){}});
+
+    var lines=[
+      [[119.43,30.87],[121.47,31.23]],
+      [[119.43,30.87],[120.19,30.25]],
+      [[119.43,30.87],[118.78,32.06]],
+      [[119.43,30.87],[117.28,31.86]],
+      [[119.43,30.87],[120.43,30.23]],
+      [[119.43,30.87],[119.38,30.95]],
+    ];
+    lines.forEach(function(l){try{map.add(new AMap.Polyline({path:l,strokeColor:'rgba(0,180,100,0.5)',strokeWeight:2,strokeDasharray:[6,4]}));}catch(e){}});
+
+    // 管委会标注
     try{
-      var m0=new AMap.Marker({position:[119.62,30.82],title:'长三角（湖州）产业合作区',
-        content:'<div style="background:#00d4ff;color:#fff;padding:6px 12px;border-radius:6px;font-size:12px;font-weight:bold;white-space:nowrap">长三角合区</div>'});
+      var m0=new AMap.Marker({
+        position:[119.43,30.87],
+        title:'长三角（湖州）产业合作区管理委员会',
+        content:'<div style="background:#00d4ff;color:#111;padding:6px 14px;border-radius:6px;font-size:13px;font-weight:bold;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,0.3)">⭐ 长合区管委会<br><span style="font-size:10px;font-weight:normal">安吉县天子湖镇东阳路1号</span></div>',
+        anchor:'bottom-center'
+      });
       map.add(m0);
-      var info=new AMap.InfoWindow({content:'<div style="background:#111827;border:1px solid #00d4ff;border-radius:8px;padding:16px;color:#f3f4f6;max-width:280px;font-size:12px;line-height:1.8"><div style="font-size:14px;font-weight:bold;color:#00d4ff;margin-bottom:8px">长三角（湖州）产业合作区</div><div>📍 天子湖镇（119.62°E, 30.82°N）<br>🚄 高铁1.5h直达上海虹桥<br>⚡ 三大产业：新能源汽车/机器人/储能<br>🏭 天子湖片区可租厂房5000-10000㎡</div></div>',offset:new AMap.Pixel(0,-30)});
-      info.open(map,[119.62,30.82]);
+      var info=new AMap.InfoWindow({
+        content:'<div style="background:#fff;border:2px solid #00d4ff;border-radius:10px;padding:18px;color:#222;max-width:300px;font-size:13px;line-height:2"><div style="font-size:15px;font-weight:bold;color:#00d4ff;margin-bottom:10px;border-bottom:1px solid #eee;padding-bottom:8px">长三角（湖州）产业合作区</div><div>📍 安吉县天子湖镇<strong>东阳路1号</strong><br>⭐ 长合区管理委员会<br>🚄 高铁 1.5h 直达上海虹桥/杭州东<br>🛣️ 高速 10min 上杭长/沪渝高速<br>✈️ 机场 90min 达杭州萧山/南京禄口<br>🏭 可租厂房 5000-10000 ㎡</div></div>',
+        offset:new AMap.Pixel(0,-30),
+        isCustom:false
+      });
+      info.open(map,[119.43,30.87]);
     }catch(e){}
+
+    // 高铁站
+    try{
+      var mk=new AMap.Marker({
+        position:[119.42,30.87],
+        content:'<div style="background:#7c3aed;color:#fff;padding:3px 8px;border-radius:4px;font-size:11px;text-align:center"><b>安吉高铁站</b><br><span style="font-size:10px">距管委会 1.5km</span></div>',
+        anchor:'bottom-center'
+      });
+      map.add(mk);
+    }catch(e){}
+
     window._chzxMap=map;
   }
   initHomeMap();
@@ -406,23 +466,29 @@ main{padding:16px}
 </div>
 
 <div class="card">
-<div class="card-title">🚄 综合交通</div>
-<div class="transport">
-<div class="transport-item"><div class="icon">🚄</div><h5>高铁 1.5h直达</h5><p>上海虹桥·杭州东·南京南·合肥南</p></div>
-<div class="transport-item"><div class="icon">🚗</div><h5>高速 10min上</h5><p>杭长高速天子湖出口·沪渝高速</p></div>
-<div class="transport-item"><div class="icon">✈️</div><h5>机场 90min</h5><p>杭州萧山·上海虹桥·南京禄口</p></div>
-<div class="transport-item"><div class="icon">🚢</div><h5>水运 千吨码头</h5><p>长兴港·联通上海港·宁波舟山港</p></div>
-</div>
+  <div class="card-title">🛣️ 交通区位图</div>
+  <img src="assets/images/chz_traffic_map.png" style="width:100%;border-radius:8px;margin-bottom:12px" alt="交通区位图">
+  <img src="assets/images/chz_area_map.png" style="width:100%;border-radius:8px" alt="合作区规划图">
 </div>
 
 <div class="card">
-<div class="card-title">🏗️ 承载能力</div>
-<div class="stats" style="margin-bottom:0">
-<div class="stat"><div class="stat-num">86.9</div><div class="stat-label">平方公里</div></div>
-<div class="stat"><div class="stat-num">3000+</div><div class="stat-label">可利用土地(亩)</div></div>
-<div class="stat"><div class="stat-num">1000+</div><div class="stat-label">连片用地(亩)</div></div>
-<div class="stat"><div class="stat-num">5000+</div><div class="stat-label">可用厂房(㎡)</div></div>
+  <div class="card-title">🚄 综合交通</div>
+  <div class="transport">
+    <div class="transport-item"><div class="icon">🚄</div><h5>高铁 1.5h直达</h5><p>上海虹桥·杭州东·南京南·合肥南</p></div>
+    <div class="transport-item"><div class="icon">🛣️</div><h5>高速 10min上</h5><p>杭长高速天子湖出口·G50沪渝高速</p></div>
+    <div class="transport-item"><div class="icon">✈️</div><h5>机场 90min</h5><p>杭州萧山·上海虹桥·南京禄口</p></div>
+    <div class="transport-item"><div class="icon">🚢</div><h5>水运 千吨码头</h5><p>长兴港·联通上海港·宁波舟山港</p></div>
+  </div>
 </div>
+
+<div class="card">
+  <div class="card-title">🏗️ 承载能力</div>
+  <div class="stats" style="margin-bottom:0">
+    <div class="stat"><div class="stat-num">86.9</div><div class="stat-label">平方公里</div></div>
+    <div class="stat"><div class="stat-num">3000+</div><div class="stat-label">可利用土地(亩)</div></div>
+    <div class="stat"><div class="stat-num">1000+</div><div class="stat-label">连片用地(亩)</div></div>
+    <div class="stat"><div class="stat-num">5000+</div><div class="stat-label">可用厂房(㎡)</div></div>
+  </div>
 </div>
 </div>
 
