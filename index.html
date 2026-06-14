@@ -42,6 +42,17 @@ tr:hover{background:rgba(0,212,255,0.03)}
 .tag-orange{background:rgba(249,115,22,0.15);color:#f97316}
 .tag-purple{background:rgba(139,92,246,0.15);color:#8b5cf6}
 
+/* 视频轮播 */
+.video-showcase{margin:20px 0;position:relative;overflow:hidden;border-radius:16px;border:1px solid var(--border)}
+.video-showcase .video-tag{position:absolute;top:16px;left:16px;z-index:10;background:linear-gradient(135deg,rgba(0,212,255,0.9),rgba(16,185,129,0.9));color:#fff;padding:6px 14px;border-radius:20px;font-size:12px;font-weight:600;backdrop-filter:blur(4px)}
+.video-marquee{display:flex;animation:marquee 30s linear infinite;width:max-content}
+.video-marquee:hover{animation-play-state:paused}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.video-clip-wrap{position:relative;flex-shrink:0;margin-right:4px}
+.video-clip-wrap video{width:480px;height:270px;object-fit:cover;display:block;border-radius:8px}
+.video-clip-wrap .clip-label{position:absolute;bottom:10px;left:10px;background:rgba(0,0,0,0.75);color:#fff;padding:5px 12px;border-radius:6px;font-size:12px;backdrop-filter:blur(4px)}
+.video-showcase .scroll-hint{position:absolute;right:16px;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.6);color:#fff;padding:8px 10px;border-radius:8px;font-size:11px;backdrop-filter:blur(4px);z-index:10}
+
 /* 三大产业板块 */
 .industry-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:16px}
 .industry-card{background:rgba(0,0,0,0.2);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:18px;cursor:pointer;transition:all .3s}
@@ -179,6 +190,38 @@ main{padding:16px}
 <div id="page-home" class="page active">
 <div class="page-title">长三角（湖州）产业合作区</div>
 <div class="page-sub">苏浙皖三省交汇 · 三大主导产业 · 承接长三角产业转移核心平台</div>
+
+<div class="video-showcase">
+  <div class="video-tag">🎬 长合区实景 · 长三角之心</div>
+  <div class="video-marquee">
+    <div class="video-clip-wrap">
+      <video src="assets/video/clip_location.mp4" muted loop playsinline></video>
+      <div class="clip-label">🌐 长三角之心 · 区位优势</div>
+    </div>
+    <div class="video-clip-wrap">
+      <video src="assets/video/clip_industry.mp4" muted loop playsinline></video>
+      <div class="clip-label">🏭 现代厂房 · 产业实力</div>
+    </div>
+    <div class="video-clip-wrap">
+      <video src="assets/video/clip_conclusion.mp4" muted loop playsinline></video>
+      <div class="clip-label">🚀 合作共赢 · 未来可期</div>
+    </div>
+    <!-- 重复一轮实现无缝滚动 -->
+    <div class="video-clip-wrap">
+      <video src="assets/video/clip_location.mp4" muted loop playsinline></video>
+      <div class="clip-label">🌐 长三角之心 · 区位优势</div>
+    </div>
+    <div class="video-clip-wrap">
+      <video src="assets/video/clip_industry.mp4" muted loop playsinline></video>
+      <div class="clip-label">🏭 现代厂房 · 产业实力</div>
+    </div>
+    <div class="video-clip-wrap">
+      <video src="assets/video/clip_conclusion.mp4" muted loop playsinline></video>
+      <div class="clip-label">🚀 合作共赢 · 未来可期</div>
+    </div>
+  </div>
+  <div class="scroll-hint">▶ 自动播放中</div>
+</div>
 
 <div class="stats">
 <div class="stat"><div class="stat-num" id="s-fact">0</div><div class="stat-label">可用厂房</div></div>
@@ -984,6 +1027,7 @@ const container=document.getElementById('fishbone-container');
 if(!container)return;
 container.innerHTML=chainFishboneData.map(chain=>{
 const total=chain.upstream.companies.length+chain.midstream.companies.length+chain.downstream.companies.length;
+const nearbyCount=chain.nearbyCompanies?chain.nearbyCompanies.groups.reduce((s,g)=>s+g.items.length,0):0;
 return`<div class="fishbone-industry" data-id="${chain.id}">
 <div class="fishbone-header" onclick="toggleFishbone('${chain.id}')">
 <div class="fishbone-icon">${chain.icon}</div>
@@ -991,7 +1035,7 @@ return`<div class="fishbone-industry" data-id="${chain.id}">
 <div class="fishbone-title">${chain.name}</div>
 <div class="fishbone-sub">${chain.desc}</div>
 </div>
-<div class="fishbone-count">${total}家头部企业</div>
+<div class="fishbone-count">${total}家+${nearbyCount}家周边</div>
 </div>
 <div class="fishbone-body" id="fb-${chain.id}">
 <div class="fishbone-spine">
@@ -1033,6 +1077,19 @@ ${chain.downstream.companies.map(c=>`<div class="chain-company-item" style="bord
 </div>
 </div>
 </div>
+${chain.nearbyCompanies?`<div style="margin-top:20px">
+<div class="card-title" style="margin-bottom:12px">📋 ${chain.nearbyCompanies.title}</div>
+<div style="font-size:13px;color:var(--dim);margin-bottom:14px">${chain.nearbyCompanies.subtitle}</div>
+${chain.nearbyCompanies.groups.map(g=>`<div style="margin-bottom:16px">
+<div style="font-size:13px;font-weight:600;color:${chain.color};padding:6px 12px;background:${chain.color}11;border-radius:8px;margin-bottom:10px;display:inline-block">${g.label}</div>
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:8px">
+${g.items.map(i=>`<div style="padding:10px 12px;background:rgba(255,255,255,0.03);border-radius:8px;border-left:3px solid ${chain.color}">
+<div style="font-size:13px;font-weight:600;color:#fff">${i.name}</div>
+<div style="font-size:11px;color:var(--dim);margin-top:2px">${i.detail}</div>
+</div>`).join('')}
+</div>
+</div>`).join('')}
+</div>`:''}
 </div>
 </div>`;
 }).join('');
