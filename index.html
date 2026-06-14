@@ -364,7 +364,7 @@ main{padding:16px}
     }
     var opts={zoom:8,center:[119.7,31.2],viewMode:'2D',mapStyle:'amap://styles/light'};
     var map=new AMap.Map('amap-container',opts);
-    try{map.setFeatures(['bg','road','building']);}catch(e){}
+    try{map.setFeatures(['bg','road','building','district','point']);}catch(e){}
 
     // ===== 距离标注辅助函数 =====
     function distLabel(lng1,lat1,lng2,lat2,lng_mid,lat_mid,text){
