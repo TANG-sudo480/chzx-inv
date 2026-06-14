@@ -389,22 +389,22 @@ main{padding:16px}
     // G318国道（灰色线）
     try{map.add(new AMap.Polyline({path:[[121.5,31.5],[119.5,30.95],[118.2,31.0]],strokeColor:'#6b7280',strokeWeight:4,lineJoin:'round'}));}catch(e){}
     // 水运线：长合区→湖州→嘉兴→上海港（深蓝粗虚线）
-    try{map.add(new AMap.Polyline({path:[[119.43,30.87],[120.10,30.87],[120.76,30.75],[121.0,31.0],[121.5,31.1],[121.8,31.0],[122.08,30.63]],strokeColor:'#1e40af',strokeWeight:5,strokeDasharray:[10,5],lineJoin:'round'}));}catch(e){}
+    try{map.add(new AMap.Polyline({path:[[119.625991,30.821372],[120.10,30.87],[120.76,30.75],[121.0,31.0],[121.5,31.1],[121.8,31.0],[122.08,30.63]],strokeColor:'#1e40af',strokeWeight:5,strokeDasharray:[10,5],lineJoin:'round'}));}catch(e){}
 
     // ===== 距离标注 =====
-    distLabel(119.43,30.87,120.10,30.87,119.75,30.87,'距湖州 64km');
-    distLabel(119.43,30.87,120.19,30.25,119.80,30.56,'距杭州 100km');
-    distLabel(119.43,30.87,120.62,31.30,120.02,31.08,'距苏州 123km');
-    distLabel(119.43,30.87,120.30,31.57,119.86,31.22,'距无锡 114km');
-    distLabel(119.43,30.87,118.78,32.06,119.10,31.46,'距南京 146km');
-    distLabel(119.43,30.87,117.28,31.86,118.35,31.37,'距合肥 232km');
-    distLabel(119.43,30.87,121.47,31.23,120.45,31.05,'距上海 198km');
-    distLabel(119.43,30.87,122.08,30.63,120.75,30.75,'距洋山港 255km');
-    distLabel(119.43,30.87,121.55,29.87,120.49,30.37,'距宁波 232km');
-    distLabel(119.43,30.87,114.06,22.54,116.74,26.70,'距深圳 1068km');
-    distLabel(119.43,30.87,104.07,30.67,111.75,30.77,'距成都 1467km');
-    distLabel(119.43,30.87,114.30,30.59,116.86,30.73,'距武汉 491km');
-    distLabel(119.43,30.87,116.40,39.90,117.92,35.39,'距北京 1041km');
+    distLabel(119.625991,30.821372,120.10,30.87,119.75,30.87,'距湖州 64km');
+    distLabel(119.625991,30.821372,120.19,30.25,119.80,30.56,'距杭州 100km');
+    distLabel(119.625991,30.821372,120.62,31.30,120.02,31.08,'距苏州 123km');
+    distLabel(119.625991,30.821372,120.30,31.57,119.86,31.22,'距无锡 114km');
+    distLabel(119.625991,30.821372,118.78,32.06,119.10,31.46,'距南京 146km');
+    distLabel(119.625991,30.821372,117.28,31.86,118.35,31.37,'距合肥 232km');
+    distLabel(119.625991,30.821372,121.47,31.23,120.45,31.05,'距上海 198km');
+    distLabel(119.625991,30.821372,122.08,30.63,120.75,30.75,'距洋山港 255km');
+    distLabel(119.625991,30.821372,121.55,29.87,120.49,30.37,'距宁波 232km');
+    distLabel(119.625991,30.821372,114.06,22.54,116.74,26.70,'距深圳 1068km');
+    distLabel(119.625991,30.821372,104.07,30.67,111.75,30.77,'距成都 1467km');
+    distLabel(119.625991,30.821372,114.30,30.59,116.86,30.73,'距武汉 491km');
+    distLabel(119.625991,30.821372,116.40,39.90,117.92,35.39,'距北京 1041km');
 
     // ===== 圆形城市标记 =====
     function addCircle(lng,lat,bg,size){
@@ -452,7 +452,7 @@ main{padding:16px}
 
     // ===== 长合区管委会主标记 =====
     try{
-      map.add(new AMap.Marker({position:[119.43,30.87],
+      map.add(new AMap.Marker({position:[119.625991,30.821372],
         content:'<div style="background:#fff;color:#111;padding:9px 20px;border-radius:12px;font-size:15px;font-weight:bold;white-space:nowrap;box-shadow:0 4px 16px rgba(0,0,0,0.4);border:3px solid #00d4ff;font-family:sans-serif">★ 长三角（湖州）产业合作区<br><span style="font-size:12px;color:#666;font-weight:normal">安吉县天子湖镇 · 东阳路1号</span></div>',
         offset:new AMap.Pixel(-115,-38)
       }));
@@ -460,7 +460,7 @@ main{padding:16px}
 
     // 长合区高亮圈
     try{
-      map.add(new AMap.Circle({center:[119.43,30.87],radius:14000,
+      map.add(new AMap.Circle({center:[119.625991,30.821372],radius:14000,
         strokeColor:'#00d4ff',strokeWeight:3,strokeOpacity:0.8,
         fillColor:'rgba(0,212,255,0.1)',fillOpacity:0.3
       }));
