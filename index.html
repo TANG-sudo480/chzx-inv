@@ -398,6 +398,71 @@ textarea.form-input{grid-column:span 2;min-height:120px;resize:vertical}
 .fbone-status{order:3;width:100%;text-align:center;margin-top:8px}
 }
 
+
+.factory-stats-row {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+}
+.factory-stats-row .stat-item {
+    background: var(--bg-card);
+    padding: 16px 24px;
+    border-radius: 12px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    min-width: 120px;
+    border: 1px solid var(--border);
+}
+.factory-stats-row .stat-item:hover {
+    border-color: var(--primary);
+    transform: translateY(-2px);
+}
+.factory-stats-row .stat-item.success {
+    background: rgba(52,168,83,0.2);
+    border-color: #34a853;
+}
+.factory-stats-row .stat-item.warning {
+    background: rgba(251,188,4,0.2);
+    border-color: #fbbc04;
+}
+.factory-stats-row .stat-item.highlight {
+    background: rgba(0,212,255,0.2);
+    border-color: var(--primary);
+}
+.factory-stats-row .stat-num {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--primary);
+    display: block;
+}
+.factory-stats-row .stat-label {
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-top: 4px;
+}
+.factory-filters {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+}
+.factory-filters select, .factory-filters input {
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--bg-card);
+    color: var(--text);
+    font-size: 14px;
+    min-width: 150px;
+}
+.clue-stats {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
 </style>
 </head>
 <body>
@@ -742,40 +807,6 @@ textarea.form-input{grid-column:span 2;min-height:120px;resize:vertical}
 
 <div class="clue-grid" id="clueGrid">
 <!-- 线索卡片由JS生成 -->
-</div>
-</div>
-</section>
-
-<!-- 空余厂房速查 -->
-<section id="factory" class="section">
-<div class="container">
-<div class="section-badge">🏭 厂房资源</div>
-<h2 class="section-title">空余厂房速查</h2>
-<p class="section-subtitle">天子湖片区与泗安镇空余厂房信息</p>
-
-<div class="clue-header">
-<select class="filter-select" id="factoryArea" onchange="filterFactories()">
-<option value="">面积区间</option>
-<option value="small">2000㎡以下</option>
-<option value="mid">2000-5000㎡</option>
-<option value="large">5000-10000㎡</option>
-<option value="xlarge">10000㎡以上</option>
-</select>
-<select class="filter-select" id="factoryHeight" onchange="filterFactories()">
-<option value="">层高要求</option>
-<option value="6">≥6m</option>
-<option value="8">≥8m</option>
-<option value="10">≥10m</option>
-</select>
-<select class="filter-select" id="factoryZone" onchange="filterFactories()">
-<option value="">所属片区</option>
-<option value="tianzihun">天子湖</option>
-<option value="sian">泗安镇</option>
-</select>
-</div>
-
-<div class="factory-grid" id="factoryGrid">
-<!-- 厂房卡片由JS生成 -->
 </div>
 </div>
 </section>
@@ -1322,8 +1353,28 @@ textarea.form-input{grid-column:span 2;min-height:120px;resize:vertical}
 <script>
 // 高德地图
 window._AMapSecurityConfig = { securityJsCode: '1d19f5d7f8085dfc6d592c7b5e6dc6db' }
+
+// 页面初始化
+document.addEventListener('DOMContentLoaded', function() {
+    setupMapViewportObserver();
+    initFactoryBrochure();
+    initEnterprise();
+    initClues();
+    console.log('✅ 页面初始化完成');
+});
+
 </script>
-<script src="https://webapi.amap.com/maps?v=2.0&key=1d19f5d7f8085dfc6d592c7b5e6dc6db"></script>
+<script src="https://webapi.amap.com/maps?v=2.0&key=1d19f5d7f8085dfc6d592c7b5e6dc6db">
+// 页面初始化
+document.addEventListener('DOMContentLoaded', function() {
+    setupMapViewportObserver();
+    initFactoryBrochure();
+    initEnterprise();
+    initClues();
+    console.log('✅ 页面初始化完成');
+});
+
+</script>
 
 <script>
 // ==================== 数据 ====================
@@ -1423,19 +1474,7 @@ const clueData = [
 {id:10,name:'银轮股份',chain:'thermal',investment:'5亿+',area:'5000-10000㎡',height:'≥6m',willing:'mid',contact:'陈总',phone:'130xxxx8888',status:'换热器扩产',location:'天子湖C区'},
 ];
 
-// 厂房数据
-const factoryData = [
-{id:'TZ-001',area:15000,floors:'1-3层',height:'9m×60m×9m',power:'800KVA',price:15,zone:'tianzihun',location:'天子湖A区',contact:'钱经理',phone:'138xxxx1001'},
-{id:'TZ-002',area:12000,floors:'1-2层',height:'12m×50m×12m',power:'630KVA',price:18,zone:'tianzihun',location:'天子湖A区',contact:'孙经理',phone:'138xxxx1002'},
-{id:'TZ-003',area:8000,floors:'单层',height:'15m×40m×15m',power:'1000KVA',price:20,zone:'tianzihun',location:'天子湖B区',contact:'李经理',phone:'138xxxx1003'},
-{id:'TZ-004',area:20000,floors:'1-2层',height:'10m×80m×10m',power:'800KVA',price:14,zone:'tianzihun',location:'天子湖B区',contact:'周经理',phone:'138xxxx1004'},
-{id:'TZ-005',area:6000,floors:'单层',height:'8m×30m×8m',power:'400KVA',price:12,zone:'tianzihun',location:'天子湖C区',contact:'吴经理',phone:'138xxxx1005'},
-{id:'SA-001',area:11000,floors:'1-3层',height:'6m×45m×6m',power:'630KVA',price:10,zone:'sian',location:'泗安镇工业区',contact:'郑经理',phone:'138xxxx2001'},
-{id:'SA-002',area:16000,floors:'1-2层',height:'10m×60m×10m',power:'800KVA',price:12,zone:'sian',location:'泗安镇工业区',contact:'王经理',phone:'138xxxx2002'},
-{id:'SA-003',area:9500,floors:'单层',height:'12m×50m×12m',power:'1000KVA',price:14,zone:'sian',location:'泗安镇工业区',contact:'冯经理',phone:'138xxxx2003'},
-{id:'SA-004',area:7000,floors:'1-2层',height:'8m×35m×8m',power:'400KVA',price:11,zone:'sian',location:'泗安镇工业区',contact:'陈经理',phone:'138xxxx2004'},
-{id:'SA-005',area:18000,floors:'1层',height:'14m×70m×14m',power:'1000KVA',price:15,zone:'sian',location:'泗安镇工业区',contact:'褚经理',phone:'138xxxx2005'},
-];
+
 
 const enterpriseFullData = {
   "guishang": [
@@ -6664,49 +6703,77 @@ event.target.classList.add('active');
 }
 
 // 厂房筛选
-function filterFactories(){
-const area=document.getElementById('factoryArea').value;
-const height=document.getElementById('factoryHeight').value;
-const zone=document.getElementById('factoryZone').value;
-renderFactories(factoryData.filter(f=>{
-if(area&&!matchArea(f.area,area))return false;
-if(height&&f.height.replace('m','').split('×')[2]<height)return false;
-if(zone&&f.zone!==zone)return false;
-return true;
-}));
+// 厂房初始化
+function initFactoryBrochure() {
+    if(typeof factoryBrochureData === 'undefined') {
+        console.log('factoryBrochureData not loaded');
+        return;
+    }
+    var buildings = factoryBrochureData.buildings || [];
+    
+    // 更新统计
+    if(document.getElementById('factoryTotal')) document.getElementById('factoryTotal').textContent = buildings.length;
+    if(document.getElementById('factoryAvailable')) document.getElementById('factoryAvailable').textContent = buildings.filter(function(b){return b.status==='空闲'}).length;
+    if(document.getElementById('factoryRented')) document.getElementById('factoryRented').textContent = buildings.filter(function(b){return b.status==='已租'}).length;
+    if(document.getElementById('factoryPreBook')) document.getElementById('factoryPreBook').textContent = buildings.filter(function(b){return b.status==='预订中'}).length;
+    if(document.getElementById('factoryBuilding')) document.getElementById('factoryBuilding').textContent = buildings.filter(function(b){return b.status==='建设中'}).length;
+    
+    var totalArea = buildings.filter(function(b){return b.status==='空闲'}).reduce(function(s,b){return s+(b.availableArea||0);},0);
+    if(document.getElementById('factoryArea')) document.getElementById('factoryArea').textContent = totalArea.toLocaleString();
+    
+    filterFactory();
 }
 
-function matchArea(a,level){
-if(level==='small')return a<2000;
-if(level==='mid')return a>=2000&&a<=5000;
-if(level==='large')return a>5000&&a<=10000;
-if(level==='xlarge')return a>10000;
-return true;
+function filterFactory() {
+    var status = document.getElementById('factoryStatusFilter') ? document.getElementById('factoryStatusFilter').value : '';
+    var area = document.getElementById('factoryAreaFilter') ? document.getElementById('factoryAreaFilter').value : '';
+    var searchText = document.getElementById('factorySearchInput') ? document.getElementById('factorySearchInput').value.toLowerCase() : '';
+    
+    var buildings = (factoryBrochureData && factoryBrochureData.buildings) || [];
+    
+    var filtered = buildings.filter(function(b) {
+        if(status && b.status !== status) return false;
+        if(area && b.area !== area) return false;
+        if(searchText && !b.name.toLowerCase().includes(searchText)) return false;
+        return true;
+    });
+    
+    renderFactoryBrochure(filtered);
 }
 
-function renderFactories(data){
-const grid=document.getElementById('factoryGrid');
-grid.innerHTML=data.map(f=>`
-<div class="factory-card">
-<div class="factory-img">🏭</div>
-<div class="factory-body">
-<div class="factory-id">编号：${f.id}</div>
-<div class="factory-name">${f.name}</div>
-<div class="factory-specs">
-<div class="spec-item"><span class="spec-label">区域</span><span class="spec-value">${f.area}</span></div>
-<div class="spec-item"><span class="spec-label">面积</span><span class="spec-value">${f.totalArea.toLocaleString()}㎡</span></div>
-<div class="spec-item"><span class="spec-label">层数</span><span class="spec-value">${f.floor}</span></div>
-<div class="spec-item"><span class="spec-label">层高</span><span class="spec-value">${f.height}</span></div>
-<div class="spec-item"><span class="spec-label">配电</span><span class="spec-value">${f.power}</span></div>
-<div class="spec-item"><span class="spec-label">租金</span><span class="spec-value">${f.price}</span></div>
-</div>
-<div class="factory-contact">
-<span class="contact-name">📞 ${f.contact}</span>
-<span class="contact-phone">${f.phone}</span>
-</div>
-</div>
-</div>
-`).join('');
+function filterFactoryByStatus(status) {
+    if(document.getElementById('factoryStatusFilter')) {
+        document.getElementById('factoryStatusFilter').value = status;
+    }
+    filterFactory();
+}
+
+function renderFactoryBrochure(buildings) {
+    var grid = document.getElementById('factoryBrochureGrid');
+    if(!grid) grid = document.getElementById('factoryGrid');
+    if(!grid) return;
+    
+    grid.innerHTML = buildings.map(function(f) {
+        var statusClass = {'空闲':'success','已租':'danger','预订中':'warning','建设中':'info'}[f.status] || '';
+        return '<div class="factory-card">' +
+            '<div class="factory-img">🏭</div>' +
+            '<div class="factory-body">' +
+            '<div class="factory-id">编号：'+f.id+'</div>' +
+            '<div class="factory-name">'+f.name+'</div>' +
+            '<div class="factory-specs">' +
+            '<div class="spec-item"><span class="spec-label">区域</span><span class="spec-value">'+(f.area||'')+'</span></div>' +
+            '<div class="spec-item"><span class="spec-label">面积</span><span class="spec-value">'+(f.totalArea||0).toLocaleString()+'㎡</span></div>' +
+            '<div class="spec-item"><span class="spec-label">层数</span><span class="spec-value">'+(f.floor||'')+'</span></div>' +
+            '<div class="spec-item"><span class="spec-label">层高</span><span class="spec-value">'+(f.height||'')+'</span></div>' +
+            '<div class="spec-item"><span class="spec-label">配电</span><span class="spec-value">'+(f.power||'')+'</span></div>' +
+            '<div class="spec-item"><span class="spec-label">租金</span><span class="spec-value">'+(f.price||'')+'</span></div>' +
+            '</div>' +
+            '<div class="factory-contact">' +
+            '<span class="contact-name">📞 '+(f.contact||'')+'</span>' +
+            '<span class="contact-phone">'+(f.phone||'')+'</span>' +
+            '</div>' +
+            '</div></div>';
+    }).join('');
 }
 
 // 长合区企业库
@@ -6901,6 +6968,74 @@ let map;
 function initMap() {
     const c = document.getElementById('map');
     if(c) { c.innerHTML = generateMapSVG(); console.log('✅ SVG地图加载成功'); }
+
+// ==================== SVG交互地图 ====================
+const MAP_WIDTH = 900, MAP_HEIGHT = 600;
+
+function latLngToXY(lat, lng) {
+    const c = {lat: 30.63, lng: 119.68}, s = 80;
+    return {
+        x: Math.max(50, Math.min(MAP_WIDTH-50, MAP_WIDTH/2 + (lng - c.lng) * s)),
+        y: Math.max(50, Math.min(MAP_HEIGHT-50, MAP_HEIGHT/2 - (lat - c.lat) * s))
+    };
+}
+
+const mapMarkers = [
+    {name:'长三角（湖州）产业合作区',lat:30.63,lng:119.68,type:'center',desc:'天子湖片区 · 核心招商区域',color:'#00d4ff'},
+    {name:'天子湖A区',lat:30.635,lng:119.72,type:'zone',desc:'天子湖A区工业平台',color:'#fbbc04'},
+    {name:'天子湖B区',lat:30.60,lng:119.75,type:'zone',desc:'天子湖B区工业平台',color:'#fbbc04'},
+    {name:'画溪街道',lat:30.57,lng:119.68,type:'zone',desc:'画溪街道工业平台',color:'#fbbc04'},
+    {name:'泗安镇',lat:30.58,lng:119.80,type:'zone',desc:'泗安镇工业平台',color:'#fbbc04'},
+    {name:'宁德时代',lat:30.98,lng:119.95,type:'target',desc:'450亿扩产 | 宜兴40km',color:'#ea4335'},
+    {name:'零跑汽车',lat:30.27,lng:120.15,type:'target',desc:'港股上市 | 杭州80km',color:'#ea4335'},
+    {name:'吉利极氪',lat:29.86,lng:121.55,type:'target',desc:'IPO冲刺 | 宁波120km',color:'#ea4335'},
+    {name:'理想汽车',lat:31.75,lng:119.90,type:'target',desc:'扩产中 | 常州100km',color:'#ea4335'},
+    {name:'汇川技术',lat:31.30,lng:120.62,type:'target',desc:'伺服龙头 | 苏州80km',color:'#ea4335'},
+    {name:'蜂巢能源',lat:31.80,lng:119.50,type:'target',desc:'科创板IPO | 常州60km',color:'#ea4335'},
+    {name:'地平线',lat:39.90,lng:116.40,type:'target',desc:'港股IPO冲刺 | 北京',color:'#ea4335'},
+    {name:'华为引望',lat:22.55,lng:114.05,type:'target',desc:'230亿融资 | 深圳',color:'#ea4335'},
+    {name:'天子湖厂房',lat:30.64,lng:119.73,type:'factory',desc:'空闲厂房 12000㎡',color:'#34a853'},
+    {name:'泗安厂房',lat:30.59,lng:119.81,type:'factory',desc:'空闲厂房 11000㎡',color:'#34a853'},
+    {name:'浙江天林',lat:30.62,lng:119.70,type:'enterprise',desc:'规上企业',color:'#34a853'},
+    {name:'美思特射频',lat:30.65,lng:119.69,type:'enterprise',desc:'规上企业',color:'#34a853'},
+];
+
+function generateMapSVG() {
+    let svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 '+MAP_WIDTH+' '+MAP_HEIGHT+'" style="width:100%;height:100%;background:#0a1628;border-radius:12px;">';
+    svg += '<defs><pattern id="g" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M 50 0 L 0 0 0 50" fill="none" stroke="rgba(0,212,255,0.08)" stroke-width="1"/></pattern><filter id="glow"><feGaussianBlur stdDeviation="3" result="coloredBlur"/><feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>';
+    svg += '<rect width="'+MAP_WIDTH+'" height="'+MAP_HEIGHT+'" fill="url(#g)"/>';
+    svg += '<circle cx="'+(MAP_WIDTH/2)+'" cy="'+(MAP_HEIGHT/2)+'" r="280" fill="none" stroke="rgba(0,212,255,0.1)" stroke-width="1" stroke-dasharray="5,5"/><text x="20" y="30" fill="rgba(0,212,255,0.3)" font-size="12">200km产业生态圈</text>';
+    
+    mapMarkers.forEach((m, i) => {
+        const p = latLngToXY(m.lat, m.lng);
+        const sz = m.type === 'center' ? 18 : (m.type === 'zone' ? 14 : 12);
+        const icon = {center:'⭐',zone:'📍',target:'🎯',factory:'🏢',enterprise:'🏭'}[m.type] || '📍';
+        svg += '<circle cx="'+p.x+'" cy="'+p.y+'" r="'+sz+'" fill="'+m.color+'" filter="url(#glow)"/>';
+        if(m.type === 'center') svg += '<circle cx="'+p.x+'" cy="'+p.y+'" r="'+sz+'" fill="none" stroke="'+m.color+'" stroke-width="2"><animate attributeName="r" values="'+sz+';'+(sz+15)+';'+sz+'" dur="2s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.6;0;0.6" dur="2s" repeatCount="indefinite"/></circle>';
+        svg += '<text x="'+(p.x - sz - 5)+'" y="'+(p.y - sz - 5)+'" fill="'+m.color+'" font-size="11" font-weight="bold" text-anchor="end">'+m.name+'</text>';
+        svg += '<circle cx="'+p.x+'" cy="'+p.y+'" r="'+(sz+10)+'" fill="transparent" cursor="pointer" onclick="showMarkerDetail('+i+')"/>';
+    });
+    
+    // 图例
+    svg += '<g transform="translate(20,'+(MAP_HEIGHT-130)+')"><rect width="150" height="110" fill="rgba(10,22,46,0.9)" rx="8" stroke="rgba(0,212,255,0.2)"/><text x="10" y="20" fill="#fff" font-size="12" font-weight="bold">图例</text>';
+    const leg = [{c:'#00d4ff',l:'⭐ 长合区中心'},{c:'#fbbc04',l:'📍 园区区域'},{c:'#ea4335',l:'🎯 招商目标'},{c:'#34a853',l:'🏢/🏭 厂房/企业'}];
+    leg.forEach((l,i) => { svg += '<circle cx="20" cy="'+(40+i*20)+'" r="6" fill="'+l.c+'"/><text x="35" y="'+(45+i*20)+'" fill="#c0d0e0" font-size="11">'+l.l+'</text>'; });
+    svg += '</g>';
+    svg += '</svg>';
+    return svg;
+}
+
+function showMarkerDetail(idx) {
+    const m = mapMarkers[idx];
+    if(!m) return;
+    const d = document.getElementById('markerDetail');
+    if(d) {
+        const tp = {center:'⭐ 长合区',zone:'📍 园区',target:'🎯 招商目标',factory:'🏢 厂房',enterprise:'🏭 企业'}[m.type] || '';
+        d.innerHTML = '<h4 style="margin:0 0 8px;color:#00d4ff;">'+tp+'</h4><p style="font-size:16px;font-weight:bold;color:'+m.color+';margin-bottom:8px;">'+m.name+'</p><p style="color:#c0d0e0;line-height:1.6;">📝 '+m.desc+'</p>'+(m.type==='target'||m.type==='factory'?'<button onclick="openBookingModal(\''+m.name+'\')" style="width:100%;margin-top:12px;padding:10px;background:#ff6b35;border:none;border-radius:8px;color:#fff;font-weight:600;cursor:pointer;">📅 预约考察</button>':'');
+        d.style.display = 'block';
+    }
+}
+
 }
 
 function setupMapViewportObserver() {
@@ -6921,6 +7056,16 @@ function filterMapType(t) {
     document.querySelectorAll('.filter-group:nth-child(3) .filter-tag').forEach(e => e.classList.remove('active'));
     if(event && event.target) event.target.classList.add('active');
 }
+
+
+// 页面初始化
+document.addEventListener('DOMContentLoaded', function() {
+    setupMapViewportObserver();
+    initFactoryBrochure();
+    initEnterprise();
+    initClues();
+    console.log('✅ 页面初始化完成');
+});
 
 </script>
 
