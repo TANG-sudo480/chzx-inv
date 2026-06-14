@@ -130,18 +130,6 @@ td a:hover{text-decoration:underline;}
 .chain-company-name{font-size:14px;font-weight:600;color:#fff}
 .chain-company-detail{font-size:12px;color:var(--dim);margin-top:2px}
 .chain-company-region{font-size:11px;color:var(--primary);margin-top:4px}
-/* 工艺图解样式 */
-.process-container{padding:20px 0}
-.process-industry{margin-bottom:40px}
-.process-header{display:flex;align-items:center;gap:12px;padding:16px 20px;background:linear-gradient(135deg,var(--card),rgba(0,212,255,0.05));border-radius:12px;margin-bottom:20px;border:1px solid var(--border)}
-.process-title{font-size:18px;font-weight:600;color:#fff}
-.process-desc{font-size:13px;color:var(--dim);margin-top:4px}
-.process-flow{display:flex;flex-wrap:wrap;gap:12px;padding:20px;background:var(--card);border-radius:12px;border:1px solid var(--border)}
-.process-step{flex:1;min-width:180px;background:var(--bg);border-radius:8px;padding:16px;border-left:3px solid var(--primary)}
-.process-step-num{font-size:24px;font-weight:700;color:var(--primary);opacity:0.5}
-.process-step-name{font-size:14px;font-weight:600;color:#fff;margin-top:8px}
-.process-step-detail{font-size:12px;color:var(--dim);margin-top:4px}
-.process-step-companies{font-size:11px;color:var(--primary);margin-top:8px;padding-top:8px;border-top:1px solid var(--border)}
 @media(max-width:900px){.fishbone-chain{grid-template-columns:1fr}}
 @media(max-width:768px){
 nav{overflow-x:auto;padding-bottom:8px}
@@ -149,7 +137,6 @@ nav{overflow-x:auto;padding-bottom:8px}
 main{padding:16px}
 .quick{grid-template-columns:1fr}
 .fishbone-title{font-size:16px}
-.process-step{min-width:150px}
 }
 </style>
 </head>
@@ -168,7 +155,6 @@ main{padding:16px}
 <button data-page="enterprise">🏢 企业</button>
 <button data-page="policy">💰 政策</button>
 <button data-page="fishbone">🐟 产业图谱</button>
-<button data-page="process">⚙️ 工艺</button>
 </nav>
 </div>
 </header>
@@ -639,28 +625,11 @@ main{padding:16px}
 <!-- 产业鱼骨图 -->
 <div id="page-fishbone" class="page">
 <div class="page-title">🐟 产业图谱</div>
-<div class="page-sub">长合区主导产业 · 上中下游全链条 · 园区企业精准对接</div>
+<div class="page-sub">长合区主导产业 · 上中下游全链条 · 头部企业精准对接</div>
 
-<div class="data-note">📋 数据来源：2026年2月长合区推介稿。涵盖新能源汽车及关键零部件、机器人·数控机床·AI智造两大主导产业，配套表面处理产业链。🌟标记为园区已落地企业。</div>
+<div class="data-note">📋 涵盖新能源汽车、仿生机器人、储能、半导体四大主导产业，每个产业精选 15 家头部企业，覆盖上中下游全链条。</div>
 
 <div class="fishbone-container" id="fishbone-container"></div>
-</div>
-
-<!-- 工艺图解 -->
-<div id="page-process" class="page">
-<div class="page-title">⚙️ 工艺图解</div>
-<div class="page-sub">产业制造全流程 · 从原材料到成品的完整工艺链条</div>
-
-<div class="data-note">📋 展示新能源汽车、机器人、数控机床三大产业的完整制造工艺流程，清晰呈现上中下游配套关系。</div>
-
-<div class="filter-bar" style="margin-bottom:20px">
-<button class="filter-btn active" data-process="all">全部</button>
-<button class="filter-btn" data-process="nev-process">🚗 新能源汽车</button>
-<button class="filter-btn" data-process="robot-process">🤖 机器人</button>
-<button class="filter-btn" data-process="cnc-process">🔧 数控机床</button>
-</div>
-
-<div class="process-container" id="process-container"></div>
 </div>
 
 </main>
@@ -882,8 +851,6 @@ btn.addEventListener('click',()=>{document.querySelectorAll('[data-l]').forEach(
 });
 document.getElementById('land-type-filter')?.addEventListener('change',(e)=>{curLandType=e.target.value;landP=1;renderLandTable(filterLand());});
 document.getElementById('land-search')?.addEventListener('input',()=>{landP=1;renderLandTable(filterLand());});
-
-// 初始化土地数据（在所有函数定义完成后调用）
 renderLand();
 
 // ============== 产业鱼骨图 ==============
@@ -914,9 +881,9 @@ ${chain.icon} ${chain.name} 产业链
 <div class="chain-label" style="color:${chain.color};border-left:3px solid ${chain.color}">${chain.upstream.title}</div>
 <div class="chain-company">
 ${chain.upstream.companies.map(c=>`<div class="chain-company-item" style="border-left-color:${chain.color}">
-<div class="chain-company-name">${c.name}${c.local?' 🌟':''}</div>
+<div class="chain-company-name">${c.name}</div>
 <div class="chain-company-detail">${c.detail}</div>
-<div class="chain-company-region">📍 ${c.region}${c.local?'（园区）':''}</div>
+<div class="chain-company-region">📍 ${c.region}</div>
 </div>`).join('')}
 </div>
 </div>
@@ -924,9 +891,9 @@ ${chain.upstream.companies.map(c=>`<div class="chain-company-item" style="border
 <div class="chain-label" style="color:${chain.color};border-left:3px solid ${chain.color}">${chain.midstream.title}</div>
 <div class="chain-company">
 ${chain.midstream.companies.map(c=>`<div class="chain-company-item" style="border-left-color:${chain.color}">
-<div class="chain-company-name">${c.name}${c.local?' 🌟':''}</div>
+<div class="chain-company-name">${c.name}</div>
 <div class="chain-company-detail">${c.detail}</div>
-<div class="chain-company-region">📍 ${c.region}${c.local?'（园区）':''}</div>
+<div class="chain-company-region">📍 ${c.region}</div>
 </div>`).join('')}
 </div>
 </div>
@@ -934,9 +901,9 @@ ${chain.midstream.companies.map(c=>`<div class="chain-company-item" style="borde
 <div class="chain-label" style="color:${chain.color};border-left:3px solid ${chain.color}">${chain.downstream.title}</div>
 <div class="chain-company">
 ${chain.downstream.companies.map(c=>`<div class="chain-company-item" style="border-left-color:${chain.color}">
-<div class="chain-company-name">${c.name}${c.local?' 🌟':''}</div>
+<div class="chain-company-name">${c.name}</div>
 <div class="chain-company-detail">${c.detail}</div>
-<div class="chain-company-region">📍 ${c.region}${c.local?'（园区）':''}</div>
+<div class="chain-company-region">📍 ${c.region}</div>
 </div>`).join('')}
 </div>
 </div>
@@ -950,22 +917,6 @@ function toggleFishbone(id){
 const body=document.getElementById('fb-'+id);
 if(body)body.classList.toggle('open');
 }
-
-// ============== 工艺图解 ==============
-let curProcess='all';
-function renderProcess(filter='all'){
-const container=document.getElementById('process-container');
-if(!container||!window.processFlowData)return;
-const data=filter==='all'?processFlowData:processFlowData.filter(p=>p.id===filter);
-container.innerHTML=data.map(ind=>`<div class="process-industry">
-<div class="process-header"><div class="fishbone-icon" style="background:${ind.color}33">${ind.icon}</div><div><div class="process-title">${ind.name}</div><div class="process-desc">${ind.desc}</div></div></div>
-<div class="process-flow">${ind.steps.map(s=>`<div class="process-step" style="border-left-color:${ind.color}"><div class="process-step-num">${s.step}</div><div class="process-step-name">${s.name}</div><div class="process-step-detail">${s.detail}</div><div class="process-step-companies">🏭 ${s.companies}</div></div>`).join('')}</div>
-</div>`).join('');
-}
-document.querySelectorAll('[data-process]').forEach(btn=>{
-btn.addEventListener('click',()=>{document.querySelectorAll('[data-process]').forEach(b=>b.classList.remove('active'));btn.classList.add('active');curProcess=btn.dataset.process;renderProcess(curProcess);});
-});
-if(document.getElementById('process-container'))renderProcess();
 </script>
 <!-- 图片预览模态框 -->
 <div id="img-modal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);z-index:9999;align-items:center;justify-content:center;flex-direction:column;">
