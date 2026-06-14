@@ -369,7 +369,7 @@ main{padding:16px}
       document.getElementById('amap-container').innerHTML='<div style="color:#9ca3af;text-align:center;padding:80px 0"><p style="font-size:32px;margin-bottom:8px">🗺️</p><p style="font-size:14px">地图加载中...</p></div>';
       setTimeout(initHomeMap,800);return;
     }
-    var opts={zoom:9,center:[119.75,31.03],viewMode:'2D'};
+    var opts={zoom:9,center:[119.62,30.82],viewMode:'2D'};
     try{opts.mapStyle='amap://styles/dark';}catch(e){}
     var map=new AMap.Map('amap-container',opts);
     try{map.addControl(new AMap.Scale());}catch(e){}
@@ -389,14 +389,14 @@ main{padding:16px}
         map.add(mk);
       }catch(e){}
     });
-    var lines=[[[119.75,31.03],[120.19,30.25]],[[119.75,31.03],[121.47,31.23]],[[119.75,31.03],[118.78,32.06]],[[119.75,31.03],[117.28,31.86]],[[119.75,31.03],[119.95,31.79]]];
+    var lines=[[[119.62,30.82],[120.19,30.25]],[[119.62,30.82],[121.47,31.23]],[[119.62,30.82],[118.78,32.06]],[[119.62,30.82],[117.28,31.86]],[[119.62,30.82],[119.95,31.79]]];
     lines.forEach(function(l){try{map.add(new AMap.Polyline({path:l,strokeColor:'rgba(0,212,255,0.4)',strokeWeight:2,strokeDasharray:[6,4]}));}catch(e){}});
     try{
-      var m0=new AMap.Marker({position:[119.75,31.03],title:'长三角（湖州）产业合作区',
+      var m0=new AMap.Marker({position:[119.62,30.82],title:'长三角（湖州）产业合作区',
         content:'<div style="background:#00d4ff;color:#fff;padding:6px 12px;border-radius:6px;font-size:12px;font-weight:bold;white-space:nowrap">长三角合区</div>'});
       map.add(m0);
-      var info=new AMap.InfoWindow({content:'<div style="background:#111827;border:1px solid #00d4ff;border-radius:8px;padding:16px;color:#f3f4f6;max-width:280px;font-size:12px;line-height:1.8"><div style="font-size:14px;font-weight:bold;color:#00d4ff;margin-bottom:8px">长三角（湖州）产业合作区</div><div>📍 天子湖镇（119.75°E, 31.03°N）<br>🚄 高铁1.5h直达上海虹桥<br>⚡ 三大产业：新能源汽车/机器人/储能<br>🏭 天子湖片区可租厂房5000-10000㎡</div></div>',offset:new AMap.Pixel(0,-30)});
-      info.open(map,[119.75,31.03]);
+      var info=new AMap.InfoWindow({content:'<div style="background:#111827;border:1px solid #00d4ff;border-radius:8px;padding:16px;color:#f3f4f6;max-width:280px;font-size:12px;line-height:1.8"><div style="font-size:14px;font-weight:bold;color:#00d4ff;margin-bottom:8px">长三角（湖州）产业合作区</div><div>📍 天子湖镇（119.62°E, 30.82°N）<br>🚄 高铁1.5h直达上海虹桥<br>⚡ 三大产业：新能源汽车/机器人/储能<br>🏭 天子湖片区可租厂房5000-10000㎡</div></div>',offset:new AMap.Pixel(0,-30)});
+      info.open(map,[119.62,30.82]);
     }catch(e){}
     window._chzxMap=map;
   }
@@ -658,19 +658,19 @@ main{padding:16px}
     if(!el)return;
     if(typeof AMap==='undefined'){el.innerHTML='<div style="color:#9ca3af;text-align:center;padding:80px 0"><p style="font-size:32px;margin-bottom:8px">🗺️</p><p style="font-size:14px">地图加载中...</p></div>';setTimeout(initLandMap,800);return;}
     if(el._mapInited)return;
-    var opts={zoom:14,center:[119.745,31.027],viewMode:'2D'};
+    var opts={zoom:14,center:[119.745,30.8027],viewMode:'2D'};
     try{opts.mapStyle='amap://styles/dark';}catch(e){}
     var m=chzxLandMap=new AMap.Map('tianzibai-north-amap',opts);
     el._mapInited=true;
     try{m.addControl(new AMap.Scale());}catch(e){}
     try{m.addControl(new AMap.ToolBar({position:'rb'}));}catch(e){}
     var plots=[
-      {id:'217+218',coord:[119.746,31.033],area:'~80亩',type:'可利用净用地',desc:'天子湖北区北部，靠近扬子鳄保护区侧'},
-      {id:'219',coord:[119.740,31.031],area:'~50亩',type:'可利用净用地',desc:'天子湖北区中部偏北'},
-      {id:'227',coord:[119.743,31.029],area:'~60亩',type:'可利用净用地',desc:'天子湖北区中部偏东'},
-      {id:'225+226',coord:[119.733,31.026],area:'~40亩',type:'可利用净用地',desc:'天子湖北区南部，毗邻镇区'},
-      {id:'创新综合体',coord:[119.749,31.0285],area:'180亩',type:'已农转已供地',desc:'创新中心一至三期，综合体项目'},
-      {id:'天和安置区',coord:[119.738,31.024],area:'居住',type:'安置区',desc:'天和安置小区，配套设施完善'},
+      {id:'217+218',coord:[119.746,30.8033],area:'~80亩',type:'可利用净用地',desc:'天子湖北区北部，靠近扬子鳄保护区侧'},
+      {id:'219',coord:[119.740,30.8031],area:'~50亩',type:'可利用净用地',desc:'天子湖北区中部偏北'},
+      {id:'227',coord:[119.743,30.8029],area:'~60亩',type:'可利用净用地',desc:'天子湖北区中部偏东'},
+      {id:'225+226',coord:[119.733,30.8026],area:'~40亩',type:'可利用净用地',desc:'天子湖北区南部，毗邻镇区'},
+      {id:'创新综合体',coord:[119.749,30.8029],area:'180亩',type:'已农转已供地',desc:'创新中心一至三期，综合体项目'},
+      {id:'天和安置区',coord:[119.738,30.8024],area:'居住',type:'安置区',desc:'天和安置小区，配套设施完善'},
     ];
     plots.forEach(function(p){
       try{
