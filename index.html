@@ -204,24 +204,25 @@ main{padding:16px}
 <!-- 宣传视频播放器 -->
 <!-- 领导视察相册 -->
 <!-- 领导视察相册 -->
-<div style="display:flex;gap:20px;margin-bottom:20px">
-  <div style="flex:1">
-    <div style="display:flex;gap:12px;overflow-x:auto;padding-bottom:10px;scroll-snap-type:x mandatory">
-      <img src="assets/images/gallery1.jpg" style="flex-shrink:0;width:320px;height:213px;object-fit:cover;border-radius:10px;border:1px solid var(--border);scroll-snap-align:start">
-      <img src="assets/images/gallery2.jpg" style="flex-shrink:0;width:320px;height:213px;object-fit:cover;border-radius:10px;border:1px solid var(--border);scroll-snap-align:start">
-      <img src="assets/images/gallery3.jpg" style="flex-shrink:0;width:320px;height:213px;object-fit:cover;border-radius:10px;border:1px solid var(--border);scroll-snap-align:start">
-      <img src="assets/images/gallery4.png" style="flex-shrink:0;width:320px;height:213px;object-fit:cover;border-radius:10px;border:1px solid var(--border);scroll-snap-align:start">
-      <img src="assets/images/gallery5.jpg" style="flex-shrink:0;width:320px;height:213px;object-fit:cover;border-radius:10px;border:1px solid var(--border);scroll-snap-align:start">
-      <img src="assets/images/gallery6.jpg" style="flex-shrink:0;width:320px;height:213px;object-fit:cover;border-radius:10px;border:1px solid var(--border);scroll-snap-align:start">
-    </div>
+<div style="margin-bottom:20px">
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px">
+    <img src="assets/images/gallery1.jpg" style="width:100%;height:200px;object-fit:cover;border-radius:10px;border:1px solid var(--border);cursor:pointer;transition:transform .2s" onclick="showGallery(this.src)">
+    <img src="assets/images/gallery2.jpg" style="width:100%;height:200px;object-fit:cover;border-radius:10px;border:1px solid var(--border);cursor:pointer;transition:transform .2s" onclick="showGallery(this.src)">
+    <img src="assets/images/gallery3.jpg" style="width:100%;height:200px;object-fit:cover;border-radius:10px;border:1px solid var(--border);cursor:pointer;transition:transform .2s" onclick="showGallery(this.src)">
+    <img src="assets/images/gallery4.png" style="width:100%;height:200px;object-fit:cover;border-radius:10px;border:1px solid var(--border);cursor:pointer;transition:transform .2s" onclick="showGallery(this.src)">
+    <img src="assets/images/gallery5.jpg" style="width:100%;height:200px;object-fit:cover;border-radius:10px;border:1px solid var(--border);cursor:pointer;transition:transform .2s" onclick="showGallery(this.src)">
+    <img src="assets/images/gallery6.jpg" style="width:100%;height:200px;object-fit:cover;border-radius:10px;border:1px solid var(--border);cursor:pointer;transition:transform .2s" onclick="showGallery(this.src)">
   </div>
-  <div style="flex:1">
-    <div style="font-size:20px;font-weight:700;color:#fff;margin-bottom:12px">长三角（湖州）产业合作区</div>
-    <div style="color:var(--dim);font-size:13px;line-height:1.8;margin-bottom:12px">长三角一体化先行启动核心区<br>浙江省两大高能级战略平台之一</div>
-    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px">
-      <span class="tag tag-blue">苏浙皖三省交汇</span>
-      <span class="tag tag-green">90分钟交通圈</span>
-      <span class="tag tag-orange">530亿产值</span>
+</div>
+<!-- 图片预览弹窗 -->
+<div id="galleryModal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);z-index:9999;justify-content:center;align-items:center;flex-direction:column" onclick="closeGallery()">
+  <img id="galleryModalImg" style="max-width:90%;max-height:85%;border-radius:10px">
+  <div style="color:#fff;margin-top:16px;font-size:14px">点击任意位置关闭</div>
+</div>
+<script>
+function showGallery(src){document.getElementById('galleryModalImg').src=src;document.getElementById('galleryModal').style.display='flex'}
+function closeGallery(){document.getElementById('galleryModal').style.display='none'}
+</script>
     </div>
     <div style="padding:14px;background:rgba(0,212,255,0.05);border-radius:10px;border:1px solid var(--border)">
       <div style="color:#fff;font-size:13px;font-weight:600;margin-bottom:10px">📌 核心信息</div>
