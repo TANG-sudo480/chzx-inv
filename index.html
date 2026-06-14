@@ -1187,8 +1187,9 @@ const PS=15;
 
 function renderFacTable(data,p=1){
 const s=(p-1)*PS,rows=data.slice(s,s+PS);
+window._facPageData=rows; // 存储当前页数据，供 onclick 引用
 document.getElementById('fac-tbody').innerHTML=rows.map((f,i)=>
-`<tr><td>${s+i+1}</td><td><a href="javascript:void(0)" onclick="showImgs(f.images||[],0)" title="点击查看厂房图片${(f.images||[]).length?' ('+f.images.length+'张)':''}">${f.name}</a></td><td>${f.area}</td><td>${f.floor||'-'}</td><td>${f.rent||'-'}</td><td>${f.height||'-'}</td><td>${(f.sqm||0).toLocaleString()}</td><td>${f.power||'-'}</td><td>${f.structure||'-'}</td><td>${f.load||'-'}</td><td>${f.contact||'-'}</td><td>${f.phone||'-'}</td></tr>`
+`<tr><td>${s+i+1}</td><td><a href="javascript:void(0)" onclick="showImgs(window._facPageData[${i}].images||[],0)" title="点击查看厂房图片${(f.images||[]).length?' ('+f.images.length+'张)':''}">${f.name}</a></td><td>${f.area}</td><td>${f.floor||'-'}</td><td>${f.rent||'-'}</td><td>${f.height||'-'}</td><td>${(f.sqm||0).toLocaleString()}</td><td>${f.power||'-'}</td><td>${f.structure||'-'}</td><td>${f.load||'-'}</td><td>${f.contact||'-'}</td><td>${f.phone||'-'}</td></tr>`
 ).join('');
 const tp=Math.ceil(data.length/PS)||1;
 document.getElementById('fac-pages').innerHTML=
@@ -1208,8 +1209,9 @@ const kw=(document.getElementById('map-search')||{}).value||'';
 const data=allFac.filter(f=>(mapArea==='all'||f.area.includes(mapArea))&&f.name.toLowerCase().includes(kw.toLowerCase()));
 const list=document.getElementById('map-fac');
 if(!data.length){list.innerHTML='<p style="color:var(--dim);text-align:center;padding:20px">暂无数据</p>';return;}
+window._mapFacData=data; // 存储当前筛选数据，供 onclick 引用
 list.innerHTML='<div class="table-wrap"><table><tr><th>#</th><th>企业</th><th>片区</th><th>可租</th><th>租金</th><th>层高</th><th>面积</th><th>联系人</th><th>电话</th></tr>'+
-data.map((f,i)=>`<tr><td>${i+1}</td><td><a href="javascript:void(0)" onclick="showImgs(f.images||[],0)" title="点击查看厂房图片${(f.images||[]).length?' ('+f.images.length+'张)':''}">${f.name}</a></td><td>${f.area}</td><td>${f.floor||'-'}</td><td>${f.rent||'-'}</td><td>${f.height||'-'}</td><td>${(f.sqm||0).toLocaleString()}</td><td>${f.contact||'-'}</td><td>${f.phone||'-'}</td></tr>`).join('')+'</table></div>';
+data.map((f,i)=>`<tr><td>${i+1}</td><td><a href="javascript:void(0)" onclick="showImgs(window._mapFacData[${i}].images||[],0)" title="点击查看厂房图片${(f.images||[]).length?' ('+f.images.length+'张)':''}">${f.name}</a></td><td>${f.area}</td><td>${f.floor||'-'}</td><td>${f.rent||'-'}</td><td>${f.height||'-'}</td><td>${(f.sqm||0).toLocaleString()}</td><td>${f.contact||'-'}</td><td>${f.phone||'-'}</td></tr>`).join('')+'</table></div>';
 }
 document.querySelectorAll('[data-area]').forEach(btn=>{
 btn.addEventListener('click',()=>{document.querySelectorAll('[data-area]').forEach(b=>b.classList.remove('active'));btn.classList.add('active');mapArea=btn.dataset.area;renderMapFac();});
