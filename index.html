@@ -108,11 +108,35 @@ td a:hover{text-decoration:underline;}
 .dot-yellow{background:var(--yellow)}
 .dot-red{background:var(--red)}
 
+/* 鱼骨图样式 */
+.fishbone-container{padding:20px 0}
+.fishbone-industry{margin-bottom:40px}
+.fishbone-header{display:flex;align-items:center;gap:12px;padding:16px 20px;background:linear-gradient(135deg,var(--card),rgba(0,212,255,0.05));border-radius:12px;margin-bottom:20px;cursor:pointer;border:1px solid var(--border);transition:all .3s}
+.fishbone-header:hover{border-color:var(--primary);box-shadow:0 4px 20px rgba(0,212,255,0.1)}
+.fishbone-icon{font-size:32px}
+.fishbone-title{font-size:20px;font-weight:700;color:#fff}
+.fishbone-sub{font-size:13px;color:var(--dim);margin-top:2px}
+.fishbone-count{margin-left:auto;background:rgba(0,212,255,0.15);color:var(--primary);padding:6px 14px;border-radius:20px;font-size:13px}
+.fishbone-body{display:none;padding:20px;background:rgba(0,0,0,0.2);border-radius:12px;border:1px solid rgba(255,255,255,0.05)}
+.fishbone-body.open{display:block}
+.fishbone-spine{display:flex;align-items:center;margin-bottom:20px;gap:16px}
+.fishbone-spine-center{flex:1;display:flex;align-items:center;justify-content:center;padding:20px;background:var(--card);border-radius:12px;font-size:18px;font-weight:700;color:#fff}
+.fishbone-chain{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.fishbone-chain-section{padding:16px;background:var(--card);border-radius:10px;border:1px solid rgba(255,255,255,0.08)}
+.chain-label{font-size:13px;font-weight:600;padding:6px 12px;background:rgba(0,212,255,0.1);color:var(--primary);border-radius:20px;margin-bottom:12px;display:inline-block}
+.chain-company{display:flex;flex-direction:column;gap:8px}
+.chain-company-item{padding:10px 12px;background:rgba(255,255,255,0.03);border-radius:8px;border-left:3px solid var(--primary);transition:all .2s}
+.chain-company-item:hover{background:rgba(0,212,255,0.08);transform:translateX(4px)}
+.chain-company-name{font-size:14px;font-weight:600;color:#fff}
+.chain-company-detail{font-size:12px;color:var(--dim);margin-top:2px}
+.chain-company-region{font-size:11px;color:var(--primary);margin-top:4px}
+@media(max-width:900px){.fishbone-chain{grid-template-columns:1fr}}
 @media(max-width:768px){
 nav{overflow-x:auto;padding-bottom:8px}
 .header-inner{padding:0 12px}
 main{padding:16px}
 .quick{grid-template-columns:1fr}
+.fishbone-title{font-size:16px}
 }
 </style>
 </head>
@@ -129,6 +153,7 @@ main{padding:16px}
 <button data-page="factory">🏗️ 厂房</button>
 <button data-page="enterprise">🏢 企业</button>
 <button data-page="policy">💰 政策</button>
+<button data-page="fishbone">🐟 产业图谱</button>
 </nav>
 </div>
 </header>
@@ -559,10 +584,21 @@ main{padding:16px}
 </div>
 </div>
 
+<!-- 产业鱼骨图 -->
+<div id="page-fishbone" class="page">
+<div class="page-title">🐟 产业图谱</div>
+<div class="page-sub">长合区主导产业 · 上中下游全链条 · 头部企业精准对接</div>
+
+<div class="data-note">📋 涵盖新能源汽车、仿生机器人、储能、半导体四大主导产业，每个产业精选 15 家头部企业，覆盖上中下游全链条。</div>
+
+<div class="fishbone-container" id="fishbone-container"></div>
+</div>
+
 </main>
 
 <script src="factory_data.js"></script>
 <script src="enterprise_data.js"></script>
+<script src="chain_fishbone_data.js"></script>
 <script>
 // ============== 产业链数据 ==============
 const chains = {
@@ -741,7 +777,73 @@ document.getElementById('e-total').textContent=allEnt.length;
 renderFacTable(allFac);
 renderEntTable(allEnt);
 renderMapFac();
+renderFishbone();
 })();
+
+// ============== 产业鱼骨图 ==============
+function renderFishbone(){
+const container=document.getElementById('fishbone-container');
+if(!container)return;
+container.innerHTML=chainFishboneData.map(chain=>{
+const total=chain.upstream.companies.length+chain.midstream.companies.length+chain.downstream.companies.length;
+return`<div class="fishbone-industry" data-id="${chain.id}">
+<div class="fishbone-header" onclick="toggleFishbone('${chain.id}')">
+<div class="fishbone-icon">${chain.icon}</div>
+<div>
+<div class="fishbone-title">${chain.name}</div>
+<div class="fishbone-sub">${chain.desc}</div>
+</div>
+<div class="fishbone-count">${total}家头部企业</div>
+</div>
+<div class="fishbone-body" id="fb-${chain.id}">
+<div class="fishbone-spine">
+<div style="width:20px;height:4px;background:${chain.color};border-radius:2px"></div>
+<div class="fishbone-spine-center" style="background:linear-gradient(135deg,${chain.color}22,${chain.color}44);border:2px solid ${chain.color}66">
+${chain.icon} ${chain.name} 产业链
+</div>
+<div style="width:20px;height:4px;background:${chain.color};border-radius:2px"></div>
+</div>
+<div class="fishbone-chain">
+<div class="fishbone-chain-section">
+<div class="chain-label" style="color:${chain.color};border-left:3px solid ${chain.color}">${chain.upstream.title}</div>
+<div class="chain-company">
+${chain.upstream.companies.map(c=>`<div class="chain-company-item" style="border-left-color:${chain.color}">
+<div class="chain-company-name">${c.name}</div>
+<div class="chain-company-detail">${c.detail}</div>
+<div class="chain-company-region">📍 ${c.region}</div>
+</div>`).join('')}
+</div>
+</div>
+<div class="fishbone-chain-section">
+<div class="chain-label" style="color:${chain.color};border-left:3px solid ${chain.color}">${chain.midstream.title}</div>
+<div class="chain-company">
+${chain.midstream.companies.map(c=>`<div class="chain-company-item" style="border-left-color:${chain.color}">
+<div class="chain-company-name">${c.name}</div>
+<div class="chain-company-detail">${c.detail}</div>
+<div class="chain-company-region">📍 ${c.region}</div>
+</div>`).join('')}
+</div>
+</div>
+<div class="fishbone-chain-section">
+<div class="chain-label" style="color:${chain.color};border-left:3px solid ${chain.color}">${chain.downstream.title}</div>
+<div class="chain-company">
+${chain.downstream.companies.map(c=>`<div class="chain-company-item" style="border-left-color:${chain.color}">
+<div class="chain-company-name">${c.name}</div>
+<div class="chain-company-detail">${c.detail}</div>
+<div class="chain-company-region">📍 ${c.region}</div>
+</div>`).join('')}
+</div>
+</div>
+</div>
+</div>
+</div>`;
+}).join('');
+}
+
+function toggleFishbone(id){
+const body=document.getElementById('fb-'+id);
+if(body)body.classList.toggle('open');
+}
 </script>
 <!-- 图片预览模态框 -->
 <div id="img-modal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);z-index:9999;align-items:center;justify-content:center;flex-direction:column;">
