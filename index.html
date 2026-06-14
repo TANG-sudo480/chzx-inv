@@ -163,7 +163,10 @@ main{padding:16px}
 .quick{grid-template-columns:1fr}
 .fishbone-title{font-size:16px}
 }
+/* 高德地图容器 */
+#amap-container{width:100%;height:500px;border-radius:8px;overflow:hidden}
 </style>
+<script src="https://webapi.amap.com/maps?v=2.0&key=1d19f5d7f8085dfc6d592c7b5e6dc6db"></script>
 </head>
 <body>
 
@@ -357,153 +360,38 @@ main{padding:16px}
 <div class="card">
 <div class="card-title">🗺️ 精准区位图</div>
 <div class="map-wrap">
-<svg viewBox="0 0 900 520" xmlns="http://www.w3.org/2000/svg">
-<defs>
-<linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#0a1628"/><stop offset="100%" stop-color="#0f2040"/></linearGradient>
-<filter id="glow"><feGaussianBlur stdDeviation="3" result="coloredBlur"/><feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-</defs>
-<rect width="900" height="520" fill="url(#g1)"/>
-
-<!-- 地理网格线 -->
-<g stroke="rgba(0,212,255,0.05)" stroke-width="1">
-<line x1="0" y1="130" x2="900" y2="130"/><line x1="0" y1="260" x2="900" y2="260"/><line x1="0" y1="390" x2="900" y2="390"/>
-<line x1="225" y1="0" x2="225" y2="520"/><line x1="450" y1="0" x2="450" y2="520"/><line x1="675" y1="0" x2="675" y2="520"/>
-</g>
-
-<!-- 省份区块（简化标注） -->
-<g fill="rgba(0,212,255,0.04)" stroke="rgba(0,212,255,0.15)" stroke-width="1">
-<rect x="20" y="40" width="280" height="200" rx="8"/><text x="160" y="145" text-anchor="middle" fill="rgba(0,212,255,0.3)" font-size="13">江苏</text>
-<rect x="300" y="80" width="300" height="280" rx="8"/><text x="450" y="225" text-anchor="middle" fill="rgba(0,212,255,0.3)" font-size="13">浙江</text>
-<rect x="600" y="40" width="280" height="200" rx="8"/><text x="740" y="145" text-anchor="middle" fill="rgba(0,212,255,0.3)" font-size="13">安徽</text>
-<rect x="500" y="280" width="250" height="200" rx="8"/><text x="625" y="385" text-anchor="middle" fill="rgba(0,212,255,0.3)" font-size="13">上海</text>
-</g>
-
-<!-- 城市坐标（lng, lat → SVG x,y） -->
-<!-- 投影：东经120°, 北纬31°为原点，1度≈20px，倾斜角≈30° -->
-<!-- x = (lng-112)*25 + (90-lat)*10 -->
-<!-- y = (32-lat)*20 -->
-<g font-size="12">
-
-<!-- 宣城/广德（安徽） -->
-<circle cx="720" cy="310" r="4" fill="#f97316" opacity="0.6"/>
-<text x="720" y="300" text-anchor="middle" fill="#f97316" font-size="11" opacity="0.7">宣城</text>
-
-<!-- 长合区中心（天子湖镇，经纬度约119.75°E, 31.03°N） -->
-<g filter="url(#glow)">
-<circle cx="580" cy="275" r="14" fill="rgba(0,212,255,0.1)" stroke="#00d4ff" stroke-width="2"/>
-<circle cx="580" cy="275" r="6" fill="#00d4ff"/>
-</g>
-<text x="580" y="258" text-anchor="middle" fill="#fff" font-size="13" font-weight="bold">长合区</text>
-<text x="580" y="272" text-anchor="middle" fill="#00d4ff" font-size="10">天子湖镇</text>
-<text x="580" y="285" text-anchor="middle" fill="rgba(0,212,255,0.7)" font-size="9">119.75°E 31.03°N</text>
-
-<!-- 湖州 -->
-<circle cx="540" cy="295" r="5" fill="#f97316"/>
-<text x="540" y="288" text-anchor="middle" fill="#f97316" font-size="11">湖州</text>
-
-<!-- 长兴 -->
-<circle cx="560" cy="285" r="4" fill="#f97316" opacity="0.8"/>
-<text x="560" y="298" text-anchor="middle" fill="#f97316" font-size="10">长兴</text>
-
-<!-- 安吉 -->
-<circle cx="530" cy="265" r="4" fill="#f97316" opacity="0.8"/>
-<text x="530" y="258" text-anchor="middle" fill="#f97316" font-size="10">安吉</text>
-
-<!-- 杭州 -->
-<circle cx="480" cy="320" r="8" fill="#ff6b35"/>
-<text x="480" y="308" text-anchor="middle" fill="#ff6b35" font-size="12">杭州</text>
-
-<!-- 上海 -->
-<circle cx="600" cy="400" r="10" fill="#ff6b35"/>
-<text x="600" y="388" text-anchor="middle" fill="#ff6b35" font-size="13">上海</text>
-
-<!-- 苏州 -->
-<circle cx="620" cy="330" r="5" fill="#f97316" opacity="0.8"/>
-<text x="620" y="320" text-anchor="middle" fill="#f97316" font-size="11">苏州</text>
-
-<!-- 南京 -->
-<circle cx="740" cy="220" r="6" fill="#ff6b35"/>
-<text x="740" y="208" text-anchor="middle" fill="#ff6b35" font-size="12">南京</text>
-
-<!-- 合肥 -->
-<circle cx="820" cy="180" r="6" fill="#f97316" opacity="0.8"/>
-<text x="820" y="168" text-anchor="middle" fill="#f97316" font-size="11">合肥</text>
-
-<!-- 嘉兴 -->
-<circle cx="520" cy="345" r="4" fill="#f97316" opacity="0.7"/>
-<text x="520" y="358" text-anchor="middle" fill="#f97316" font-size="10">嘉兴</text>
-
-<!-- 无锡 -->
-<circle cx="660" cy="290" r="4" fill="#f97316" opacity="0.7"/>
-<text x="660" y="282" text-anchor="middle" fill="#f97316" font-size="10">无锡</text>
-
-<!-- 常州 -->
-<circle cx="700" cy="265" r="4" fill="#f97316" opacity="0.7"/>
-<text x="700" y="257" text-anchor="middle" fill="#f97316" font-size="10">常州</text>
-
-<!-- 宁波 -->
-<circle cx="450" cy="370" r="5" fill="#f97316" opacity="0.8"/>
-<text x="450" y="385" text-anchor="middle" fill="#f97316" font-size="10">宁波</text>
-
-<!-- 绍兴 -->
-<circle cx="490" cy="350" r="4" fill="#f97316" opacity="0.7"/>
-<text x="490" y="340" text-anchor="middle" fill="#f97316" font-size="10">绍兴</text>
-
-<!-- 溧阳 -->
-<circle cx="650" cy="300" r="3" fill="rgba(245,158,11,0.6)"/>
-<text x="650" y="315" text-anchor="middle" fill="rgba(245,158,11,0.8)" font-size="10">溧阳</text>
-
-<!-- 宜兴 -->
-<circle cx="665" cy="310" r="3" fill="rgba(245,158,11,0.6)"/>
-<text x="665" y="325" text-anchor="middle" fill="rgba(245,158,11,0.8)" font-size="10">宜兴</text>
-
-<!-- 郎溪 -->
-<circle cx="720" cy="260" r="3" fill="rgba(245,158,11,0.6)"/>
-<text x="720" y="248" text-anchor="middle" fill="rgba(245,158,11,0.8)" font-size="10">郎溪</text>
-
-</g>
-
-<!-- 连接线 -->
-<g stroke="rgba(0,212,255,0.25)" stroke-width="1" stroke-dasharray="6,4">
-<line x1="580" y1="275" x2="480" y2="320"/><line x1="580" y1="275" x2="600" y2="400"/>
-<line x1="580" y1="275" x2="740" y2="220"/><line x1="580" y1="275" x2="820" y2="180"/>
-<line x1="580" y1="275" x2="540" y2="295"/><line x1="580" y1="275" x2="620" y2="330"/>
-</g>
-
-<!-- 周边企业标注（代表性企业位置） -->
-<g>
-<circle cx="540" cy="295" r="3" fill="#10b981" opacity="0.7"/>
-<text x="548" y="293" fill="#10b981" font-size="9">吉利汽车</text>
-<circle cx="480" cy="320" r="3" fill="#10b981" opacity="0.7"/>
-<text x="488" y="318" fill="#10b981" font-size="9">零跑汽车</text>
-<circle cx="600" cy="400" r="3" fill="#10b981" opacity="0.7"/>
-<text x="608" y="398" fill="#10b981" font-size="9">特斯拉(上海)</text>
-</g>
-
-<!-- 时间标注 -->
-<g fill="rgba(0,212,255,0.5)" font-size="10">
-<text x="525" y="300">1.5h</text>
-<text x="590" y="340">1.5h</text>
-<text x="655" y="250">1.5h</text>
-<text x="695" y="195">1.5h</text>
-</g>
-
-<!-- 图例 -->
-<g transform="translate(30, 440)">
-<rect width="280" height="65" fill="rgba(10,14,39,0.9)" rx="8" stroke="rgba(0,212,255,0.2)"/>
-<text x="12" y="20" fill="rgba(0,212,255,0.7)" font-size="12">图例</text>
-<circle cx="20" cy="38" r="6" fill="#00d4ff"/><text x="34" y="42" fill="#fff" font-size="11">长合区</text>
-<circle cx="20" cy="55" r="5" fill="#ff6b35"/><text x="34" y="59" fill="#fff" font-size="11">省会/直辖市</text>
-<circle cx="110" cy="38" r="4" fill="#f97316"/><text x="122" y="42" fill="#fff" font-size="11">长三角城市</text>
-<circle cx="110" cy="55" r="4" fill="rgba(245,158,11,0.8)"/><text x="122" y="59" fill="#fff" font-size="11">一地六县</text>
-<circle cx="210" cy="38" r="3" fill="#10b981"/><text x="222" y="42" fill="#fff" font-size="11">周边龙头</text>
-<text x="210" y="59" fill="rgba(0,212,255,0.5)" font-size="9">—— 1.5h交通圈</text>
-</g>
-
-<!-- 坐标 -->
-<text x="850" y="510" text-anchor="end" fill="rgba(0,212,255,0.3)" font-size="10">119.5°E~121°E | 30°N~32°N</text>
-</svg>
+<div id="amap-container"></div>
 </div>
+<script>
+(function(){
+  if(typeof AMap==='undefined'){document.getElementById('amap-container').innerHTML='<div style="color:#9ca3af;text-align:center;padding:100px 0;font-size:14px">地图加载中...</div>';return;}
+  var map=new AMap.Map('amap-container',{zoom:9,center:[119.75,31.03],mapStyle:'amap://styles/darkblue',viewMode:'3D'});
+  map.addControl(new AMap.Scale());
+  map.addControl(new AMap.ToolBar({position:'rt'}));
+  // 长合区中心标记
+  var m0=new AMap.Marker({position:[119.75,31.03],title:'长三角（湖州）产业合作区',content:'<div style="background:#00d4ff;color:#fff;padding:6px 12px;border-radius:6px;font-size:12px;font-weight:bold;white-space:nowrap">长三角合区</div>'});
+  map.add(m0);
+  // 周边城市
+  var cities=[
+    [120.19,30.25,'杭州','#ff6b35'],[121.47,31.23,'上海','#ff6b35'],[118.78,32.06,'南京','#ff6b35'],
+    [117.28,31.86,'合肥','#f97316'],[120.16,30.28,'嘉兴','#f97316'],[119.95,31.79,'湖州','#f97316'],
+    [120.89,31.98,'苏州','#f97316'],[119.42,31.37,'长兴','#f97316'],[119.38,30.93,'安吉','#f97316'],
+    [119.57,31.19,'宜兴','#f97316'],[119.48,31.41,'溧阳','#f97316'],[119.17,30.65,'广德','#f97316'],
+    [118.75,30.92,'宁国','#f97316'],[119.90,30.77,'临安','#f97316'],[120.57,31.30,'无锡','#f97316'],
+    [119.92,31.70,'常州','#f97316'],[121.55,29.88,'宁波','#f97316'],[120.58,30.01,'绍兴','#f97316'],
+  ];
+  cities.forEach(function(c){var m=new AMap.Marker({position:[c[0],c[1]],title:c[2],content:'<div style="background:'+c[3]+';color:#fff;padding:3px 8px;border-radius:4px;font-size:11px">'+c[2]+'</div>'});map.add(m);});
+  // 连接线（示意）
+  var lines=[[[119.75,31.03],[120.19,30.25]],[[119.75,31.03],[121.47,31.23]],[[119.75,31.03],[118.78,32.06]],[[119.75,31.03],[117.28,31.86]],[[119.75,31.03],[119.95,31.79]]];
+  lines.forEach(function(l){
+    map.add(new AMap.Polyline({path:l,strokeColor:'rgba(0,212,255,0.4)',strokeWeight:2,strokeDasharray:[6,4]}));
+  });
+  // 信息窗体
+  var info=new AMap.InfoWindow({content:'<div style="background:#111827;border:1px solid #00d4ff;border-radius:8px;padding:16px;color:#f3f4f6;max-width:280px"><div style="font-size:14px;font-weight:bold;color:#00d4ff;margin-bottom:8px">长三角（湖州）产业合作区</div><div style="font-size:12px;line-height:1.8;color:#9ca3af">📍 天子湖镇（119.75°E, 31.03°N）<br>🚄 高铁1.5h直达上海虹桥<br>⚡ 三大产业：新能源汽车/机器人/储能<br>🏭 天子湖片区可租厂房5000-10000㎡</div></div>',offset:new AMap.Pixel(0,-30)});
+  info.open(map,[119.75,31.03]);
+  window._chzxMap=map;
+})();
+</script>
 </div>
 
 <div class="card">
