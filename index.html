@@ -848,7 +848,6 @@ renderFacTable(allFac);
 renderEntTable(allEnt);
 renderMapFac();
 renderFishbone();
-renderLand();
 })();
 
 // ============== 土地资源 ==============
@@ -883,6 +882,9 @@ btn.addEventListener('click',()=>{document.querySelectorAll('[data-l]').forEach(
 });
 document.getElementById('land-type-filter')?.addEventListener('change',(e)=>{curLandType=e.target.value;landP=1;renderLandTable(filterLand());});
 document.getElementById('land-search')?.addEventListener('input',()=>{landP=1;renderLandTable(filterLand());});
+
+// 初始化土地数据（在所有函数定义完成后调用）
+renderLand();
 
 // ============== 产业鱼骨图 ==============
 function renderFishbone(){
