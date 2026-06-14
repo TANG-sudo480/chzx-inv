@@ -792,6 +792,7 @@ main{padding:16px}
     var opts={zoom:14,center:[119.745,30.8027],viewMode:'2D'};
     var m=chzxLandMap=new AMap.Map('tianzibai-north-amap',opts);
     el._mapInited=true;
+    try{m.setFeatures([]);}catch(e){} // 关掉高德底图所有地名标注，只保留道路
     try{m.addControl(new AMap.Scale());}catch(e){}
     try{m.addControl(new AMap.ToolBar({position:'rb'}));}catch(e){}
     var plots=[
