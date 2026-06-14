@@ -364,32 +364,43 @@ main{padding:16px}
 </div>
 <script>
 (function(){
-  if(typeof AMap==='undefined'){document.getElementById('amap-container').innerHTML='<div style="color:#9ca3af;text-align:center;padding:100px 0;font-size:14px">地图加载中...</div>';return;}
-  var map=new AMap.Map('amap-container',{zoom:9,center:[119.75,31.03],mapStyle:'amap://styles/darkblue',viewMode:'3D'});
-  map.addControl(new AMap.Scale());
-  map.addControl(new AMap.ToolBar({position:'rt'}));
-  // 长合区中心标记
-  var m0=new AMap.Marker({position:[119.75,31.03],title:'长三角（湖州）产业合作区',content:'<div style="background:#00d4ff;color:#fff;padding:6px 12px;border-radius:6px;font-size:12px;font-weight:bold;white-space:nowrap">长三角合区</div>'});
-  map.add(m0);
-  // 周边城市
-  var cities=[
-    [120.19,30.25,'杭州','#ff6b35'],[121.47,31.23,'上海','#ff6b35'],[118.78,32.06,'南京','#ff6b35'],
-    [117.28,31.86,'合肥','#f97316'],[120.16,30.28,'嘉兴','#f97316'],[119.95,31.79,'湖州','#f97316'],
-    [120.89,31.98,'苏州','#f97316'],[119.42,31.37,'长兴','#f97316'],[119.38,30.93,'安吉','#f97316'],
-    [119.57,31.19,'宜兴','#f97316'],[119.48,31.41,'溧阳','#f97316'],[119.17,30.65,'广德','#f97316'],
-    [118.75,30.92,'宁国','#f97316'],[119.90,30.77,'临安','#f97316'],[120.57,31.30,'无锡','#f97316'],
-    [119.92,31.70,'常州','#f97316'],[121.55,29.88,'宁波','#f97316'],[120.58,30.01,'绍兴','#f97316'],
-  ];
-  cities.forEach(function(c){var m=new AMap.Marker({position:[c[0],c[1]],title:c[2],content:'<div style="background:'+c[3]+';color:#fff;padding:3px 8px;border-radius:4px;font-size:11px">'+c[2]+'</div>'});map.add(m);});
-  // 连接线（示意）
-  var lines=[[[119.75,31.03],[120.19,30.25]],[[119.75,31.03],[121.47,31.23]],[[119.75,31.03],[118.78,32.06]],[[119.75,31.03],[117.28,31.86]],[[119.75,31.03],[119.95,31.79]]];
-  lines.forEach(function(l){
-    map.add(new AMap.Polyline({path:l,strokeColor:'rgba(0,212,255,0.4)',strokeWeight:2,strokeDasharray:[6,4]}));
-  });
-  // 信息窗体
-  var info=new AMap.InfoWindow({content:'<div style="background:#111827;border:1px solid #00d4ff;border-radius:8px;padding:16px;color:#f3f4f6;max-width:280px"><div style="font-size:14px;font-weight:bold;color:#00d4ff;margin-bottom:8px">长三角（湖州）产业合作区</div><div style="font-size:12px;line-height:1.8;color:#9ca3af">📍 天子湖镇（119.75°E, 31.03°N）<br>🚄 高铁1.5h直达上海虹桥<br>⚡ 三大产业：新能源汽车/机器人/储能<br>🏭 天子湖片区可租厂房5000-10000㎡</div></div>',offset:new AMap.Pixel(0,-30)});
-  info.open(map,[119.75,31.03]);
-  window._chzxMap=map;
+  function initHomeMap(){
+    if(typeof AMap==='undefined'){
+      document.getElementById('amap-container').innerHTML='<div style="color:#9ca3af;text-align:center;padding:80px 0"><p style="font-size:32px;margin-bottom:8px">🗺️</p><p style="font-size:14px">地图加载中...</p></div>';
+      setTimeout(initHomeMap,800);return;
+    }
+    var opts={zoom:9,center:[119.75,31.03],viewMode:'2D'};
+    try{opts.mapStyle='amap://styles/dark';}catch(e){}
+    var map=new AMap.Map('amap-container',opts);
+    try{map.addControl(new AMap.Scale());}catch(e){}
+    try{map.addControl(new AMap.ToolBar({position:'rt'}));}catch(e){}
+    var cities=[
+      [120.19,30.25,'杭州','#ff6b35'],[121.47,31.23,'上海','#ff6b35'],[118.78,32.06,'南京','#ff6b35'],
+      [117.28,31.86,'合肥','#f97316'],[120.16,30.28,'嘉兴','#f97316'],[119.95,31.79,'湖州','#f97316'],
+      [120.89,31.98,'苏州','#f97316'],[119.42,31.37,'长兴','#f97316'],[119.38,30.93,'安吉','#f97316'],
+      [119.57,31.19,'宜兴','#f97316'],[119.48,31.41,'溧阳','#f97316'],[119.17,30.65,'广德','#f97316'],
+      [118.75,30.92,'宁国','#f97316'],[119.90,30.77,'临安','#f97316'],[120.57,31.30,'无锡','#f97316'],
+      [119.92,31.70,'常州','#f97316'],[121.55,29.88,'宁波','#f97316'],[120.58,30.01,'绍兴','#f97316'],
+    ];
+    cities.forEach(function(c){
+      try{
+        var mk=new AMap.Marker({position:[c[0],c[1]],title:c[2],
+          content:'<div style="background:'+c[3]+';color:#fff;padding:3px 8px;border-radius:4px;font-size:11px">'+c[2]+'</div>'});
+        map.add(mk);
+      }catch(e){}
+    });
+    var lines=[[[119.75,31.03],[120.19,30.25]],[[119.75,31.03],[121.47,31.23]],[[119.75,31.03],[118.78,32.06]],[[119.75,31.03],[117.28,31.86]],[[119.75,31.03],[119.95,31.79]]];
+    lines.forEach(function(l){try{map.add(new AMap.Polyline({path:l,strokeColor:'rgba(0,212,255,0.4)',strokeWeight:2,strokeDasharray:[6,4]}));}catch(e){}});
+    try{
+      var m0=new AMap.Marker({position:[119.75,31.03],title:'长三角（湖州）产业合作区',
+        content:'<div style="background:#00d4ff;color:#fff;padding:6px 12px;border-radius:6px;font-size:12px;font-weight:bold;white-space:nowrap">长三角合区</div>'});
+      map.add(m0);
+      var info=new AMap.InfoWindow({content:'<div style="background:#111827;border:1px solid #00d4ff;border-radius:8px;padding:16px;color:#f3f4f6;max-width:280px;font-size:12px;line-height:1.8"><div style="font-size:14px;font-weight:bold;color:#00d4ff;margin-bottom:8px">长三角（湖州）产业合作区</div><div>📍 天子湖镇（119.75°E, 31.03°N）<br>🚄 高铁1.5h直达上海虹桥<br>⚡ 三大产业：新能源汽车/机器人/储能<br>🏭 天子湖片区可租厂房5000-10000㎡</div></div>',offset:new AMap.Pixel(0,-30)});
+      info.open(map,[119.75,31.03]);
+    }catch(e){}
+    window._chzxMap=map;
+  }
+  initHomeMap();
 })();
 </script>
 </div>
@@ -606,6 +617,87 @@ main{padding:16px}
 <div id="page-land" class="page">
 <div class="page-title">🗃️ 土地资源</div>
 <div class="page-sub">转而未供 · 政府收储 · 供而未用 | 统计时点：2026年3月</div>
+
+<!-- 天子湖北园区规划图 -->
+<div class="card" style="margin-bottom:20px">
+<div class="card-title">📍 天子湖北园区可利用土地示意图</div>
+<div style="position:relative;background:#080f20;border-radius:8px;overflow:hidden;">
+<img src="assets/images/tianzibai-north-land-20241109_web.jpg" alt="天子湖北园区可利用土地示意图" style="width:100%;display:block;cursor:zoom-in;" onclick="this.style.maxWidth=this.style.maxWidth?'none':'100%';this.style.transition='all .3s'"/>
+<!-- 图例说明叠加层 -->
+<div style="position:absolute;top:12px;right:12px;background:rgba(10,14,39,0.92);border:1px solid rgba(0,212,255,0.3);border-radius:8px;padding:12px;font-size:12px;color:#f3f4f6;min-width:180px">
+<div style="font-weight:bold;color:#00d4ff;margin-bottom:8px">📋 图例说明</div>
+<div style="margin-bottom:6px"><span style="display:inline-block;width:16px;height:3px;background:#ff00ff;vertical-align:middle;margin-right:6px"></span>可利用净用地</div>
+<div style="margin-bottom:6px"><span style="display:inline-block;width:16px;height:3px;background:#333;vertical-align:middle;margin-right:6px"></span>已农转已供地</div>
+<div style="margin-bottom:6px"><span style="display:inline-block;width:16px;height:3px;background:#e67e22;vertical-align:middle;margin-right:6px"></span>旱地 / 水田</div>
+<div style="margin-bottom:6px"><span style="display:inline-block;width:16px;height:3px;background:#3498db;vertical-align:middle;margin-right:6px"></span>道路边线</div>
+<div style="margin-top:8px;font-size:11px;color:#9ca3af">制图：长合区自规分局<br>时间：2024-11-09</div>
+</div>
+<!-- 可利用地块标注 -->
+<div style="position:absolute;top:80px;left:55%;background:rgba(255,0,255,0.15);border:2px solid #ff00ff;border-radius:6px;padding:4px 8px;font-size:11px;color:#ff66cc;cursor:pointer" title="217/218/219/227等地块" onclick="alert('【可利用净用地】\n编号：217/218/219/227等\n土地性质：可利用净用地\n位置：天子湖北园区北部\n面积：单块20-80亩\n状态：待招商')">217·218·219·227</div>
+<div style="position:absolute;top:180px;left:35%;background:rgba(255,0,255,0.12);border:1px dashed #ff00ff;border-radius:4px;padding:3px 6px;font-size:10px;color:#ff88dd">225·226</div>
+<div style="position:absolute;top:260px;left:60%;background:rgba(0,0,0,0.6);border:1px solid rgba(255,255,255,0.2);border-radius:4px;padding:3px 6px;font-size:10px;color:#9ca3af">天和/丰和/佳湖苑（安置）</div>
+<div style="position:absolute;top:320px;left:25%;background:rgba(0,0,0,0.6);border:1px solid rgba(255,255,255,0.2);border-radius:4px;padding:3px 6px;font-size:10px;color:#9ca3af">天子湖镇中学·卫生院</div>
+</div>
+</div>
+
+<!-- 天子湖北园区可交互地图 -->
+<div class="card" style="margin-bottom:20px">
+<div class="card-title">🗺️ 天子湖北园区 · 智能区位图 <span style="font-size:12px;color:#9ca3af;font-weight:normal">（可缩放/拖拽，点击标注查看详情）</span></div>
+<div id="tianzibai-north-amap" style="width:100%;height:480px;border-radius:8px;overflow:hidden;background:#080f20"></div>
+<div style="margin-top:10px;display:flex;gap:12px;flex-wrap:wrap">
+<div class="stat" style="flex:1;min-width:140px;cursor:pointer" onclick="chzxLandMap && chzxLandMap.setCenter([119.746,31.033])"><div class="stat-num" style="font-size:20px">🔴 217/218</div><div class="stat-label" style="font-size:11px">可利用净用地 · 北部</div></div>
+<div class="stat" style="flex:1;min-width:140px;cursor:pointer" onclick="chzxLandMap && chzxLandMap.setCenter([119.739,31.028])"><div class="stat-num" style="font-size:20px">🟡 219/227</div><div class="stat-label" style="font-size:11px">可利用净用地 · 中部</div></div>
+<div class="stat" style="flex:1;min-width:140px;cursor:pointer" onclick="chzxLandMap && chzxLandMap.setCenter([119.733,31.023])"><div class="stat-num" style="font-size:20px">🔵 225/226</div><div class="stat-label" style="font-size:11px">可利用净用地 · 南部</div></div>
+<div class="stat" style="flex:1;min-width:140px;cursor:pointer" onclick="chzxLandMap && chzxLandMap.setCenter([119.749,31.029])"><div class="stat-num" style="font-size:20px">🏭 创新综合体</div><div class="stat-label" style="font-size:11px">已供地 · 一至三期</div></div>
+</div>
+</div>
+<script>
+(function(){
+  function initLandMap(){
+    var el=document.getElementById('tianzibai-north-amap');
+    if(!el)return;
+    if(typeof AMap==='undefined'){el.innerHTML='<div style="color:#9ca3af;text-align:center;padding:80px 0"><p style="font-size:32px;margin-bottom:8px">🗺️</p><p style="font-size:14px">地图加载中...</p></div>';setTimeout(initLandMap,800);return;}
+    if(el._mapInited)return;
+    var opts={zoom:14,center:[119.745,31.027],viewMode:'2D'};
+    try{opts.mapStyle='amap://styles/dark';}catch(e){}
+    var m=chzxLandMap=new AMap.Map('tianzibai-north-amap',opts);
+    el._mapInited=true;
+    try{m.addControl(new AMap.Scale());}catch(e){}
+    try{m.addControl(new AMap.ToolBar({position:'rb'}));}catch(e){}
+    var plots=[
+      {id:'217+218',coord:[119.746,31.033],area:'~80亩',type:'可利用净用地',desc:'天子湖北区北部，靠近扬子鳄保护区侧'},
+      {id:'219',coord:[119.740,31.031],area:'~50亩',type:'可利用净用地',desc:'天子湖北区中部偏北'},
+      {id:'227',coord:[119.743,31.029],area:'~60亩',type:'可利用净用地',desc:'天子湖北区中部偏东'},
+      {id:'225+226',coord:[119.733,31.026],area:'~40亩',type:'可利用净用地',desc:'天子湖北区南部，毗邻镇区'},
+      {id:'创新综合体',coord:[119.749,31.0285],area:'180亩',type:'已农转已供地',desc:'创新中心一至三期，综合体项目'},
+      {id:'天和安置区',coord:[119.738,31.024],area:'居住',type:'安置区',desc:'天和安置小区，配套设施完善'},
+    ];
+    plots.forEach(function(p){
+      try{
+        var color=p.type==='可利用净用地'?'#ff00ff':p.type==='已农转已供地'?'#00d4ff':'#f97316';
+        var mk=new AMap.Marker({position:p.coord,title:p.id,
+          content:'<div style="background:'+color+';color:#fff;padding:4px 10px;border-radius:12px;font-size:12px;font-weight:bold;border:2px solid rgba(255,255,255,0.3);white-space:nowrap">'+p.id+'</div>'});
+        var iw=new AMap.InfoWindow({content:'<div style="background:#111827;border:1px solid '+color+';border-radius:8px;padding:14px;color:#f3f4f6;min-width:220px;font-size:13px;line-height:1.8"><div style="font-weight:bold;font-size:14px;margin-bottom:6px;color:'+color+'">'+p.id+'</div><div><b>面积：</b>'+p.area+'</div><div><b>性质：</b>'+p.type+'</div><div><b>位置：</b>'+p.desc+'</div><div style="margin-top:8px;font-size:11px;color:#9ca3af">坐标：'+p.coord[0].toFixed(3)+'°E, '+p.coord[1].toFixed(3)+'°N</div></div>',offset:new AMap.Pixel(0,-35)});
+        mk.on('click',function(){iw.open(m,p.coord);});
+        m.add(mk);
+      }catch(e){}
+    });
+    try{
+      m.add(new AMap.Polygon({path:[[119.725,31.038],[119.755,31.038],[119.760,31.020],[119.725,31.020]],fillColor:'rgba(0,212,255,0.05)',fillOpacity:0.3,strokeColor:'rgba(0,212,255,0.5)',strokeWeight:2,strokeDasharray:[6,4]}));
+      m.add(new AMap.Polyline({path:[[119.725,31.028],[119.760,31.028]],strokeColor:'rgba(52,152,219,0.6)',strokeWeight:3}));
+      m.add(new AMap.Polyline({path:[[119.738,31.015],[119.738,31.038]],strokeColor:'rgba(52,152,219,0.6)',strokeWeight:3}));
+    }catch(e){}
+  }
+  function tryInitLand(){
+    var el=document.getElementById('tianzibai-north-amap');
+    if(el&&el.innerHTML===''&&!el._mapInited)initLandMap();
+  }
+  var landPageObserver=new MutationObserver(function(){tryInitLand();});
+  var main=document.querySelector('main');
+  if(main)landPageObserver.observe(main,{childList:true,subtree:true});
+  document.addEventListener('DOMContentLoaded',function(){setTimeout(tryInitLand,1500);});
+})();
+</script>
 
 <div class="stats">
 <div class="stat"><div class="stat-num" id="s-land-tzh">0</div><div class="stat-label">天子湖土地</div></div>
