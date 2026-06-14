@@ -98,6 +98,9 @@ tr:hover{background:rgba(0,212,255,0.03)}
 
 /* 数据说明 */
 .data-note{background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.3);border-radius:8px;padding:12px 16px;margin-bottom:14px;font-size:13px;color:var(--yellow)}
+/* 厂房名图片链接 */
+td a{color:var(--primary);cursor:pointer;text-decoration:none;}
+td a:hover{text-decoration:underline;}
 
 /* 状态标签 */
 .match-dot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:6px}
@@ -459,7 +462,7 @@ main{padding:16px}
 <div class="page-title">🏗️ 厂房资源库</div>
 <div class="page-sub">天子湖片区 + 泗安片区 · 实时可租厂房信息</div>
 
-<div class="data-note">📋 当前已导入厂房数据 46 条，含天子湖镇 32 条、泗安镇 13 条、其他 1 条。企业数据 411 条（规上 188 + 小微园 45 + 重点新升规 53 + 规下 125）。</div>
+<div class="data-note">📋 当前已导入厂房数据 45 条，含天子湖镇 32 条、泗安镇 13 条。其中 36 家企业有实景图片（154 张），点击厂房名称即可查看。</div>
 
 <div class="stats">
 <div class="stat"><div class="stat-num" id="f-total">0</div><div class="stat-label">厂房总数</div></div>
@@ -652,6 +655,22 @@ renderChain(btn.dataset.c);
 });
 });
 
+// ============== 图片预览 ==============
+let currentImgIndex = 0;
+let currentImgs = [];
+function showImgs(imgs, idx=0){
+  if(!imgs||!imgs.length)return;
+  currentImgs=imgs;currentImgIndex=idx;
+  const modal=document.getElementById('img-modal');
+  const viewer=document.getElementById('img-viewer');
+  modal.style.display='flex';
+  viewer.src=imgs[idx];
+  document.getElementById('img-counter').textContent=`${idx+1}/${imgs.length}`;
+}
+function closeImg(){document.getElementById('img-modal').style.display='none';}
+function prevImg(){currentImgIndex=(currentImgIndex-1+currentImgs.length)%currentImgs.length;document.getElementById('img-viewer').src=currentImgs[currentImgIndex];document.getElementById('img-counter').textContent=`${currentImgIndex+1}/${currentImgs.length}`;}
+function nextImg(){currentImgIndex=(currentImgIndex+1)%currentImgs.length;document.getElementById('img-viewer').src=currentImgs[currentImgIndex];document.getElementById('img-counter').textContent=`${currentImgIndex+1}/${currentImgs.length}`;}
+
 // ============== 厂房 ==============
 const allFac=[...(factoryData.tianzihun||[]),...(factoryData.sian||[]),...(factoryData.other||[])];
 const allEnt=enterpriseData||[];
@@ -661,7 +680,7 @@ const PS=15;
 function renderFacTable(data,p=1){
 const s=(p-1)*PS,rows=data.slice(s,s+PS);
 document.getElementById('fac-tbody').innerHTML=rows.map((f,i)=>
-`<tr><td>${s+i+1}</td><td>${f.name}</td><td>${f.area}</td><td>${f.floor||'-'}</td><td>${f.rent||'-'}</td><td>${f.height||'-'}</td><td>${(f.sqm||0).toLocaleString()}</td><td>${f.power||'-'}</td><td>${f.structure||'-'}</td><td>${f.load||'-'}</td><td>${f.contact||'-'}</td><td>${f.phone||'-'}</td></tr>`
+`<tr><td>${s+i+1}</td><td><a href="javascript:void(0)" onclick="showImgs(f.images||[],0)" title="点击查看厂房图片${(f.images||[]).length?' ('+f.images.length+'张)':''}">${f.name}</a></td><td>${f.area}</td><td>${f.floor||'-'}</td><td>${f.rent||'-'}</td><td>${f.height||'-'}</td><td>${(f.sqm||0).toLocaleString()}</td><td>${f.power||'-'}</td><td>${f.structure||'-'}</td><td>${f.load||'-'}</td><td>${f.contact||'-'}</td><td>${f.phone||'-'}</td></tr>`
 ).join('');
 const tp=Math.ceil(data.length/PS)||1;
 document.getElementById('fac-pages').innerHTML=
@@ -682,7 +701,7 @@ const data=allFac.filter(f=>(mapArea==='all'||f.area.includes(mapArea))&&f.name.
 const list=document.getElementById('map-fac');
 if(!data.length){list.innerHTML='<p style="color:var(--dim);text-align:center;padding:20px">暂无数据</p>';return;}
 list.innerHTML='<div class="table-wrap"><table><tr><th>#</th><th>企业</th><th>片区</th><th>可租</th><th>租金</th><th>层高</th><th>面积</th><th>联系人</th><th>电话</th></tr>'+
-data.map((f,i)=>`<tr><td>${i+1}</td><td>${f.name}</td><td>${f.area}</td><td>${f.floor||'-'}</td><td>${f.rent||'-'}</td><td>${f.height||'-'}</td><td>${(f.sqm||0).toLocaleString()}</td><td>${f.contact||'-'}</td><td>${f.phone||'-'}</td></tr>`).join('')+'</table></div>';
+data.map((f,i)=>`<tr><td>${i+1}</td><td><a href="javascript:void(0)" onclick="showImgs(f.images||[],0)" title="点击查看厂房图片${(f.images||[]).length?' ('+f.images.length+'张)':''}">${f.name}</a></td><td>${f.area}</td><td>${f.floor||'-'}</td><td>${f.rent||'-'}</td><td>${f.height||'-'}</td><td>${(f.sqm||0).toLocaleString()}</td><td>${f.contact||'-'}</td><td>${f.phone||'-'}</td></tr>`).join('')+'</table></div>';
 }
 document.querySelectorAll('[data-area]').forEach(btn=>{
 btn.addEventListener('click',()=>{document.querySelectorAll('[data-area]').forEach(b=>b.classList.remove('active'));btn.classList.add('active');mapArea=btn.dataset.area;renderMapFac();});
@@ -724,5 +743,17 @@ renderEntTable(allEnt);
 renderMapFac();
 })();
 </script>
+<!-- 图片预览模态框 -->
+<div id="img-modal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);z-index:9999;align-items:center;justify-content:center;flex-direction:column;">
+  <div style="position:absolute;top:16px;right:20px;display:flex;gap:12px;align-items:center;">
+    <span id="img-counter" style="color:#fff;font-size:14px;"></span>
+    <button onclick="closeImg()" style="background:rgba(255,255,255,0.2);border:none;color:#fff;font-size:20px;cursor:pointer;padding:6px 14px;border-radius:6px;">✕</button>
+  </div>
+  <img id="img-viewer" style="max-width:90%;max-height:80vh;object-fit:contain;border-radius:8px;">
+  <div style="display:flex;gap:16px;margin-top:16px;">
+    <button onclick="prevImg()" style="background:rgba(0,212,255,0.2);border:1px solid rgba(0,212,255,0.5);color:#fff;padding:10px 24px;border-radius:8px;cursor:pointer;font-size:15px;">◀ 上一张</button>
+    <button onclick="nextImg()" style="background:rgba(0,212,255,0.2);border:1px solid rgba(0,212,255,0.5);color:#fff;padding:10px 24px;border-radius:8px;cursor:pointer;font-size:15px;">下一张 ▶</button>
+  </div>
+</div>
 </body>
 </html>
