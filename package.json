@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "http-server -p 5000 -a 0.0.0.0 -c-1",
-    "build": "mkdir -p dist && cp -r index.html local_enterprise_data.js dist/",
+    "build": "mkdir -p dist && cp -r index.html local_enterprise_data.js assets chain_fishbone_data.js chain_full_data.js enterprise_data.js enterprise_fixed.js enterprise_full_data.js factory_data.js factory_fixed.js factory_brochure_data.js land_data.js land_full_data.js parts_images.json dist/",
     "preview": "http-server dist -p 5000 -a 0.0.0.0 -c-1",
     "prepare": "husky"
   },
