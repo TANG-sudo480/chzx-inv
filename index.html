@@ -205,13 +205,21 @@ main{padding:16px}
 <!-- 领导视察相册 -->
 <!-- 领导视察相册 -->
 <div style="margin-bottom:20px">
-  <div style="display:flex;gap:12px;overflow-x:auto;padding-bottom:10px;scroll-snap-type:x mandatory">
+  <div style="display:flex;gap:12px;overflow-x:auto;padding-bottom:10px;scroll-snap-type:x mandatory" id="galleryScroll">
     <img src="assets/images/gallery1.jpg" style="flex-shrink:0;width:280px;height:187px;object-fit:cover;border-radius:10px;border:1px solid var(--border);cursor:pointer" onclick="showGallery(this.src)">
     <img src="assets/images/gallery2.jpg" style="flex-shrink:0;width:280px;height:187px;object-fit:cover;border-radius:10px;border:1px solid var(--border);cursor:pointer" onclick="showGallery(this.src)">
     <img src="assets/images/gallery3.jpg" style="flex-shrink:0;width:280px;height:187px;object-fit:cover;border-radius:10px;border:1px solid var(--border);cursor:pointer" onclick="showGallery(this.src)">
     <img src="assets/images/gallery4.png" style="flex-shrink:0;width:280px;height:187px;object-fit:cover;border-radius:10px;border:1px solid var(--border);cursor:pointer" onclick="showGallery(this.src)">
     <img src="assets/images/gallery5.jpg" style="flex-shrink:0;width:280px;height:187px;object-fit:cover;border-radius:10px;border:1px solid var(--border);cursor:pointer" onclick="showGallery(this.src)">
     <img src="assets/images/gallery6.jpg" style="flex-shrink:0;width:280px;height:187px;object-fit:cover;border-radius:10px;border:1px solid var(--border);cursor:pointer" onclick="showGallery(this.src)">
+  </div>
+  <div style="display:flex;justify-content:center;gap:8px;margin-top:10px" id="galleryDots">
+    <span class="dot active" onclick="scrollToImg(0)">1</span>
+    <span class="dot" onclick="scrollToImg(1)">2</span>
+    <span class="dot" onclick="scrollToImg(2)">3</span>
+    <span class="dot" onclick="scrollToImg(3)">4</span>
+    <span class="dot" onclick="scrollToImg(4)">5</span>
+    <span class="dot" onclick="scrollToImg(5)">6</span>
   </div>
 </div>
 <!-- 图片预览弹窗 -->
@@ -222,12 +230,12 @@ main{padding:16px}
 <script>
 function showGallery(src){document.getElementById('galleryModalImg').src=src;document.getElementById('galleryModal').style.display='flex'}
 function closeGallery(){document.getElementById('galleryModal').style.display='none'}
+function scrollToImg(idx){document.querySelectorAll('#galleryScroll img')[idx].scrollIntoView({behavior:'smooth',inline:'start'})}
 </script>
-        <div>• <strong style="color:#10b981">2022年1月</strong> 正式挂牌成立</div>
-        <div>• 浙江省两大高能级战略平台之一</div>
-        <div>• 一地六县：浙江长兴、安吉｜江苏宜兴、溧阳｜安徽广德、郎溪</div>
-        <div>• 当前正举全市之力支持长合区建设发展</div>
-      </div>
+<style>
+.dot{width:8px;height:8px;border-radius:50%;background:var(--border);cursor:pointer;transition:all .2s}
+.dot.active{background:var(--primary);transform:scale(1.3)}
+</style>
     </div>
   </div>
 </div>
