@@ -198,28 +198,28 @@ main{padding:16px}
   <div class="video-tag">🎬 长合区实景 · 长三角之心</div>
   <div class="video-marquee">
     <div class="video-clip-wrap">
-      <video src="assets/video/clip_location.mp4" muted loop playsinline></video>
+      <video src="assets/video/clip_location_web.mp4" poster="assets/video/poster.jpg" muted loop playsinline preload="auto"></video>
       <div class="clip-label">🌐 长三角之心 · 区位优势</div>
     </div>
     <div class="video-clip-wrap">
-      <video src="assets/video/clip_industry.mp4" muted loop playsinline></video>
+      <video src="assets/video/clip_industry_web.mp4" poster="assets/video/poster.jpg" muted loop playsinline preload="auto"></video>
       <div class="clip-label">🏭 现代厂房 · 产业实力</div>
     </div>
     <div class="video-clip-wrap">
-      <video src="assets/video/clip_conclusion.mp4" muted loop playsinline></video>
+      <video src="assets/video/clip_conclusion_web.mp4" poster="assets/video/poster.jpg" muted loop playsinline preload="auto"></video>
       <div class="clip-label">🚀 合作共赢 · 未来可期</div>
     </div>
     <!-- 重复一轮实现无缝滚动 -->
     <div class="video-clip-wrap">
-      <video src="assets/video/clip_location.mp4" muted loop playsinline></video>
+      <video src="assets/video/clip_location_web.mp4" poster="assets/video/poster.jpg" muted loop playsinline preload="auto"></video>
       <div class="clip-label">🌐 长三角之心 · 区位优势</div>
     </div>
     <div class="video-clip-wrap">
-      <video src="assets/video/clip_industry.mp4" muted loop playsinline></video>
+      <video src="assets/video/clip_industry_web.mp4" poster="assets/video/poster.jpg" muted loop playsinline preload="auto"></video>
       <div class="clip-label">🏭 现代厂房 · 产业实力</div>
     </div>
     <div class="video-clip-wrap">
-      <video src="assets/video/clip_conclusion.mp4" muted loop playsinline></video>
+      <video src="assets/video/clip_conclusion_web.mp4" poster="assets/video/poster.jpg" muted loop playsinline preload="auto"></video>
       <div class="clip-label">🚀 合作共赢 · 未来可期</div>
     </div>
   </div>
@@ -640,15 +640,31 @@ main{padding:16px}
 </div>
 </div>
 
+<!-- 天子湖南园区规划图 -->
+<div class="card" style="margin-bottom:20px">
+<div class="card-title">📍 天子湖南园区可利用净用地示意图</div>
+<div style="position:relative;background:#080f20;border-radius:8px;overflow:hidden;">
+<img src="assets/images/tianzibai-south-land-jing-web.jpg" alt="天子湖南园区可利用净用地示意图" style="width:100%;display:block;cursor:zoom-in;" onclick="this.style.maxWidth=this.style.maxWidth?'none':'100%';this.style.transition='all .3s'"/>
+<div style="position:absolute;top:12px;right:12px;background:rgba(10,14,39,0.92);border:1px solid rgba(0,212,255,0.3);border-radius:8px;padding:12px;font-size:12px;color:#f3f4f6;min-width:180px">
+<div style="font-weight:bold;color:#00d4ff;margin-bottom:8px">📋 图例说明</div>
+<div style="margin-bottom:6px"><span style="display:inline-block;width:16px;height:3px;background:#ff00ff;vertical-align:middle;margin-right:6px"></span>可利用净用地</div>
+<div style="margin-bottom:6px"><span style="display:inline-block;width:16px;height:3px;background:#00ff88;vertical-align:middle;margin-right:6px"></span>已供地</div>
+<div style="margin-bottom:6px"><span style="display:inline-block;width:16px;height:3px;background:#333;vertical-align:middle;margin-right:6px"></span>已农转已供地</div>
+<div style="margin-bottom:6px"><span style="display:inline-block;width:16px;height:3px;background:#e67e22;vertical-align:middle;margin-right:6px"></span>旱地/水田</div>
+<div style="margin-top:8px;font-size:11px;color:#9ca3af">制图：长合区自规分局<br>时间：2025-11-28</div>
+</div>
+</div>
+</div>
+
 <!-- 天子湖北园区可交互地图 -->
 <div class="card" style="margin-bottom:20px">
 <div class="card-title">🗺️ 天子湖北园区 · 智能区位图 <span style="font-size:12px;color:#9ca3af;font-weight:normal">（可缩放/拖拽，点击标注查看详情）</span></div>
 <div id="tianzibai-north-amap" style="width:100%;height:480px;border-radius:8px;overflow:hidden;background:#080f20"></div>
 <div style="margin-top:10px;display:flex;gap:12px;flex-wrap:wrap">
-<div class="stat" style="flex:1;min-width:140px;cursor:pointer" onclick="chzxLandMap && chzxLandMap.setCenter([119.746,31.033])"><div class="stat-num" style="font-size:20px">🔴 217/218</div><div class="stat-label" style="font-size:11px">可利用净用地 · 北部</div></div>
-<div class="stat" style="flex:1;min-width:140px;cursor:pointer" onclick="chzxLandMap && chzxLandMap.setCenter([119.739,31.028])"><div class="stat-num" style="font-size:20px">🟡 219/227</div><div class="stat-label" style="font-size:11px">可利用净用地 · 中部</div></div>
-<div class="stat" style="flex:1;min-width:140px;cursor:pointer" onclick="chzxLandMap && chzxLandMap.setCenter([119.733,31.023])"><div class="stat-num" style="font-size:20px">🔵 225/226</div><div class="stat-label" style="font-size:11px">可利用净用地 · 南部</div></div>
-<div class="stat" style="flex:1;min-width:140px;cursor:pointer" onclick="chzxLandMap && chzxLandMap.setCenter([119.749,31.029])"><div class="stat-num" style="font-size:20px">🏭 创新综合体</div><div class="stat-label" style="font-size:11px">已供地 · 一至三期</div></div>
+<div class="stat" style="flex:1;min-width:140px;cursor:pointer" onclick="chzxLandMap && chzxLandMap.setCenter([119.746,30.8033])"><div class="stat-num" style="font-size:20px">🔴 217/218</div><div class="stat-label" style="font-size:11px">可利用净用地 · 北部</div></div>
+<div class="stat" style="flex:1;min-width:140px;cursor:pointer" onclick="chzxLandMap && chzxLandMap.setCenter([119.739,30.8028])"><div class="stat-num" style="font-size:20px">🟡 219/227</div><div class="stat-label" style="font-size:11px">可利用净用地 · 中部</div></div>
+<div class="stat" style="flex:1;min-width:140px;cursor:pointer" onclick="chzxLandMap && chzxLandMap.setCenter([119.733,30.8023])"><div class="stat-num" style="font-size:20px">🔵 225/226</div><div class="stat-label" style="font-size:11px">可利用净用地 · 南部</div></div>
+<div class="stat" style="flex:1;min-width:140px;cursor:pointer" onclick="chzxLandMap && chzxLandMap.setCenter([119.749,30.8029])"><div class="stat-num" style="font-size:20px">🏭 创新综合体</div><div class="stat-label" style="font-size:11px">已供地 · 一至三期</div></div>
 </div>
 </div>
 <script>
@@ -683,9 +699,9 @@ main{padding:16px}
       }catch(e){}
     });
     try{
-      m.add(new AMap.Polygon({path:[[119.725,31.038],[119.755,31.038],[119.760,31.020],[119.725,31.020]],fillColor:'rgba(0,212,255,0.05)',fillOpacity:0.3,strokeColor:'rgba(0,212,255,0.5)',strokeWeight:2,strokeDasharray:[6,4]}));
-      m.add(new AMap.Polyline({path:[[119.725,31.028],[119.760,31.028]],strokeColor:'rgba(52,152,219,0.6)',strokeWeight:3}));
-      m.add(new AMap.Polyline({path:[[119.738,31.015],[119.738,31.038]],strokeColor:'rgba(52,152,219,0.6)',strokeWeight:3}));
+      m.add(new AMap.Polygon({path:[[119.725,30.8038],[119.755,30.8038],[119.760,30.8020],[119.725,30.8020]],fillColor:'rgba(0,212,255,0.05)',fillOpacity:0.3,strokeColor:'rgba(0,212,255,0.5)',strokeWeight:2,strokeDasharray:[6,4]}));
+      m.add(new AMap.Polyline({path:[[119.725,30.8028],[119.760,30.8028]],strokeColor:'rgba(52,152,219,0.6)',strokeWeight:3}));
+      m.add(new AMap.Polyline({path:[[119.738,30.8015],[119.738,30.8038]],strokeColor:'rgba(52,152,219,0.6)',strokeWeight:3}));
     }catch(e){}
   }
   function tryInitLand(){
