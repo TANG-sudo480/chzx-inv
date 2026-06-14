@@ -19,12 +19,12 @@ const factoryData = {
       "contact": "崔经理",
       "phone": "15868269855",
       "images": [
-        "assets/factory_images/卡塞尔机械浙江有限公司_1.jpg",
-        "assets/factory_images/卡塞尔机械浙江有限公司_2.jpg",
-        "assets/factory_images/卡塞尔机械浙江有限公司_3.jpg",
-        "assets/factory_images/卡塞尔机械浙江有限公司_4.jpg",
-        "assets/factory_images/卡塞尔机械浙江有限公司_5.jpg",
-        "assets/factory_images/卡塞尔机械浙江有限公司_6.jpg"
+        "assets/factory_images/thumb_001.jpg",
+        "assets/factory_images/thumb_002.jpg",
+        "assets/factory_images/thumb_003.jpg",
+        "assets/factory_images/thumb_004.jpg",
+        "assets/factory_images/thumb_005.jpg",
+        "assets/factory_images/thumb_006.jpg"
       ]
     },
     {
@@ -46,11 +46,11 @@ const factoryData = {
       "contact": "吕美",
       "phone": "18957287029",
       "images": [
-        "assets/factory_images/泷赢环境科技安吉有限公司_1.jpg",
-        "assets/factory_images/泷赢环境科技安吉有限公司_2.jpg",
-        "assets/factory_images/泷赢环境科技安吉有限公司_3.jpg",
-        "assets/factory_images/泷赢环境科技安吉有限公司_4.jpg",
-        "assets/factory_images/泷赢环境科技安吉有限公司_5.jpg"
+        "assets/factory_images/thumb_007.jpg",
+        "assets/factory_images/thumb_008.jpg",
+        "assets/factory_images/thumb_009.jpg",
+        "assets/factory_images/thumb_010.jpg",
+        "assets/factory_images/thumb_011.jpg"
       ]
     },
     {
@@ -72,12 +72,12 @@ const factoryData = {
       "contact": "高清",
       "phone": "13777888934",
       "images": [
-        "assets/factory_images/浙江博耳新材料有限公司_1.jpg",
-        "assets/factory_images/浙江博耳新材料有限公司_2.jpg",
-        "assets/factory_images/浙江博耳新材料有限公司_3.jpg",
-        "assets/factory_images/浙江博耳新材料有限公司_4.jpg",
-        "assets/factory_images/浙江博耳新材料有限公司_5.jpg",
-        "assets/factory_images/浙江博耳新材料有限公司_6.jpg"
+        "assets/factory_images/thumb_012.jpg",
+        "assets/factory_images/thumb_013.jpg",
+        "assets/factory_images/thumb_014.jpg",
+        "assets/factory_images/thumb_015.jpg",
+        "assets/factory_images/thumb_016.jpg",
+        "assets/factory_images/thumb_017.jpg"
       ]
     },
     {
@@ -99,13 +99,13 @@ const factoryData = {
       "contact": "胡工",
       "phone": "13697246091",
       "images": [
-        "assets/factory_images/浙江登新科技有限公司_1.jpg",
-        "assets/factory_images/浙江登新科技有限公司_2.jpg",
-        "assets/factory_images/浙江登新科技有限公司_3.jpg",
-        "assets/factory_images/浙江登新科技有限公司_4.jpg",
-        "assets/factory_images/浙江登新科技有限公司_5.jpg",
-        "assets/factory_images/浙江登新科技有限公司_6.jpg",
-        "assets/factory_images/浙江登新科技有限公司_7.jpg"
+        "assets/factory_images/thumb_018.jpg",
+        "assets/factory_images/thumb_019.jpg",
+        "assets/factory_images/thumb_020.jpg",
+        "assets/factory_images/thumb_021.jpg",
+        "assets/factory_images/thumb_022.jpg",
+        "assets/factory_images/thumb_023.jpg",
+        "assets/factory_images/thumb_024.jpg"
       ]
     },
     {
@@ -127,8 +127,8 @@ const factoryData = {
       "contact": "黄总",
       "phone": "13656727116",
       "images": [
-        "assets/factory_images/浙江安誉升科技有限公司_1.jpg",
-        "assets/factory_images/浙江安誉升科技有限公司_2.jpg"
+        "assets/factory_images/thumb_025.jpg",
+        "assets/factory_images/thumb_026.jpg"
       ]
     },
     {
@@ -150,11 +150,11 @@ const factoryData = {
       "contact": "高莹",
       "phone": "18757273203",
       "images": [
-        "assets/factory_images/浙江智博科技有限公司_1.jpg",
-        "assets/factory_images/浙江智博科技有限公司_2.jpg",
-        "assets/factory_images/浙江智博科技有限公司_3.jpg",
-        "assets/factory_images/浙江智博科技有限公司_4.jpg",
-        "assets/factory_images/浙江智博科技有限公司_5.jpg"
+        "assets/factory_images/thumb_027.jpg",
+        "assets/factory_images/thumb_028.jpg",
+        "assets/factory_images/thumb_029.jpg",
+        "assets/factory_images/thumb_030.jpg",
+        "assets/factory_images/thumb_031.jpg"
       ]
     },
     {
@@ -176,8 +176,8 @@ const factoryData = {
       "contact": "吕政辉",
       "phone": "15157255048",
       "images": [
-        "assets/factory_images/安吉中新活性白土有限公司_1.jpg",
-        "assets/factory_images/安吉中新活性白土有限公司_2.jpg"
+        "assets/factory_images/thumb_032.jpg",
+        "assets/factory_images/thumb_033.jpg"
       ]
     },
     {
@@ -219,11 +219,11 @@ const factoryData = {
       "contact": "严剑波",
       "phone": "13588441340",
       "images": [
-        "assets/factory_images/浙江华蒙环保新材料有限公司_1.jpg",
-        "assets/factory_images/浙江华蒙环保新材料有限公司_2.jpg",
-        "assets/factory_images/浙江华蒙环保新材料有限公司_3.jpg",
-        "assets/factory_images/浙江华蒙环保新材料有限公司_4.jpg",
-        "assets/factory_images/浙江华蒙环保新材料有限公司_5.jpg"
+        "assets/factory_images/thumb_034.jpg",
+        "assets/factory_images/thumb_035.jpg",
+        "assets/factory_images/thumb_036.jpg",
+        "assets/factory_images/thumb_037.jpg",
+        "assets/factory_images/thumb_038.jpg"
       ]
     },
     {
@@ -245,13 +245,13 @@ const factoryData = {
       "contact": "周海松",
       "phone": "13306512758",
       "images": [
-        "assets/factory_images/浙江华缔药业集团有限责任公司_1.jpg",
-        "assets/factory_images/浙江华缔药业集团有限责任公司_2.jpg",
-        "assets/factory_images/浙江华缔药业集团有限责任公司_3.jpg",
-        "assets/factory_images/浙江华缔药业集团有限责任公司_4.jpg",
-        "assets/factory_images/浙江华缔药业集团有限责任公司_5.jpg",
-        "assets/factory_images/浙江华缔药业集团有限责任公司_6.jpg",
-        "assets/factory_images/浙江华缔药业集团有限责任公司_7.jpg"
+        "assets/factory_images/thumb_039.jpg",
+        "assets/factory_images/thumb_040.jpg",
+        "assets/factory_images/thumb_041.jpg",
+        "assets/factory_images/thumb_042.jpg",
+        "assets/factory_images/thumb_043.jpg",
+        "assets/factory_images/thumb_044.jpg",
+        "assets/factory_images/thumb_045.jpg"
       ]
     },
     {
@@ -273,8 +273,8 @@ const factoryData = {
       "contact": "李敏弟",
       "phone": "18621861568",
       "images": [
-        "assets/factory_images/安吉吉元家具有限公司_1.jpg",
-        "assets/factory_images/安吉吉元家具有限公司_2.jpg"
+        "assets/factory_images/thumb_046.jpg",
+        "assets/factory_images/thumb_047.jpg"
       ]
     },
     {
@@ -296,9 +296,9 @@ const factoryData = {
       "contact": "刘女士",
       "phone": "13175235280",
       "images": [
-        "assets/factory_images/浙江荣正管业有限公司_1.jpg",
-        "assets/factory_images/浙江荣正管业有限公司_2.jpg",
-        "assets/factory_images/浙江荣正管业有限公司_3.jpg"
+        "assets/factory_images/thumb_048.jpg",
+        "assets/factory_images/thumb_049.jpg",
+        "assets/factory_images/thumb_050.jpg"
       ]
     },
     {
@@ -320,11 +320,11 @@ const factoryData = {
       "contact": "汪智斌       张敏",
       "phone": "18606820672   15305725678",
       "images": [
-        "assets/factory_images/浙江振兴铸造有限公司_1.jpg",
-        "assets/factory_images/浙江振兴铸造有限公司_2.jpg",
-        "assets/factory_images/浙江振兴铸造有限公司_3.jpg",
-        "assets/factory_images/浙江振兴铸造有限公司_4.jpg",
-        "assets/factory_images/浙江振兴铸造有限公司_5.jpg"
+        "assets/factory_images/thumb_051.jpg",
+        "assets/factory_images/thumb_052.jpg",
+        "assets/factory_images/thumb_053.jpg",
+        "assets/factory_images/thumb_054.jpg",
+        "assets/factory_images/thumb_055.jpg"
       ]
     },
     {
@@ -346,13 +346,13 @@ const factoryData = {
       "contact": "矫坤远",
       "phone": "15857265711",
       "images": [
-        "assets/factory_images/安吉绿金金属材料有限公司_1.jpg",
-        "assets/factory_images/安吉绿金金属材料有限公司_2.jpg",
-        "assets/factory_images/安吉绿金金属材料有限公司_3.jpg",
-        "assets/factory_images/安吉绿金金属材料有限公司_4.jpg",
-        "assets/factory_images/安吉绿金金属材料有限公司_5.jpg",
-        "assets/factory_images/安吉绿金金属材料有限公司_6.jpg",
-        "assets/factory_images/安吉绿金金属材料有限公司_7.jpg"
+        "assets/factory_images/thumb_056.jpg",
+        "assets/factory_images/thumb_057.jpg",
+        "assets/factory_images/thumb_058.jpg",
+        "assets/factory_images/thumb_059.jpg",
+        "assets/factory_images/thumb_060.jpg",
+        "assets/factory_images/thumb_061.jpg",
+        "assets/factory_images/thumb_062.jpg"
       ]
     },
     {
@@ -374,9 +374,9 @@ const factoryData = {
       "contact": "华美娇",
       "phone": "18257540842",
       "images": [
-        "assets/factory_images/浙江天璇智控科技有限公司_1.jpg",
-        "assets/factory_images/浙江天璇智控科技有限公司_2.jpg",
-        "assets/factory_images/浙江天璇智控科技有限公司_3.jpg"
+        "assets/factory_images/thumb_063.jpg",
+        "assets/factory_images/thumb_064.jpg",
+        "assets/factory_images/thumb_065.jpg"
       ]
     },
     {
@@ -398,8 +398,8 @@ const factoryData = {
       "contact": "冯国建",
       "phone": "13685758188",
       "images": [
-        "assets/factory_images/浙江弗耐特环保机械制造有限公司_1.jpg",
-        "assets/factory_images/浙江弗耐特环保机械制造有限公司_2.jpg"
+        "assets/factory_images/thumb_066.jpg",
+        "assets/factory_images/thumb_067.jpg"
       ]
     },
     {
@@ -421,10 +421,10 @@ const factoryData = {
       "contact": "顾翔",
       "phone": "13587913646",
       "images": [
-        "assets/factory_images/浙江蔓蒂科技有限公司_1.jpg",
-        "assets/factory_images/浙江蔓蒂科技有限公司_2.jpg",
-        "assets/factory_images/浙江蔓蒂科技有限公司_3.jpg",
-        "assets/factory_images/浙江蔓蒂科技有限公司_4.jpg"
+        "assets/factory_images/thumb_068.jpg",
+        "assets/factory_images/thumb_069.jpg",
+        "assets/factory_images/thumb_070.jpg",
+        "assets/factory_images/thumb_071.jpg"
       ]
     },
     {
@@ -446,9 +446,9 @@ const factoryData = {
       "contact": "方国庆",
       "phone": "15857252791",
       "images": [
-        "assets/factory_images/浙江以勒机械科技有限公司_1.jpg",
-        "assets/factory_images/浙江以勒机械科技有限公司_2.jpg",
-        "assets/factory_images/浙江以勒机械科技有限公司_3.jpg"
+        "assets/factory_images/thumb_072.jpg",
+        "assets/factory_images/thumb_073.jpg",
+        "assets/factory_images/thumb_074.jpg"
       ]
     },
     {
@@ -470,10 +470,10 @@ const factoryData = {
       "contact": "任宝荣",
       "phone": "13735125028",
       "images": [
-        "assets/factory_images/浙江美能电气有限公司_1.jpg",
-        "assets/factory_images/浙江美能电气有限公司_2.jpg",
-        "assets/factory_images/浙江美能电气有限公司_3.jpg",
-        "assets/factory_images/浙江美能电气有限公司_4.jpg"
+        "assets/factory_images/thumb_075.jpg",
+        "assets/factory_images/thumb_076.jpg",
+        "assets/factory_images/thumb_077.jpg",
+        "assets/factory_images/thumb_078.jpg"
       ]
     },
     {
@@ -495,10 +495,10 @@ const factoryData = {
       "contact": "方亮香",
       "phone": "13587917112",
       "images": [
-        "assets/factory_images/安吉吉满盛地板有限公司_1.jpg",
-        "assets/factory_images/安吉吉满盛地板有限公司_2.jpg",
-        "assets/factory_images/安吉吉满盛地板有限公司_3.jpg",
-        "assets/factory_images/安吉吉满盛地板有限公司_4.jpg"
+        "assets/factory_images/thumb_079.jpg",
+        "assets/factory_images/thumb_080.jpg",
+        "assets/factory_images/thumb_081.jpg",
+        "assets/factory_images/thumb_082.jpg"
       ]
     },
     {
@@ -520,9 +520,9 @@ const factoryData = {
       "contact": "泮燕",
       "phone": "13567291163",
       "images": [
-        "assets/factory_images/浙江优凯信科技有限公司_1.jpg",
-        "assets/factory_images/浙江优凯信科技有限公司_2.jpg",
-        "assets/factory_images/浙江优凯信科技有限公司_3.jpg"
+        "assets/factory_images/thumb_083.jpg",
+        "assets/factory_images/thumb_084.jpg",
+        "assets/factory_images/thumb_085.jpg"
       ]
     },
     {
@@ -544,10 +544,10 @@ const factoryData = {
       "contact": "杨引航",
       "phone": "13252039969",
       "images": [
-        "assets/factory_images/浙江朗闰汽配有限公司_1.jpg",
-        "assets/factory_images/浙江朗闰汽配有限公司_2.jpg",
-        "assets/factory_images/浙江朗闰汽配有限公司_3.jpg",
-        "assets/factory_images/浙江朗闰汽配有限公司_4.jpg"
+        "assets/factory_images/thumb_086.jpg",
+        "assets/factory_images/thumb_087.jpg",
+        "assets/factory_images/thumb_088.jpg",
+        "assets/factory_images/thumb_089.jpg"
       ]
     },
     {
@@ -569,9 +569,9 @@ const factoryData = {
       "contact": "张心杰",
       "phone": "18358186170",
       "images": [
-        "assets/factory_images/湖州安迪信精密科技有限公司_1.jpg",
-        "assets/factory_images/湖州安迪信精密科技有限公司_2.jpg",
-        "assets/factory_images/湖州安迪信精密科技有限公司_3.jpg"
+        "assets/factory_images/thumb_090.jpg",
+        "assets/factory_images/thumb_091.jpg",
+        "assets/factory_images/thumb_092.jpg"
       ]
     },
     {
@@ -593,9 +593,9 @@ const factoryData = {
       "contact": "潘志刚",
       "phone": "13605809397",
       "images": [
-        "assets/factory_images/浙江科扬幕墙有限公司_1.jpg",
-        "assets/factory_images/浙江科扬幕墙有限公司_2.jpg",
-        "assets/factory_images/浙江科扬幕墙有限公司_3.jpg"
+        "assets/factory_images/thumb_093.jpg",
+        "assets/factory_images/thumb_094.jpg",
+        "assets/factory_images/thumb_095.jpg"
       ]
     },
     {
@@ -617,12 +617,12 @@ const factoryData = {
       "contact": "王欣",
       "phone": "13906816233",
       "images": [
-        "assets/factory_images/浙江吉木数码印刷板材有限公司_1.jpg",
-        "assets/factory_images/浙江吉木数码印刷板材有限公司_2.jpg",
-        "assets/factory_images/浙江吉木数码印刷板材有限公司_3.jpg",
-        "assets/factory_images/浙江吉木数码印刷板材有限公司_4.jpg",
-        "assets/factory_images/浙江吉木数码印刷板材有限公司_5.jpg",
-        "assets/factory_images/浙江吉木数码印刷板材有限公司_6.jpg"
+        "assets/factory_images/thumb_096.jpg",
+        "assets/factory_images/thumb_097.jpg",
+        "assets/factory_images/thumb_098.jpg",
+        "assets/factory_images/thumb_099.jpg",
+        "assets/factory_images/thumb_100.jpg",
+        "assets/factory_images/thumb_101.jpg"
       ]
     },
     {
@@ -644,8 +644,8 @@ const factoryData = {
       "contact": "桂在平",
       "phone": "13868280897",
       "images": [
-        "assets/factory_images/安吉金麟机械有限公司_1.jpg",
-        "assets/factory_images/安吉金麟机械有限公司_2.jpg"
+        "assets/factory_images/thumb_102.jpg",
+        "assets/factory_images/thumb_103.jpg"
       ]
     },
     {
@@ -667,9 +667,9 @@ const factoryData = {
       "contact": "张天锋",
       "phone": "13967278632",
       "images": [
-        "assets/factory_images/浙江宇阳电力设备有限公司_1.jpg",
-        "assets/factory_images/浙江宇阳电力设备有限公司_2.jpg",
-        "assets/factory_images/浙江宇阳电力设备有限公司_3.jpg"
+        "assets/factory_images/thumb_104.jpg",
+        "assets/factory_images/thumb_105.jpg",
+        "assets/factory_images/thumb_106.jpg"
       ]
     },
     {
@@ -771,9 +771,9 @@ const factoryData = {
       "contact": "舒毅",
       "phone": "18329190693",
       "images": [
-        "assets/factory_images/浙江鸿御新材料科技有限公司_1.jpg",
-        "assets/factory_images/浙江鸿御新材料科技有限公司_2.jpg",
-        "assets/factory_images/浙江鸿御新材料科技有限公司_3.jpg"
+        "assets/factory_images/thumb_107.jpg",
+        "assets/factory_images/thumb_108.jpg",
+        "assets/factory_images/thumb_109.jpg"
       ]
     }
   ],
@@ -797,14 +797,14 @@ const factoryData = {
       "contact": "冯少华",
       "phone": "13867117198",
       "images": [
-        "assets/factory_images/浙江坤金科技有限公司_1.jpg",
-        "assets/factory_images/浙江坤金科技有限公司_2.jpg",
-        "assets/factory_images/浙江坤金科技有限公司_3.jpg",
-        "assets/factory_images/浙江坤金科技有限公司_4.jpg",
-        "assets/factory_images/浙江坤金科技有限公司_5.jpg",
-        "assets/factory_images/浙江坤金科技有限公司_6.jpg",
-        "assets/factory_images/浙江坤金科技有限公司_7.jpg",
-        "assets/factory_images/浙江坤金科技有限公司_8.jpg"
+        "assets/factory_images/thumb_110.jpg",
+        "assets/factory_images/thumb_111.jpg",
+        "assets/factory_images/thumb_112.jpg",
+        "assets/factory_images/thumb_113.jpg",
+        "assets/factory_images/thumb_114.jpg",
+        "assets/factory_images/thumb_115.jpg",
+        "assets/factory_images/thumb_116.jpg",
+        "assets/factory_images/thumb_117.jpg"
       ]
     },
     {
@@ -826,10 +826,10 @@ const factoryData = {
       "contact": "王乐民",
       "phone": "18057161515",
       "images": [
-        "assets/factory_images/浙江春之丰家用纺织品有限公司_1.jpg",
-        "assets/factory_images/浙江春之丰家用纺织品有限公司_2.jpg",
-        "assets/factory_images/浙江春之丰家用纺织品有限公司_3.jpg",
-        "assets/factory_images/浙江春之丰家用纺织品有限公司_4.jpg"
+        "assets/factory_images/thumb_118.jpg",
+        "assets/factory_images/thumb_119.jpg",
+        "assets/factory_images/thumb_120.jpg",
+        "assets/factory_images/thumb_121.jpg"
       ]
     },
     {
@@ -851,12 +851,12 @@ const factoryData = {
       "contact": "时建平",
       "phone": "13868276811",
       "images": [
-        "assets/factory_images/浙江沈达特种装备科技有限公司_1.jpg",
-        "assets/factory_images/浙江沈达特种装备科技有限公司_2.jpg",
-        "assets/factory_images/浙江沈达特种装备科技有限公司_3.jpg",
-        "assets/factory_images/浙江沈达特种装备科技有限公司_4.jpg",
-        "assets/factory_images/浙江沈达特种装备科技有限公司_5.jpg",
-        "assets/factory_images/浙江沈达特种装备科技有限公司_6.jpg"
+        "assets/factory_images/thumb_122.jpg",
+        "assets/factory_images/thumb_123.jpg",
+        "assets/factory_images/thumb_124.jpg",
+        "assets/factory_images/thumb_125.jpg",
+        "assets/factory_images/thumb_126.jpg",
+        "assets/factory_images/thumb_127.jpg"
       ]
     },
     {
@@ -878,13 +878,13 @@ const factoryData = {
       "contact": "谈莉莉",
       "phone": "15268236602",
       "images": [
-        "assets/factory_images/浙江长兴万华包装有限公司_1.jpg",
-        "assets/factory_images/浙江长兴万华包装有限公司_2.jpg",
-        "assets/factory_images/浙江长兴万华包装有限公司_3.jpg",
-        "assets/factory_images/浙江长兴万华包装有限公司_4.jpg",
-        "assets/factory_images/浙江长兴万华包装有限公司_5.jpg",
-        "assets/factory_images/浙江长兴万华包装有限公司_6.jpg",
-        "assets/factory_images/浙江长兴万华包装有限公司_7.jpg"
+        "assets/factory_images/thumb_128.jpg",
+        "assets/factory_images/thumb_129.jpg",
+        "assets/factory_images/thumb_130.jpg",
+        "assets/factory_images/thumb_131.jpg",
+        "assets/factory_images/thumb_132.jpg",
+        "assets/factory_images/thumb_133.jpg",
+        "assets/factory_images/thumb_134.jpg"
       ]
     },
     {
@@ -906,11 +906,11 @@ const factoryData = {
       "contact": "夏冬仙",
       "phone": "13606810908",
       "images": [
-        "assets/factory_images/浙江奥蓝光源科技有限公司_1.jpg",
-        "assets/factory_images/浙江奥蓝光源科技有限公司_2.jpg",
-        "assets/factory_images/浙江奥蓝光源科技有限公司_3.jpg",
-        "assets/factory_images/浙江奥蓝光源科技有限公司_4.jpg",
-        "assets/factory_images/浙江奥蓝光源科技有限公司_5.jpg"
+        "assets/factory_images/thumb_135.jpg",
+        "assets/factory_images/thumb_136.jpg",
+        "assets/factory_images/thumb_137.jpg",
+        "assets/factory_images/thumb_138.jpg",
+        "assets/factory_images/thumb_139.jpg"
       ]
     },
     {
@@ -952,9 +952,9 @@ const factoryData = {
       "contact": "陈伟达",
       "phone": "18867536753",
       "images": [
-        "assets/factory_images/浙江润格木业科技有限公司_1.jpg",
-        "assets/factory_images/浙江润格木业科技有限公司_2.jpg",
-        "assets/factory_images/浙江润格木业科技有限公司_3.jpg"
+        "assets/factory_images/thumb_140.jpg",
+        "assets/factory_images/thumb_141.jpg",
+        "assets/factory_images/thumb_142.jpg"
       ]
     },
     {
@@ -976,9 +976,9 @@ const factoryData = {
       "contact": "徐伟义",
       "phone": "13957259948",
       "images": [
-        "assets/factory_images/浙江中茂耐火材料有限公司_1.jpg",
-        "assets/factory_images/浙江中茂耐火材料有限公司_2.jpg",
-        "assets/factory_images/浙江中茂耐火材料有限公司_3.jpg"
+        "assets/factory_images/thumb_143.jpg",
+        "assets/factory_images/thumb_144.jpg",
+        "assets/factory_images/thumb_145.jpg"
       ]
     },
     {
@@ -1000,10 +1000,10 @@ const factoryData = {
       "contact": "朱军",
       "phone": "13968009818",
       "images": [
-        "assets/factory_images/浙江荣欣钢构有限公司_1.jpg",
-        "assets/factory_images/浙江荣欣钢构有限公司_2.jpg",
-        "assets/factory_images/浙江荣欣钢构有限公司_3.jpg",
-        "assets/factory_images/浙江荣欣钢构有限公司_4.jpg"
+        "assets/factory_images/thumb_146.jpg",
+        "assets/factory_images/thumb_147.jpg",
+        "assets/factory_images/thumb_148.jpg",
+        "assets/factory_images/thumb_149.jpg"
       ]
     },
     {
