@@ -3,359 +3,409 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>长三角（湖州）产业合作区招商作战图</title>
+<title>长合区招商投资平台</title>
 <style>
-:root{--primary:#00d4ff;--accent:#ff6b35;--bg:#0a0e27;--bg-card:rgba(20,30,60,0.95);--text:#e6edf3;--text-dim:#8b949e;--border:rgba(0,212,255,0.3)}
+:root{--primary:#00d4ff;--bg:#0a0e27;--bg2:#111827;--card:rgba(17,24,39,0.95);--text:#f3f4f6;--dim:#9ca3af;--border:rgba(0,212,255,0.2);--green:#10b981;--yellow:#f59e0b;--red:#ef4444}
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+body{font-family:"PingFancy SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
 
-/* 导航 */
-.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,14,39,0.98);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
-.nav-inner{max-width:1400px;margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:60px}
-.nav-brand{font-size:18px;font-weight:700;color:var(--primary)}
-.nav-tabs{display:flex;gap:4px}
-.nav-tab{padding:10px 20px;border-radius:8px;color:var(--text-dim);cursor:pointer;font-size:14px;transition:all .3s;border:none;background:transparent}
-.nav-tab:hover{color:var(--text)}
-.nav-tab.active{background:rgba(0,212,255,0.15);color:var(--primary)}
+/* 顶部 */
+header{background:linear-gradient(135deg,#0a1628 0%,#0f172a 100%);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
+.header-inner{max-width:1400px;margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:20px;font-weight:700;color:var(--primary)}
+.logo span{color:#fff}
+nav{display:flex;gap:4px}
+nav button{padding:10px 20px;border:none;background:transparent;color:var(--dim);cursor:pointer;border-radius:8px;font-size:14px;transition:all .2s}
+nav button:hover{color:#fff;background:rgba(0,212,255,0.1)}
+nav button.active{background:rgba(0,212,255,0.15);color:var(--primary)}
 
 /* 主内容 */
-.main{margin-top:60px;padding:20px;max-width:1400px;margin-left:auto;margin-right:auto}
+main{max-width:1400px;margin:0 auto;padding:24px}
 
-/* Tab页面 */
+/* 页面 */
 .page{display:none}
 .page.active{display:block}
 
-/* 统计卡片 */
-.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;margin-bottom:30px}
-.stat-card{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:24px;text-align:center}
-.stat-num{font-size:42px;font-weight:700;color:var(--primary);font-family:"DIN Alternate",sans-serif}
-.stat-label{font-size:14px;color:var(--text-dim);margin-top:8px}
-
 /* 标题 */
-.section-title{font-size:24px;font-weight:700;margin-bottom:20px;color:var(--text)}
+.page-header{margin-bottom:24px}
+.page-title{font-size:26px;font-weight:700;color:#fff;margin-bottom:8px}
+.page-subtitle{color:var(--dim);font-size:14px}
+
+/* 统计卡片 */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:24px}
+.stat{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;text-align:center;transition:all .2s}
+.stat:hover{border-color:var(--primary);transform:translateY(-2px)}
+.stat-num{font-size:38px;font-weight:700;color:var(--primary);font-feature-settings:"tnum"}
+.stat-label{color:var(--dim);font-size:13px;margin-top:4px}
+
+/* 快速入口 */
+.quick-entry{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-bottom:24px}
+.entry{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;cursor:pointer;transition:all .2s;display:block;text-decoration:none;color:inherit}
+.entry:hover{border-color:var(--primary);transform:translateY(-3px);box-shadow:0 8px 30px rgba(0,212,255,0.1)}
+.entry-icon{font-size:32px;margin-bottom:12px}
+.entry h3{color:#fff;font-size:16px;margin-bottom:6px}
+.entry p{color:var(--dim);font-size:13px}
 
 /* 卡片 */
-.card{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:24px;margin-bottom:20px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;margin-bottom:20px}
+.card-title{font-size:16px;font-weight:600;color:var(--primary);margin-bottom:16px;display:flex;align-items:center;gap:8px}
 
 /* 表格 */
-.table-wrap{overflow-x:auto}
 table{width:100%;border-collapse:collapse}
-th,td{padding:12px 16px;text-align:left;border-bottom:1px solid var(--border);font-size:14px}
-th{background:rgba(0,212,255,0.1);color:var(--primary);font-weight:600;position:sticky;top:0}
-tr:hover{background:rgba(0,212,255,0.05)}
-
-/* 按钮 */
-.btn{padding:10px 20px;border-radius:8px;font-size:14px;cursor:pointer;border:none;transition:all .3s}
-.btn-primary{background:linear-gradient(135deg,var(--primary),#0099cc);color:#fff}
-.btn-primary:hover{transform:scale(1.02);box-shadow:0 0 20px var(--primary)}
+th{background:rgba(0,212,255,0.08);color:var(--primary);padding:12px 16px;text-align:left;font-size:13px;font-weight:600;border-bottom:1px solid var(--border)}
+td{padding:12px 16px;border-bottom:1px solid rgba(255,255,255,0.05);font-size:14px}
+tr:hover{background:rgba(0,212,255,0.03)}
+.table-wrap{overflow-x:auto}
 
 /* 标签 */
-.tag{display:inline-block;padding:4px 12px;border-radius:20px;font-size:12px}
-.tag-green{background:rgba(0,255,136,0.2);color:#00ff88}
-.tag-red{background:rgba(255,100,100,0.2);color:#ff6666}
-.tag-yellow{background:rgba(255,200,0,0.2);color:#ffcc00}
-
-/* 地图容器 */
-.map-container{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:20px;margin-bottom:20px}
-.map-wrapper{position:relative;width:100%;padding-bottom:66.67%;background:#0a1628;border-radius:12px;overflow:hidden}
-.map-svg{position:absolute;top:0;left:0;width:100%;height:100%}
-
-/* 筛选 */
-.filter-bar{display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap}
-.filter-btn{padding:8px 16px;border-radius:20px;border:1px solid var(--border);background:transparent;color:var(--text-dim);cursor:pointer;font-size:14px;transition:all .3s}
-.filter-btn.active,.filter-btn:hover{background:var(--primary);color:#fff;border-color:var(--primary)}
+.tag{display:inline-block;padding:3px 10px;border-radius:12px;font-size:12px}
+.tag-green{background:rgba(16,185,129,0.15);color:var(--green)}
+.tag-yellow{background:rgba(245,158,11,0.15);color:var(--yellow)}
+.tag-red{background:rgba(239,68,68,0.15);color:var(--red)}
+.tag-blue{background:rgba(0,212,255,0.15);color:var(--primary)}
 
 /* 搜索 */
-.search-box{display:flex;gap:12px;margin-bottom:20px}
-.search-input{flex:1;padding:12px 16px;border-radius:8px;border:1px solid var(--border);background:rgba(20,30,60,0.8);color:var(--text);font-size:14px}
-.search-input:focus{outline:none;border-color:var(--primary)}
+.search-bar{display:flex;gap:12px;margin-bottom:16px}
+.search-bar input{flex:1;padding:12px 16px;background:#1f2937;border:1px solid var(--border);border-radius:8px;color:#fff;font-size:14px}
+.search-bar input:focus{outline:none;border-color:var(--primary)}
+.filter-bar{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+.filter-btn{padding:8px 16px;border:1px solid var(--border);background:transparent;color:var(--dim);cursor:pointer;border-radius:20px;font-size:13px;transition:all .2s}
+.filter-btn.active,.filter-btn:hover{background:var(--primary);color:#fff;border-color:var(--primary)}
 
 /* 分页 */
-.pagination{display:flex;justify-content:center;gap:8px;margin-top:20px}
-.page-btn{padding:8px 16px;border-radius:8px;border:1px solid var(--border);background:transparent;color:var(--text-dim);cursor:pointer;font-size:14px}
-.page-btn.active,.page-btn:hover{background:var(--primary);color:#fff;border-color:var(--primary)}
-.page-btn:disabled{opacity:0.5;cursor:not-allowed}
+.pages{display:flex;justify-content:center;align-items:center;gap:8px;margin-top:20px}
+.pages button{padding:8px 14px;border:1px solid var(--border);background:transparent;color:var(--dim);cursor:pointer;border-radius:6px;font-size:13px}
+.pages button:hover:not(:disabled){background:var(--primary);color:#fff;border-color:var(--primary)}
+.pages button:disabled{opacity:0.4;cursor:not-allowed}
+.pages span{color:var(--dim);font-size:13px}
 
-/* 产业链卡片 */
-.chain-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
-.chain-card{background:rgba(20,30,60,0.8);border:1px solid var(--border);border-radius:12px;padding:20px;transition:all .3s}
-.chain-card:hover{border-color:var(--primary);transform:translateY(-2px)}
-.chain-card h4{color:var(--primary);font-size:16px;margin-bottom:8px}
-.chain-card p{color:var(--text-dim);font-size:13px;margin-bottom:6px}
-.chain-card .sub{color:var(--text);font-size:12px}
+/* 产业链 */
+.chain{display:grid;gap:16px;margin-bottom:24px}
+.chain-item{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden}
+.chain-head{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;cursor:pointer;transition:all .2s}
+.chain-head:hover{background:rgba(0,212,255,0.05)}
+.chain-head h4{color:var(--primary);font-size:15px}
+.chain-head span{color:var(--dim);font-size:13px}
+.chain-body{display:none;padding:0 20px 20px}
+.chain-body.open{display:block}
+.chain-body table{margin-top:12px}
+
+/* 热线 */
+.hotline{background:linear-gradient(135deg,rgba(0,212,255,0.1),rgba(16,185,129,0.1));border:1px solid var(--primary);border-radius:16px;padding:40px;text-align:center;margin-top:24px}
+.hotline h3{font-size:18px;color:#fff;margin-bottom:12px}
+.hotline .tel{font-size:42px;font-weight:700;color:var(--primary);margin:16px 0}
+.hotline p{color:var(--dim)}
+
+/* 地图 */
+.map-box{background:#0a1628;border-radius:12px;padding:20px;height:400px;position:relative;overflow:hidden}
+.map-box svg{width:100%;height:100%}
+
+/* 交通 */
+.transport{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:16px}
+.transport-item{background:rgba(0,212,255,0.05);border-radius:10px;padding:16px;text-align:center}
+.transport-item .icon{font-size:28px;margin-bottom:8px}
+.transport-item h5{color:#fff;font-size:14px;margin-bottom:4px}
+.transport-item p{color:var(--dim);font-size:12px}
+
+/* 政策 */
+.policy{display:grid;gap:16px}
+.policy-item{display:flex;gap:16px;padding:16px 0;border-bottom:1px solid rgba(255,255,255,0.05)}
+.policy-item:last-child{border-bottom:none}
+.policy-icon{width:44px;height:44px;background:rgba(0,212,255,0.1);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.policy-content h5{color:#fff;font-size:14px;margin-bottom:4px}
+.policy-content p{color:var(--dim);font-size:13px}
+
+/* 落地状态 */
+.match{display:inline-flex;align-items:center;gap:4px}
+.match::before{content:'';width:6px;height:6px;border-radius:50%}
+
+/* 响应式 */
+@media(max-width:768px){
+nav{overflow-x:auto;padding-bottom:8px}
+.header-inner{padding:0 12px}
+main{padding:16px}
+.quick-entry{grid-template-columns:1fr}
+}
 </style>
 </head>
 <body>
 
-<nav class="nav">
-<div class="nav-inner">
-<div class="nav-brand">长三角（湖州）产业合作区 · 招商作战图</div>
-<div class="nav-tabs">
-<button class="nav-tab active" data-page="home">🏠 首页</button>
-<button class="nav-tab" data-page="chain">🔗 产业链</button>
-<button class="nav-tab" data-page="factory">🏭 厂房</button>
-<button class="nav-tab" data-page="enterprise">🏢 企业</button>
-<button class="nav-tab" data-page="target">🎯 招商目标</button>
-<button class="nav-tab" data-page="map">🗺️ 地图</button>
-</div>
-</div>
+<header>
+<div class="header-inner">
+<div class="logo">长合区<span>招商投资平台</span></div>
+<nav>
+<button class="active" data-page="home">首页</button>
+<button data-page="map">按图索骥</button>
+<button data-page="factory">厂房资源</button>
+<button data-page="industry">产业布局</button>
+<button data-page="enterprise">企业名录</button>
+<button data-page="policy">投资政策</button>
 </nav>
+</div>
+</header>
 
-<main class="main">
+<main>
 
 <!-- 首页 -->
 <div id="page-home" class="page active">
-<div class="stats-grid">
-<div class="stat-card"><div class="stat-num" id="stat-chain">4</div><div class="stat-label">产业链赛道</div></div>
-<div class="stat-card"><div class="stat-num" id="stat-factory">0</div><div class="stat-label">可用厂房</div></div>
-<div class="stat-card"><div class="stat-num" id="stat-enterprise">0</div><div class="stat-label">长合区企业</div></div>
-<div class="stat-card"><div class="stat-num" id="stat-sqm">0</div><div class="stat-label">空闲面积(㎡)</div></div>
+<div class="page-header">
+<div class="page-title">长三角（湖州）产业合作区</div>
+<div class="page-subtitle">长三角之心 · 产业高地 · 营商优地</div>
 </div>
 
-<div class="card">
-<div class="section-title">核心产业链</div>
-<div class="chain-grid">
-<div class="chain-card"><h4>🚗 新能源汽车</h4><p>电芯/电机/智驾/底盘</p><span class="tag tag-yellow">部分缺链</span></div>
-<div class="chain-card"><h4>🤖 仿生机器人</h4><p>人形机器人/核心零部件</p><span class="tag tag-red">严重缺链</span></div>
-<div class="chain-card"><h4>🔋 储能电池</h4><p>储能电芯/PACK/系统</p><span class="tag tag-red">严重缺链</span></div>
-<div class="chain-card"><h4>💎 半导体</h4><p>SiC/IGBT/汽车芯片</p><span class="tag tag-red">严重缺链</span></div>
-</div>
-</div>
-
-<div class="card">
-<div class="section-title">快速入口</div>
-<div style="display:flex;gap:12px;flex-wrap:wrap">
-<button class="btn btn-primary" onclick="switchPage('factory')">厂房资源</button>
-<button class="btn btn-primary" onclick="switchPage('enterprise')">企业名录</button>
-<button class="btn btn-primary" onclick="switchPage('map')">招商地图</button>
-</div>
+<div class="stats">
+<div class="stat"><div class="stat-num" id="s-factory">0</div><div class="stat-label">可用厂房</div></div>
+<div class="stat"><div class="stat-num" id="s-enterprise">0</div><div class="stat-label">园区企业</div></div>
+<div class="stat"><div class="stat-num" id="s-sqm">0</div><div class="stat-label">空闲面积(㎡)</div></div>
+<div class="stat"><div class="stat-num">194</div><div class="stat-label">规上企业</div></div>
+<div class="stat"><div class="stat-num">530亿</div><div class="stat-label">规上工业总产值</div></div>
+<div class="stat"><div class="stat-num">150亿</div><div class="stat-label">基金规模</div></div>
 </div>
 
-<div class="card">
-<div class="section-title">📞 招商热线</div>
-<p style="font-size:28px;color:var(--primary);font-weight:700">0563-568-0000</p>
-<p style="color:var(--text-dim);margin-top:8px">长合区投资促进局 · 工作日 8:30-17:30</p>
+<div class="quick-entry">
+<div class="entry" onclick="goPage('map')">
+<div class="entry-icon">🗺️</div>
+<h3>按图索骥</h3>
+<p>产业链精准配对，厂房土地与招商目标一键匹配</p>
 </div>
+<div class="entry" onclick="goPage('factory')">
+<div class="entry-icon">🏗️</div>
+<h3>厂房资源</h3>
+<p>天子湖/泗安片区厂房信息，实时查询</p>
 </div>
-
-<!-- 产业链 -->
-<div id="page-chain" class="page">
-<div class="section-title">📍 新能源汽车产业链全景</div>
-
-<div class="card">
-<h3 style="color:var(--primary);margin-bottom:16px">🔋 电池系统 <span class="tag tag-yellow">部分缺链</span></h3>
-<div class="table-wrap">
-<table>
-<tr><th>环节</th><th>已落地企业</th><th>状态</th><th>招商目标</th></tr>
-<tr><td>上游原材料</td><td>永兴材料(碳酸锂)</td><td>✅ 完善</td><td>赣锋锂业、天齐锂业</td></tr>
-<tr><td>电芯制造</td><td>-</td><td>🔴 严重缺链</td><td>宁德时代、弗迪电池、中创新航</td></tr>
-<tr><td>PACK/BMS</td><td>利羿能源</td><td>🟡 待补强</td><td>欣旺达、均胜电子</td></tr>
-<tr><td>热管理</td><td>银轮股份、三花智控</td><td>✅ 完善</td><td>-</td></tr>
-</table>
+<div class="entry" onclick="goPage('industry')">
+<div class="entry-icon">🚗</div>
+<h3>产业布局</h3>
+<p>新能源汽车、机器人产业链全景</p>
+</div>
+<div class="entry" onclick="goPage('policy')">
+<div class="entry-icon">💰</div>
+<h3>投资政策</h3>
+<p>资本、人才、服务全周期支持</p>
 </div>
 </div>
 
 <div class="card">
-<h3 style="color:var(--primary);margin-bottom:16px">⚡ 电驱总成 <span class="tag tag-yellow">部分缺链</span></h3>
-<div class="table-wrap">
-<table>
-<tr><th>环节</th><th>已落地企业</th><th>状态</th><th>招商目标</th></tr>
-<tr><td>驱动电机</td><td>方正电机(配套)</td><td>🟡 待补强</td><td>汇川联合、卧龙电驱</td></tr>
-<tr><td>电机控制器</td><td>-</td><td>🔴 缺链</td><td>华为数字能源、英搏尔</td></tr>
-<tr><td>减速器</td><td>-</td><td>🔴 缺链</td><td>双环传动、中大力德</td></tr>
-</table>
+<div class="card-title">🚄 区位交通</div>
+<div class="transport">
+<div class="transport-item"><div class="icon">🚄</div><h5>高铁 1.5h</h5><p>上海/杭州/南京/合肥</p></div>
+<div class="transport-item"><div class="icon">🚗</div><h5>高速 10min</h5><p>沪渝/杭长/申嘉湖</p></div>
+<div class="transport-item"><div class="icon">✈️</div><h5>机场 90min</h5><p>沪杭宁三大机场</p></div>
+<div class="transport-item"><div class="icon">🚢</div><h5>千吨码头</h5><p>通达上海/宁波港</p></div>
 </div>
 </div>
 
-<div class="card">
-<h3 style="color:var(--primary);margin-bottom:16px">🧠 智能驾驶 <span class="tag tag-red">严重缺链</span></h3>
-<div class="table-wrap">
-<table>
-<tr><th>环节</th><th>已落地企业</th><th>状态</th><th>招商目标</th></tr>
-<tr><td>芯片/域控制器</td><td>-</td><td>🔴 严重缺链</td><td>地平线、黑芝麻智能</td></tr>
-<tr><td>感知硬件</td><td>-</td><td>🔴 严重缺链</td><td>速腾聚创、图达通、禾赛科技</td></tr>
-<tr><td>算法</td><td>-</td><td>🔴 严重缺链</td><td>Momenta、小马智行</td></tr>
-</table>
+<div class="hotline">
+<h3>📞 招商热线</h3>
+<div class="tel">0563-568-0000</div>
+<p>长合区投资促进局 · 工作日 8:30-17:30</p>
 </div>
 </div>
 
-<div class="card">
-<h3 style="color:var(--primary);margin-bottom:16px">🔩 底盘传动 <span class="tag tag-green">完善</span></h3>
-<div class="table-wrap">
-<table>
-<tr><th>环节</th><th>已落地企业</th><th>状态</th></tr>
-<tr><td>结构件</td><td>利羿精密、拓普集团(配套)</td><td>✅ 完善</td></tr>
-<tr><td>一体化压铸</td><td>-</td><td>🟡 待补强</td></tr>
-</table>
-</div>
-</div>
-</div>
-
-<!-- 厂房 -->
-<div id="page-factory" class="page">
-<div class="section-title">🏭 厂房资源库</div>
-<div class="stats-grid">
-<div class="stat-card"><div class="stat-num" id="fac-count">0</div><div class="stat-label">厂房总数</div></div>
-<div class="stat-card"><div class="stat-num" id="fac-sqm">0</div><div class="stat-label">空闲面积(㎡)</div></div>
+<!-- 按图索骥 -->
+<div id="page-map" class="page">
+<div class="page-header">
+<div class="page-title">🗺️ 按图索骥</div>
+<div class="page-subtitle">产业链精准配对 — 招商目标 × 园区资源</div>
 </div>
 
 <div class="filter-bar">
-<button class="filter-btn active" data-filter="all">全部</button>
-<button class="filter-btn" data-filter="天子湖镇">天子湖镇</button>
-<button class="filter-btn" data-filter="泗安镇">泗安镇</button>
+<button class="filter-btn active" data-c="all">全产业链</button>
+<button class="filter-btn" data-c="battery">🔋 电池系统</button>
+<button class="filter-btn" data-c="motor">⚡ 电驱系统</button>
+<button class="filter-btn" data-c="chassis">🔩 底盘系统</button>
+<button class="filter-btn" data-c="body">🚗 车身系统</button>
+<button class="filter-btn" data-c="intel">🧠 智能驾驶</button>
 </div>
 
-<div class="search-box">
-<input type="text" class="search-input" id="fac-search" placeholder="搜索企业名称...">
+<div class="card">
+<div class="card-title">📋 产业链配对表</div>
+<div id="chain-list"></div>
 </div>
+
+<div class="card">
+<div class="card-title">🏗️ 可快速落地厂房资源</div>
+<div class="filter-bar">
+<button class="filter-btn active" data-area="all">全部</button>
+<button class="filter-btn" data-area="天子湖">天子湖镇</button>
+<button class="filter-btn" data-area="泗安">泗安镇</button>
+</div>
+<div class="search-bar"><input type="text" id="map-search" placeholder="搜索厂房..."></div>
+<div id="fac-list"></div>
+</div>
+</div>
+
+<!-- 厂房资源 -->
+<div id="page-factory" class="page">
+<div class="page-header">
+<div class="page-title">🏗️ 厂房资源库</div>
+<div class="page-subtitle">天子湖片区 + 泗安片区</div>
+</div>
+
+<div class="stats">
+<div class="stat"><div class="stat-num" id="f-total">0</div><div class="stat-label">厂房总数</div></div>
+<div class="stat"><div class="stat-num" id="f-tzh">0</div><div class="stat-label">天子湖</div></div>
+<div class="stat"><div class="stat-num" id="f-sa">0</div><div class="stat-label">泗安</div></div>
+<div class="stat"><div class="stat-num" id="f-sqm">0</div><div class="stat-label">总面积(㎡)</div></div>
+</div>
+
+<div class="filter-bar">
+<button class="filter-btn active" data-f="all">全部</button>
+<button class="filter-btn" data-f="天子湖镇">天子湖镇</button>
+<button class="filter-btn" data-f="泗安镇">泗安镇</button>
+</div>
+<div class="search-bar"><input type="text" id="fac-search" placeholder="搜索企业名称..."></div>
 
 <div class="card">
 <div class="table-wrap">
 <table>
-<thead><tr><th>#</th><th>企业名称</th><th>片区</th><th>面积(㎡)</th><th>楼层</th><th>租金</th><th>层高</th><th>联系人</th><th>电话</th></tr></thead>
+<thead><tr><th>#</th><th>企业</th><th>片区</th><th>可租楼层</th><th>租金</th><th>层高</th><th>配电</th><th>联系人</th><th>电话</th></tr></thead>
 <tbody id="fac-tbody"></tbody>
 </table>
 </div>
-<div class="pagination" id="fac-pager"></div>
+<div class="pages" id="fac-pages"></div>
 </div>
 </div>
 
-<!-- 企业 -->
+<!-- 产业布局 -->
+<div id="page-industry" class="page">
+<div class="page-header">
+<div class="page-title">🏭 产业布局</div>
+<div class="page-subtitle">新能源汽车 + 机器人产业链</div>
+</div>
+
+<div class="stats">
+<div class="stat"><div class="stat-num">30+</div><div class="stat-label">周边整车企业</div></div>
+<div class="stat"><div class="stat-num">200+</div><div class="stat-label">周边零部件企业</div></div>
+<div class="stat"><div class="stat-num">4700+</div><div class="stat-label">长三角机器人企业</div></div>
+<div class="stat"><div class="stat-num">530亿</div><div class="stat-label">2025年产值</div></div>
+</div>
+
+<div class="card">
+<div class="card-title">🚗 新能源汽车产业链</div>
+<div class="table-wrap">
+<table>
+<tr><th>产业链环节</th><th>落地情况</th><th>缺链状态</th><th>招商目标</th></tr>
+<tr><td>电芯制造</td><td>-</td><td><span class="tag tag-red">严重缺链</span></td><td>宁德时代、弗迪电池、中创新航</td></tr>
+<tr><td>PACK/BMS</td><td>利羿能源</td><td><span class="tag tag-yellow">待补强</span></td><td>欣旺达、均胜电子</td></tr>
+<tr><td>热管理系统</td><td>银轮股份、三花智控</td><td><span class="tag tag-green">完善</span></td><td>-</td></tr>
+<tr><td>电机控制器</td><td>-</td><td><span class="tag tag-red">缺链</span></td><td>华为数字能源、英搏尔</td></tr>
+<tr><td>一体化压铸</td><td>豪斯特</td><td><span class="tag tag-yellow">待补强</span></td><td>拓普集团、文灿股份</td></tr>
+<tr><td>整车</td><td>翰凯斯无人巴士</td><td><span class="tag tag-yellow">待补强</span></td><td>比亚迪、吉利、零跑</td></tr>
+</table>
+</div>
+</div>
+
+<div class="card">
+<div class="card-title">🤖 机器人与数控机床</div>
+<div class="table-wrap">
+<table>
+<tr><th>领域</th><th>龙头企业</th><th>园区情况</th></tr>
+<tr><td>数控机床</td><td>创世纪（民营龙头）</td><td>已落户</td></tr>
+<tr><td>轴承</td><td>人本轴承（规模最大）</td><td>已落户</td></tr>
+<tr><td>机器人</td><td>德马科技、诺力股份、牧星机器人</td><td>湖州30+企业</td></tr>
+<tr><td>精密制造</td><td>利羿精密、桢正机器人</td><td>园区配套</td></tr>
+<tr><td>表面处理</td><td>阳极氧化产业园、电镀产业园</td><td>国企自建</td></tr>
+</table>
+</div>
+</div>
+</div>
+
+<!-- 企业名录 -->
 <div id="page-enterprise" class="page">
-<div class="section-title">🏢 长合区企业名录</div>
-<div class="stats-grid">
-<div class="stat-card"><div class="stat-num" id="ent-count">0</div><div class="stat-label">企业总数</div></div>
+<div class="page-header">
+<div class="page-title">🏢 企业名录</div>
+<div class="page-subtitle">长合区联系企业清单</div>
+</div>
+
+<div class="stats">
+<div class="stat"><div class="stat-num" id="e-total">0</div><div class="stat-label">企业总数</div></div>
 </div>
 
 <div class="filter-bar">
-<button class="filter-btn active" data-filter="all">全部</button>
-<button class="filter-btn" data-filter="第一片区">第一片区</button>
-<button class="filter-btn" data-filter="第二片区">第二片区</button>
-<button class="filter-btn" data-filter="第三片区">第三片区</button>
+<button class="filter-btn active" data-e="all">全部</button>
+<button class="filter-btn" data-e="第一片区">第一片区</button>
+<button class="filter-btn" data-e="第二片区">第二片区</button>
+<button class="filter-btn" data-e="第三片区">第三片区</button>
 </div>
-
-<div class="search-box">
-<input type="text" class="search-input" id="ent-search" placeholder="搜索企业名称...">
-</div>
+<div class="search-bar"><input type="text" id="ent-search" placeholder="搜索企业名称..."></div>
 
 <div class="card">
 <div class="table-wrap">
 <table>
-<thead><tr><th>#</th><th>企业名称</th><th>片区</th><th>联系人</th><th>电话</th><th>类型</th><th>服务专员</th></tr></thead>
+<thead><tr><th>#</th><th>企业名称</th><th>片区</th><th>联系人</th><th>电话</th><th>规上</th><th>服务专员</th></tr></thead>
 <tbody id="ent-tbody"></tbody>
 </table>
 </div>
-<div class="pagination" id="ent-pager"></div>
+<div class="pages" id="ent-pages"></div>
 </div>
 </div>
 
-<!-- 招商目标 -->
-<div id="page-target" class="page">
-<div class="section-title">🎯 重点招商目标</div>
-
-<div class="card">
-<h3 style="color:var(--primary);margin-bottom:16px">🔋 电池系统</h3>
-<div class="chain-grid">
-<div class="chain-card"><h4>宁德时代</h4><p class="sub">投资：50亿+ | 用地：150亩+</p><p>状态：扩产选址中 | 2026Q2</p></div>
-<div class="chain-card"><h4>弗迪电池</h4><p class="sub">投资：60亿+ | 用地：200亩+</p><p>状态：持续扩产</p></div>
-<div class="chain-card"><h4>中创新航</h4><p class="sub">投资：30亿 | 用地：100亩</p><p>状态：IPO冲刺 | 2026Q1</p></div>
-</div>
+<!-- 投资政策 -->
+<div id="page-policy" class="page">
+<div class="page-header">
+<div class="page-title">💰 投资政策</div>
+<div class="page-subtitle">全周期资本、人才、服务支持</div>
 </div>
 
 <div class="card">
-<h3 style="color:var(--primary);margin-bottom:16px">🧠 智能驾驶</h3>
-<div class="chain-grid">
-<div class="chain-card"><h4>地平线</h4><p class="sub">投资：15亿 | 用地：40亩</p><p>状态：IPO冲刺 | 2026Q1</p></div>
-<div class="chain-card"><h4>速腾聚创</h4><p class="sub">投资：10亿 | 用地：45亩</p><p>状态：扩产中 | 2025Q4</p></div>
-<div class="chain-card"><h4>图达通</h4><p class="sub">投资：8亿 | 用地：30亩</p><p>状态：选址中 | 2026Q1</p></div>
+<div class="card-title">🏦 资本支持</div>
+<div class="policy">
+<div class="policy-item">
+<div class="policy-icon">💵</div>
+<div class="policy-content"><h5>基金矩阵 150亿</h5><p>联动中金、浙商创投等40余家机构，含母基金、直投基金、并购基金、CVC基金</p></div>
 </div>
+<div class="policy-item">
+<div class="policy-icon">🏧</div>
+<div class="policy-content"><h5>优商贷</h5><p>土地/厂房抵押双100%贷款，最高可实现抵押物价值全额贷款</p></div>
 </div>
-
-<div class="card">
-<h3 style="color:var(--primary);margin-bottom:16px">⚡ 电驱总成</h3>
-<div class="chain-grid">
-<div class="chain-card"><h4>华为数字能源</h4><p class="sub">投资：25亿 | 用地：80亩</p><p>状态：战略布局 | 2026Q1</p></div>
-<div class="chain-card"><h4>汇川联合</h4><p class="sub">投资：20亿 | 用地：60亩</p><p>状态：扩产选址 | 2025Q4</p></div>
+<div class="policy-item">
+<div class="policy-icon">🏢</div>
+<div class="policy-content"><h5>融资租赁</h5><p>与远东宏信合作，设备融资租赁业务</p></div>
 </div>
-</div>
-
-<div class="card" style="background:linear-gradient(135deg,rgba(0,212,255,0.15),rgba(255,107,53,0.1));border-color:var(--primary)">
-<h3 style="color:#fff;margin-bottom:12px">📞 招商咨询</h3>
-<p style="font-size:28px;color:var(--primary);font-weight:700">0563-568-0000</p>
-<p style="color:var(--text-dim);margin-top:8px">长合区投资促进局 · 工作日 8:30-17:30</p>
-</div>
-</div>
-
-<!-- 地图 -->
-<div id="page-map" class="page">
-<div class="section-title">🗺️ 天子湖片区招商作战地图</div>
-
-<div class="map-container">
-<div class="map-wrapper">
-<svg class="map-svg" viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
-<!-- 背景 -->
-<defs>
-<linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-<stop offset="0%" style="stop-color:#0a1628"/>
-<stop offset="100%" style="stop-color:#1a2a4a"/>
-</linearGradient>
-<radialGradient id="centerGlow" cx="50%" cy="50%" r="50%">
-<stop offset="0%" style="stop-color:rgba(0,212,255,0.3)"/>
-<stop offset="100%" style="stop-color:rgba(0,212,255,0)"/>
-</radialGradient>
-</defs>
-<rect width="800" height="500" fill="url(#bgGrad)"/>
-
-<!-- 网格 -->
-<g stroke="rgba(0,212,255,0.1)" stroke-width="0.5">
-for(let i=0;i<800;i+=50){%}<line x1="'+i+'" y1="0" x2="'+i+'" y2="500"/>{%}
-for(let i=0;i<500;i+=50){%}<line x1="0" y1="'+i+'" x2="800" y2="'+i+'"/>{%}
-</g>
-
-<!-- 同心圆 -->
-<circle cx="400" cy="250" r="50" fill="none" stroke="rgba(0,212,255,0.3)" stroke-width="1" stroke-dasharray="5,5"/>
-<circle cx="400" cy="250" r="100" fill="none" stroke="rgba(0,212,255,0.2)" stroke-width="1" stroke-dasharray="5,5"/>
-<circle cx="400" cy="250" r="150" fill="none" stroke="rgba(0,212,255,0.15)" stroke-width="1"/>
-<circle cx="400" cy="250" r="200" fill="none" stroke="rgba(0,212,255,0.1)" stroke-width="1"/>
-<text x="20" y="30" fill="rgba(0,212,255,0.4)" font-size="11">天子湖片区</text>
-
-<!-- 中心点 -->
-<circle cx="400" cy="250" r="8" fill="#00d4ff"/>
-<circle cx="400" cy="250" r="12" fill="none" stroke="#00d4ff" stroke-width="2"/>
-<circle cx="400" cy="250" r="20" fill="url(#centerGlow)"/>
-<text x="400" y="280" text-anchor="middle" fill="#00d4ff" font-size="14" font-weight="bold">长合区天子湖</text>
-
-<!-- 企业标记 -->
-g id="markers">
-</g>
-
-<!-- 图例 -->
-<g transform="translate(20, 400)">
-<text fill="rgba(0,212,255,0.6)" font-size="11">图例</text>
-<circle cx="10" cy="20" r="6" fill="#00d4ff"/>
-<text x="25" y="24" fill="rgba(255,255,255,0.7)" font-size="10">已落地企业</text>
-<circle cx="10" cy="40" r="6" fill="#ff6b35"/>
-<text x="25" y="44" fill="rgba(255,255,255,0.7)" font-size="10">招商目标</text>
-<circle cx="10" cy="60" r="6" fill="#00ff88"/>
-<text x="25" y="64" fill="rgba(255,255,255,0.7)" font-size="10">空余厂房</text>
-</g>
-
-<!-- 比例尺 -->
-<g transform="translate(650, 470)">
-<line x1="0" y1="0" x2="100" y2="0" stroke="rgba(255,255,255,0.5)" stroke-width="2"/>
-<line x1="0" y1="-5" x2="0" y2="5" stroke="rgba(255,255,255,0.5)" stroke-width="2"/>
-<line x1="100" y1="-5" x2="100" y2="5" stroke="rgba(255,255,255,0.5)" stroke-width="2"/>
-<text x="50" y="20" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="10">5km</text>
-</g>
-</svg>
 </div>
 </div>
 
 <div class="card">
-<div class="section-title">图例说明</div>
-<p style="color:var(--text-dim)">• <span style="color:#00d4ff">蓝色</span> - 已落地企业</p>
-<p style="color:var(--text-dim)">• <span style="color:#ff6b35">橙色</span> - 重点招商目标</p>
-<p style="color:var(--text-dim)">• <span style="color:#00ff88">绿色</span> - 空余厂房资源</p>
+<div class="card-title">👥 人才政策</div>
+<div class="policy">
+<div class="policy-item">
+<div class="policy-icon">🏆</div>
+<div class="policy-content"><h5>南太湖精英计划</h5><p>连续十七年迭代实施，设立"湖州人才日"，每周开展"人才会客厅"</p></div>
+</div>
+<div class="policy-item">
+<div class="policy-icon">💰</div>
+<div class="policy-content"><h5>人才补贴</h5><p>创业启动资金、贴息贷款、购房补贴</p></div>
+</div>
+<div class="policy-item">
+<div class="policy-icon">🎓</div>
+<div class="policy-content"><h5>产教融合</h5><p>职业教育公共实训基地，打通企业用工"最后一公里"</p></div>
+</div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-title">🤝 服务理念</div>
+<div class="policy">
+<div class="policy-item">
+<div class="policy-icon">⚡</div>
+<div class="policy-content"><h5>拿地即开工</h5><p>10亿元项目2个工作日内完成施工许可证核发</p></div>
+</div>
+<div class="policy-item">
+<div class="policy-icon">🗣️</div>
+<div class="policy-content"><h5>亲清直通车</h5><p>常态化政企恳谈会，直面企业需求</p></div>
+</div>
+<div class="policy-item">
+<div class="policy-icon">🏞️</div>
+<div class="policy-content"><h5>绿水青山</h5><p>"两山"理念发源地，龙之梦、仙山湖等文旅资源环绕</p></div>
+</div>
+</div>
+</div>
+
+<div class="hotline">
+<h3>📞 招商热线</h3>
+<div class="tel">0563-568-0000</div>
+<p>长合区投资促进局 · 工作日 8:30-17:30</p>
 </div>
 </div>
 
@@ -364,126 +414,179 @@ g id="markers">
 <script src="factory_data.js"></script>
 <script src="enterprise_data.js"></script>
 <script>
-// 统计数据
-let stats = {factoryCount: 0, enterpriseCount: 0, totalSqM: 0};
+// ============== 产业链数据 ==============
+const chains = {
+battery:{name:'🔋 电池系统',items:[
+{name:'宁德时代',inv:'50亿+',land:'150亩+',st:'none',note:'扩产选址中'},
+{name:'弗迪电池',inv:'60亿+',land:'200亩+',st:'none',note:'持续扩产'},
+{name:'中创新航',inv:'30亿',land:'100亩',st:'none',note:'IPO冲刺'},
+{name:'欣旺达',inv:'20亿',land:'80亩',st:'none',note:'消费转动力'},
+]},
+motor:{name:'⚡ 电驱系统',items:[
+{name:'华为数字能源',inv:'25亿',land:'80亩',st:'none',note:'战略布局'},
+{name:'汇川联合',inv:'20亿',land:'60亩',st:'none',note:'扩产选址'},
+{name:'英搏尔',inv:'12亿',land:'50亩',st:'none',note:'电机控制器'},
+{name:'巨一动力',inv:'15亿',land:'55亩',st:'none',note:'电驱动系统'},
+]},
+chassis:{name:'🔩 底盘系统',items:[
+{name:'东升汽车',inv:'已落地',land:'天子湖',st:'ok',note:'悬架系统'},
+{name:'万桥智控',inv:'已落地',land:'天子湖',st:'ok',note:'制动系统'},
+{name:'杭摩新材',inv:'已落地',land:'天子湖',st:'ok',note:'汽车部件'},
+{name:'伯特利',inv:'18亿',land:'70亩',st:'none',note:'制动龙头'},
+]},
+body:{name:'🚗 车身系统',items:[
+{name:'豪斯特',inv:'已落地',land:'天子湖',st:'ok',note:'一体化压铸'},
+{name:'拓普集团',inv:'30亿',land:'120亩',st:'none',note:'一体化压铸'},
+{name:'文灿股份',inv:'25亿',land:'100亩',st:'none',note:'压铸件'},
+{name:'瑞鹄模具',inv:'15亿',land:'60亩',st:'none',note:'模具冲压'},
+]},
+intel:{name:'🧠 智能驾驶',items:[
+{name:'地平线',inv:'15亿',land:'40亩',st:'none',note:'IPO冲刺'},
+{name:'速腾聚创',inv:'10亿',land:'45亩',st:'none',note:'激光雷达'},
+{name:'图达通',inv:'8亿',land:'30亩',st:'none',note:'激光雷达'},
+{name:'德赛西威',inv:'20亿',land:'70亩',st:'none',note:'智能座舱'},
+]},
+};
 
-// 页面切换
-function switchPage(pageId) {
-document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
-document.getElementById('page-' + pageId).classList.add('active');
-document.querySelector('[data-page="'+pageId+'"]').classList.add('active');
-window.scrollTo(0, 0);
+function stTag(st){return st==='ok'?'<span class="tag tag-green">■ 已有</span>':'<span class="tag tag-red">■ 空缺</span>';}
+
+function renderChain(filter='all'){
+const container=document.getElementById('chain-list');
+const keys=filter==='all'?Object.keys(chains):[filter];
+container.innerHTML=keys.map(k=>{
+const c=chains[k];
+const ok=c.items.filter(i=>i.st==='ok').length;
+return`<div class="chain-item">
+<div class="chain-head" onclick="this.nextElementSibling.classList.toggle('open')">
+<h4>${c.name}</h4>
+<span>${ok}/${c.items.length} 已落地 ▼</span>
+</div>
+<div class="chain-body">
+<table><tr><th>目标企业</th><th>投资规模</th><th>用地需求</th><th>状态</th><th>备注</th></tr>
+${c.items.map(i=>`<tr><td><strong>${i.name}</strong></td><td>${i.inv}</td><td>${i.land}</td><td>${stTag(i.st)}</td><td>${i.note}</td></tr>`).join('')}
+</table></div></div>`;
+}).join('');
 }
 
-document.querySelectorAll('.nav-tab').forEach(tab => {
-tab.addEventListener('click', () => switchPage(tab.dataset.page));
-});
-
-// 分页配置
-const PAGE_SIZE = 15;
-let facPage = 1, entPage = 1;
-let filteredFac = [], filteredEnt = [];
-
-function renderFacTable(data, page = 1) {
-const start = (page - 1) * PAGE_SIZE;
-const pageData = data.slice(start, start + PAGE_SIZE);
-document.getElementById('fac-tbody').innerHTML = pageData.map((f, i) => 
-'<tr><td>' + (start+i+1) + '</td><td>' + f.name + '</td><td>' + f.area + '</td><td>' + f.sqm.toLocaleString() + '</td><td>' + f.floor + '</td><td>' + f.rent + '</td><td>' + (f.height||'-') + '</td><td>' + f.contact + '</td><td>' + f.phone + '</td></tr>'
-).join('');
-
-const totalPages = Math.ceil(data.length / PAGE_SIZE);
-document.getElementById('fac-pager').innerHTML = 
-'<button class="page-btn"' + (page<=1?' disabled':'') + ' onclick="changeFacPage(' + (page-1) + ')">上一页</button>' +
-'<span style="padding:8px 16px;color:var(--text-dim)">' + page + '/' + totalPages + '</span>' +
-'<button class="page-btn"' + (page>=totalPages?' disabled':'') + ' onclick="changeFacPage(' + (page+1) + ')">下一页</button>';
+// ============== 页面切换 ==============
+function goPage(id){switchPage(id);}
+function switchPage(id){
+document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
+document.getElementById('page-'+id).classList.add('active');
+document.querySelector('nav button[data-page="'+id+'"]').classList.add('active');
+window.scrollTo(0,0);
+if(id==='map')renderChain();
+if(id==='factory')renderFacTable(allFac);
+if(id==='enterprise')renderEntTable(allEnt);
 }
+document.querySelectorAll('nav button').forEach(b=>{b.addEventListener('click',()=>switchPage(b.dataset.page));});
 
-function changeFacPage(p) {
-if(p<1 || p>Math.ceil(filteredFac.length/PAGE_SIZE)) return;
-facPage = p;
-renderFacTable(filteredFac, p);
-}
-
-function renderEntTable(data, page = 1) {
-const start = (page - 1) * PAGE_SIZE;
-const pageData = data.slice(start, start + PAGE_SIZE);
-document.getElementById('ent-tbody').innerHTML = pageData.map((e, i) => 
-'<tr><td>' + (start+i+1) + '</td><td>' + e.name + '</td><td>' + e.area + '</td><td>' + e.contact + '</td><td>' + e.phone + '</td><td>' + e.type + '</td><td>' + e.owner + '</td></tr>'
-).join('');
-
-const totalPages = Math.ceil(data.length / PAGE_SIZE);
-document.getElementById('ent-pager').innerHTML = 
-'<button class="page-btn"' + (page<=1?' disabled':'') + ' onclick="changeEntPage(' + (page-1) + ')">上一页</button>' +
-'<span style="padding:8px 16px;color:var(--text-dim)">' + page + '/' + totalPages + '</span>' +
-'<button class="page-btn"' + (page>=totalPages?' disabled':'') + ' onclick="changeEntPage(' + (page+1) + ')">下一页</button>';
-}
-
-function changeEntPage(p) {
-if(p<1 || p>Math.ceil(filteredEnt.length/PAGE_SIZE)) return;
-entPage = p;
-renderEntTable(filteredEnt, p);
-}
-
-// 筛选
-document.querySelectorAll('#page-factory .filter-btn').forEach(btn => {
-btn.addEventListener('click', () => {
-document.querySelectorAll('#page-factory .filter-btn').forEach(b => b.classList.remove('active'));
+// 产业链筛选
+document.querySelectorAll('[data-c]').forEach(btn=>{
+btn.addEventListener('click',()=>{
+document.querySelectorAll('[data-c]').forEach(b=>b.classList.remove('active'));
 btn.classList.add('active');
-const f = btn.dataset.filter;
-const all = [...factoryData.tianzihun, ...factoryData.sian];
-filteredFac = f==='all'? all : all.filter(x => x.area.includes(f));
-renderFacTable(filteredFac);
+renderChain(btn.dataset.c);
 });
 });
 
-document.querySelectorAll('#page-enterprise .filter-btn').forEach(btn => {
-btn.addEventListener('click', () => {
-document.querySelectorAll('#page-enterprise .filter-btn').forEach(b => b.classList.remove('active'));
+// ============== 厂房 ==============
+const allFac=[...(factoryData.tianzihun||[]),...(factoryData.sian||[])];
+const allEnt=enterpriseData||[];
+let facP=1,entP=1,curFac='all',curEnt='all',curArea='all';
+const PS=12;
+
+function renderFacTable(data,p=1){
+const s=(p-1)*PS,rows=data.slice(s,s+PS);
+document.getElementById('fac-tbody').innerHTML=rows.map((f,i)=>
+`<tr><td>${s+i+1}</td><td>${f.name}</td><td>${f.area}</td><td>${f.floor||'-'}</td><td>${f.rent||'-'}</td><td>${f.height||'-'}</td><td>${f.power||'-'}</td><td>${f.contact||'-'}</td><td>${f.phone||'-'}</td></tr>`
+).join('');
+const tp=Math.ceil(data.length/PS)||1;
+document.getElementById('fac-pages').innerHTML=
+`<button ${p<=1?'disabled':''} onclick="renderFacTable(filterFac(),${p-1})">上一页</button>`+
+`<span>${p}/${tp}</span>`+
+`<button ${p>=tp?'disabled':''} onclick="renderFacTable(filterFac(),${p+1})">下一页</button>`;
+}
+
+function filterFac(){
+const kw=(document.getElementById('fac-search')||{}).value||'';
+return allFac.filter(f=>(curFac==='all'||f.area.includes(curFac))&&f.name.toLowerCase().includes(kw.toLowerCase()));
+}
+
+document.querySelectorAll('[data-f]').forEach(btn=>{
+btn.addEventListener('click',()=>{
+document.querySelectorAll('[data-f]').forEach(b=>b.classList.remove('active'));
 btn.classList.add('active');
-const f = btn.dataset.filter;
-filteredEnt = f==='all'? enterpriseData : enterpriseData.filter(x => x.area===f);
-renderEntTable(filteredEnt);
+curFac=btn.dataset.f;facP=1;
+renderFacTable(filterFac());
 });
 });
+document.getElementById('fac-search')?.addEventListener('input',()=>{facP=1;renderFacTable(filterFac());});
 
-// 搜索
-document.getElementById('fac-search').addEventListener('input', e => {
-const kw = e.target.value.toLowerCase();
-const all = [...factoryData.tianzihun, ...factoryData.sian];
-filteredFac = all.filter(x => x.name.toLowerCase().includes(kw));
-renderFacTable(filteredFac);
+// 按图索骥厂房
+let mapFac='all';
+function renderMapFac(){
+const kw=(document.getElementById('map-search')||{}).value||'';
+const data=allFac.filter(f=>(mapFac==='all'||f.area.includes(mapFac))&&f.name.toLowerCase().includes(kw.toLowerCase()));
+const list=document.getElementById('fac-list');
+if(!data.length){list.innerHTML='<p style="color:var(--dim);text-align:center;padding:20px">暂无数据</p>';return;}
+list.innerHTML='<div class="table-wrap"><table><tr><th>#</th><th>企业</th><th>片区</th><th>可租</th><th>租金</th><th>层高</th><th>联系人</th><th>电话</th></tr>'+
+data.map((f,i)=>`<tr><td>${i+1}</td><td>${f.name}</td><td>${f.area}</td><td>${f.floor||'-'}</td><td>${f.rent||'-'}</td><td>${f.height||'-'}</td><td>${f.contact||'-'}</td><td>${f.phone||'-'}</td></tr>`).join('')+'</table></div>';
+}
+document.querySelectorAll('[data-area]').forEach(btn=>{
+btn.addEventListener('click',()=>{
+document.querySelectorAll('[data-area]').forEach(b=>b.classList.remove('active'));
+btn.classList.add('active');
+mapFac=btn.dataset.area;renderMapFac();
 });
-
-document.getElementById('ent-search').addEventListener('input', e => {
-const kw = e.target.value.toLowerCase();
-filteredEnt = enterpriseData.filter(x => x.name.toLowerCase().includes(kw));
-renderEntTable(filteredEnt);
 });
+document.getElementById('map-search')?.addEventListener('input',renderMapFac);
 
-// 初始化
-function init() {
-// 统计
-const allFac = [...factoryData.tianzihun, ...factoryData.sian];
-stats.factoryCount = allFac.length;
-stats.enterpriseCount = enterpriseData.length;
-stats.totalSqM = allFac.reduce((a,b) => a + b.sqm, 0);
+// ============== 企业 ==============
+function renderEntTable(data,p=1){
+const s=(p-1)*PS,rows=data.slice(s,s+PS);
+document.getElementById('ent-tbody').innerHTML=rows.map((e,i)=>
+`<tr><td>${s+i+1}</td><td>${e.name}</td><td>${e.area}</td><td>${e.contact||'-'}</td><td>${e.phone||'-'}</td><td>${e.type||'-'}</td><td>${e.owner||'-'}</td></tr>`
+).join('');
+const tp=Math.ceil(data.length/PS)||1;
+document.getElementById('ent-pages').innerHTML=
+`<button ${p<=1?'disabled':''} onclick="renderEntTable(filterEnt(),${p-1})">上一页</button>`+
+`<span>${p}/${tp}</span>`+
+`<button ${p>=tp?'disabled':''} onclick="renderEntTable(filterEnt(),${p+1})">下一页</button>`;
+}
 
-document.getElementById('stat-factory').textContent = stats.factoryCount;
-document.getElementById('stat-enterprise').textContent = stats.enterpriseCount;
-document.getElementById('stat-sqm').textContent = Math.round(stats.totalSqM/10000) + '万';
-document.getElementById('fac-count').textContent = stats.factoryCount;
-document.getElementById('fac-sqm').textContent = stats.totalSqM.toLocaleString();
-document.getElementById('ent-count').textContent = stats.enterpriseCount;
+function filterEnt(){
+const kw=(document.getElementById('ent-search')||{}).value||'';
+return allEnt.filter(e=>(curEnt==='all'||e.area===curEnt)&&e.name.toLowerCase().includes(kw.toLowerCase()));
+}
 
-// 表格
-filteredFac = allFac;
-filteredEnt = enterpriseData;
+document.querySelectorAll('[data-e]').forEach(btn=>{
+btn.addEventListener('click',()=>{
+document.querySelectorAll('[data-e]').forEach(b=>b.classList.remove('active'));
+btn.classList.add('active');
+curEnt=btn.dataset.e;entP=1;
+renderEntTable(filterEnt());
+});
+});
+document.getElementById('ent-search')?.addEventListener('input',()=>{entP=1;renderEntTable(filterEnt());});
+
+// ============== 初始化 ==============
+(function init(){
+const tzh=(factoryData.tianzihun||[]).length,sa=(factoryData.sian||[]).length;
+const tsqm=allFac.reduce((a,b)=>a+(b.sqm||0),0);
+document.getElementById('s-factory').textContent=allFac.length;
+document.getElementById('s-enterprise').textContent=allEnt.length;
+document.getElementById('s-sqm').textContent=tsqm.toLocaleString();
+document.getElementById('f-total').textContent=allFac.length;
+document.getElementById('f-tzh').textContent=tzh;
+document.getElementById('f-sa').textContent=sa;
+document.getElementById('f-sqm').textContent=tsqm.toLocaleString();
+document.getElementById('e-total').textContent=allEnt.length;
 renderFacTable(allFac);
-renderEntTable(enterpriseData);
-}
-
-init();
+renderEntTable(allEnt);
+renderMapFac();
+})();
 </script>
 </body>
 </html>
