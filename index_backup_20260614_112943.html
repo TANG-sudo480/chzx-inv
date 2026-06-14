@@ -40,20 +40,6 @@ tr:hover{background:rgba(0,212,255,0.03)}
 .tag-red{background:rgba(239,68,68,0.15);color:var(--red)}
 .tag-blue{background:rgba(0,212,255,0.15);color:var(--primary)}
 .tag-orange{background:rgba(249,115,22,0.15);color:#f97316}
-.tag-purple{background:rgba(139,92,246,0.15);color:#8b5cf6}
-
-/* 三大产业板块 */
-.industry-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:16px}
-.industry-card{background:rgba(0,0,0,0.2);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:18px;cursor:pointer;transition:all .3s}
-.industry-card:hover{border-color:var(--primary);transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,212,255,0.1)}
-.industry-icon{width:52px;height:52px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:26px;margin-bottom:12px}
-.industry-title{font-size:15px;font-weight:700;color:#fff;margin-bottom:6px}
-.industry-desc{font-size:12px;color:var(--dim);margin-bottom:10px}
-.industry-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
-.industry-companies{display:flex;flex-direction:column;gap:5px}
-.company-item{font-size:12px;color:var(--dim);padding:4px 8px;background:rgba(255,255,255,0.03);border-radius:4px}
-.company-item:hover{background:rgba(0,212,255,0.05);color:#fff}
-@media(max-width:900px){.industry-grid{grid-template-columns:1fr}}
 .search-bar{display:flex;gap:10px;margin-bottom:14px}
 .search-bar input{flex:1;padding:11px 14px;background:#1f2937;border:1px solid var(--border);border-radius:8px;color:#fff;font-size:14px}
 .search-bar input:focus{outline:none;border-color:var(--primary)}
@@ -178,84 +164,22 @@ main{padding:16px}
 <!-- 首页 -->
 <div id="page-home" class="page active">
 <div class="page-title">长三角（湖州）产业合作区</div>
-<div class="page-sub">苏浙皖三省交汇 · 三大主导产业 · 承接长三角产业转移核心平台</div>
+<div class="page-sub">长三角之心 · 产业高地 · 营商优地 | 一体化国家战略载体</div>
 
 <div class="stats">
 <div class="stat"><div class="stat-num" id="s-fact">0</div><div class="stat-label">可用厂房</div></div>
 <div class="stat"><div class="stat-num" id="s-ent">0</div><div class="stat-label">园区企业</div></div>
 <div class="stat"><div class="stat-num" id="s-sqm">0</div><div class="stat-label">空闲面积(㎡)</div></div>
 <div class="stat"><div class="stat-num">194</div><div class="stat-label">规上企业</div></div>
-<div class="stat"><div class="stat-num">530亿</div><div class="stat-label">规上工业产值</div></div>
-<div class="stat"><div class="stat-num">86.9</div><div class="stat-label">规划面积(km²)</div></div>
-</div>
-
-<!-- 三大产业板块 -->
-<div class="card" style="margin-top:20px">
-<div class="card-title">🎯 三大主导产业方向</div>
-<div class="industry-grid">
-<div class="industry-card" onclick="goPage('fishbone')">
-<div class="industry-icon" style="background:linear-gradient(135deg,rgba(16,185,129,0.2),rgba(16,185,129,0.05))">🚗</div>
-<div class="industry-title">新能源汽车及关键零部件</div>
-<div class="industry-desc">浙江省五大新能源汽车产业培育基地之一</div>
-<div class="industry-tags">
-<span class="tag tag-green">整车制造</span>
-<span class="tag tag-green">三电系统</span>
-<span class="tag tag-green">智能驾驶</span>
-</div>
-<div class="industry-companies">
-<div class="company-item">✅ 园区：吉利汽车</div>
-<div class="company-item">✅ 园区：零跑汽车</div>
-<div class="company-item">✅ 园区：拓普集团</div>
-<div class="company-item">✅ 园区：银轮股份</div>
-<div class="company-item">🔗 周边：特斯拉、比亚迪、蔚来</div>
-<div class="company-item">🔗 周边：宁德时代、华友钴业</div>
-</div>
-</div>
-
-<div class="industry-card" onclick="goPage('fishbone')">
-<div class="industry-icon" style="background:linear-gradient(135deg,rgba(139,92,246,0.2),rgba(139,92,246,0.05))">🤖</div>
-<div class="industry-title">机器人·数控机床·AI智造</div>
-<div class="industry-desc">长三角数控智谷 · 4700+机器人企业集聚</div>
-<div class="industry-tags">
-<span class="tag tag-purple">工业机器人</span>
-<span class="tag tag-purple">数控机床</span>
-<span class="tag tag-purple">具身智能</span>
-</div>
-<div class="industry-companies">
-<div class="company-item">✅ 园区：创世纪（民营机床龙头）</div>
-<div class="company-item">✅ 园区：人本轴承（全国最大）</div>
-<div class="company-item">✅ 园区：德马科技、诺力股份</div>
-<div class="company-item">✅ 园区：利羿精密、桢正机器人</div>
-<div class="company-item">🔗 周边：宇树科技、智元机器人</div>
-<div class="company-item">🔗 周边：绿的谐波、汇川技术</div>
-</div>
-</div>
-
-<div class="industry-card" onclick="goPage('fishbone')">
-<div class="industry-icon" style="background:linear-gradient(135deg,rgba(249,115,22,0.2),rgba(249,115,22,0.05))">🔋</div>
-<div class="industry-title">绿色能源·储能</div>
-<div class="industry-desc">储能新赛道 · 光伏+储能+氢能三位一体</div>
-<div class="industry-tags">
-<span class="tag tag-orange">储能系统</span>
-<span class="tag tag-orange">光伏组件</span>
-<span class="tag tag-orange">氢能</span>
-</div>
-<div class="industry-companies">
-<div class="company-item">🔗 周边：宁德时代、亿纬锂能</div>
-<div class="company-item">🔗 周边：阳光电源、华为数字能源</div>
-<div class="company-item">🔗 周边：隆基绿能、通威股份</div>
-<div class="company-item">🔗 周边：海博思创、中创新航</div>
-<div class="company-item">📍 国家电网、南方电网储能项目</div>
-<div class="company-item">🏭 工商业储能+户用储能</div>
-</div>
-</div>
-</div>
+<div class="stat"><div class="stat-num">530亿</div><div class="stat-label">规上工业总产值</div></div>
+<div class="stat"><div class="stat-num">150亿</div><div class="stat-label">基金规模</div></div>
+<div class="stat"><div class="stat-num">20%+</div><div class="stat-label">年均增长率</div></div>
 </div>
 
 <div class="quick">
-<div class="quick-item" onclick="goPage('location')"><div class="icon">📍</div><h3>区位优势</h3><p>苏浙皖三省交汇 · 90分钟交通圈</p></div>
-<div class="quick-item" onclick="goPage('fishbone')"><div class="icon">🐟</div><h3>产业图谱</h3><p>产业链上中下游企业全景</p></div>
-<div class="quick-item" onclick="goPage('map')"><div class="icon">🗺️</div><h3>按图索骥</h3><p>招商目标×园区资源精准配对</p></div>
+<div class="quick-item" onclick="goPage('location')"><div class="icon">📍</div><h3>区位优势</h3><p>长三角之心，90分钟交通圈</p></div>
+<div class="quick-item" onclick="goPage('industry')"><div class="icon">🏭</div><h3>产业布局</h3><p>新能源汽车+机器人双链驱动</p></div>
+<div class="quick-item" onclick="goPage('map')"><div class="icon">🗺️</div><h3>按图索骥</h3><p>产业链精准配对，招商目标×园区资源</p></div>
 <div class="quick-item" onclick="goPage('factory')"><div class="icon">🏗️</div><h3>厂房资源</h3><p>天子湖+泗安片区厂房详情</p></div>
 <div class="quick-item" onclick="goPage('enterprise')"><div class="icon">🏢</div><h3>企业名录</h3><p>园区企业联系信息</p></div>
 <div class="quick-item" onclick="goPage('policy')"><div class="icon">💰</div><h3>投资政策</h3><p>资本、人才、服务全支撑</p></div>
@@ -264,38 +188,11 @@ main{padding:16px}
 <div class="card">
 <div class="card-title">🚄 交通网络</div>
 <div class="transport">
-<div class="transport-item"><div class="icon">🚄</div><h5>高铁 1.5h</h5><p>上海虹桥·杭州东·南京南·合肥南</p></div>
-<div class="transport-item"><div class="icon">🚗</div><h5>高速 10min</h5><p>杭长高速天子湖出口·沪渝高速</p></div>
-<div class="transport-item"><div class="icon">✈️</div><h5>机场 90min</h5><p>杭州萧山·上海虹桥·南京禄口</p></div>
-<div class="transport-item"><div class="icon">🚢</div><h5>水运</h5><p>长兴港·联通上海港·宁波舟山港</p></div>
-<div class="transport-item"><div class="icon">🏗️</div><h5>承载空间</h5><p>86.9km² · 超千亩连片用地</p></div>
-</div>
-</div>
-
-<div class="card">
-<div class="card-title">💰 金融与政策赋能</div>
-<div class="policy">
-<div class="policy-item">
-<div class="policy-icon">🏦</div>
-<div class="policy-content">
-<h5>项目优商贷</h5>
-<p>土地摘牌可达100% · 在建工程最高70% · 专用设备最高30%</p>
-</div>
-</div>
-<div class="policy-item">
-<div class="policy-icon">🏭</div>
-<div class="policy-content">
-<h5>表面处理配套</h5>
-<p>园区国企自建阳极氧化产业园 · 年处理能力500万㎡ · 钣金铸件配套</p>
-</div>
-</div>
-<div class="policy-item">
-<div class="policy-icon">⚡</div>
-<div class="policy-content">
-<h5>能源保障</h5>
-<p>天子湖片区万元增加值能耗≤0.45吨标煤 · 绿色能源直供</p>
-</div>
-</div>
+<div class="transport-item"><div class="icon">🚄</div><h5>高铁 1.5h</h5><p>上海·杭州·南京·合肥</p></div>
+<div class="transport-item"><div class="icon">🚗</div><h5>高速 10min</h5><p>沪渝·杭长·申嘉湖</p></div>
+<div class="transport-item"><div class="icon">✈️</div><h5>机场 90min</h5><p>虹桥·萧山·禄口</p></div>
+<div class="transport-item"><div class="icon">🚢</div><h5>千吨码头</h5><p>上海港·宁波舟山港</p></div>
+<div class="transport-item"><div class="icon">🏗️</div><h5>承载空间</h5><p>86.9km² 超千亩连片</p></div>
 </div>
 </div>
 
@@ -487,7 +384,7 @@ main{padding:16px}
 <!-- 产业布局 -->
 <div id="page-industry" class="page">
 <div class="page-title">🏭 产业布局</div>
-<div class="page-sub">三大主导产业 · "一谷两区" · 新质生产力集群</div>
+<div class="page-sub">双链驱动 · "一谷两区" · 新质生产力集群</div>
 
 <div class="stats">
 <div class="stat"><div class="stat-num">30+</div><div class="stat-label">周边整车企业</div></div>
@@ -497,38 +394,40 @@ main{padding:16px}
 </div>
 
 <div class="card">
-<div class="card-title">🚗 新能源汽车及关键零部件</div>
+<div class="card-title">🚗 新能源汽车产业链</div>
 <p style="color:var(--dim);font-size:13px;margin-bottom:14px;line-height:1.7">
-浙江省五大新能源汽车产业培育基地之一。周边200km：特斯拉、比亚迪、吉利、蔚来等<span class="tag tag-green">30+</span>整车企业，
-<span class="tag tag-green">200+</span>零部件企业，形成完整产业链。围绕整车、车身、三电、底盘四大环节布局。
+周边200公里：特斯拉、比亚迪、吉利、蔚来等<span class="tag tag-yellow">30+</span>整车企业，
+<span class="tag tag-yellow">200+</span>零部件企业，形成完整产业链。
+浙江省五大新能源汽车产业培育基地之一，围绕整车、车身、三电、底盘四大环节布局。
 </p>
 <div class="table-wrap">
 <table>
-<tr><th>产业链环节</th><th>园区企业</th><th>缺链状态</th><th>招商重点目标</th></tr>
-<tr><td><strong>🌟 整车</strong></td><td>吉利汽车、零跑汽车</td><td><span class="tag tag-green">■ 龙头落地</span></td><td>—</td></tr>
+<tr><th>产业链环节</th><th>已落地企业</th><th>缺链状态</th><th>招商重点目标</th></tr>
+<tr><td><strong>整车</strong></td><td>翰凯斯无人驾驶巴士</td><td><span class="tag tag-yellow">待扩产</span></td><td>吉利新能源、零跑汽车、比亚迪合肥基地</td></tr>
 <tr><td><strong>一体化压铸</strong></td><td>豪斯特</td><td><span class="tag tag-yellow">待补强</span></td><td>拓普集团、文灿股份、力劲科技</td></tr>
-<tr><td><strong>动力电池</strong></td><td>—</td><td><span class="tag tag-red">严重缺链</span></td><td>宁德时代、弗迪电池、中创新航、亿纬锂能</td></tr>
+<tr><td><strong>电芯制造</strong></td><td>—</td><td><span class="tag tag-red">严重缺链</span></td><td>宁德时代、弗迪电池、中创新航、亿纬锂能</td></tr>
 <tr><td><strong>PACK/BMS</strong></td><td>利羿能源</td><td><span class="tag tag-yellow">待补强</span></td><td>欣旺达、均胜电子、派能科技</td></tr>
-<tr><td><strong>热管理系统</strong></td><td>银轮股份</td><td><span class="tag tag-green">■ 完善</span></td><td>三花智控</td></tr>
-<tr><td><strong>电驱动系统</strong></td><td>富特科技、福瑞泰克</td><td><span class="tag tag-yellow">待补强</span></td><td>华为数字能源、英搏尔、巨一动力</td></tr>
-<tr><td><strong>底盘零部件</strong></td><td>孔辉汽车(悬架)、拓普集团</td><td><span class="tag tag-green">■ 完善</span></td><td>耐世特、伯特利、万安科技</td></tr>
-<tr><td><strong>车身零部件</strong></td><td>旭升集团</td><td><span class="tag tag-green">■ 完善</span></td><td>—</td></tr>
+<tr><td><strong>热管理系统</strong></td><td>银轮股份、三花智控</td><td><span class="tag tag-green">■ 完善</span></td><td>—</td></tr>
+<tr><td><strong>电机控制器</strong></td><td>—</td><td><span class="tag tag-red">■ 缺链</span></td><td>华为数字能源、英搏尔、巨一动力</td></tr>
+<tr><td><strong>悬架系统</strong></td><td>东升汽车</td><td><span class="tag tag-yellow">待补强</span></td><td>耐世特、拓普集团</td></tr>
+<tr><td><strong>制动系统</strong></td><td>万桥智控</td><td><span class="tag tag-yellow">待补强</span></td><td>伯特利、万安科技</td></tr>
+<tr><td><strong>精密铸件</strong></td><td>安吉德康精密铸件</td><td><span class="tag tag-green">■ 完善</span></td><td>—</td></tr>
 </table>
 </div>
 </div>
 
 <div class="card">
-<div class="card-title">🤖 机器人·数控机床·AI智造</div>
+<div class="card-title">🤖 机器人与数控机床产业链</div>
 <p style="color:var(--dim);font-size:13px;margin-bottom:14px;line-height:1.7">
-长三角机器人相关企业<span class="tag tag-purple">4700+</span>，产能占全国50%以上。
-湖州集聚德马科技、诺力股份、牧星机器人等<span class="tag tag-purple">30+</span>核心企业。
+长三角机器人相关企业<span class="tag tag-yellow">4700+</span>，产能占全国50%以上。
+湖州集聚德马科技、诺力股份、牧星机器人等<span class="tag tag-yellow">30+</span>核心企业。
 数控机床、具身智能双赛道布局。
 </p>
 <div class="table-wrap">
 <table>
-<tr><th>产业链环节</th><th>园区企业</th><th>缺链状态</th><th>招商重点目标</th></tr>
-<tr><td><strong>🌟 数控机床（整机）</strong></td><td>创世纪（民营龙头）</td><td><span class="tag tag-green">■ 龙头落地</span></td><td>海天精工、国盛智科</td></tr>
-<tr><td><strong>🌟 轴承制造</strong></td><td>人本轴承（全国最大）</td><td><span class="tag tag-green">■ 龙头落地</span></td><td>—</td></tr>
+<tr><th>产业链环节</th><th>已落地企业</th><th>缺链状态</th><th>招商重点目标</th></tr>
+<tr><td><strong>数控机床（整机）</strong></td><td>创世纪（民营龙头）</td><td><span class="tag tag-green">■ 龙头落地</span></td><td>海天精工、国盛智科</td></tr>
+<tr><td><strong>轴承制造</strong></td><td>人本轴承（全国最大）</td><td><span class="tag tag-green">■ 龙头落地</span></td><td>—</td></tr>
 <tr><td><strong>机器人本体</strong></td><td>利羿精密、桢正机器人</td><td><span class="tag tag-yellow">待补强</span></td><td>埃斯顿、埃夫特、新松机器人</td></tr>
 <tr><td><strong>减速器</strong></td><td>—</td><td><span class="tag tag-red">■ 严重缺链</span></td><td>绿的谐波、国茂股份、中大力德</td></tr>
 <tr><td><strong>伺服电机</strong></td><td>—</td><td><span class="tag tag-red">■ 缺链</span></td><td>汇川技术、雷赛智能、禾川科技</td></tr>
@@ -540,37 +439,13 @@ main{padding:16px}
 </div>
 
 <div class="card">
-<div class="card-title">🔋 绿色能源·储能</div>
-<p style="color:var(--dim);font-size:13px;margin-bottom:14px;line-height:1.7">
-储能产业新赛道，<span class="tag tag-orange">光伏+储能+氢能</span>三位一体布局。
-依托长三角新能源产业集群，对接宁德时代、亿纬锂能、阳光电源等龙头企业。
-工商业储能、电网侧储能、户用储能全场景覆盖。
-</p>
-<div class="table-wrap">
-<table>
-<tr><th>产业链环节</th><th>周边企业</th><th>缺链状态</th><th>招商重点目标</th></tr>
-<tr><td><strong>电芯制造</strong></td><td>—</td><td><span class="tag tag-red">■ 缺链</span></td><td>宁德时代、亿纬锂能、中创新航</td></tr>
-<tr><td><strong>储能系统集成</strong></td><td>—</td><td><span class="tag tag-red">■ 缺链</span></td><td>海博思创、阳光电源、远景能源</td></tr>
-<tr><td><strong>逆变器PCS</strong></td><td>—</td><td><span class="tag tag-red">■ 缺链</span></td><td>华为数字能源、阳光电源、上能电气</td></tr>
-<tr><td><strong>BMS/EMS</strong></td><td>—</td><td><span class="tag tag-yellow">待补强</span></td><td>均胜电子、科列技术</td></tr>
-<tr><td><strong>光伏组件</strong></td><td>—</td><td><span class="tag tag-yellow">待补强</span></td><td>隆基绿能、天合光能、阿特斯</td></tr>
-<tr><td><strong>氢能</strong></td><td>—</td><td><span class="tag tag-red">■ 缺链</span></td><td>亿华通、国鸿氢能、重塑能源</td></tr>
-<tr><td><strong>电网侧储能</strong></td><td>—</td><td><span class="tag tag-yellow">待布局</span></td><td>国家电网、南方电网独立储能项目</td></tr>
-</table>
-</div>
-</div>
-
-<div class="card">
 <div class="card-title">⚙️ 表面处理配套</div>
-<p style="color:var(--dim);font-size:13px;margin-bottom:14px;line-height:1.7">
-园区国企自建表面处理产业园，为新能源汽车、机器人、数控机床产业提供<span class="tag tag-blue">阳极氧化+电镀+钣金铸件</span>配套。
-</p>
 <div class="table-wrap">
 <table>
-<tr><th>配套类型</th><th>情况</th><th>年处理能力</th><th>可承接业务</th></tr>
-<tr><td>阳极氧化产业园</td><td><span class="tag tag-green">■ 国企自建</span></td><td>500万㎡</td><td>新能源汽车铝件、机器人壳体</td></tr>
-<tr><td>电镀配套产业园</td><td><span class="tag tag-green">■ 国企自建</span></td><td>全品类</td><td>金属镀层、表面处理</td></tr>
-<tr><td>钣金铸件</td><td><span class="tag tag-yellow">■ 集聚区</span></td><td>—</td><td>牛博、正轩配套创世纪等龙头</td></tr>
+<tr><th>配套类型</th><th>情况</th><th>可承接业务</th></tr>
+<tr><td>阳极氧化产业园</td><td><span class="tag tag-green">■ 国企自建</span></td><td>各类铝件阳极氧化处理</td></tr>
+<tr><td>电镀配套产业园</td><td><span class="tag tag-green">■ 国企自建</span></td><td>金属镀层、表面处理</td></tr>
+<tr><td>钣金铸件</td><td><span class="tag tag-yellow">■ 集聚区</span></td><td>牛博、正轩等配套创世纪等龙头</td></tr>
 </table>
 </div>
 </div>
