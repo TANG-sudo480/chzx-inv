@@ -394,84 +394,114 @@ main{padding:16px}
       document.getElementById('amap-container').innerHTML='<div style="color:#9ca3af;text-align:center;padding:80px 0"><p style="font-size:32px;margin-bottom:8px">🗺️</p><p style="font-size:14px">地图加载中...</p></div>';
       setTimeout(initHomeMap,800);return;
     }
-    var opts={zoom:8,center:[119.7,31.2],viewMode:'2D'};
+    var opts={zoom:8,center:[119.7,31.2],viewMode:'2D',mapStyle:'amap://styles/light'};
     var map=new AMap.Map('amap-container',opts);
-    try{map.setFeatures([]);}catch(e){} // 关掉高德底图自带的所有地名标注
-    try{map.addControl(new AMap.Scale());}catch(e){}
-    try{map.addControl(new AMap.ToolBar({position:'rt'}));}catch(e){}
+    try{map.setFeatures(['bg','road','building']);}catch(e){}
 
-    // ===== 交通线路 =====
-    // 商合杭+沪苏湖高铁（黄色虚线）
-    try{map.add(new AMap.Polyline({path:[[117.5,31.5],[118.3,31.3],[119.42,30.87],[120.2,30.5],[121.2,31.0]],strokeColor:'#eab308',strokeWeight:3,strokeDasharray:[10,5],lineJoin:'round'}));}catch(e){}
-    // G50沪渝高速（红色粗线）
-    try{map.add(new AMap.Polyline({path:[[121.5,31.2],[120.0,31.0],[119.5,30.95],[119.38,30.95],[118.8,31.5]],strokeColor:'#e53e3e',strokeWeight:5,lineJoin:'round'}));}catch(e){}
-    // S14杭长高速（红色粗线）
-    try{map.add(new AMap.Polyline({path:[[120.5,30.2],[120.2,30.6],[119.55,31.01],[119.2,31.4]],strokeColor:'#e53e3e',strokeWeight:5,lineJoin:'round'}));}catch(e){}
-    // 宣杭铁路（灰色细线）
-    try{map.add(new AMap.Polyline({path:[[119.5,31.5],[119.7,31.0],[120.2,30.3]],strokeColor:'#666',strokeWeight:2,lineJoin:'round'}));}catch(e){}
-    // G318国道（灰色细线）
-    try{map.add(new AMap.Polyline({path:[[121.0,31.2],[119.5,30.95],[118.5,31.0]],strokeColor:'#999',strokeWeight:2,lineJoin:'round'}));}catch(e){}
-    // 水运线：长合区→湖州→上海港（蓝色虚线）
-    try{map.add(new AMap.Polyline({path:[[119.43,30.87],[119.95,31.0],[120.8,31.0],[121.5,31.2],[121.8,31.1]],strokeColor:'#2563eb',strokeWeight:2,strokeDasharray:[6,4],lineJoin:'round'}));}catch(e){}
-
-    // ===== 圆形标记 =====
-    function addCircle(lng,lat,bg,fg,size){
+    // ===== 距离标注辅助函数 =====
+    function distLabel(lng1,lat1,lng2,lat2,lng_mid,lat_mid,text){
       try{
-        var mk=new AMap.Marker({position:[lng,lat],
-          content:'<div style="width:'+size+'px;height:'+size+'px;border-radius:50%;background:'+bg+';border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,0.3)"></div>',
+        var t=new AMap.Marker({position:[lng_mid,lat_mid],
+          content:'<div style="background:rgba(255,255,255,0.92);color:#333;padding:2px 7px;border-radius:10px;font-size:11px;font-weight:bold;white-space:nowrap;border:1px solid #ccc;box-shadow:0 1px 3px rgba(0,0,0,0.15);font-family:sans-serif">'+text+'</div>',
+          offset:new AMap.Pixel(-20,-8)
+        });
+        map.add(t);
+      }catch(e){}
+    }
+
+    // ===== 交通线路（超粗+深色）=====
+    // G50沪渝高速（深红色粗线）
+    try{map.add(new AMap.Polyline({path:[[121.8,31.5],[120.8,31.1],[120.2,30.95],[119.5,30.95],[119.38,30.95],[118.5,31.5]],strokeColor:'#b91c1c',strokeWeight:8,lineJoin:'round'}));}catch(e){}
+    // S14杭长高速（深红色粗线）
+    try{map.add(new AMap.Polyline({path:[[120.8,29.9],[120.4,30.4],[119.8,30.85],[119.55,31.01],[119.2,31.4]],strokeColor:'#b91c1c',strokeWeight:8,lineJoin:'round'}));}catch(e){}
+    // 商合杭+沪苏湖高铁（深黄粗虚线）
+    try{map.add(new AMap.Polyline({path:[[116.8,32.0],[117.5,31.5],[118.3,31.3],[119.42,30.87],[120.1,30.87],[120.8,30.95],[121.5,31.2]],strokeColor:'#92400e',strokeWeight:7,strokeDasharray:[14,6],lineJoin:'round'}));}catch(e){}
+    // 宣杭铁路（深灰线）
+    try{map.add(new AMap.Polyline({path:[[119.5,31.5],[119.7,30.87],[120.2,30.3]],strokeColor:'#4b5563',strokeWeight:4,lineJoin:'round'}));}catch(e){}
+    // G318国道（灰色线）
+    try{map.add(new AMap.Polyline({path:[[121.5,31.5],[119.5,30.95],[118.2,31.0]],strokeColor:'#6b7280',strokeWeight:4,lineJoin:'round'}));}catch(e){}
+    // 水运线：长合区→湖州→嘉兴→上海港（深蓝粗虚线）
+    try{map.add(new AMap.Polyline({path:[[119.43,30.87],[120.10,30.87],[120.76,30.75],[121.0,31.0],[121.5,31.1],[121.8,31.0],[122.08,30.63]],strokeColor:'#1e40af',strokeWeight:5,strokeDasharray:[10,5],lineJoin:'round'}));}catch(e){}
+
+    // ===== 距离标注 =====
+    distLabel(119.43,30.87,120.10,30.87,119.75,30.87,'距湖州 64km');
+    distLabel(119.43,30.87,120.19,30.25,119.80,30.56,'距杭州 100km');
+    distLabel(119.43,30.87,120.62,31.30,120.02,31.08,'距苏州 123km');
+    distLabel(119.43,30.87,120.30,31.57,119.86,31.22,'距无锡 114km');
+    distLabel(119.43,30.87,118.78,32.06,119.10,31.46,'距南京 146km');
+    distLabel(119.43,30.87,117.28,31.86,118.35,31.37,'距合肥 232km');
+    distLabel(119.43,30.87,121.47,31.23,120.45,31.05,'距上海 198km');
+    distLabel(119.43,30.87,122.08,30.63,120.75,30.75,'距洋山港 255km');
+    distLabel(119.43,30.87,121.55,29.87,120.49,30.37,'距宁波 232km');
+    distLabel(119.43,30.87,114.06,22.54,116.74,26.70,'距深圳 1068km');
+    distLabel(119.43,30.87,104.07,30.67,111.75,30.77,'距成都 1467km');
+    distLabel(119.43,30.87,114.30,30.59,116.86,30.73,'距武汉 491km');
+    distLabel(119.43,30.87,116.40,39.90,117.92,35.39,'距北京 1041km');
+
+    // ===== 圆形城市标记 =====
+    function addCircle(lng,lat,bg,size){
+      try{
+        map.add(new AMap.Marker({position:[lng,lat],
+          content:'<div style="width:'+size+'px;height:'+size+'px;border-radius:50%;background:'+bg+';border:3px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,0.4)"></div>',
           offset:new AMap.Pixel(-size/2,-size/2)
-        });
-        map.add(mk);
+        }));
       }catch(e){}
     }
-    function addTag(lng,lat,text,bg){
+    function addCityTag(lng,lat,text,bg){
       try{
-        var mk=new AMap.Marker({position:[lng,lat],
-          content:'<div style="background:'+bg+';color:#fff;padding:4px 10px;border-radius:16px;font-size:12px;white-space:nowrap;box-shadow:0 1px 4px rgba(0,0,0,0.25);font-family:sans-serif">'+text+'</div>',
-          offset:new AMap.Pixel(-30,-18)
-        });
-        map.add(mk);
+        map.add(new AMap.Marker({position:[lng,lat],
+          content:'<div style="background:'+bg+';color:#fff;padding:5px 13px;border-radius:20px;font-size:13px;font-weight:bold;white-space:nowrap;box-shadow:0 2px 6px rgba(0,0,0,0.35);font-family:sans-serif;border:2px solid rgba(255,255,255,0.6)">'+text+'</div>',
+          offset:new AMap.Pixel(-35,-22)
+        }));
       }catch(e){}
     }
 
-    // 四大城市（红色圆）
-    addCircle(121.47,31.23,'#c0392b','#fff',16); addTag(121.47,31.23,'上海','#c0392b');
-    addCircle(120.19,30.25,'#c0392b','#fff',16); addTag(120.19,30.25,'杭州','#c0392b');
-    addCircle(118.78,32.06,'#c0392b','#fff',16); addTag(118.78,32.06,'南京','#c0392b');
-    addCircle(117.28,31.86,'#c0392b','#fff',16); addTag(117.28,31.86,'合肥','#c0392b');
+    // 超大城市（深红大圆）
+    addCircle(121.47,31.23,'#991b1b',18); addCityTag(121.47,31.23,'上海 198km','#991b1b');
+    addCircle(120.19,30.25,'#991b1b',18); addCityTag(120.19,30.25,'杭州 100km','#991b1b');
+    addCircle(118.78,32.06,'#991b1b',16); addCityTag(118.78,32.06,'南京 146km','#991b1b');
+    addCircle(117.28,31.86,'#991b1b',16); addCityTag(117.28,31.86,'合肥 232km','#991b1b');
+    // 重要城市（橙色圆）
+    addCircle(120.62,31.30,'#c2410c',14); addCityTag(120.62,31.30,'苏州 123km','#c2410c');
+    addCircle(120.30,31.57,'#c2410c',14); addCityTag(120.30,31.57,'无锡 114km','#c2410c');
+    addCircle(120.10,30.87,'#c2410c',14); addCityTag(120.10,30.87,'湖州 64km','#c2410c');
+    addCircle(121.55,29.87,'#c2410c',14); addCityTag(121.55,29.87,'宁波 232km','#c2410c');
+    addCircle(114.06,22.54,'#9a3412',14); addCityTag(114.06,22.54,'深圳 1068km','#9a3412');
+    addCircle(104.07,30.67,'#9a3412',14); addCityTag(104.07,30.67,'成都 1467km','#9a3412');
+    addCircle(114.30,30.59,'#9a3412',14); addCityTag(114.30,30.59,'武汉 491km','#9a3412');
+    addCircle(116.40,39.90,'#9a3412',14); addCityTag(116.40,39.90,'北京 1041km','#9a3412');
     // 机场（蓝色圆）
-    addCircle(121.33,31.20,'#2563eb','#fff',14); addTag(121.33,31.20,'上海虹桥机场','#2563eb');
-    addCircle(121.63,31.15,'#2563eb','#fff',14); addTag(121.63,31.15,'上海浦东机场','#2563eb');
-    addCircle(120.43,30.23,'#2563eb','#fff',14); addTag(120.43,30.23,'杭州萧山机场','#2563eb');
-    addCircle(118.86,31.98,'#2563eb','#fff',14); addTag(118.86,31.98,'南京禄口机场','#2563eb');
-    // 高速口（橙色圆）
-    addCircle(119.38,30.95,'#f59e0b','#fff',12); addTag(119.38,30.95,'天子湖高速口','#f59e0b');
-    addCircle(119.55,31.01,'#f59e0b','#fff',12); addTag(119.55,31.01,'泗安高速口','#f59e0b');
-    // 高铁站（紫色圆）
-    addCircle(119.42,30.87,'#7c3aed','#fff',12); addTag(119.42,30.87,'安吉站','#7c3aed');
+    addCircle(121.33,31.20,'#1e40af',13); addCityTag(121.33,31.20,'虹桥机场','#1e3a8a');
+    addCircle(120.43,30.23,'#1e40af',13); addCityTag(120.43,30.23,'萧山机场 119km','#1e3a8a');
+    addCircle(118.86,31.98,'#1e40af',13); addCityTag(118.86,31.98,'禄口机场','#1e3a8a');
+    // 高速口（深橙圆）
+    addCircle(119.38,30.95,'#b45309',12); addCityTag(119.38,30.95,'天子湖高速口','#b45309');
+    addCircle(119.55,31.01,'#b45309',12); addCityTag(119.55,31.01,'泗安高速口','#b45309');
+    // 高铁站（深紫圆）
+    addCircle(119.42,30.87,'#6d28d9',13); addCityTag(119.42,30.87,'安吉站','#6d28d9');
     // 港口（深蓝圆）
-    addCircle(122.08,30.63,'#1d4ed8','#fff',12); addTag(122.08,30.63,'上海洋山深水港','#1d4ed8');
+    addCircle(122.08,30.63,'#1e3a8a',13); addCityTag(122.08,30.63,'上海洋山深水港 255km','#1e3a8a');
 
-    // ===== 长合区管委会（大白星标记）=====
+    // ===== 长合区管委会主标记 =====
     try{
       map.add(new AMap.Marker({position:[119.43,30.87],
-        content:'<div style="background:#fff;color:#111;padding:8px 18px;border-radius:10px;font-size:14px;font-weight:bold;white-space:nowrap;box-shadow:0 3px 12px rgba(0,0,0,0.35);border:2px solid #00d4ff;font-family:sans-serif">★ 长三角（湖州）产业合作区</div>',
-        offset:new AMap.Pixel(-95,-28)
+        content:'<div style="background:#fff;color:#111;padding:9px 20px;border-radius:12px;font-size:15px;font-weight:bold;white-space:nowrap;box-shadow:0 4px 16px rgba(0,0,0,0.4);border:3px solid #00d4ff;font-family:sans-serif">★ 长三角（湖州）产业合作区<br><span style="font-size:12px;color:#666;font-weight:normal">安吉县天子湖镇 · 东阳路1号</span></div>',
+        offset:new AMap.Pixel(-115,-38)
       }));
     }catch(e){}
 
-    // 长合区周边高亮圈
+    // 长合区高亮圈
     try{
-      map.add(new AMap.Circle({center:[119.43,30.87],radius:12000,
-        strokeColor:'#00d4ff',strokeWeight:2,strokeOpacity:0.7,
-        fillColor:'rgba(0,212,255,0.08)',fillOpacity:0.25
+      map.add(new AMap.Circle({center:[119.43,30.87],radius:14000,
+        strokeColor:'#00d4ff',strokeWeight:3,strokeOpacity:0.8,
+        fillColor:'rgba(0,212,255,0.1)',fillOpacity:0.3
       }));
     }catch(e){}
 
-    // ===== 图例（右下角）=====
+    // ===== 图例 =====
     try{
       var leg=document.createElement('div');
-      leg.innerHTML='<div style="position:absolute;right:12px;bottom:12px;background:rgba(255,255,255,0.93);border-radius:8px;padding:10px 14px;font-size:11px;color:#333;line-height:1.9;z-index:10;box-shadow:0 2px 8px rgba(0,0,0,0.15);font-family:sans-serif;min-width:130px"><div style="font-weight:bold;font-size:12px;border-bottom:1px solid #eee;padding-bottom:4px;margin-bottom:4px">图例</div><div><span style="display:inline-block;width:20px;height:3px;background:#e53e3e;border-radius:2px;vertical-align:middle;margin-right:4px"></span>高速公路</div><div><span style="display:inline-block;width:20px;height:2px;border-top:3px dashed #eab308;vertical-align:middle;margin-right:4px"></span>高铁线路</div><div><span style="display:inline-block;width:20px;height:2px;background:#2563eb;border-radius:2px;border-top:2px dashed #2563eb;vertical-align:middle;margin-right:4px"></span>水运航道</div><div><span style="display:inline-block;width:20px;height:2px;background:#666;border-radius:2px;vertical-align:middle;margin-right:4px"></span>普通铁路/国道</div><div><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#c0392b;vertical-align:middle;margin-right:4px"></span>城市</div><div><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#2563eb;vertical-align:middle;margin-right:4px"></span>机场</div><div><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#f59e0b;vertical-align:middle;margin-right:4px"></span>高速口</div><div><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#7c3aed;vertical-align:middle;margin-right:4px"></span>高铁站</div><div><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#1d4ed8;vertical-align:middle;margin-right:4px"></span>港口</div></div>';
+      leg.innerHTML='<div style="position:absolute;right:12px;bottom:12px;background:rgba(255,255,255,0.95);border-radius:10px;padding:12px 16px;font-size:11px;color:#333;line-height:2.0;z-index:10;box-shadow:0 2px 10px rgba(0,0,0,0.2);font-family:sans-serif;min-width:150px"><div style="font-weight:bold;font-size:13px;border-bottom:1px solid #ddd;padding-bottom:5px;margin-bottom:5px">图例</div><div><span style="display:inline-block;width:24px;height:5px;background:#b91c1c;border-radius:3px;vertical-align:middle;margin-right:5px"></span>高速公路（G50/S14）</div><div><span style="display:inline-block;width:24px;height:4px;border-top:4px dashed #92400e;vertical-align:middle;margin-right:5px"></span>高铁线路</div><div><span style="display:inline-block;width:24px;height:3px;background:#1e40af;border-radius:2px;vertical-align:middle;margin-right:5px"></span>水运航道</div><div><span style="display:inline-block;width:24px;height:2px;background:#4b5563;vertical-align:middle;margin-right:5px"></span>普通铁路/国道</div><div><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#991b1b;vertical-align:middle;margin-right:5px"></span>超大城市</div><div><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#c2410c;vertical-align:middle;margin-right:5px"></span>重要城市</div><div><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#1e40af;vertical-align:middle;margin-right:5px"></span>机场/港口</div><div><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#b45309;vertical-align:middle;margin-right:5px"></span>高速口</div><div><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#6d28d9;vertical-align:middle;margin-right:5px"></span>高铁站</div></div>';
       leg.style.cssText='position:absolute;right:12px;bottom:12px;z-index:10;pointer-events:none';
       document.getElementById('amap-container').style.position='relative';
       document.getElementById('amap-container').appendChild(leg);
