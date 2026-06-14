@@ -396,6 +396,7 @@ main{padding:16px}
     }
     var opts={zoom:8,center:[119.7,31.2],viewMode:'2D'};
     var map=new AMap.Map('amap-container',opts);
+    try{map.setFeatures([]);}catch(e){} // 关掉高德底图自带的所有地名标注
     try{map.addControl(new AMap.Scale());}catch(e){}
     try{map.addControl(new AMap.ToolBar({position:'rt'}));}catch(e){}
 
